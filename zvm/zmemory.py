@@ -51,6 +51,14 @@ class ZMemory(object):
   ### implement sequence funcs:
   ### http://python.org/doc/2.4.2/ref/sequence-types.html
 
+  def _check_bounds(self, index):
+    if index < 0 or index >= self._total_size:
+      raise ZMemoryOutOfBounds
+
+  def _check_static(self, index):
+    if index >= self._static_start and index <= self._static_end:
+      raise ZMemoryIllegalWrite
+
   def _bytes_to_16bit_int(self, byte1, byte2):
     """Convert two bytes into a 16-bit integer."""
     return (ord(byte1) << 8) + ord(byte2)
@@ -70,16 +78,27 @@ class ZMemory(object):
 
   def __getitem__(self, index):
     """Return the byte value stored at address INDEX.."""
-    if index < 0 or index >= self._total_size:
-      raise ZMemoryOutOfBounds
+    self._check_bounds(index)
     return self._memory[index]
 
   def __setitem__(self, index, value):
     """Set VALUE in memory address INDEX."""
-    if index < 0 or index >= self._total_size:
-      raise ZMemoryOutOfBounds
-    if index >= self._static_start and index <= self._static_end:
-      raise ZMemoryIllegalWrite
+    self._check_bounds(index)
+    self._check_static(index)
     self._memory[index] = value
+
+  def __getslice__(self, start, end):
+    """Return a sequence of bytes from memory."""
+    self._check_bounds(start)
+    self._check_bounds(end)
+    return self._memory[start:end]
+
+  def __setslice__(self, start, end, sequence):
+    """Set a range of memory addresses to SEQUENCE."""
+    self._check_bounds(start)
+    self._check_bounds(end)
+    self._check_static(start)
+    self._check_static(end)
+    self._memory[start:end] = sequence
 
 
