@@ -28,7 +28,7 @@ class BitFieldTests(TestCase):
         z = Zscii(5)
         self.failUnlessEqual(z.ztou(97), u"a")
         self.failUnlessEqual(z.ztou(13), u"\n")
-        self.failUnlessEqual(z.ztou(0xcf), u"\xcf")
+        self.failUnlessEqual(z.ztou(168), u"\xcf")
         self.failUnlessRaises(IndexError, z.ztou, z.CUR_UP)
 
     def testGetZscii(self):
