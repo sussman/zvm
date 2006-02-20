@@ -1,0 +1,49 @@
+Welcome to ZVM
+===============
+
+This is a work-in-progress.  More information about this project can
+be found at
+
+       http://www.red-bean.com/trac/zvm
+
+
+What is ZVM?
+============
+
+The goal of the ZVM project is to write a pure-python implementation
+of a Z-machine, a virtual computer architecture that executes
+interactive fiction stories written in a special language, called
+Z-code.
+
+The current goals of the project include:
+
+    * No user interface: ZVM implements only the actual Z-machine. It
+      is meant to be used as the backend in other programs that
+      provide a user interface.
+
+    * Compatibility: ZVM will implement a Z-Machine architecture
+      according to the official specification.
+
+    * Coverage: Over the years, the Z-machine architecture was revised
+      and refined: 8 versions are known to exist. ZVM currently aims
+      to support Z-machine versions 1 through 5.
+
+    * Programming language: ZVM is written exclusively in the Python
+      programming language, as an importable code module.
+
+
+Code
+====
+
+All code is covered by the BSD license, found in the LICENSE file.
+
+The subversion repository is located at:  http://svn.red-bean.com/repos/zvm
+
+Project contents:
+
+      README                        this file
+      LICENSE                       the BSD license
+      run_tests.py                  script to run automated tests
+      tests/                        automated tests for the module
+      stories/                      some sample stories to interpret
+      zvm/                          the actual ZVM python module
