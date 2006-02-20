@@ -48,9 +48,6 @@ class ZMemory(object):
     self._high_start = self.get_word_value(0x04)
     self._high_end = self._total_size
 
-  ### implement sequence funcs:
-  ### http://python.org/doc/2.4.2/ref/sequence-types.html
-
   def _check_bounds(self, index):
     if index < 0 or index >= self._total_size:
       raise ZMemoryOutOfBounds
