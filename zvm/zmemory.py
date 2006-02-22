@@ -70,7 +70,7 @@ class ZMemory(object):
       raise ZMemoryBadMemoryLayout
 
     # What z-machine version is this story file?
-    self.version = ord(self._memory[0])
+    self.version = self._memory[0]
 
     # Validate game size
     if self.version >= 1 and self.version <= 3:
@@ -82,8 +82,6 @@ class ZMemory(object):
     else:
       raise ZMemoryUnsupportedVersion
 
-
-
   def _check_bounds(self, index):
     if index < 0 or index >= self._total_size:
       raise ZMemoryOutOfBounds
@@ -91,10 +89,6 @@ class ZMemory(object):
   def _check_static(self, index):
     if index >= self._static_start and index <= self._static_end:
       raise ZMemoryIllegalWrite
-
-  def _bytes_to_16bit_int(self, byte1, byte2):
-    """Convert two bytes into a 16-bit integer."""
-    return (ord(byte1) << 8) + ord(byte2)
 
   def print_map(self):
     """Pretty-print a description of the memory map."""
@@ -150,8 +144,7 @@ class ZMemory(object):
     """Return the 16-bit value stored at ADDRESS, ADDRESS+1."""
     if address < 0 or address >= (self._total_size - 1):
       raise ZMemoryOutOfBounds
-    return self._bytes_to_16bit_int(self._memory[address],
-                                    self._memory[(address + 1)])
+    return (self._memory[address] << 8) + self._memory[(address + 1)]
 
 
 
