@@ -45,6 +45,33 @@ class ZMemoryUnsupportedVersion(ZMemoryError):
 
 class ZMemory(object):
 
+  # A list of 64 tuples describing who's allowed to tweak header-bytes.
+  # Index into the list is the header-byte being tweaked.
+  # List value is a tuple of the form
+  #
+  #         [minimum_z_version, game_allowed, interpreter_allowed]
+  #
+  # Note: in section 11.1 of the spec, we should technically be
+  # enforcing authorization by *bit*, not by byte.  Maybe do this
+  # someday.
+
+  HEADER_PERMS = ([1,0,0], [3,0,1], None, None,
+                  [1,0,0], None, [1,0,0], None,
+                  [1,0,0], None, [1,0,0], None,
+                  [1,0,0], None, [1,0,0], None,
+                  [1,1,1], None, None, None,
+                  None, None, None, None,
+                  [2,0,0], None, [3,0,0], None,
+                  [3,0,0], None, [4,1,1], [4,1,1],
+                  [4,0,1], [4,0,1], [5,0,1], None,
+                  [5,0,1], None, [5,0,1], [5,0,1],
+                  [6,0,0], None, [6,0,0], None,
+                  [5,0,1], [5,0,1], [5,0,0], None,
+                  [6,0,1], None, [1,0,1], None,
+                  [5,0,0], None, [5,0,0], None,
+                  None, None, None, None,
+                  None, None, None, None)
+
   def __init__(self, initial_string):
     """Construct class based on a string that represents an initial
     'snapshot' of main memory."""
@@ -87,7 +114,13 @@ class ZMemory(object):
       raise ZMemoryOutOfBounds
 
   def _check_static(self, index):
+    """Throw error if INDEX is within the static-memory area."""
     if index >= self._static_start and index <= self._static_end:
+      raise ZMemoryIllegalWrite
+
+  def _check_header(self, index):
+    """Throw error if INDEX is within the header area."""
+    if index >= 0 and index < 64:
       raise ZMemoryIllegalWrite
 
   def print_map(self):
@@ -105,6 +138,7 @@ class ZMemory(object):
     """Set VALUE in memory address INDEX."""
     self._check_bounds(index)
     self._check_static(index)
+    self._check_header(index)
     self._memory[index] = value
 
   def __getslice__(self, start, end):
@@ -119,6 +153,8 @@ class ZMemory(object):
     self._check_bounds(end)
     self._check_static(start)
     self._check_static(end)
+    self._check_header(start)
+    self._check_header(end)
     self._memory[start:end] = sequence
 
   def word_address(self, address):
@@ -146,5 +182,30 @@ class ZMemory(object):
       raise ZMemoryOutOfBounds
     return (self._memory[address] << 8) + self._memory[(address + 1)]
 
+  # Normal sequence syntax cannot be used to set bytes in the 64-byte
+  # header.  Instead, the interpreter or game must call one of the
+  # following APIs.
 
+  def interpreter_set_header(self, address, value):
+    """Possibly allow the interpreter to set header ADDRESS to VALUE."""
+    if address < 0 or address > 63:
+      raise ZMemoryOutOfBounds
+    perm_tuple = self.HEADER_PERMS[address]
+    if perm_tuple is None:
+      raise ZMemoryIllegalWrite
+    if self.version >= perm_tuple[0] and perm_tuple[2]:
+      self._memory[address] = value
+    else:
+      raise ZMemoryIllegalWrite
 
+  def game_set_header(self, address, value):
+    """Possibly allow the game code to set header ADDRESS to VALUE."""
+    if address < 0 or address > 63:
+      raise ZMemoryOutOfBounds
+    perm_tuple = self.HEADER_PERMS[address]
+    if perm_tuple is None:
+      raise ZMemoryIllegalWrite
+    if self.version >= perm_tuple[0] and perm_tuple[1]:
+      self._memory[address] = value
+    else:
+      raise ZMemoryIllegalWrite
