@@ -23,7 +23,6 @@ class ZStringStream(object):
     def _get_block(self):
         from bitfield import BitField
         chunk = self._mem[self._addr:self._addr+2]
-        print chunk
         self._data = BitField(''.join([chr(x) for x in chunk]))
         self._addr += 2
         self._char_in_block = 0
@@ -32,8 +31,8 @@ class ZStringStream(object):
         if self._has_ended:
             raise ZStringEndOfString
 
-        offset = self._char_in_block * 5
-        print offset
+        # We must read in sequence bits 14-10, 9-5, 4-0.
+        offset = (2 - self._char_in_block) * 5
         zchar = self._data[offset:offset+5]
 
         if self._char_in_block == 2:
