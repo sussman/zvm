@@ -116,12 +116,27 @@ class ZStringFactory(object):
         return True
 
     def to_ascii(self, addr):
-        return ZString(self._mem.version, self,
+        return ZString(self._mem, self,
                        ZStringStream(self._mem, addr))
 
+    def get_abbrev(self, subtable, index):
+        # The abbreviation table address is at header address 0x18
+        abbrev_table_base = self._mem.read_word(0x18)
+        # We multiply the result by 2 because each entry is 2 bytes
+        # long. The rest is the calculation done as specified in the
+        # ZM spec.
+        abbrev_table_offset = ((32*subtable)+index)*2
+        abbrev_addr = self._mem.word_address(abbrev_table_base +
+                                             abbrev_table_offset)
+        return ZAbbrev(self._mem, self,
+                       ZStringStream(self._mem, abbrev_addr))
 
 class ZString(object):
-    def __init__(self, version, factory, stream):
+    def __init__(self, mem, factory, stream):
+        self._mem = mem
+        self._factory = factory
+        self._stream = stream
+
         # Start on alphabet 0
         self._cur_alph = 0
         self._prev_alph = 0
@@ -131,10 +146,9 @@ class ZString(object):
         try:
             while True:
                 c = stream.get()
-
                 ## Special values
                 if c in range(1,6):
-                    if version == 1:
+                    if self._mem.version == 1:
                         a = {
                             1: lambda _: self._ascii.append("\n"),
                             2: lambda _: self._alph_shr(False),
@@ -142,7 +156,7 @@ class ZString(object):
                             4: lambda _: self._alph_shr(True),
                             5: lambda _: self._alph_shl(True),
                             }[c](c)
-                    elif version == 2:
+                    elif self._mem.version == 2:
                         a = {
                             1: lambda _: self._get_abbr(0, stream.get()),
                             2: lambda _: self._alph_shr(False),
@@ -171,7 +185,10 @@ class ZString(object):
                     self._ascii.append(factory.zscii.ztou(zscii))
 
         except ZStringEndOfString:
-            print ''.join(self._ascii)
+            self._end = stream._addr
+
+    def val(self):
+        return ''.join(self._ascii)
 
     def _alph_shr(self, lock):
         """Shift the current alphabet one to the right. If lock is
@@ -188,3 +205,13 @@ class ZString(object):
         self._cur_alph = (self._cur_alph - 1) % 3
         if lock:
             self._prev_alph = self._cur_alph
+
+    def _get_abbr(self, subtable, index):
+        self._ascii += self._factory.get_abbrev(subtable, index).val()
+
+class ZStringAbbrevWithinAbbrev(Exception):
+    """An abbreviation tried to refer to another abbreviation."""
+
+class ZAbbrev(ZString):
+    def _get_abbr(self, subtable, index):
+        raise ZStringAbbrevWithinAbbrev
