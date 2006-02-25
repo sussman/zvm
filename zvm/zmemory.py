@@ -100,27 +100,27 @@ class ZMemory(object):
     self.version = self._memory[0]
 
     # Validate game size
-    if self.version >= 1 and self.version <= 3:
+    if 1 <= self.version <= 3:
       if self._total_size > 131072:
         raise ZMemoryBadStoryfileSize
-    elif self.version == 4 or self.version == 5:
+    elif 4 <= self.version <=  5:
       if self._total_size > 262144:
         raise ZMemoryBadStoryfileSize
     else:
       raise ZMemoryUnsupportedVersion
 
   def _check_bounds(self, index):
-    if index < 0 or index >= self._total_size:
+    if not (0 <= index < self._total_size):
       raise ZMemoryOutOfBounds
 
   def _check_static(self, index):
     """Throw error if INDEX is within the static-memory area."""
-    if index >= self._static_start and index <= self._static_end:
+    if self._static_start <= index <= self._static_end:
       raise ZMemoryIllegalWrite
 
   def _check_header(self, index):
     """Throw error if INDEX is within the header area."""
-    if index >= 0 and index < 64:
+    if 0 <= index < 64:
       raise ZMemoryIllegalWrite
 
   def print_map(self):
@@ -165,11 +165,11 @@ class ZMemory(object):
 
   def packed_address(self, address):
     """Return the 'actual' address of packed address ADDRESS."""
-    if self.version >= 1 and self.version <= 3:
+    if 1 <= self.version <= 3:
       if address < 0 or address > (self._total_size / 2):
         raise ZMemoryOutOfBounds
       return address*2
-    elif self.version == 4 or self.version == 5:
+    elif 4 <= self.version <=  5:
       if address < 0 or address > (self._total_size / 4):
         raise ZMemoryOutOfBounds
       return address*4
