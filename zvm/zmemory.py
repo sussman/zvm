@@ -5,6 +5,7 @@
 # root directory of this distribution.
 #
 
+import bitfield
 
 # This class that represents the "main memory" of the z-machine.  It's
 # readable and writable through normal indexing and slice notation,
@@ -89,6 +90,7 @@ class ZMemory(object):
     self._dynamic_end = self._static_start - 1
     self._high_start = self.read_word(0x04)
     self._high_end = self._total_size
+    self._global_variable_start = self._memory[0x0c]
 
     # Dynamic + static must not exceed 64k
     dynamic_plus_static = ((self._dynamic_end - self._dynamic_start)
@@ -209,3 +211,26 @@ class ZMemory(object):
       self._memory[address] = value
     else:
       raise ZMemoryIllegalWrite
+
+  # The ZPU will need to read and write global variables.  The 240
+  # global variables are located at a place determined by the header.
+
+  def read_global(self, varnum):
+    """Return 16-bit value of global variable VARNUM.  Incoming VARNUM
+    must be between 0x10 and 0xFF."""
+    if not (0x10 <= varnum <= 0xFF):
+      raise ZMemoryOutOfBounds
+    actual_address = self._global_variable_start + ((varnum - 0x10) * 2)
+    return self.read_word(actual_address)
+
+  def write_global(self, varnum, value):
+    """Write 16-bit VALUE to global variable VARNUM.  Incoming VARNUM
+    must be between 0x10 and 0xFF."""
+    if not (0x10 <= varnum <= 0xFF):
+      raise ZMemoryOutOfBounds
+    if not (0x00 <= value <= 0xFF):
+      raise ZMemoryIllegalWrite
+    actual_address = self._global_variable_start + ((varnum - 0x10) * 2)
+    bf = BitField(value)
+    self._memory[actual_address] = bf[8:15]
+    self._memory[actual_address + 1] = bf[0:7]
