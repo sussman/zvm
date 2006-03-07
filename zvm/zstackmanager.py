@@ -38,6 +38,7 @@ class ZRoutine(object):
     self.start_addr = start_addr
     self.program_counter = 0    # used when execution interrupted
     self.local_vars = {}
+    self.stack = []
 
     # First byte of routine is number of local variables
     ptr = start_addr
@@ -71,12 +72,10 @@ class ZRoutine(object):
 
 class ZStackManager(object):
 
-  STACK_DELIMITER = "::::::::::"
 
   def __init__(self):
 
     self._memory = zmem
-    self._data_stack = [self.STACK_DELIMITER]
     self._call_stack = [self.STACK_DELIMITER]
     self._call_stack_pointer = 0  # for 'catch' and 'throw' operations
 
@@ -111,18 +110,18 @@ class ZStackManager(object):
     current_routine.local_vars[varnum] = value
 
 
-  def push_data_stack(self, value):
-    "Push VALUE onto the top of the general-purpose data stack."
-    self._data_stack.append(value)
+  def push_stack(self, value):
+    "Push VALUE onto the top of the current routine's data stack."
+
+    current_routine = self._call_stack[self._call_stack_pointer]
+    current_routine.stack.append(value)
 
 
-  def pop_data_stack(self):
+  def pop_stack(self):
     "Remove and return value from the top of the data stack."
 
-    if self._data_stack[-1] == self.STACK_DELIMITER:
-      raise ZStackPopError
-
-    return self._data_stack.pop()
+    current_routine = self._call_stack[self._call_stack_pointer]
+    return current_routine.stack.pop()
 
 
   # ZPU should call this whenever it decides to call a new routine.
@@ -131,15 +130,12 @@ class ZStackManager(object):
     the current value of the PROGRAM_COUNTER), and prepare for
     execution of a new routine at ROUTINE_ADDR."""
 
-    current_routine = self._call_stack[self._call_stack_pointer]
     new_routine = ZRoutine(routine_addr, self._memory)
-
+    current_routine = self._call_stack[self._call_stack_pointer]
     current_routine.program_counter = program_counter
 
     self._call_stack.append(new_routine)
     self._call_stack_pointer += 1
-
-    self._data_stack.append(self.STACK_DELIMITER)
 
 
   # ZPU should call this whenever it decides to return from current routine.
@@ -148,9 +144,6 @@ class ZStackManager(object):
     toss any leftover values pushed to the data stack by said routine.
     Return the previous routine's program counter address, so that
     execution can resume where from it left off."""
-
-    while datum != self.STACK_DELIMITER:
-      datum = self._data_stack.pop()
 
     self._call_stack.pop()
     self._call_stack_pointer -= 1
