@@ -3,7 +3,7 @@
 from zmemory import *
 from zopdecoder import *
 
-story = file("/Users/sussman/Documents/driver.z5").read()
+story = file("trinity.z5").read()
 mem = ZMemory(story)
 
 decoder = ZOpDecoder(mem)
