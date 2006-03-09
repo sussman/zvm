@@ -17,21 +17,31 @@ class ZObjectIllegalObjectNumber(ZObjectError):
   "Illegal object number given."
   pass
 
+class ZObjectIllegalAttributeNumber(ZObjectError):
+  "Illegal attribute number given."
+  pass
+
 class ZObjectIllegalVersion(ZObjectError):
   "Unsupported z-machine version."
   pass
 
 
 
-# Again, the interpreter should only need exactly one instance of this class.
+# The interpreter should only need exactly one instance of this class.
 
 class ZObjectParser(object):
 
   def __init__(self, zmem):
 
     self._memory = zmem
-    self._propdefaults_addr = ?  # at word $0A
-    self._objecttree_addr = ?  # size of header depends on z version
+    self._propdefaults_addr = zmem.read_word(0x0a)
+
+    if 1 <= self._memory.version <= 3:
+      self._objecttree_addr = self._propdefaults_addr + 62
+    elif 4 <= self._memory.version <= 5:
+      self._objecttree_addr = self._propdefaults_addr + 126
+    else:
+      raise ZObjectIllegalVersion
 
 
   def _get_object_addr(self, objectnum):
@@ -50,11 +60,91 @@ class ZObjectParser(object):
     else:
       raise ZObjectIllegalVersion
 
+  def _get_parent_sibling_child(self, objectnum):
+    """Return [parent, sibling, child] object numbers of object OBJECTNUM."""
+
+    addr = self._get_object_addr(objectnum)
+
+    if 1 <= self._memory.version <= 3:
+      addr += 4  # skip past attributes
+      return self._memory[addr:addr+3]
+
+    elif 4 <= self._memory.version <= 5:
+      addr += 6  # skip past attributes
+      return [self._memory.read_word(addr),
+              self._memory.read_word(addr + 2),
+              self._memory.read_word(addr + 4)]
+    else:
+      raise ZObjectIllegalVersion
+
+  def _get_proptable_addr(self, objectnum):
+    """Return address of property table of object OBJECTNUM."""
+
+    addr = self._get_object_addr(objectnum)
+
+    # skip past attributes and relatives
+    if 1 <= self._memory.version <= 3:
+      addr += 7
+    elif 4 <= self._memory.version <= 5:
+      addr += 12
+    else:
+      raise ZObjectIllegalVersion
+
+    return self._memory.read_word(addr)
+
+
+  #--------- Public API -----------
 
   def get_attribute(self, objectnum, attrnum):
-    """Return value of attribute number ATTRNUM of object number OBJECTNUM."""
+    """Return value (0 or 1) of attribute number ATTRNUM of object
+    number OBJECTNUM."""
 
-    pass
+    object_addr = self._get_object_addr(objectnum)
+
+    if 1 <= self._memory.version <= 3:
+      if not (0 <= attrnum <= 31):
+        raise ZObjectIllegalAttributeNumber
+      bf = Bitfield(self._memory[object_addr + (attrnum / 8)])
+
+    elif 4 <= self._memory.version <= 5:
+      if not (0 <= attrnum <= 47):
+        raise ZObjectIllegalAttributeNumber
+      bf = Bitfield(self._memory[object_addr + (attrnum / 8)])
+
+    else:
+      raise ZObjectIllegalVersion
+
+    return bf[7 - (attrum % 8)]
+
+
+  def get_parent(self, objectnum):
+    """Return object number of parent of object number OBJECTNUM."""
+
+    [parent, sibling, child] = self._get_parent_sibling_child(objectnum)
+    return parent
+
+
+  def get_child(self, objectnum):
+    """Return object number of child of object number OBJECTNUM."""
+
+    [parent, sibling, child] = self._get_parent_sibling_child(objectnum)
+    return child
+
+
+  def get_sibling(self, objectnum):
+    """Return object number of sibling of object number OBJECTNUM."""
+
+    [parent, sibling, child] = self._get_parent_sibling_child(objectnum)
+    return sibling
+
+
+  def get_shortname(self, objectnum):
+    """Return 'short name' of object number OBJECTNUM as ascii string."""
+
+    addr = self._get_proptable_addr(objectnum)
+    text_length = self._memory[addr]
+    zstring_data = self._memory[addr+1:((addr+1) + (2*text_length))]
+    # convert zstring_data to ascii and return result
 
 
   def get_property(self, objectnum, propnum):
@@ -62,27 +152,3 @@ class ZObjectParser(object):
 
     # don't forget to use the 'propdefaults' table if the property
     # doesn't exist.
-
-
-  def get_parent(self, objectnum):
-    """Return object number of parent of object number OBJECTNUM."""
-
-    pass
-
-
-  def get_child(self, objectnum):
-    """Return object number of child of object number OBJECTNUM."""
-
-    pass
-
-
-  def get_sibling(self, objectnum):
-    """Return object number of sibling of object number OBJECTNUM."""
-
-    pass
-
-
-  def get_shortname(self, objectnum):
-    """Return 'short name' of object number OBJECTNUM as ascii string."""
-
-    pass
