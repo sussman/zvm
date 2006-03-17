@@ -8,99 +8,79 @@
 class ZStringEndOfString(Exception):
     """No more data left in string."""
 
-class ZStringStream(object):
-    """This class takes an address and a ZMemory, and treats that as
-    the begginning of a ZString. Subsequent calls to get() will return
-    one ZChar code at a time, raising ZStringEndOfString when there is
-    no more data."""
+class ZStringIllegalAbbrevInString(Exception):
+    """String abbreviation encountered within a string in a context
+    where it is not allowed."""
 
-    def __init__(self, zmem, addr):
+class ZStringTranslator(object):
+    def __init__(self, zmem):
         self._mem = zmem
-        self._addr = addr
-        self._has_ended = False
-        self._get_block()
 
-    def _get_block(self):
+    def get(self, addr):
         from bitfield import BitField
-        chunk = self._mem[self._addr:self._addr+2]
-        self._data = BitField(''.join([chr(x) for x in chunk]))
-        self._addr += 2
-        self._char_in_block = 0
+        pos = (addr, BitField(self._mem.read_word(addr)), 0)
 
-    def get(self, num=1):
-        if self._has_ended:
-            raise ZStringEndOfString
+        s = []
+        try:
+            while True:
+                s.append(self._read_char(pos))
+                pos = self._next_pos(pos)
+        except ZStringEndOfString:
+            return s
 
-        # We must read in sequence bits 14-10, 9-5, 4-0.
-        offset = (2 - self._char_in_block) * 5
-        zchar = self._data[offset:offset+5]
+    def _read_char(self, pos):
+        offset = (2 - pos[2]) * 5
+        return pos[1][offset:offset+5]
 
-        if self._char_in_block == 2:
-            # If end-of-string marker is set...
-            if self._data[15] == 1:
-                self._has_ended = True
-            else:
-                self._get_block()
-        else:
-            self._char_in_block += 1
+    def _is_final(self, pos):
+        return pos[1][15] == 1
 
-        return zchar
+    def _next_pos(self, pos):
+        from bitfield import BitField
 
-class ZStringFactory(object):
-    """A class that handles the matter of converting a ZString into an
-    ASCII string, with all the arcane things such as alphabets
-    handled.
+        offset = pos[2] + 1
+        # Overflowing from current block?
+        if offset == 3:
+            # Was last block?
+            if self._is_final(pos):
+                # Kill processing.
+                raise ZStringEndOfString
+            # Get and return the next block.
+            return (pos[0] + 2,
+                    BitField(self._mem.read_word(pos[0] + 2)),
+                    0)
 
-    Instances of this class are meant to be long-lived: typical use
-    would be attaching an instance of it to the virtual machine, and
-    have it do all zstring translations for that machine through its
-    xlate_ascii method."""
+        # Just increment the intra-block counter.
+        return (pos[0], pos[1], offset)
+
+class ZCharTranslator(object):
 
     # The default alphabet tables for ZChar translation.
     # As the codes 0-5 are special, alphabets start with code 0x6.
-    DEFAULT_A0 = "abcdefghijklmnopqrstuvwxyz"
-    DEFAULT_A1 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    DEFAULT_A0 = [ord(x) for x in "abcdefghijklmnopqrstuvwxyz"]
+    DEFAULT_A1 = [ord(x) for x in "ABCDEFGHIJKLMNOPQRSTUVWXYZ"]
     # A2 also has 0x6 as special char, so they start at 0x7.
-    DEFAULT_A2 = "0123456789.,!?_#'\"/\\<-:()"
-    DEFAULT_A2_V5 = "\n0123456789.,!?_#'\"/\\-:()"
+    DEFAULT_A2 = [ord(x) for x in "0123456789.,!?_#'\"/\\<-:()"]
+    DEFAULT_A2_V5 = [ord(x) for x in "\n0123456789.,!?_#'\"/\\-:()"]
 
-    def __init__(self, mem):
+    ALPHA = (DEFAULT_A0, DEFAULT_A1, DEFAULT_A2)
+    ALPHA_V5 = (DEFAULT_A0, DEFAULT_A1, DEFAULT_A2_V5)
 
-        self._mem = mem
+    def __init__(self, zmem):
+        self._mem = zmem
 
-        # Build ourselves a zscii translator
-        from zscii import Zscii
-        self.zscii = Zscii(mem.version)
-
-        self._load_alphabets()
-
-    def _load_alphabets(self):
-        """Load a set of alphabet tables, either from a custom memory
-        section, or the default tables for the current ZM version."""
-        alpha_tables = None
-
-        # If v5, try to load a custom alphabet.
+        # Initialize the alphabets
         if self._mem.version == 5:
             if not self._load_custom_alphabet():
-                # No custom alphabet, prime for loading default.
-                alpha_tables = (self.__class__.DEFAULT_A0,
-                                self.__class__.DEFAULT_A1,
-                                self.__class__.DEFAULT_A2_V5)
-        # Not v5, prime for loading the default alphabet
+                self._alphabet = self.__class__.ALPHA_V5
         else:
-            alpha_tables = (self.__class__.DEFAULT_A0,
-                            self.__class__.DEFAULT_A1,
-                            self.__class__.DEFAULT_A2)
+            self._alphabet = self.__class__.ALPHA
 
-        # If we haven't loaded a default alphabet a this point, crunch
-        # the numbers to get our default tables.
-        if alpha_tables:
-            self.alphabet = []
-            for alph in alpha_tables:
-                self.alphabet.append([self.zscii.utoz(c) for c in alph])
+        # Initialize the special state handlers
+        self._load_specials()
 
-        print self.alphabet
-
+        # Initialize the abbreviations (if supported)
+        self._load_abbrev_tables()
 
     def _load_custom_alphabet(self):
         """Check for the existence of a custom alphabet, and load it
@@ -109,109 +89,275 @@ class ZStringFactory(object):
         # The custom alphabet table address is at 0x34 in the memory.
         if self._mem[0x34] == 0:
             return False
-        alph_addr = self._mem.byte_addr(self._mem[0x34])
+        alph_addr = self._mem.read_word(0x34)
 
         alphabet = self._mem[alph_addr:alph_addr+78]
         self.alphabet = [alphabet[0:26], alphabet[26:52], alphabet[52:78]]
         return True
 
-    def to_ascii(self, addr):
-        return ZString(self._mem, self,
-                       ZStringStream(self._mem, addr))
+    def _load_abbrev_tables(self):
+        self._abbrevs = {}
 
-    def get_abbrev(self, subtable, index):
-        # The abbreviation table address is at header address 0x18
-        abbrev_table_base = self._mem.read_word(0x18)
-        # We multiply the result by 2 because each entry is 2 bytes
-        # long. The rest is the calculation done as specified in the
-        # ZM spec.
-        abbrev_table_offset = ((32*subtable)+index)*2
-        abbrev_addr = self._mem.word_address(abbrev_table_base +
-                                             abbrev_table_offset)
-        return ZAbbrev(self._mem, self,
-                       ZStringStream(self._mem, abbrev_addr))
+        # If the ZM doesn't do abbrevs, just return an empty dict.
+        if self._mem.version == 1:
+            return
 
-class ZString(object):
-    def __init__(self, mem, factory, stream):
-        self._mem = mem
-        self._factory = factory
-        self._stream = stream
+        # Build ourselves a ZStringTranslator for the abbrevs.
+        xlator = ZStringTranslator(self._mem)
 
-        # Start on alphabet 0
-        self._cur_alph = 0
-        self._prev_alph = 0
+        def _load_subtable(num, base):
+            for i,zoff in [(i,base+(num*64)+(i*2))
+                            for i in range(0, 32)]:
+                zaddr = self._mem.read_word(zoff)
+                zstr = xlator.get(self._mem.word_address(zaddr))
+                zchr = self.get(zstr, no_abbrev=True)
+                self._abbrevs[(num, i)] = zchr
 
-        self._ascii = []
+        abbrev_base = self._mem.read_word(0x18)
+        _load_subtable(0, abbrev_base)
 
+        # Does this ZM support the extended abbrev tables?
+        if self._mem.version >= 3:
+            _load_subtable(1, abbrev_base)
+            _load_subtable(2, abbrev_base)
+
+    def _load_specials(self):
+        if self._mem.version == 1:
+            self._specials = {
+                1: lambda s: self._special_newline(s),
+                2: lambda s: self._special_alpha_shift(s, +1, False),
+                3: lambda s: self._special_alpha_shift(s, -1, False),
+                4: lambda s: self._special_alpha_shift(s, +1, True),
+                5: lambda s: self._special_alpha_shift(s, -1, True),
+                }
+        elif self._mem.version == 2:
+            self._specials = {
+                1: lambda s: self._special_abbrev(s, 0),
+                2: lambda s: self._special_alpha_shift(s, +1, False),
+                3: lambda s: self._special_alpha_shift(s, -1, False),
+                4: lambda s: self._special_alpha_shift(s, +1, True),
+                5: lambda s: self._special_alpha_shift(s, -1, True),
+                }
+        else: # ZM v3-5
+            self._specials = {
+                1: lambda s: self._special_abbrev(s, 0),
+                2: lambda s: self._special_abbrev(s, 1),
+                3: lambda s: self._special_abbrev(s, 2),
+                4: lambda s: self._special_alpha_shift(s, +1, False),
+                5: lambda s: self._special_alpha_shift(s, -1, False),
+                }
+
+    def _special_newline(self, state):
+        state['zscii'].append(13) # ZSCII 13 (newline)
+
+    def _special_alpha_shift(self, state, direction, lock):
+        print "Changing alphabet"
+        state['curr_alpha'] = (state['curr_alpha'] + direction) % 3
+        if lock:
+            state['prev_alpha'] = state['curr_alpha']
+
+    def _special_abbrev(self, state, abbrev):
+        def write_abbrev(state, c, subtable):
+            print "Appending abbreviation '%s'" % \
+                  self._abbrevs[(subtable, c)]
+            state['zscii'] += self._abbrevs[(subtable, c)]
+            del state['state_handler']
+
+        if state['abbrevs']:
+            raise ZStringIllegalAbbrevInString
+        state['state_handler'] = lambda s,c: write_abbrev(s, c, abbrev)
+
+    def _special_zscii(self, state, char):
+        if 'zscii_char' not in state.keys():
+            state['zscii_char'] = char
+        else:
+            zchar = (state['zscii_char'] << 5) + char
+            state['zscii'].append(zchar)
+            del state['zscii_char']
+            del state['state_handler']
+
+    def get(self, zstr, no_abbrev=False):
+        state = {
+            'curr_alpha': 0,
+            'prev_alpha': 0,
+            'zscii': [],
+            'abbrevs': no_abbrev,
+            }
+
+        for c in zstr:
+            # If a special handler has registered itself, then hand
+            # processing over to it.
+            if 'state_handler' in state.keys():
+                state['state_handler'](state, c)
+                continue
+            # Default state handling
+            else:
+                # Hand off per-ZM version special char handling.
+                if c in self._specials.keys():
+                    self._specials[c](state)
+                    continue
+
+                # Handle the strange A2/6 character
+                if state['curr_alpha'] == 2 and c == 6:
+                    state['state_handler'] = self._special_zscii
+                    continue
+
+                # Do the usual Thing: append a zscii code to the
+                # decoded sequence and revert to the "previous"
+                # alphabet (or not, if it hasn't recently changed or
+                # was locked)
+                z = self._alphabet[state['curr_alpha']][c-6]
+                state['zscii'].append(z)
+                state['curr_alpha'] = state['prev_alpha']
+
+        return state['zscii']
+
+class ZsciiTranslator(object):
+    # The default Unicode Translation Table that maps to ZSCII codes
+    # 155-251. The codes are unicode codepoints for a host of strange
+    # characters.
+    DEFAULT_UTT = [unichr(x) for x in
+                   (0xe4, 0xf6, 0xfc, 0xc4, 0xd6, 0xdc,
+                   0xdf, 0xbb, 0xab, 0xeb, 0xef, 0xff,
+                   0xcb, 0xcf, 0xe1, 0xe9, 0xed, 0xf3,
+                   0xfa, 0xfd, 0xc1, 0xc9, 0xcd, 0xd3,
+                   0xda, 0xdd, 0xe0, 0xe8, 0xec, 0xf2,
+                   0xf9, 0xc0, 0xc8, 0xcc, 0xd2, 0xd9,
+                   0xe2, 0xea, 0xee, 0xf4, 0xfb, 0xc2,
+                   0xca, 0xce, 0xd4, 0xdb, 0xe5, 0xc5,
+                   0xf8, 0xd8, 0xe3, 0xf1, 0xf5, 0xc3,
+                   0xd1, 0xd5, 0xe6, 0xc6, 0xe7, 0xc7,
+                   0xfe, 0xf0, 0xde, 0xd0, 0xa3, 0x153,
+                   0x152, 0xa1, 0xbf)]
+    # And here is the offset at which the Unicode Translation Table
+    # starts.
+    UTT_OFFSET = 155
+
+    # This subclass just lists all the "special" character codes that
+    # are capturable from an input stream. They're just there so that
+    # the user of the virtual machine can give them a nice name.
+    class Input(object):
+        DELETE = 8
+        ESCAPE = 27
+        # The cursor pad
+        CUR_UP = 129
+        CUR_DOWN = 130
+        CUR_LEFT = 131
+        CUR_RIGHT = 132
+        # The Function keys
+        F1 = 133
+        F2 = 134
+        F3 = 135
+        F4 = 136
+        F5 = 137
+        F6 = 138
+        F7 = 139
+        F8 = 140
+        F9 = 141
+        F10 = 142
+        F11 = 143
+        F12 = 144
+        # The numpad (keypad) keys.
+        KP_0 = 145
+        KP_1 = 146
+        KP_2 = 147
+        KP_3 = 148
+        KP_4 = 149
+        KP_5 = 150
+        KP_6 = 151
+        KP_7 = 152
+        KP_8 = 153
+        KP_9 = 154
+
+    def __init__(self, zmem):
+        self._mem = zmem
+        self._output_table = {
+            0 : "",
+            13: "\n"
+            }
+        self._input_table = {
+            "\n": 13
+            }
+
+        self._load_unicode_table()
+
+        # Populate the input and output tables with the ascii and UTT
+        # characters.
+        for code,char in [(x,unichr(x)) for x in range(32,127)]:
+            self._output_table[code] = char
+            self._input_table[char] = code
+
+        # Populate the input table with the extra "special" input
+        # codes.  The cool trick we use here, is that all these values
+        # are in fact numbers, so their key will be available in both
+        # dicts, and ztoa will provide the correct code if you pass it
+        # a special symbol instead of a character to translate!
+        #
+        # Oh and we also pull the items from the subclass into this
+        # instance, so as to make reference to these special codes
+        # easier.
+        for name,code in [(c,v) for c,v in self.Input.__dict__.items()
+                     if not c.startswith('__')]:
+            self._input_table[code] = code
+            setattr(self, name, code)
+
+        # The only special support required for ZSCII: ZM v5 defines
+        # an extra character code to represent a mouse click. If we're
+        # booting a v5 ZM, define this.
+        if self._mem.version == 5:
+            setattr(self, "MOUSE_CLICK", 254)
+            self._input_table[254] = 254
+
+    def _load_unicode_table(self):
+        if self._mem.version == 5:
+            # Read the header extension table address
+            ext_table = self._mem.read_word(0x38)
+
+            # If the extension header exists and defines a non-null
+            # unicode translation table, load that.
+            if (ext_table != 0 and
+                self._mem.read_word(ext_table) >= 3 and
+                self._mem.read_word(ext_table+6) != 0):
+
+                # Retrieve a list of the offsets of all unicode
+                # character codes in the extension table
+                utt_range = range(ext_table+1,
+                                  ext_table+1+(self._mem[ext_table]*2),
+                                  2)
+
+                # And translate them
+                utt = [unichr(self._mem.read_word(i))
+                       for i in utt_range]
+
+    def ztou(self, index):
+        """Translate the given ZSCII code into the corresponding
+        output ASCII character and return it, or raise an exception if
+        the requested index has no translation."""
         try:
-            while True:
-                c = stream.get()
-                ## Special values
-                if c in range(1,6):
-                    if self._mem.version == 1:
-                        a = {
-                            1: lambda _: self._ascii.append("\n"),
-                            2: lambda _: self._alph_shr(False),
-                            3: lambda _: self._alph_shl(False),
-                            4: lambda _: self._alph_shr(True),
-                            5: lambda _: self._alph_shl(True),
-                            }[c](c)
-                    elif self._mem.version == 2:
-                        a = {
-                            1: lambda _: self._get_abbr(0, stream.get()),
-                            2: lambda _: self._alph_shr(False),
-                            3: lambda _: self._alph_shl(False),
-                            4: lambda _: self._alph_shr(True),
-                            5: lambda _: self._alph_shl(True),
-                            }[c](c)
-                    else: # Versions 3-5
-                        a = {
-                            1: lambda _: self._get_abbr(0, stream.get()),
-                            2: lambda _: self._get_abbr(1, stream.get()),
-                            3: lambda _: self._get_abbr(2, stream.get()),
-                            4: lambda _: self._alph_shr(False),
-                            5: lambda _: self._alph_shl(False),
-                            }[c](c)
+            return self._output_table[index]
+        except KeyError:
+            raise IndexError, "No such ZSCII character"
 
-                # Handle the special case of A2/6
-                elif self._cur_alph == 2 and c == 6:
-                    zscii = (stream.get() << 8) + stream.get()
-                    self._ascii.append(factory.zscii.ztou(zscii))
+    def utoz(self, char):
+        """Translate the given ASCII code into the corresponding input
+        ZSCII character and return it, or raise an exception if the
+        requested character has no translation."""
+        try:
+            return self._input_table[char]
+        except KeyError:
+            raise IndexError, "No such input character"
 
-                # All other cases are handled through the alphabet
-                # translator.
-                else:
-                    zscii = factory.alphabet[self._cur_alph][c-6]
-                    self._ascii.append(factory.zscii.ztou(zscii))
+    def get(self, zscii):
+        return ''.join([self.ztou(c) for c in zscii])
 
-        except ZStringEndOfString:
-            self._end = stream._addr
+class ZStringFactory(object):
+    def __init__(self, zmem):
+        self._mem = zmem
+        self._zstr = ZStringTranslator(zmem)
+        self._zchr = ZCharTranslator(zmem)
+        self._zscii = ZsciiTranslator(zmem)
 
-    def val(self):
-        return ''.join(self._ascii)
-
-    def _alph_shr(self, lock):
-        """Shift the current alphabet one to the right. If lock is
-        True, it will remain permanently active. Else, it will only be
-        active for a single character."""
-        self._cur_alph = (self._cur_alph + 1) % 3
-        if lock:
-            self._prev_alph = self._cur_alph
-
-    def _alph_shl(self, lock):
-        """Shift the current alphabet one to the right. If lock is
-        True, it will remain permanently active. Else, it will only be
-        active for a single character."""
-        self._cur_alph = (self._cur_alph - 1) % 3
-        if lock:
-            self._prev_alph = self._cur_alph
-
-    def _get_abbr(self, subtable, index):
-        self._ascii += self._factory.get_abbrev(subtable, index).val()
-
-class ZStringAbbrevWithinAbbrev(Exception):
-    """An abbreviation tried to refer to another abbreviation."""
-
-class ZAbbrev(ZString):
-    def _get_abbr(self, subtable, index):
-        raise ZStringAbbrevWithinAbbrev
+    def get(self, addr):
+        zstr = self._zstr.get(addr)
+        zchr = self._zchr.get(zstr)
+        return self._zscii.get(zchr)

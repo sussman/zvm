@@ -145,7 +145,7 @@ class ZObjectParser(object):
     """Return 'short name' of object number OBJECTNUM as ascii string."""
 
     addr = self._get_proptable_addr(objectnum)
-    return self._stringfactory.to_ascii(addr+1).val()
+    return self._stringfactory.get(addr+1)
 
 
   def get_property(self, objectnum, propnum):
