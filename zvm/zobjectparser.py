@@ -37,6 +37,7 @@ class ZObjectParser(object):
 
     self._memory = zmem
     self._propdefaults_addr = zmem.read_word(0x0a)
+    self._stringfactory = ZStringFactory(self._memory)
 
     if 1 <= self._memory.version <= 3:
       self._objecttree_addr = self._propdefaults_addr + 62
@@ -144,10 +145,7 @@ class ZObjectParser(object):
     """Return 'short name' of object number OBJECTNUM as ascii string."""
 
     addr = self._get_proptable_addr(objectnum)
-    text_length = self._memory[addr]
-    zstring_data = self._memory[addr+1:((addr+1) + (2*text_length))]
-    stringfactory = ZStringFactory(self._memory)
-    return stringfactory.to_ascii(zstring_data)
+    return self._stringfactory.to_ascii(addr+1).val()
 
 
   def get_property(self, objectnum, propnum):
