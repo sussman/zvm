@@ -8,6 +8,8 @@
 
 from bitfield import BitField
 from zmemory import ZMemory
+from zstring import ZStringFactory
+
 
 class ZObjectError(Exception):
   "General exception for ZObject class"
@@ -144,7 +146,8 @@ class ZObjectParser(object):
     addr = self._get_proptable_addr(objectnum)
     text_length = self._memory[addr]
     zstring_data = self._memory[addr+1:((addr+1) + (2*text_length))]
-    # convert zstring_data to ascii and return result
+    stringfactory = ZStringFactory(self._memory)
+    return stringfactory.to_ascii(zstring_data)
 
 
   def get_property(self, objectnum, propnum):
