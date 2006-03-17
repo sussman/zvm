@@ -151,15 +151,12 @@ class ZCharTranslator(object):
         state['zscii'].append(13) # ZSCII 13 (newline)
 
     def _special_alpha_shift(self, state, direction, lock):
-        print "Changing alphabet"
         state['curr_alpha'] = (state['curr_alpha'] + direction) % 3
         if lock:
             state['prev_alpha'] = state['curr_alpha']
 
     def _special_abbrev(self, state, abbrev):
         def write_abbrev(state, c, subtable):
-            print "Appending abbreviation '%s'" % \
-                  self._abbrevs[(subtable, c)]
             state['zscii'] += self._abbrevs[(subtable, c)]
             del state['state_handler']
 
