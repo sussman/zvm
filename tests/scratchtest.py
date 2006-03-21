@@ -8,7 +8,7 @@ from zopdecoder import *
 from zobjectparser import *
 from zstring import *
 
-story = file("../stories/trinity.z4").read()
+story = file("../stories/amfv.z4").read()
 mem = ZMemory(story)
 decoder = ZOpDecoder(mem)
 objectparser = ZObjectParser(mem)

@@ -148,8 +148,18 @@ class ZObjectParser(object):
     return self._stringfactory.get(addr+1)
 
 
-  def get_property(self, objectnum, propnum):
-    """Return value of property number PROPNUM of object number OBJECTNUM."""
+  def get_prop_addr_len(self, objectnum, propnum):
+    """Return address & length of value for property number PROPNUM of
+    object number OBJECTNUM."""
+
+    # start at the beginning of the object's proptable
+    addr = self._get_proptable_addr(objectnum)
+
+    # skip past the shortname of the object
+    addr += (2 * self._memory[addr])
+
+    
 
     # don't forget to use the 'propdefaults' table if the property
     # doesn't exist.
+    # sizebyte is ((len-1 << 5) + prop_num), so propnum is lower 5 bits.
