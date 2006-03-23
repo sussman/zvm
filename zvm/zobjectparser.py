@@ -27,6 +27,10 @@ class ZObjectIllegalVersion(ZObjectError):
   "Unsupported z-machine version."
   pass
 
+class ZObjectNoSuchProperty(ZObjectError):
+  "Couldn't find property."
+  pass
+
 
 
 # The interpreter should only need exactly one instance of this class.
@@ -95,8 +99,13 @@ class ZObjectParser(object):
 
     return self._memory.read_word(addr)
 
+  def _get_default_property_addr(self, objectnum, propnum):
+    """Return address, length of *default* value for property PROPNUM
+    of object OBJECTNUM."""
 
-  #--------- Public API -----------
+
+
+  #--------- Public APIs -----------
 
   def get_attribute(self, objectnum, attrnum):
     """Return value (0 or 1) of attribute number ATTRNUM of object
@@ -150,16 +159,52 @@ class ZObjectParser(object):
 
   def get_prop_addr_len(self, objectnum, propnum):
     """Return address & length of value for property number PROPNUM of
-    object number OBJECTNUM."""
+    object number OBJECTNUM.  If object has no such property, then
+    return the address & length of the 'default' value for the property."""
 
     # start at the beginning of the object's proptable
     addr = self._get_proptable_addr(objectnum)
 
     # skip past the shortname of the object
     addr += (2 * self._memory[addr])
+    pnum = 0
 
-    
+    if 1 <= self._memory.version <= 3:
 
-    # don't forget to use the 'propdefaults' table if the property
-    # doesn't exist.
-    # sizebyte is ((len-1 << 5) + prop_num), so propnum is lower 5 bits.
+      while self._memory[addr] != 0:
+        bf = Bitfield[self._memory[addr]]
+        addr += 1
+        pnum = bf[4:0]
+        size = bf[7:5] + 1
+        if pnum == propnum:
+          return addr, size
+        addr += size
+
+      # property list ran out, so return default propval
+      return self._get_default_property_addr(objectnum, propnum)
+
+    elif 4 <= self._memory.version <= 5:
+
+      while self.memory[addr] != 0:
+        bf = Bitfield[self._memory[addr]]
+        addr += 1
+        pnum = bf[5:0]
+        if bf[7]:
+          bf2 = Bitfield[self._memory[addr]]
+          addr += 1
+          size = bf[5:0]
+        else:
+          if bf[6]:
+            size = 2
+          else:
+            size = 1
+        if pnum == propnum:
+          return addr, size
+        addr += size
+
+      # property list ran out, so return default propval
+      return self._get_default_property_addr(objectnum, propnum)
+
+    else:
+      raise ZObjectIllegalVersion
+
