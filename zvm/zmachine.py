@@ -18,7 +18,7 @@ class ZMachine(object):
     def __init__(self, story):
         self._mem = ZMemory(story)
         self._opdecoder = ZOpDecoder(self._mem)
-        self.program_counter = self._mem.read_word(0x06)
+        self._opdecoder.program_counter = self._mem.read_word(0x06)
         self._cpu = ZCpu(self._mem, self._opdecoder)
 
     def run(self):

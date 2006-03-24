@@ -8,7 +8,9 @@
 
 class ZCpuError(Exception):
     "General exception for Zcpu class"
-    pass
+
+class ZCpuIllegalInstruction(ZCpuError):
+    "Illegal instruction encountered"
 
 class ZCpu(object):
 
@@ -21,14 +23,17 @@ class ZCpu(object):
         print self._opcodes
 
     def _get_handler(self, opcode):
-        return getattr(self, _opcodes[opcode])
+        try:
+            return getattr(self, self._opcodes[opcode])
+        except KeyError:
+            raise ZCpuIllegalInstruction
 
     def run(self):
-        print "ZCpu running!"
+        while True:
+            (opcode, operands) = self._opdecoder.get_next_instruction()
+            self._get_handler(opcode)(*operands)
 
-    def test_opcode(self, zop):
-        """This is a test opcode."""
-    test_opcode._opcode = 0x20
+    
 
     # This is the "automagic" opcode handler registration system.
     # After each function that is an opcode handler, we assign the
