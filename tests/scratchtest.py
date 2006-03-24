@@ -7,12 +7,14 @@ from zmemory import *
 from zopdecoder import *
 from zobjectparser import *
 from zstring import *
+from zcpu import *
 
 story = file("../stories/amfv.z4").read()
 mem = ZMemory(story)
 decoder = ZOpDecoder(mem)
 objectparser = ZObjectParser(mem)
 stringfactory = ZStringFactory(mem)
+cpu = ZCpu(mem)
 
 # Execution starts at the byte address given by the word at address 6
 decoder.program_counter = mem.read_word(0x06)
