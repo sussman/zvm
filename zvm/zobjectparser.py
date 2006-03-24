@@ -127,17 +127,36 @@ class ZObjectParser(object):
     if 1 <= self._memory.version <= 3:
       if not (0 <= attrnum <= 31):
         raise ZObjectIllegalAttributeNumber
-      bf = Bitfield(self._memory[object_addr + (attrnum / 8)])
+      bf = BitField(self._memory[object_addr + (attrnum / 8)])
 
     elif 4 <= self._memory.version <= 5:
       if not (0 <= attrnum <= 47):
         raise ZObjectIllegalAttributeNumber
-      bf = Bitfield(self._memory[object_addr + (attrnum / 8)])
+      bf = BitField(self._memory[object_addr + (attrnum / 8)])
 
     else:
       raise ZObjectIllegalVersion
 
-    return bf[7 - (attrum % 8)]
+    return bf[7 - (attrnum % 8)]
+
+
+  def get_all_attributes(self, objectnum):
+    """Return a list of all attribute numbers that are set on object
+    OBJECTNUM"""
+
+    if 1 <= self._memory.version <= 3:
+      max = 32
+    elif 4 <= self._memory.version <= 5:
+      max = 48
+    else:
+      raise ZObjectIllegalVersion
+
+    # really inefficient, but who cares?
+    attrs = []
+    for i in range (0, max):
+      if self.get_attribute(objectnum, i):
+        attrs.append(i)
+    return attrs
 
 
   def get_parent(self, objectnum):
@@ -175,7 +194,6 @@ class ZObjectParser(object):
 
     # start at the beginning of the object's proptable
     addr = self._get_proptable_addr(objectnum)
-
     # skip past the shortname of the object
     addr += (2 * self._memory[addr])
     pnum = 0
@@ -216,4 +234,72 @@ class ZObjectParser(object):
     # property list ran out, so return default propval instead.
     default_value_addr = self._get_default_property_addr(propnum)
     return (default_value_addr, 2)
+
+
+  def get_all_properties(self, objectnum):
+    """Return a dictionary of all properties listed in the property
+    table of object OBJECTNUM.  (Obviously, this discounts 'default'
+    property values.).  The dictionary maps property numbers to (addr,
+    len) propval tuples."""
+
+    proplist = {}
+
+    # start at the beginning of the object's proptable
+    addr = self._get_proptable_addr(objectnum)
+    # skip past the shortname of the object
+    addr += (2 * self._memory[addr])
+
+    if 1 <= self._memory.version <= 3:
+
+      while self._memory[addr] != 0:
+        bf = BitField(self._memory[addr])
+        addr += 1
+        pnum = bf[4:0]
+        size = bf[7:5] + 1
+        proplist[pnum] = (addr, size)
+        addr += size
+
+    elif 4 <= self._memory.version <= 5:
+
+      while self._memory[addr] != 0:
+        bf = BitField(self._memory[addr])
+        addr += 1
+        pnum = bf[5:0]
+        if bf[7]:
+          bf2 = BitField(self._memory[addr])
+          addr += 1
+          size = bf2[5:0]
+        else:
+          if bf[6]:
+            size = 2
+          else:
+            size = 1
+        proplist[pnum] = (addr, size)
+        addr += size
+
+    else:
+      raise ZObjectIllegalVersion
+
+    return proplist
+
+
+  def describe_object(self, objectnum):
+    """For debugging purposes, pretty-print everything known about
+    object OBJECTNUM."""
+
+    print "Object number:", objectnum
+    print "    Short name:", self.get_shortname(objectnum)
+    print "    Parent:", self.get_parent(objectnum),
+    print " Sibling:", self.get_sibling(objectnum),
+    print " Child:", self.get_child(objectnum)
+    print "    Attributes:", self.get_all_attributes(objectnum)
+    print "    Properties:"
+
+    proplist = self.get_all_properties(objectnum)
+    for key in proplist.keys():
+      (addr, len) = proplist[key]
+      print "       [%2d] :" % key,
+      for i in range(0, len):
+        print "%02X" % self._memory[addr+i],
+      print
 
