@@ -12,7 +12,7 @@ story = file("../stories/amfv.z4").read()
 mem = ZMemory(story)
 decoder = ZOpDecoder(mem)
 objectparser = ZObjectParser(mem)
-
+stringfactory = ZStringFactory(mem)
 
 # Execution starts at the byte address given by the word at address 6
 decoder.program_counter = mem.read_word(0x06)
@@ -29,3 +29,7 @@ print "global variable 0x10 has value of", mem.read_global(0x10)
 
 for i in range(1, 10):
   print "Shortname of object", i, "is", objectparser.get_shortname(i)
+
+for i in range(1, 5):
+  addr, len = objectparser.get_prop_addr_len(1, i)
+  print "Property", i, "of object 1 is", stringfactory.get(addr)

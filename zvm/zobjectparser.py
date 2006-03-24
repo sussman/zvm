@@ -172,7 +172,7 @@ class ZObjectParser(object):
     if 1 <= self._memory.version <= 3:
 
       while self._memory[addr] != 0:
-        bf = Bitfield[self._memory[addr]]
+        bf = BitField(self._memory[addr])
         addr += 1
         pnum = bf[4:0]
         size = bf[7:5] + 1
@@ -185,14 +185,14 @@ class ZObjectParser(object):
 
     elif 4 <= self._memory.version <= 5:
 
-      while self.memory[addr] != 0:
-        bf = Bitfield[self._memory[addr]]
+      while self._memory[addr] != 0:
+        bf = BitField(self._memory[addr])
         addr += 1
         pnum = bf[5:0]
         if bf[7]:
-          bf2 = Bitfield[self._memory[addr]]
+          bf2 = BitField(self._memory[addr])
           addr += 1
-          size = bf[5:0]
+          size = bf2[5:0]
         else:
           if bf[6]:
             size = 2
