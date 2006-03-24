@@ -33,5 +33,5 @@ for i in range(1, 10):
   print "Shortname of object", i, "is", objectparser.get_shortname(i)
 
 for i in range(1, 5):
-  addr, len = objectparser.get_prop_addr_len(1, i)
+  (addr, len) = objectparser.get_prop_addr_len(1, i)
   print "Property", i, "of object 1 is", stringfactory.get(addr)

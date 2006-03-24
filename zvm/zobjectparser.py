@@ -23,12 +23,12 @@ class ZObjectIllegalAttributeNumber(ZObjectError):
   "Illegal attribute number given."
   pass
 
-class ZObjectIllegalVersion(ZObjectError):
-  "Unsupported z-machine version."
+class ZObjectIllegalPropertyNumber(ZObjectError):
+  "Illegal property number given."
   pass
 
-class ZObjectNoSuchProperty(ZObjectError):
-  "Couldn't find property."
+class ZObjectIllegalVersion(ZObjectError):
+  "Unsupported z-machine version."
   pass
 
 
@@ -99,10 +99,21 @@ class ZObjectParser(object):
 
     return self._memory.read_word(addr)
 
-  def _get_default_property_addr(self, objectnum, propnum):
-    """Return address, length of *default* value for property PROPNUM
-    of object OBJECTNUM."""
+  def _get_default_property_addr(self, propnum):
+    """Return address of default value for property PROPNUM."""
 
+    addr = self._propdefaults_addr
+
+    if 1 <= self._memory.version <= 3:
+      if not (1 <= propnum <= 31):
+        raise ZObjectIllegalPropertyNumber
+    elif 4 <= self._memory.version <= 5:
+      if not (1 <= propnum <= 63):
+        raise ZObjectIllegalPropertyNumber
+    else:
+      raise ZObjectIllegalVersion
+
+    return (addr + (2 * (propnum - 1)))
 
 
   #--------- Public APIs -----------
@@ -177,11 +188,8 @@ class ZObjectParser(object):
         pnum = bf[4:0]
         size = bf[7:5] + 1
         if pnum == propnum:
-          return addr, size
+          return (addr, size)
         addr += size
-
-      # property list ran out, so return default propval
-      return self._get_default_property_addr(objectnum, propnum)
 
     elif 4 <= self._memory.version <= 5:
 
@@ -199,12 +207,13 @@ class ZObjectParser(object):
           else:
             size = 1
         if pnum == propnum:
-          return addr, size
+          return (addr, size)
         addr += size
-
-      # property list ran out, so return default propval
-      return self._get_default_property_addr(objectnum, propnum)
 
     else:
       raise ZObjectIllegalVersion
+
+    # property list ran out, so return default propval instead.
+    default_value_addr = self._get_default_property_addr(propnum)
+    return (default_value_addr, 2)
 
