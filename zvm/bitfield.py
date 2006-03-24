@@ -40,6 +40,8 @@ class BitField(object):
 
     def __getslice__(self, start, end):
         """Get the integer value of a slice of bits."""
+        if start > end:
+            (start, end) = (end, start)
         mask = 2L**(end - start) -1
         return (self._d >> start) & mask
 
