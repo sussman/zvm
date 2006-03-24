@@ -30,10 +30,9 @@ class ZCpu(object):
 
     def run(self):
         while True:
-            (opcode, operands) = self._opdecoder.get_next_instruction()
+            (type, opcode, operands) = self._opdecoder.get_next_instruction()
             self._get_handler(opcode)(*operands)
 
-    
 
     # This is the "automagic" opcode handler registration system.
     # After each function that is an opcode handler, we assign the

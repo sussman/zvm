@@ -18,8 +18,8 @@ class ZOperationError(Exception):
 # extremely varied, and are stored in weird and different ways.  This
 # class parses both opcodes and operands, and manages the program
 # counter.  The ZPU merely needs to call
-# ZOpDecoder.get_next_instruction(), and a list of [opcode, [operand,
-# operand, ...]] will be returned and the program counter
+# ZOpDecoder.get_next_instruction(), and a list of [TYPE, opcode,
+# [operand, operand, ...]] will be returned and the program counter
 # automatically incremented.  Depending on the opcode, the ZPU may
 # also need to fetch "extra" operands related to variable storage,
 # branch offsets, and zstrings to print.  Those are available by
@@ -27,6 +27,13 @@ class ZOperationError(Exception):
 
 
 class ZOpDecoder(object):
+
+  # types of opcodes;  ZCpu needs to know the 'type' of each opcode we return
+  TYPE_0OP = "0OP"
+  TYPE_1OP = "1OP"
+  TYPE_2OP = "2OP"
+  TYPE_VAR = "VAR"
+  TYPE_EXT = "EXT"
 
   def __init__(self, zmem):
     ""
@@ -66,8 +73,9 @@ class ZOpDecoder(object):
     program counter, and appropriately increment the program counter
     afterwards. A decoded operation is returned to the caller in the form:
 
-       [opcode-number, [operand, operand, operand, ...]]
+       [TYPE, opcode-number, [operand, operand, operand, ...]]
 
+    Where TYPE is one of '0OP', '1OP', '2OP', 'VAR' or 'EXT'.
     If opcode has no operands, then [opcode-number, []] is returned."""
 
     opcode = self._memory[self.program_counter]
@@ -85,7 +93,7 @@ class ZOpDecoder(object):
     operand1 = self._memory[self.program_counter]
     operand2 = self._memory[self.program_counter + 1]
     self.program_counter += 2
-    return [opcode, [operand1, operand2]]
+    return [self.TYPE_2OP, opcode, [operand1, operand2]]
 
   def _long_2op_small_small(self, opcode):
     return self._read_two_bytes(opcode)
@@ -103,13 +111,13 @@ class ZOpDecoder(object):
   def _short_1op_large(self, opcode):
     operand = self._memory.read_word(self.program_counter)
     self.program_counter += 2
-    return [opcode, [operand]]
+    return [self.TYPE_1OP, opcode, [operand]]
 
   # And these read a single 1-byte operand:
   def _read_one_byte(self, opcode):
     operand = self._memory[self.program_counter]
     self.program_counter += 1
-    return [opcode, [operand]]
+    return [self.TYPE_1OP, opcode, [operand]]
 
   def _short_1op_small(self, opcode):
     return self._read_one_byte(opcode)
@@ -119,7 +127,7 @@ class ZOpDecoder(object):
 
   # No operands at all
   def _short_0op(self, opcode):
-    return [opcode, []]
+    return [self.TYPE_0OP, opcode, []]
 
   # The last few routines need to examine a bunch if bit-pairs to
   # figure out the 'type' (size) of a variable number of operands.
@@ -154,7 +162,7 @@ class ZOpDecoder(object):
       operands.append(operand)
       self.program_counter += size
 
-    return [opcode, operands]
+    return [self.TYPE_VAR, opcode, operands]
 
   def _variable_var(self, opcode):
     type_list = self._get_operand_types(self._memory[self.program_counter])
@@ -176,7 +184,7 @@ class ZOpDecoder(object):
       operands.append(operand)
       self.program_counter += size
 
-    return [opcode, operands]
+    return [self.TYPE_VAR, opcode, operands]
 
 
   # For z5, opcode 0xbe is weird.  The "true" opcode is given in
@@ -197,7 +205,7 @@ class ZOpDecoder(object):
       operands.append(operand)
       self.program_counter += size
 
-    return [opcode, operands]
+    return [self.TYPE_EXT, opcode, operands]
 
 
   # Public funcs that the ZPU may also need to call, depending on the
