@@ -13,27 +13,32 @@ class ZCpuError(Exception):
 
 class ZCpu(object):
 
+    _opcodes = {}
+
     def __init__(self, zmem):
-        ""
         self._memory = zmem
-        self._opcode_handlers = {}
 
-        # Introspect ourselves, discover all functions that look like
-        # opcode handlers, and add them to our mapper
-        for func in self.__class__.__dict__:
-            print "Considering %s" % func
-            instance_func = getattr(self, func)
-            if instance_func != None:
-                doc_head = instance_func.__doc__.split('\n')[0]
-                print "Potential candidate, docstring is %s" % doc_head
+        print self._opcodes
 
-                if doc_head.startswith("ZOPCODE "):
-                    opcode_num = int(doc_head[8:], 16)
-                    self._opcode_handlers[opcode_num] = instance_func
-
-        print self._opcode_handlers
+    def _get_handler(self, opcode):
+        return getattr(self, _opcodes[opcode])
 
     def test_opcode(self, zop):
-        """ZOPCODE 0x20
+        """This is a test opcode."""
+    test_opcode._opcode = 0x20
 
-        This is a test opcode."""
+    # This is the "automagic" opcode handler registration system.
+    # After each function that is an opcode handler, we assign the
+    # function object an _opcode attribute, giving the numeric opcode
+    # the function implements.
+    #
+    # Then, the following code iterates back over all items in the
+    # class, and registers all objects with that attribute in the
+    # _opcodes dictionary.
+    #
+    # Then, at runtime, the _get_handler method can be invoked to
+    # retrieve the function implementing a given opcode.  Pretty cool
+    # voodoo if you ask me.
+    for k,v in vars().items():
+        if hasattr(v, "_opcode"):
+            _opcodes[v._opcode] = k
