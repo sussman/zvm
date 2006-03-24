@@ -10,18 +10,21 @@ class ZCpuError(Exception):
     "General exception for Zcpu class"
     pass
 
-
 class ZCpu(object):
 
     _opcodes = {}
 
-    def __init__(self, zmem):
+    def __init__(self, zmem, zopdecoder):
         self._memory = zmem
+        self._opdecoder = zopdecoder
 
         print self._opcodes
 
     def _get_handler(self, opcode):
         return getattr(self, _opcodes[opcode])
+
+    def run(self):
+        print "ZCpu running!"
 
     def test_opcode(self, zop):
         """This is a test opcode."""
