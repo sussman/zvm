@@ -17,10 +17,9 @@ class ZCpuOpcodeOverlap(ZCpuError):
 class ZCpuIllegalInstruction(ZCpuError):
     "Illegal instruction encountered"
 
-def declare_opcode(func, optype, opcode, version=(1,2,3,4,5)):
+def declare_opcode(func, opcode, version=(1,2,3,4,5)):
     """Helper function used for declaring functions implementing
     opcodes."""
-    func._optype = optype
     func._opcode = opcode
     func._opversion = version
 
@@ -45,13 +44,13 @@ class ZCpu(object):
 
     def run(self):
         while True:
-            (optype, opcode, operands) = self._opdecoder.get_next_instruction()
-            self._get_handler(optype, opcode)(*operands)
+            (opcode, operands) = self._opdecoder.get_next_instruction()
+            self._get_handler(opcode)(*operands)
 
     def op_add(a, b):
         """16-bit signed addition"""
         print a,'+',b,'=',a+b
-    declare_opcode(op_add, "2OP", 0x14)
+    declare_opcode(op_add, 0x14)
 
     # This is the "automagic" opcode handler registration system.
     # After each function that is an opcode handler, we assign the
@@ -68,7 +67,7 @@ class ZCpu(object):
     for k,v in vars().items():
         if hasattr(v, "_optype"):
             for ver in v._opversion:
-                opkey = (v._optype, v._opcode, ver)
+                opkey = (v._opcode, ver)
 
                 if opkey in _opcodes.keys():
                     raise ZCpuOpcodeOverlap
