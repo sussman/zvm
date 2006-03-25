@@ -6,7 +6,7 @@ sys.path.append("../zvm")
 from zmemory import ZMemory
 from zlexer import ZLexer
 
-story = file("../stories/amfv.z4").read()
+story = file("../stories/curses.z5").read()
 
 mem = ZMemory(story)
 lexer = ZLexer(mem)
@@ -18,3 +18,7 @@ print "   there are", lexer.get_dictionary_num_entries(lexer._dict_addr), "entri
 
 dict = lexer.get_dictionary(lexer._dict_addr)
 print dict
+
+print
+
+print "dictionary has", len(dict), "items"

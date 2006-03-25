@@ -59,7 +59,7 @@ class ZLexer(object):
     ascii strings to the address of the word in the original
     dictionary.  Return the new dictionary."""
 
-    dict = {}
+    dict = []
 
     # read the header
     addr = address
@@ -72,14 +72,8 @@ class ZLexer(object):
 
     for i in range(0, num_entries):
       text_key = self._stringfactory.get(self._memory[addr])
-      dict[text_key] = addr
-      # advance past the zstring key
-      if self._memory.version in (1, 2, 3):
-        addr += 4
-      if self._memory.version in (4, 5):
-        addr += 6
-      # advance past the bytestring value
-      addr += (entry_length - 4)
+      dict.append([text_key, addr])
+      addr += entry_length
 
     return dict
 
