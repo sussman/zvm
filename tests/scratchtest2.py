@@ -21,4 +21,4 @@ print dict
 
 print
 
-print "dictionary has", len(dict), "items"
+print "dictionary has", len(dict.keys()), "items"
