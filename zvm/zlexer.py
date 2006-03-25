@@ -71,7 +71,7 @@ class ZLexer(object):
     addr += 2
 
     for i in range(0, num_entries):
-      text_key = self._stringfactory.get(self._memory[addr])
+      text_key = self._stringfactory.get(addr)
       dict.append([text_key, addr])
       addr += entry_length
 
