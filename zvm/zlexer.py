@@ -6,7 +6,7 @@
 # root directory of this distribution.
 #
 
-from zstring import ZStringFactory
+from zstring import ZStringFactory, ZsciiTranslator
 
 class ZLexerError(Exception):
   "General exception for ZLexer class"
@@ -18,6 +18,7 @@ class ZLexer(object):
 
     self._memory = mem
     self._stringfactory = ZStringFactory(self._memory)
+    self._zsciitranslator = ZsciiTranslator()
 
     # Load the game's 'standard' dictionary into a python
     # dictionary.  It's safe to do this, because the dictionary
@@ -27,6 +28,15 @@ class ZLexer(object):
     self._dict = self.get_dictionary(self._dict_addr)
     self._separators = self.get_dictionary_word_separators (self._dict_addr)
 
+  def 
+
+  def _separators_to_ascii_string(self, separators):
+    """Convert a list of zscii separator codes into an ascii string."""
+
+    string = ""
+    for code in separators:
+      string += self._zsciitranslator.ztou(code)
+    return string
 
   def get_dictionary_word_separators(self, address):
     """Return the list of zscii-codes listed as word separators for
@@ -77,8 +87,9 @@ class ZLexer(object):
 
     return dict
 
-  def tokenise_input(self, text_addr, dict_addr=None):
-    """Given an ascii string at address TEXT_ADDR, perform lexical analysis.
+  def tokenise_input(self, text_addr, len, dict_addr=None):
+    """Given an ascii string at zmemory address TEXT_ADDR of length
+    LEN bytes, perform lexical analysis.
 
     if DICT_ADDR is provided, use the custom dictionary at that
     address to do the analysis, otherwise default to using the game's
@@ -91,3 +102,26 @@ class ZLexer(object):
         number_of_letters_in_word,
         address_of_first_letter_of_word]
     """
+
+    main_list = []
+    unicode_input = "" ### convert text_addr/len zcodes to unicode string?
+
+    if dict_addr is None:
+      dict = self._dict
+      separators = self._separators
+    else:
+      dict = self.get_dictionary(dict_addr)
+      separators = self.get_dictionary_word_separators(dict_addr)
+
+    ### assume we get a tokenized list here somehow, splitting the
+    ### string on space and other pre-defined separators.
+
+    for word in token_list:
+      if dict.has_key(word):
+        byte_addr = dict[word]
+      else:
+        byte_addr = 0
+      word_location = text_addr + unicode_input.find(word)
+      main_list.append([word, byte_addr, len(word), word_location])
+
+    return main_list
