@@ -70,6 +70,7 @@ class ZOpDecoder(object):
 
     If opcode has no operands, then [opcode-number, []] is returned."""
 
+    print "Execute 0x%X" % self.program_counter
     opcode = self._memory[self.program_counter]
     self.program_counter += 1
     return self._parse_map[opcode](opcode)
@@ -197,7 +198,9 @@ class ZOpDecoder(object):
       operands.append(operand)
       self.program_counter += size
 
-    return [opcode, operands]
+    # Return the actual opcode + 255, so that we can tell it apart
+    # from the usual, non-extended funcs.
+    return [0xFF + actual_opcode, operands]
 
 
   # Public funcs that the ZPU may also need to call, depending on the

@@ -20,6 +20,8 @@ class ZCpuIllegalInstruction(ZCpuError):
 def declare_opcodes(func, opcodes, version=(1,2,3,4,5)):
     """Helper function used for declaring the a function implements
     some opcodes."""
+    if hasattr(func, '_opcodes'):
+        raise ZCpuOpcodeOverlap
     func._opcodes = opcodes
     func._opversion = version
 
@@ -35,6 +37,13 @@ def declare_opcode(func, opcode, version=(1,2,3,4,5)):
     a single opcode."""
     return declare_opcodes(func, (opcode,), version)
 
+def append_opcode(func, opcode):
+    """Helper function to add one extra opcode to an already declared
+    function."""
+    opcodes = func._opcodes
+    del func._opcodes
+    return declare_opcodes(func, opcodes+[opcode], func._opversion)
+
 class ZCpu(object):
 
     _opcodes = {}
@@ -47,7 +56,7 @@ class ZCpu(object):
 
     def _get_handler(self, opcode):
         try:
-            print "Opcode key:", (opcode, self._memory.version)
+            print "Opcode key: (0x%X, %d)" % (opcode, self._memory.version)
             opcode_func = self._opcodes[(opcode, self._memory.version)]
             print "Handler:", opcode_func
             return getattr(self, opcode_func)
@@ -71,142 +80,142 @@ class ZCpu(object):
     def op_je(*args):
         """"""
     declare_opcode_set(op_je, 0x01, 4, 0x20)
-    declare_opcode(op_je, 0xC1)
+    append_opcode(op_je, 0xC1)
 
     def op_jl(*args):
         """"""
     declare_opcode_set(op_jl, 0x02, 4, 0x20)
-    declare_opcode(op_jl, 0xC2)
+    append_opcode(op_jl, 0xC2)
 
     def op_jg(*args):
         """"""
     declare_opcode_set(op_jg, 0x03, 4, 0x20)
-    declare_opcode(op_jg, 0xC3)
+    append_opcode(op_jg, 0xC3)
 
     def op_dec_chk(*args):
         """"""
     declare_opcode_set(op_dec_chk, 0x04, 4, 0x20)
-    declare_opcode(op_dec_chk, 0xC4)
+    append_opcode(op_dec_chk, 0xC4)
 
     def op_inc_chk(*args):
         """"""
     declare_opcode_set(op_inc_chk, 0x05, 4, 0x20)
-    declare_opcode(op_inc_chk, 0xC5)
+    append_opcode(op_inc_chk, 0xC5)
 
     def op_jin(*args):
         """"""
     declare_opcode_set(op_jin, 0x06, 4, 0x20)
-    declare_opcode(op_jin, 0xC6)
+    append_opcode(op_jin, 0xC6)
 
     def op_test(*args):
         """"""
     declare_opcode_set(op_test, 0x07, 4, 0x20)
-    declare_opcode(op_jin, 0xC7)
+    append_opcode(op_jin, 0xC7)
 
     def op_or(*args):
         """"""
     declare_opcode_set(op_or, 0x08, 4, 0x20)
-    declare_opcode(op_or, 0xC8)
+    append_opcode(op_or, 0xC8)
 
     def op_and(*args):
         """"""
     declare_opcode_set(op_and, 0x09, 4, 0x20)
-    declare_opcode(op_and, 0xC9)
+    append_opcode(op_and, 0xC9)
 
     def op_test_attr(*args):
         """"""
     declare_opcode_set(op_test_attr, 0x0A, 4, 0x20)
-    declare_opcode(op_test_attr, 0xCA)
+    append_opcode(op_test_attr, 0xCA)
 
     def op_set_attr(*args):
         """"""
     declare_opcode_set(op_set_attr, 0x0B, 4, 0x20)
-    declare_opcode(op_set_attr, 0xCB)
+    append_opcode(op_set_attr, 0xCB)
 
     def op_clear_attr(*args):
         """"""
     declare_opcode_set(op_clear_attr, 0x0C, 4, 0x20)
-    declare_opcode(op_clear_attr, 0xCC)
+    append_opcode(op_clear_attr, 0xCC)
 
     def op_store(*args):
         """"""
     declare_opcode_set(op_store, 0x0D, 4, 0x20)
-    declare_opcode(op_store, 0xCD)
+    append_opcode(op_store, 0xCD)
 
     def op_insert_obj(*args):
         """"""
     declare_opcode_set(op_insert_obj, 0x0E, 4, 0x20)
-    declare_opcode(op_insert_obj, 0xCE)
+    append_opcode(op_insert_obj, 0xCE)
 
     def op_loadw(*args):
         """"""
     declare_opcode_set(op_loadw, 0x0F, 4, 0x20)
-    declare_opcode(op_loadw, 0xCF)
+    append_opcode(op_loadw, 0xCF)
 
     def op_loadb(*args):
         """"""
     declare_opcode_set(op_loadb, 0x10, 4, 0x20)
-    declare_opcode(op_loadb, 0xD0)
+    append_opcode(op_loadb, 0xD0)
 
     def op_get_prop(*args):
         """"""
     declare_opcode_set(op_get_prop, 0x11, 4, 0x20)
-    declare_opcode(op_get_prop, 0xD1)
+    append_opcode(op_get_prop, 0xD1)
 
     def op_get_prop_addr(*args):
         """"""
     declare_opcode_set(op_get_prop_addr, 0x12, 4, 0x20)
-    declare_opcode(op_get_prop_addr, 0xD2)
+    append_opcode(op_get_prop_addr, 0xD2)
 
     def op_get_next_prop(*args):
         """"""
     declare_opcode_set(op_get_next_prop, 0x13, 4, 0x20)
-    declare_opcode(op_next_prop_addr, 0xD3)
+    append_opcode(op_get_next_prop, 0xD3)
 
     def op_add(*args):
         """"""
     declare_opcode_set(op_add, 0x14, 4, 0x20)
-    declare_opcode(op_add, 0xD4)
+    append_opcode(op_add, 0xD4)
 
     def op_sub(*args):
         """"""
     declare_opcode_set(op_sub, 0x15, 4, 0x20)
-    declare_opcode(op_sub, 0xD5)
+    append_opcode(op_sub, 0xD5)
 
     def op_mul(*args):
         """"""
     declare_opcode_set(op_mul, 0x16, 4, 0x20)
-    declare_opcode(op_mul, 0xD6)
+    append_opcode(op_mul, 0xD6)
 
     def op_div(*args):
         """"""
     declare_opcode_set(op_div, 0x17, 4, 0x20)
-    declare_opcode(op_div, 0xD7)
+    append_opcode(op_div, 0xD7)
 
     def op_mod(*args):
         """"""
     declare_opcode_set(op_mod, 0x18, 4, 0x20)
-    declare_opcode(op_mod, 0xD8)
+    append_opcode(op_mod, 0xD8)
 
     def op_call_2s(*args):
         """"""
     declare_opcode_set(op_call_2s, 0x19, 4, 0x20, version=(4,5))
-    declare_opcode(op_call_2s, 0xD9)
+    append_opcode(op_call_2s, 0xD9)
 
     def op_call_2n(*args):
         """"""
     declare_opcode_set(op_call_2n, 0x1A, 4, 0x20, version=(5,))
-    declare_opcode(op_call_2n, 0xDA)
+    append_opcode(op_call_2n, 0xDA)
 
     def op_set_colour(*args):
         """"""
     declare_opcode_set(op_set_colour, 0x1B, 4, 0x20, version=(5,))
-    declare_opcode(op_set_colour, 0xDB)
+    append_opcode(op_set_colour, 0xDB)
 
     def op_throw(*args):
         """"""
     declare_opcode_set(op_throw, 0x1C, 4, 0x20, version=(5,))
-    declare_opcode(op_throw, 0xDC)
+    append_opcode(op_throw, 0xDC)
 
     ## 1OP opcodes (opcodes 128-175)
 
@@ -310,11 +319,11 @@ class ZCpu(object):
 
     def op_restore(*args):
         """"""
-    declare_opcode(op_restore, 0xB6)
+    declare_opcode(op_restore, 0xB6, version=(1,2,3))
 
     def op_restore_v4(*args):
         """"""
-    declare_opcode(op_restore_v4, 0xB6)
+    declare_opcode(op_restore_v4, 0xB6, version=(4,))
 
     def op_restart(*args):
         """"""
@@ -342,7 +351,7 @@ class ZCpu(object):
 
     def op_show_status(*args):
         """"""
-    declare_opcode(op_call_1n, 0xBC, version=(3,))
+    declare_opcode(op_show_status, 0xBC, version=(3,))
 
     def op_verify(*args):
         """"""
@@ -351,6 +360,154 @@ class ZCpu(object):
     def op_piracy(*args):
         """"""
     declare_opcode(op_piracy, 0xBF)
+
+    ## VAR opcodes (opcodes 224-255)
+
+    def op_call(*args):
+        """"""
+    declare_opcode(op_call, 0xE0, version=(1,2,3))
+
+    def op_call_vs(*args):
+        """"""
+    declare_opcode(op_call_vs, 0xE0, version=(4,5))
+
+    def op_storew(*args):
+        """"""
+    declare_opcode(op_storew, 0xE1)
+
+    def op_storeb(*args):
+        """"""
+    declare_opcode(op_storeb, 0xE2)
+
+    def op_put_prop(*args):
+        """"""
+    declare_opcode(op_put_prop, 0xE3)
+
+    def op_sread(*args):
+        """"""
+    declare_opcode(op_sread, 0xE4, version=(1,2,3))
+
+    def op_sread_v4(*args):
+        """"""
+    declare_opcode(op_sread_v4, 0xE4, version=(4,))
+
+    def op_aread(*args):
+        """"""
+    declare_opcode(op_aread, 0xE4, version=(5,))
+
+    def op_print_char(*args):
+        """"""
+    declare_opcode(op_print_char, 0xE5)
+
+    def op_print_num(*args):
+        """"""
+    declare_opcode(op_print_num, 0xE6)
+
+    def op_random(*args):
+        """"""
+    declare_opcode(op_random, 0xE7)
+
+    def op_push(*args):
+        """"""
+    declare_opcode(op_push, 0xE8)
+
+    def op_pull(*args):
+        """"""
+    declare_opcode(op_pull, 0xE9)
+
+    def op_split_window(*args):
+        """"""
+    declare_opcode(op_split_window, 0xEA, version=(3,4,5))
+
+    def op_set_window(*args):
+        """"""
+    declare_opcode(op_set_window, 0xEB, version=(3,4,5))
+
+    def op_call_vs2(*args):
+        """"""
+    declare_opcode(op_call_vs2, 0xEC, version=(4,5))
+
+    def op_erase_window(*args):
+        """"""
+    declare_opcode(op_erase_window, 0xED, version=(4,5))
+
+    def op_erase_line(*args):
+        """"""
+    declare_opcode(op_erase_line, 0xEE, version=(4,5))
+
+    def op_set_cursor(*args):
+        """"""
+    declare_opcode(op_set_cursor, 0xEF, version=(4,5))
+
+    def op_get_cursor(*args):
+        """"""
+    declare_opcode(op_get_cursor, 0xF0, version=(4,5))
+
+    def op_set_text_style(*args):
+        """"""
+    declare_opcode(op_set_text_style, 0xF1, version=(4,5))
+
+    def op_buffer_mode(*args):
+        """"""
+    declare_opcode(op_buffer_mode, 0xF2, version=(4,5))
+
+    def op_output_stream(*args):
+        """"""
+    declare_opcode(op_output_stream, 0xF3, version=(3,4))
+
+    def op_output_stream_v5(*args):
+        """"""
+    declare_opcode(op_output_stream_v5, 0xF3, version=(5,))
+
+    def op_input_stream(*args):
+        """"""
+    declare_opcode(op_input_stream, 0xF4, version=(3,4,5))
+
+    # This one may have been used prematurely in v3 stories. Keep an
+    # eye out for it if we ever get bug reports.
+    def op_sound_effect(*args):
+        """"""
+    declare_opcode(op_sound_effect, 0xF5, version=(5,))
+
+    def op_read_char(*args):
+        """"""
+    declare_opcode(op_read_char, 0xF6, version=(4,5))
+
+    def op_scan_table(*args):
+        """"""
+    declare_opcode(op_scan_table, 0xF7, version=(4,5))
+
+    def op_not_v5(*args):
+        """"""
+    declare_opcode(op_not_v5, 0xF8, version=(5,))
+
+    def op_call_vn(*args):
+        """"""
+    declare_opcode(op_call_vn, 0xF9, version=(5,))
+
+    def op_call_vn2(*args):
+        """"""
+    declare_opcode(op_call_vn2, 0xFA, version=(5,))
+
+    def op_tokenize(*args):
+        """"""
+    declare_opcode(op_tokenize, 0xFB, version=(5,))
+
+    def op_encode_text(*args):
+        """"""
+    declare_opcode(op_encode_text, 0xFC, version=(5,))
+
+    def op_copy_table(*args):
+        """"""
+    declare_opcode(op_copy_table, 0xFD, version=(5,))
+
+    def op_print_table(*args):
+        """"""
+    declare_opcode(op_print_table, 0xFE, version=(5,))
+
+    def op_check_arg_count(*args):
+        """"""
+    declare_opcode(op_check_arg_count, 0xFF, version=(5,))
 
     # This is the "automagic" opcode handler registration system.
     # After each function that is an opcode handler, we assign the
@@ -371,6 +528,7 @@ class ZCpu(object):
                     opkey = (opc, ver)
 
                     if opkey in _opcodes.keys():
+                        print "Opcode key",opkey,"already defined"
                         raise ZCpuOpcodeOverlap
 
                     _opcodes[opkey] = k
