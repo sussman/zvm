@@ -83,7 +83,6 @@ class ZStackManager(object):
 
     self._memory = zmem
     self._call_stack = [self.STACK_DELIMITER]
-    self._call_stack_pointer = 0  # for 'catch' and 'throw' operations
 
 
   def get_local_variable(self, varnum):
@@ -91,10 +90,10 @@ class ZStackManager(object):
     routine.  VARNUM must be a value between 0 and 15, and must
     exist."""
 
-    if self._call_stack_pointer == 0:
+    if self._call_stack[-1] == self.STACK_DELIMITER
       raise ZStackNoRoutine
 
-    current_routine = self._call_stack[self._call_stack_pointer]
+    current_routine = self._call_stack[-1]
     if not current_routine.local_vars.has_key(varnum):
       raise ZStackNoSuchVariable
 
@@ -106,10 +105,10 @@ class ZStackManager(object):
     currently-running routine.  VARNUM must be a value between 0 and
     15, and must exist."""
 
-    if self._call_stack_pointer == 0:
+    if self._call_stack[1] == self.STACK_DELIMITER:
       raise ZStackNoRoutine
 
-    current_routine = self._call_stack[self._call_stack_pointer]
+    current_routine = self._call_stack[-1]
     if not current_routine.local_vars.has_key(varnum):
       raise ZStackNoSuchVariable
 
@@ -119,16 +118,22 @@ class ZStackManager(object):
   def push_stack(self, value):
     "Push VALUE onto the top of the current routine's data stack."
 
-    current_routine = self._call_stack[self._call_stack_pointer]
+    current_routine = self._call_stack[-1]
     current_routine.stack.append(value)
 
 
   def pop_stack(self):
     "Remove and return value from the top of the data stack."
 
-    current_routine = self._call_stack[self._call_stack_pointer]
+    current_routine = self._call_stack[-1]
     return current_routine.stack.pop()
 
+
+  def get_stack_frame_index(self):
+    "Return current stack frame number.  For use by 'catch' opcode."
+
+    return len(self._call_stack) - 1
+  
 
   # ZPU should call this whenever it decides to call a new routine.
   def start_routine(self, routine_addr, program_counter, args):
@@ -138,11 +143,9 @@ class ZStackManager(object):
     arguments ARGS."""
 
     new_routine = ZRoutine(routine_addr, self._memory, args)
-    current_routine = self._call_stack[self._call_stack_pointer]
+    current_routine = self._call_stack[-1]
     current_routine.program_counter = program_counter
-
     self._call_stack.append(new_routine)
-    self._call_stack_pointer += 1
 
 
   # ZPU should call this whenever it decides to return from current routine.
@@ -153,8 +156,6 @@ class ZStackManager(object):
     execution can resume where from it left off."""
 
     self._call_stack.pop()
-    self._call_stack_pointer -= 1
-    current_routine = self._call_stack[self._call_stack_pointer]
-
+    current_routine = self._call_stack[-1]
     return current_routine.program_counter
 
