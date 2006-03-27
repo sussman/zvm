@@ -182,6 +182,74 @@ class ZCpu(object):
 
     ## 1OP opcodes
 
+    def op_jz(*args):
+        """"""
+    declare_opcode_set(op_jz, 0x80, 2, 0x10)
+
+    def op_get_sibling(*args):
+        """"""
+    declare_opcode_set(op_sibling, 0x81, 2, 0x10)
+
+    def op_get_child(*args):
+        """"""
+    declare_opcode_set(op_child, 0x82, 2, 0x10)
+
+    def op_get_parent(*args):
+        """"""
+    declare_opcode_set(op_get_parent, 0x83, 2, 0x10)
+
+    def op_get_prop_len(*args):
+        """"""
+    declare_opcode_set(op_get_prop_len, 0x84, 2, 0x10)
+
+    def op_inc(*args):
+        """"""
+    declare_opcode_set(op_inc, 0x85, 2, 0x10)
+
+    def op_dec(*args):
+        """"""
+    declare_opcode_set(op_dec, 0x86, 2, 0x10)
+
+    def op_print_addr(*args):
+        """"""
+    declare_opcode_set(op_print_addr, 0x87, 2, 0x10)
+
+    def op_call_1s(*args):
+        """"""
+    declare_opcode_set(op_call_1s, 0x88, 2, 0x10, version=(4,5))
+
+    def op_remove_obj(*args):
+        """"""
+    declare_opcode_set(op_remove_obj, 0x89, 2, 0x10)
+
+    def op_print_obj(*args):
+        """"""
+    declare_opcode_set(op_print_obj, 0x8A, 2, 0x10)
+
+    def op_ret(*args):
+        """"""
+    declare_opcode_set(op_ret, 0x8B, 2, 0x10)
+
+    def op_jump(*args):
+        """"""
+    declare_opcode_set(op_jump, 0x8C, 2, 0x10)
+
+    def op_print_paddr(*args):
+        """"""
+    declare_opcode_set(op_print_paddr, 0x8D, 2, 0x10)
+
+    def op_load(*args):
+        """"""
+    declare_opcode_set(op_load, 0x8E, 2, 0x10)
+
+    def op_not(*args):
+        """"""
+    declare_opcode_set(op_not, 0x8F, 2, 0x10, version=(1,2,3,4))
+
+    def op_call_1n(*args):
+        """"""
+    declare_opcode_set(op_call_1n, 0x8F, 2, 0x10, version=(5,))
+
     # This is the "automagic" opcode handler registration system.
     # After each function that is an opcode handler, we assign the
     # function object an _opcode attribute, giving the numeric opcode
