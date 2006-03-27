@@ -18,7 +18,7 @@ class ZLexer(object):
 
     self._memory = mem
     self._stringfactory = ZStringFactory(self._memory)
-    self._zsciitranslator = ZsciiTranslator()
+    self._zsciitranslator = ZsciiTranslator(self._memory)
 
     # Load the game's 'standard' dictionary into a python
     # dictionary.  It's safe to do this, because the dictionary
@@ -27,8 +27,6 @@ class ZLexer(object):
     self._dict_addr = self._memory.read_word(0x08)
     self._dict = self.get_dictionary(self._dict_addr)
     self._separators = self.get_dictionary_word_separators (self._dict_addr)
-
-  def 
 
   def _separators_to_ascii_string(self, separators):
     """Convert a list of zscii separator codes into an ascii string."""

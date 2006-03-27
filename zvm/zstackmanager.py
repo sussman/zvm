@@ -32,8 +32,9 @@ class ZStackPopError(ZStackError):
 # Helper class used by ZStackManager.  Nobody else should need to use it.
 class ZRoutine(object):
 
-  def __init__(self, start_addr, zmem):
-    "Initialize a routine object beginning at START_ADDR in ZMEM."
+  def __init__(self, start_addr, zmem, args):
+    """Initialize a routine object beginning at START_ADDR in ZMEM,
+    with initial argument values in list ARGS."""
 
     self.start_addr = start_addr
     self.program_counter = 0    # used when execution interrupted
@@ -60,6 +61,11 @@ class ZRoutine(object):
 
     else:
       raise ZStackUnsupportedVersion
+
+    # Place call arguments into local vars, if available
+    for i in range(0, len(args)):
+      if self.local_vars.has_key(i):
+        self.local_vars[i] = args[i]
 
   def pretty_print(self):
     "Display a ZRoutine nicely, for debugging purposes."
@@ -125,12 +131,13 @@ class ZStackManager(object):
 
 
   # ZPU should call this whenever it decides to call a new routine.
-  def start_routine(self, routine_addr, program_counter):
+  def start_routine(self, routine_addr, program_counter, args):
     """Save the state of the currenly running routine (by examining
     the current value of the PROGRAM_COUNTER), and prepare for
-    execution of a new routine at ROUTINE_ADDR."""
+    execution of a new routine at ROUTINE_ADDR with list of initial
+    arguments ARGS."""
 
-    new_routine = ZRoutine(routine_addr, self._memory)
+    new_routine = ZRoutine(routine_addr, self._memory, args)
     current_routine = self._call_stack[self._call_stack_pointer]
     current_routine.program_counter = program_counter
 
