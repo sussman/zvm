@@ -75,15 +75,19 @@ class ZRoutine(object):
     print "ZRoutine: local variables:", self.local_vars
 
 
+class ZStackBottom(object):
+
+  def __init__(self):
+    self.program_counter = 0  # used as a cache only
+
 
 class ZStackManager(object):
-
-  STACK_DELIMITER = "delim"
 
   def __init__(self, zmem):
 
     self._memory = zmem
-    self._call_stack = [self.STACK_DELIMITER]
+    self._stackbottom = ZStackBottom()
+    self._call_stack = [self._stackbottom]
 
 
   def get_local_variable(self, varnum):
@@ -91,7 +95,7 @@ class ZStackManager(object):
     routine.  VARNUM must be a value between 0 and 15, and must
     exist."""
 
-    if self._call_stack[-1] == self.STACK_DELIMITER:
+    if self._call_stack[-1] == self._stackbottom:
       raise ZStackNoRoutine
 
     current_routine = self._call_stack[-1]
@@ -106,7 +110,7 @@ class ZStackManager(object):
     currently-running routine.  VARNUM must be a value between 0 and
     15, and must exist."""
 
-    if self._call_stack[1] == self.STACK_DELIMITER:
+    if self._call_stack[1] == self._stackbottom:
       raise ZStackNoRoutine
 
     current_routine = self._call_stack[-1]
@@ -134,7 +138,7 @@ class ZStackManager(object):
     "Return current stack frame number.  For use by 'catch' opcode."
 
     return len(self._call_stack) - 1
-  
+
 
   # ZPU should call this whenever it decides to call a new routine.
   def start_routine(self, routine_addr, program_counter, args):

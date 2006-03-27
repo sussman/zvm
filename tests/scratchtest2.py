@@ -6,10 +6,12 @@ sys.path.append("../zvm")
 from zmemory import ZMemory
 from zlexer import ZLexer
 
-story = file("../stories/curses.z5").read()
+story = file("../stories/zork.z1").read()
 
 mem = ZMemory(story)
 lexer = ZLexer(mem)
+
+print "This story is z version", mem.version
 
 print "Standard dictionary:"
 print "   word separators are", lexer._separators
