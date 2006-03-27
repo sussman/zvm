@@ -5,7 +5,7 @@ sys.path.append("../zvm")
 
 from zmachine import ZMachine
 
-story = file("../stories/amfv.z4").read()
+story = file("../stories/zork.z3").read()
 
 machine = ZMachine(story)
 

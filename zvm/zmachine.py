@@ -7,6 +7,7 @@
 
 from zmemory import ZMemory
 from zopdecoder import ZOpDecoder
+from zstackmanager import ZStackManager
 from zcpu import ZCpu
 
 class ZMachineError(Exception):
@@ -19,7 +20,8 @@ class ZMachine(object):
         self._mem = ZMemory(story)
         self._opdecoder = ZOpDecoder(self._mem)
         self._opdecoder.program_counter = self._mem.read_word(0x06)
-        self._cpu = ZCpu(self._mem, self._opdecoder)
+        self._stackmanager = ZStackManager(self._mem)
+        self._cpu = ZCpu(self._mem, self._opdecoder, self._stackmanager)
 
     def run(self):
         return self._cpu.run()

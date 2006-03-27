@@ -78,8 +78,9 @@ class ZRoutine(object):
 
 class ZStackManager(object):
 
+  STACK_DELIMITER = "delim"
 
-  def __init__(self):
+  def __init__(self, zmem):
 
     self._memory = zmem
     self._call_stack = [self.STACK_DELIMITER]
@@ -90,7 +91,7 @@ class ZStackManager(object):
     routine.  VARNUM must be a value between 0 and 15, and must
     exist."""
 
-    if self._call_stack[-1] == self.STACK_DELIMITER
+    if self._call_stack[-1] == self.STACK_DELIMITER:
       raise ZStackNoRoutine
 
     current_routine = self._call_stack[-1]
