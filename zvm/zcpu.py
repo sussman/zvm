@@ -52,8 +52,6 @@ class ZCpu(object):
         self._memory = zmem
         self._opdecoder = zopdecoder
 
-        print self._opcodes
-
     def _get_handler(self, opcode):
         try:
             print "Opcode key: (0x%X, %d)" % (opcode, self._memory.version)
@@ -71,6 +69,7 @@ class ZCpu(object):
         while True:
             (opcode, operands) = self._opdecoder.get_next_instruction()
             self._get_handler(opcode)(*operands)
+            print
 
     ##
     ## Opcode implementation functions start here.
@@ -508,6 +507,45 @@ class ZCpu(object):
     def op_check_arg_count(*args):
         """"""
     declare_opcode(op_check_arg_count, 0xFF, version=(5,))
+
+    ## EXT opcodes (opcodes 256-284)
+
+    def op_save(*args):
+        """"""
+    declare_opcode(op_save, 0x100, version=(5,))
+
+    def op_restore(*args):
+        """"""
+    declare_opcode(op_restore, 0x101, version=(5,))
+
+    def op_log_shift(*args):
+        """"""
+    declare_opcode(op_log_shift, 0x102, version=(5,))
+
+    def op_art_shift(*args):
+        """"""
+    declare_opcode(op_art_shift, 0x103, version=(5,))
+
+    def op_set_font(*args):
+        """"""
+    declare_opcode(op_set_font, 0x104, version=(5,))
+
+    def op_save_undo(*args):
+        """"""
+    declare_opcode(op_save_undo, 0x109, version=(5,))
+
+    def op_restore_undo(*args):
+        """"""
+    declare_opcode(op_restore_undo, 0x10A, version=(5,))
+
+    def op_print_unicode(*args):
+        """"""
+    declare_opcode(op_print_unicode, 0x10B, version=(5,))
+
+    def op_check_unicode(*args):
+        """"""
+    declare_opcode(op_check_unicode, 0x10C, version=(5,))
+
 
     # This is the "automagic" opcode handler registration system.
     # After each function that is an opcode handler, we assign the

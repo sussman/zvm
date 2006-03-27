@@ -200,7 +200,7 @@ class ZOpDecoder(object):
 
     # Return the actual opcode + 255, so that we can tell it apart
     # from the usual, non-extended funcs.
-    return [0xFF + actual_opcode, operands]
+    return [0x100 + actual_opcode, operands]
 
 
   # Public funcs that the ZPU may also need to call, depending on the
