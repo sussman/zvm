@@ -366,9 +366,11 @@ class ZCpu(object):
     # call in v1-3, call_vs in v4-5
     def op_call(self, routine_addr, *args):
         """Call the routine r1, passing it any of r2, r3, r4 if defined."""
-        self._stackmanager.start_routine(routine_addr,
+        addr = self._memory.packed_address(routine_addr)
+        self._stackmanager.start_routine(addr,
                                          self._opdecoder.program_counter,
                                          args)
+        self._opdecoder.program_counter = addr
     declare_opcode(op_call, 0xE0)
 
     def op_storew(self, *args):
