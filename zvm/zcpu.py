@@ -224,7 +224,7 @@ class ZCpu(object):
 
     def op_add(self, *args):
         """Signed 16-bit addition."""
-        self._write_result(sum(args) % (2**16-1))
+        self._write_result(sum(args) % 65536) # 2**16 - overflow limit
     declare_opcode_set(op_add, 0x14, 4, 0x20)
     append_opcode(op_add, 0xD4)
 
