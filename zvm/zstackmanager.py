@@ -28,15 +28,15 @@ class ZStackPopError(ZStackError):
   "Nothing to pop from stack!"
   pass
 
-
 # Helper class used by ZStackManager.  Nobody else should need to use it.
 class ZRoutine(object):
 
-  def __init__(self, start_addr, zmem, args):
+  def __init__(self, start_addr, return_addr, zmem, args):
     """Initialize a routine object beginning at START_ADDR in ZMEM,
     with initial argument values in list ARGS."""
 
     self.start_addr = start_addr
+    self.return_addr = return_addr
     self.program_counter = 0    # used when execution interrupted
     self.local_vars = {}
     self.stack = []
@@ -69,9 +69,10 @@ class ZRoutine(object):
   def pretty_print(self):
     "Display a ZRoutine nicely, for debugging purposes."
 
-    print "ZRoutine:   start address:", self.start_addr
-    print "ZRoutine: program counter:", self.program_counter
-    print "ZRoutine: local variables:", self.local_vars
+    print "ZRoutine:        start address:", self.start_addr
+    print "ZRoutine: return value address:", self.return_addr
+    print "ZRoutine:      program counter:", self.program_counter
+    print "ZRoutine:      local variables:", self.local_vars
 
 
 class ZStackBottom(object):
@@ -140,13 +141,15 @@ class ZStackManager(object):
 
 
   # ZPU should call this whenever it decides to call a new routine.
-  def start_routine(self, routine_addr, program_counter, args):
+  def start_routine(self, routine_addr, return_addr,
+                    program_counter, args):
     """Save the state of the currenly running routine (by examining
     the current value of the PROGRAM_COUNTER), and prepare for
     execution of a new routine at ROUTINE_ADDR with list of initial
     arguments ARGS."""
 
-    new_routine = ZRoutine(routine_addr, self._memory, args)
+    new_routine = ZRoutine(routine_addr, return_addr,
+                           self._memory, args)
     current_routine = self._call_stack[-1]
     current_routine.program_counter = program_counter
     self._call_stack.append(new_routine)
@@ -154,14 +157,27 @@ class ZStackManager(object):
     return new_routine.start_addr
 
 
-  # ZPU should call this whenever it decides to return from current routine.
-  def finish_routine(self):
+  # ZPU should call this whenever it decides to return from current
+  # routine.
+  def finish_routine(self, return_value):
     """Toss the currently running routine from the call stack, and
     toss any leftover values pushed to the data stack by said routine.
     Return the previous routine's program counter address, so that
     execution can resume where from it left off."""
 
-    self._call_stack.pop()
+    exiting_routine = self._call_stack.pop()
     current_routine = self._call_stack[-1]
+
+    # Depending on many things, return stuff.
+    if exiting_routine.return_addr != None:
+      if exiting_routine.return_addr == 0: # Push to stack
+        self.push_stack(return_value)
+      elif 0 < exiting_routine.return_addr < 10: # Store in local var
+        self.set_local_variable(exiting_routine.return_addr,
+                                return_value)
+      else: # Store in global var
+        self._memory.write_global(exiting_routine.return_addr,
+                                  return_value)
+
     return current_routine.program_counter
 
