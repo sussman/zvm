@@ -17,6 +17,9 @@ class ZCpuOpcodeOverlap(ZCpuError):
 class ZCpuIllegalInstruction(ZCpuError):
     "Illegal instruction encountered"
 
+class ZCpuUnimplementedInstruction(ZCpuError):
+    "Unimplemented instruction encountered"
+
 def declare_opcodes(func, opcodes, version=(1,2,3,4,5)):
     """Helper function used for declaring the a function implements
     some opcodes."""
@@ -55,17 +58,26 @@ class ZCpu(object):
 
     def _get_handler(self, opcode):
         try:
-            print "Opcode key: (0x%X, %d)" % (opcode, self._memory.version)
             opcode_func = self._opcodes[(opcode, self._memory.version)]
-            print "Handler:", opcode_func
-            return getattr(self, opcode_func)
+            print "<0x%X> (0x%X) %s" % (self._opdecoder.program_counter,
+                                        opcode, opcode_func)
+
+            # The following is a hack, based on our policy of only
+            # documenting opcodes we implement. If we ever hit an
+            # undocumented opcode, we crash with a not implemented
+            # error.
+            func = getattr(self, opcode_func)
+            if func.__doc__ == "":
+                raise ZCpuUnimplementedInstruction
+            return func
         except KeyError:
-            print "Unknown instruction 0x%X" % opcode
             raise ZCpuIllegalInstruction
 
-    def _write_result(self, result_addr, result_value):
+    def _write_result(self, result_value):
         """Write the given result value to the stack or to a
         local/global variable, depending on the result_addr."""
+        result_addr = self._opdecoder.get_store_address()
+
         if result_addr != None:
             print "Storing %d to storage area %d" % (result_value,
                                                      result_addr)
@@ -83,13 +95,10 @@ class ZCpu(object):
         branch_cond, branch_offset = self._opdecoder.get_branch_offset()
 
         if test_result == branch_cond:
-            print "Branching..."
             if branch_offset == 0 or branch_offset == 1:
-                print "Ah no, returning."
                 addr = self._stackmanager.finish_routine(branch_offset)
                 self._opdecoder.program_counter = addr
             else:
-                print "Going to offset %d" % branch_offset
                 self._opdecoder.program_counter += (branch_offset - 2)
 
     def run(self):
@@ -179,13 +188,22 @@ class ZCpu(object):
     declare_opcode_set(op_insert_obj, 0x0E, 4, 0x20)
     append_opcode(op_insert_obj, 0xCE)
 
-    def op_loadw(self, *args):
-        """"""
+    def op_loadw(self, base, offset):
+        """Store in the given result register the word value at
+        (base+2*offset)."""
+
+        val = self._memory.read_word(base + 2*offset)
+        self._write_result(val)
+
     declare_opcode_set(op_loadw, 0x0F, 4, 0x20)
     append_opcode(op_loadw, 0xCF)
 
-    def op_loadb(self, *args):
-        """"""
+    def op_loadb(self, base, offset):
+        """Store in the given result register the byte value at
+        (base+offset)."""
+        val = self._memory[base+offset]
+        self._write_result(val)
+
     declare_opcode_set(op_loadb, 0x10, 4, 0x20)
     append_opcode(op_loadb, 0xD0)
 
@@ -206,8 +224,7 @@ class ZCpu(object):
 
     def op_add(self, *args):
         """Signed 16-bit addition."""
-        store_addr = self._opdecoder.get_store_address()
-        self._write_result(store_addr, sum(args) % (2**16-1))
+        self._write_result(sum(args) % (2**16-1))
     declare_opcode_set(op_add, 0x14, 4, 0x20)
     append_opcode(op_add, 0xD4)
 

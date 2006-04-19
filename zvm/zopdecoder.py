@@ -70,7 +70,6 @@ class ZOpDecoder(object):
 
     If opcode has no operands, then [opcode-number, []] is returned."""
 
-    print "Execute 0x%X" % self.program_counter
     opcode = self._memory[self.program_counter]
     self.program_counter += 1
     return self._parse_map[opcode](opcode)
