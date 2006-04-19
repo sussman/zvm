@@ -42,18 +42,17 @@ class ZRoutine(object):
     self.stack = []
 
     # First byte of routine is number of local variables
-    ptr = start_addr
-    num_local_vars = zmem[ptr]
+    num_local_vars = zmem[self.start_addr]
     if not (0 <= num_local_vars <= 15):
       print "num local vars is", num_local_vars
       raise ZStackError
-    ptr += 1
+    self.start_addr += 1
 
     # Initialize the local vars in the ZRoutine's dictionary
     if 1 <= zmem.version <= 4:
       for i in range(num_local_vars):
-        self.local_vars[i] = zmem.read_word(ptr)
-        ptr += 2
+        self.local_vars[i] = zmem.read_word(self.start_addr)
+        self.start_addr += 2
 
     elif zmem.version == 5:
       for i in range(num_local_vars):
@@ -151,6 +150,8 @@ class ZStackManager(object):
     current_routine = self._call_stack[-1]
     current_routine.program_counter = program_counter
     self._call_stack.append(new_routine)
+
+    return new_routine.start_addr
 
 
   # ZPU should call this whenever it decides to return from current routine.
