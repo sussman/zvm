@@ -239,7 +239,7 @@ class ZOpDecoder(object):
     to branch if true or branch if false), and second, the address to
     jump to.  Increment the PC as necessary."""
 
-    bf = BitField(self._memory.read_word[self.program_counter])
+    bf = BitField(self._memory.read_word(self.program_counter))
     if bf[14] == 1:
       self.program_counter += 1
       return bf[15], bf[8:14]

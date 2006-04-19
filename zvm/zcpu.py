@@ -77,6 +77,21 @@ class ZCpu(object):
             else:
                 self._memory.write_global(result_addr, result_value)
 
+    def _branch(self, test_result):
+        """Retrieve the branch information, and set the instruction
+        pointer according to the type of branch and the test_result."""
+        branch_cond, branch_offset = self._opdecoder.get_branch_offset()
+
+        if test_result == branch_cond:
+            print "Branching..."
+            if branch_offset == 0 or branch_offset == 1:
+                print "Ah no, returning."
+                addr = self._stackmanager.finish_routine(branch_offset)
+                self._opdecoder.program_counter = addr
+            else:
+                print "Going to offset %d" % branch_offset
+                self._opdecoder.program_counter += (branch_offset - 2)
+
     def run(self):
         """The Magic Function that takes little bits and bytes, twirls
         them around, and brings the magic to your screen!"""
@@ -92,7 +107,10 @@ class ZCpu(object):
 
     ## 2OP opcodes (opcodes 1-127 and 192-223)
     def op_je(self, *args):
-        """"""
+        """Branch if the first argument is equal to any of the
+        subsequent arguments."""
+        self._branch(args[0] in args[1:])
+
     declare_opcode_set(op_je, 0x01, 4, 0x20)
     append_opcode(op_je, 0xC1)
 
