@@ -63,6 +63,20 @@ class ZCpu(object):
             print "Unknown instruction 0x%X" % opcode
             raise ZCpuIllegalInstruction
 
+    def _write_result(self, result_addr, result_value):
+        """Write the given result value to the stack or to a
+        local/global variable, depending on the result_addr."""
+        if result_addr != None:
+            print "Storing %d to storage area %d" % (result_value,
+                                                     result_addr)
+            if result_addr == 0:
+                self._stackmanager.push_stack(result_value)
+            elif 0 < result_addr < 10:
+                self._stackmanager.set_local_variable(result_addr,
+                                                      result_value)
+            else:
+                self._memory.write_global(result_addr, result_value)
+
     def run(self):
         """The Magic Function that takes little bits and bytes, twirls
         them around, and brings the magic to your screen!"""
@@ -173,7 +187,9 @@ class ZCpu(object):
     append_opcode(op_get_next_prop, 0xD3)
 
     def op_add(self, *args):
-        """"""
+        """Signed 16-bit addition."""
+        store_addr = self._opdecoder.get_store_address()
+        self._write_result(store_addr, sum(args) % (2**16-1))
     declare_opcode_set(op_add, 0x14, 4, 0x20)
     append_opcode(op_add, 0xD4)
 
