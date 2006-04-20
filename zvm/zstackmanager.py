@@ -38,7 +38,7 @@ class ZRoutine(object):
     self.start_addr = start_addr
     self.return_addr = return_addr
     self.program_counter = 0    # used when execution interrupted
-    self.local_vars = {}
+    self.local_vars = [0 for _ in range(15)]
     self.stack = []
 
     # First byte of routine is number of local variables
@@ -54,17 +54,12 @@ class ZRoutine(object):
         self.local_vars[i] = zmem.read_word(self.start_addr)
         self.start_addr += 2
 
-    elif zmem.version == 5:
-      for i in range(num_local_vars):
-        self.local_vars[i] = 0
-
     else:
       raise ZStackUnsupportedVersion
 
     # Place call arguments into local vars, if available
     for i in range(0, len(args)):
-      if self.local_vars.has_key(i):
-        self.local_vars[i] = args[i]
+      self.local_vars[i] = args[i]
 
   def pretty_print(self):
     "Display a ZRoutine nicely, for debugging purposes."
@@ -98,9 +93,10 @@ class ZStackManager(object):
     if self._call_stack[-1] == self._stackbottom:
       raise ZStackNoRoutine
 
-    current_routine = self._call_stack[-1]
-    if not current_routine.local_vars.has_key(varnum):
+    if not 0 <= varnum <= 15:
       raise ZStackNoSuchVariable
+
+    current_routine = self._call_stack[-1]
 
     return current_routine.local_vars[varnum]
 
@@ -113,9 +109,10 @@ class ZStackManager(object):
     if self._call_stack[1] == self._stackbottom:
       raise ZStackNoRoutine
 
-    current_routine = self._call_stack[-1]
-    if not current_routine.local_vars.has_key(varnum):
+    if not 0 <= varnum <= 15:
       raise ZStackNoSuchVariable
+
+    current_routine = self._call_stack[-1]
 
     current_routine.local_vars[varnum] = value
 

@@ -75,17 +75,22 @@ class ZCpu(object):
                                          opcode)
             raise ZCpuIllegalInstruction
 
-    def _write_result(self, result_value):
+    def _write_result(self, result_value, store_addr=None):
         """Write the given result value to the stack or to a
-        local/global variable, depending on the result_addr."""
-        result_addr = self._opdecoder.get_store_address()
+        local/global variable, depending on the result_addr. If the
+        optional result_addr is given, then the store address is not
+        read from the opcode."""
+        if store_addr == None:
+            result_addr = self._opdecoder.get_store_address()
+        else:
+            result_addr = store_addr
 
         if result_addr != None:
             print ">> $%d = %d" % (result_addr, result_value)
-            if result_addr == 0:
+            if result_addr == 0x0:
                 self._stackmanager.push_stack(result_value)
-            elif 0 < result_addr < 10:
-                self._stackmanager.set_local_variable(result_addr,
+            elif 0x0 < result_addr < 0x10:
+                self._stackmanager.set_local_variable(result_addr - 1,
                                                       result_value)
             else:
                 self._memory.write_global(result_addr, result_value)
@@ -181,8 +186,9 @@ class ZCpu(object):
     declare_opcode_set(op_clear_attr, 0x0C, 4, 0x20)
     append_opcode(op_clear_attr, 0xCC)
 
-    def op_store(self, *args):
-        """"""
+    def op_store(self, variable, value):
+        """Store the given value to the given variable."""
+        self._write_result(value, store_addr=variable)
     declare_opcode_set(op_store, 0x0D, 4, 0x20)
     append_opcode(op_store, 0xCD)
 
@@ -450,7 +456,8 @@ class ZCpu(object):
     declare_opcode(op_put_prop, 0xE3)
 
     def op_sread(self, *args):
-        """ """
+        """Not implemented yet, but documented so that the detection
+        code will be foiled."""
     declare_opcode(op_sread, 0xE4, version=(1,2,3))
 
     def op_sread_v4(self, *args):
