@@ -79,8 +79,7 @@ class ZCpu(object):
         result_addr = self._opdecoder.get_store_address()
 
         if result_addr != None:
-            print "Storing %d to storage area %d" % (result_value,
-                                                     result_addr)
+            print ">> $%d = %d" % (result_addr, result_value)
             if result_addr == 0:
                 self._stackmanager.push_stack(result_value)
             elif 0 < result_addr < 10:
@@ -319,7 +318,11 @@ class ZCpu(object):
     declare_opcode_set(op_ret, 0x8B, 2, 0x10)
 
     def op_jump(self, *args):
-        """"""
+        """Jump unconditionally to the given branch offset.  This
+        opcode does not follow the usual branch decision algorithm,
+        and so we do not call the _branch method to dispatch the call."""
+        cond, offset = self._opdecoder.get_branch_offset()
+        self._opdecoder.program_counter += (offset - 2)
     declare_opcode_set(op_jump, 0x8C, 2, 0x10)
 
     def op_print_paddr(self, *args):
