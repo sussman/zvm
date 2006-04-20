@@ -95,9 +95,11 @@ class ZCpu(object):
 
         if test_result == branch_cond:
             if branch_offset == 0 or branch_offset == 1:
+                print ">> Return %d" % branch_offset
                 addr = self._stackmanager.finish_routine(branch_offset)
                 self._opdecoder.program_counter = addr
             else:
+                print ">> Jump +%d" % branch_offset
                 self._opdecoder.program_counter += (branch_offset - 2)
 
     def run(self):
@@ -269,8 +271,9 @@ class ZCpu(object):
 
     ## 1OP opcodes (opcodes 128-175)
 
-    def op_jz(self, *args):
-        """"""
+    def op_jz(self, val):
+        """Branch if the val is zero."""
+        self._branch(val == 0)
     declare_opcode_set(op_jz, 0x80, 2, 0x10)
 
     def op_get_sibling(self, *args):
