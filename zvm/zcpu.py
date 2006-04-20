@@ -235,7 +235,9 @@ class ZCpu(object):
     append_opcode(op_sub, 0xD5)
 
     def op_mul(self, *args):
-        """"""
+        """Signed 16-bit multiplication."""
+        result = reduce(lambda x,y: x*y, args) % 65536
+        self._write_result(result)
     declare_opcode_set(op_mul, 0x16, 4, 0x20)
     append_opcode(op_mul, 0xD6)
 
