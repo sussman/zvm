@@ -228,9 +228,9 @@ class ZMemory(object):
     must be between 0x10 and 0xFF."""
     if not (0x10 <= varnum <= 0xFF):
       raise ZMemoryOutOfBounds
-    if not (0x00 <= value <= 0xFFFF):
+    if not (0x00 <= value <= 0xFF):
       raise ZMemoryIllegalWrite
     actual_address = self._global_variable_start + ((varnum - 0x10) * 2)
-    bf = bitfield.BitField(value)
+    bf = BitField(value)
     self._memory[actual_address] = bf[8:15]
     self._memory[actual_address + 1] = bf[0:7]
