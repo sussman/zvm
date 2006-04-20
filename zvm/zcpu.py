@@ -71,6 +71,8 @@ class ZCpu(object):
                 raise ZCpuUnimplementedInstruction
             return func
         except KeyError:
+            print "<0x%X> (0x%X) ???" % (self._opdecoder.program_counter,
+                                         opcode)
             raise ZCpuIllegalInstruction
 
     def _write_result(self, result_value):
@@ -276,51 +278,51 @@ class ZCpu(object):
     def op_jz(self, val):
         """Branch if the val is zero."""
         self._branch(val == 0)
-    declare_opcode_set(op_jz, 0x80, 2, 0x10)
+    declare_opcode_set(op_jz, 0x80, 3, 0x10)
 
     def op_get_sibling(self, *args):
         """"""
-    declare_opcode_set(op_get_sibling, 0x81, 2, 0x10)
+    declare_opcode_set(op_get_sibling, 0x81, 3, 0x10)
 
     def op_get_child(self, *args):
         """"""
-    declare_opcode_set(op_get_child, 0x82, 2, 0x10)
+    declare_opcode_set(op_get_child, 0x82, 3, 0x10)
 
     def op_get_parent(self, *args):
         """"""
-    declare_opcode_set(op_get_parent, 0x83, 2, 0x10)
+    declare_opcode_set(op_get_parent, 0x83, 3, 0x10)
 
     def op_get_prop_len(self, *args):
         """"""
-    declare_opcode_set(op_get_prop_len, 0x84, 2, 0x10)
+    declare_opcode_set(op_get_prop_len, 0x84, 3, 0x10)
 
     def op_inc(self, *args):
         """"""
-    declare_opcode_set(op_inc, 0x85, 2, 0x10)
+    declare_opcode_set(op_inc, 0x85, 3, 0x10)
 
     def op_dec(self, *args):
         """"""
-    declare_opcode_set(op_dec, 0x86, 2, 0x10)
+    declare_opcode_set(op_dec, 0x86, 3, 0x10)
 
     def op_print_addr(self, *args):
         """"""
-    declare_opcode_set(op_print_addr, 0x87, 2, 0x10)
+    declare_opcode_set(op_print_addr, 0x87, 3, 0x10)
 
     def op_call_1s(self, *args):
         """"""
-    declare_opcode_set(op_call_1s, 0x88, 2, 0x10, version=(4,5))
+    declare_opcode_set(op_call_1s, 0x88, 3, 0x10, version=(4,5))
 
     def op_remove_obj(self, *args):
         """"""
-    declare_opcode_set(op_remove_obj, 0x89, 2, 0x10)
+    declare_opcode_set(op_remove_obj, 0x89, 3, 0x10)
 
     def op_print_obj(self, *args):
         """"""
-    declare_opcode_set(op_print_obj, 0x8A, 2, 0x10)
+    declare_opcode_set(op_print_obj, 0x8A, 3, 0x10)
 
     def op_ret(self, *args):
         """"""
-    declare_opcode_set(op_ret, 0x8B, 2, 0x10)
+    declare_opcode_set(op_ret, 0x8B, 3, 0x10)
 
     def op_jump(self, *args):
         """Jump unconditionally to the given branch offset.  This
@@ -328,23 +330,23 @@ class ZCpu(object):
         and so we do not call the _branch method to dispatch the call."""
         cond, offset = self._opdecoder.get_branch_offset()
         self._opdecoder.program_counter += (offset - 2)
-    declare_opcode_set(op_jump, 0x8C, 2, 0x10)
+    declare_opcode_set(op_jump, 0x8C, 3, 0x10)
 
     def op_print_paddr(self, *args):
         """"""
-    declare_opcode_set(op_print_paddr, 0x8D, 2, 0x10)
+    declare_opcode_set(op_print_paddr, 0x8D, 3, 0x10)
 
     def op_load(self, *args):
         """"""
-    declare_opcode_set(op_load, 0x8E, 2, 0x10)
+    declare_opcode_set(op_load, 0x8E, 3, 0x10)
 
     def op_not(self, *args):
         """"""
-    declare_opcode_set(op_not, 0x8F, 2, 0x10, version=(1,2,3,4))
+    declare_opcode_set(op_not, 0x8F, 3, 0x10, version=(1,2,3,4))
 
     def op_call_1n(self, *args):
         """"""
-    declare_opcode_set(op_call_1n, 0x8F, 2, 0x10, version=(5,))
+    declare_opcode_set(op_call_1n, 0x8F, 3, 0x10, version=(5,))
 
     ## 0OP opcodes (opcodes 176-191)
 
@@ -448,7 +450,7 @@ class ZCpu(object):
     declare_opcode(op_put_prop, 0xE3)
 
     def op_sread(self, *args):
-        """"""
+        """ """
     declare_opcode(op_sread, 0xE4, version=(1,2,3))
 
     def op_sread_v4(self, *args):
