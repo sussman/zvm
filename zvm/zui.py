@@ -26,12 +26,13 @@ class ZUI(object):
     # Subclasses must define real values for all the features they
     # support (or don't support).
 
-    self.capabilities =
-    {
-      "has_status_line" : TRUE,
-      "has_upper_window" : TRUE,
-      "has_graphics_font" : FALSE,
-      "has_text_colors":  FALSE,
+    self.features = {
+      "has_status_line" : True,
+      "has_upper_window" : True,
+      "has_graphics_font" : False,
+      "has_text_colors":  False,
+      "has_sound": False,
+      "has_mouse": False,
       }
 
   # Private Routines
@@ -79,6 +80,22 @@ class ZUI(object):
     pass
 
 
+  def open_transcript_file_for_writing(self):
+    """Prompt for a filename in which to save either a full game
+    transcript or just a list of the user's commands.  Return standard
+    python file handle that can be written to."""
+
+    pass
+
+
+  def open_transcript_file_for_reading(self):
+    """Prompt for a filename contain user commands, which can be used
+    to drive the interpreter.  Return standard python file handle that
+    can be read from."""
+
+    pass
+
+
   # Window Management
   #
   # The z-machine has 2 windows for displaying text, "upper" and
@@ -87,8 +104,8 @@ class ZUI(object):
   # appears.
   #
   # The UI is responsible for making the lower window scroll properly,
-  # as well as wrapping words.  The upper window, however, should
-  # *never* scroll or wrap words.
+  # as well as wrapping words ("buffering").  The upper window,
+  # however, should *never* scroll or wrap words.
   #
   # The UI is also responsible for displaying [MORE] prompts when
   # printing more text than the screen-height can display.  (Note: if
@@ -130,31 +147,32 @@ class ZUI(object):
   def erase_window(self, window, color):
     """Erase WINDOW to background COLOR."""
 
+    pass
+
 
   # Status Line
   #
   # These routines are only called if the has_status_line capability
-  # is set.  Specifically, they're called whenever the show_status
-  # opcode is executed, and just before input is read from the user.
+  # is set.  Specifically, one of them is called whenever the
+  # show_status opcode is executed, and just before input is read from
+  # the user.
 
-  def print_status_object(self, text):
-    """Print TEXT to the left side of the status line, typcially the
-    name of an object."""
+  def print_status_score_turns(self, text, score, turns):
+    """Print a status line in the upper window, as follows:
 
-    ### NOTE: object names might be as long as 49 characters.  If they
-    ### can't fit, just ellipsize them.
-
-    pass
-
-
-  def print_status_score_turns(self, score, turns):
-    """Print SCORE and number of TURNS on the right side of the status line."""
+        On the left side of the status line, print TEXT.
+        On the right side of the status line, print SCORE/TURNS.
+    """
 
     pass
 
 
   def print_status_time(self, hours, minutes):
-    """Print the game-time on the right side of the status line."""
+    """Print a status line in the upper window, as follows:
+
+        On the left side of the status line, print TEXT.
+        On the right side of the status line, print HOURS:MINUTES.
+    """
 
     pass
 
@@ -207,50 +225,14 @@ class ZUI(object):
     pass
 
 
-  # Input and Output Streams
+  # Sound Effects
   #
-  #
+  ### TODO... see section 9 of spec.
 
-  ### Coming soon.  Here are my notes:
 
-  #  Zmachine itself manages a 'list of streams' that are can be
-#  independently switched on and off by the game.
-#
-#   OUTPUT STREAMS:
-#
-#     O1:  screen
-#     O2:  transcript of whole game (sent to printer or file)
-#     O3:  (z3+) dynamic memory
-#     O4:  (z3+) transcript of user input only
-#
-#  Player input is *always* echoed to O1 and O2.  O1 and O2 are
-#  allowed to buffer text so as to implement word-wrapping in lower
-#  window.  Buffering is always on in z1-z3, but can be turned off in
-#  z4+ via buffer_mode opcode.
-#
-#  When implementing O2, only ask for filename *once*, not everytime
-#  it's switched on or off.
-#
-#  If O3 is 'on', then it *exclusively* receives output; no other
-#  streams recerive output, even if they're also on.
-#
-#      -> data goes to ?table? address when on
-#      -> newlines recorded as zscii 13
-#      -> when off, address should contain length-word, then data.
-#      -> recursive to 16 levels: each 'selection' of O3 writes to new
-#         table address, then 'deselection' paps back to previous table
-#
-#  O4:  if selected, *only* write user's keypresses (from read_char).
-#       Commands are written atomically, after they finish
-#
-#
-#
-# Code to select/deselect output streams:
-#
-#   z1-z2:  O1 always on, O2 selected by toggling bit 0 of 'flags2'
-#     z3+:  output_stream opcode twiddles all 4 streams, OR flogs2 can still
-#           be twiddled for O2... AND flogs2 must *always* represent the
-#           latest O2 state no matter what.
+
+
+
 #
 # What about unicode output??  (print_unicode opcode)
 #
