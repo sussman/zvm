@@ -241,7 +241,26 @@ class ZOpDecoder(object):
     bf = BitField(self._memory.read_word(self.program_counter))
     if bf[14] == 1:
       self.program_counter += 1
+      print "*** Branch offset (0-63) : %d" % bf[8:14]
       return bf[15], bf[8:14]
     else:
       self.program_counter += 2
-      return bf[15], bf[0:14]
+
+      # We need to do a little magic here. The branch offset is
+      # written as a signed 14-bit number, with signed meaning '-n' is
+      # written as '65536-n'. Or in this case, as we have 14 bits,
+      # '16384-n'.
+      #
+      # So, if the MSB (ie. bit 13) is set, we have a negative
+      # number. We take the value, and substract 16384 to get the
+      # actual offset as a negative integer.
+      #
+      # If the MSB is not set, we just extract the value and return it.
+      #
+      # Can you spell "Weird" ?
+      if bf[13] == 1:
+        print "*** Branch offset (14-bit) : %d" % bf[8:14]
+        return bf[15], bf[0:14] - 16384
+      else:
+        print "*** Branch offset (0-63) : %d" % bf[8:14]
+        return bf[15], bf[0:14]

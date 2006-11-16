@@ -75,11 +75,22 @@ class ZCpu(object):
                                          opcode)
             raise ZCpuIllegalInstruction
 
+    def _read_variable(self, addr):
+        """Return the value of the given variable, which can come from
+        the stack, or from a local/global variable.  If it comes from
+        the stack, the value is popped from the stack."""
+        if addr == 0x0:
+            return self._stackmanager.pop_stack()
+        elif 0x0 < addr < 0x10:
+            return self._stackmanager.get_local_variable(addr - 1)
+        else:
+            return self._memory.read_global(addr)
+
     def _write_result(self, result_value, store_addr=None):
         """Write the given result value to the stack or to a
-        local/global variable, depending on the result_addr. If the
-        optional result_addr is given, then the store address is not
-        read from the opcode."""
+        local/global variable.  Write result_value to the store_addr
+        variable, or if None, extract the destination variable from
+        the opcode."""
         if store_addr == None:
             result_addr = self._opdecoder.get_store_address()
         else:
@@ -141,8 +152,14 @@ class ZCpu(object):
     declare_opcode_set(op_jg, 0x03, 4, 0x20)
     append_opcode(op_jg, 0xC3)
 
-    def op_dec_chk(self, *args):
-        """"""
+    def op_dec_chk(self, variable, test_value):
+        """Decrement the variable, and branch if the value becomes
+        less than test_value."""
+        val = self._read_variable(variable)
+        val = (val - 1) % 65536
+        self._write_result(val, store_addr=variable)
+        self._branch(val < test_value)
+
     declare_opcode_set(op_dec_chk, 0x04, 4, 0x20)
     append_opcode(op_dec_chk, 0xC4)
 
