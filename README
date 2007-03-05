@@ -19,7 +19,8 @@ The current goals of the project include:
 
     * No user interface: ZVM implements only the actual Z-machine. It
       is meant to be used as the backend in other programs that
-      provide a user interface.
+      provide a user interface.  (User interface will probably be done
+      via the 'glk' API, making ZVM pluggable into existing front-ends.)
 
     * Compatibility: ZVM will implement a Z-Machine architecture
       according to the official specification.
@@ -31,13 +32,20 @@ The current goals of the project include:
     * Programming language: ZVM is written exclusively in the Python
       programming language, as an importable code module.
 
+    * Readabliity: speed is not an issue when emulating a 28-year old
+      virtual machine on a modern computer, so we always shoot for
+      readable code over clever optimizations.
+
 
 Code
 ====
 
 All code is covered by the BSD license, found in the LICENSE file.
 
-The subversion repository is located at:  http://svn.red-bean.com/repos/zvm
+You can check out the latest code from Subversion here:
+
+     http://zvm.googlecode.com/svn/trunk
+
 
 Project contents:
 
