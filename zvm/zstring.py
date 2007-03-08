@@ -1,5 +1,5 @@
 #
-# A ZString-to-ASCII Universal Translator.
+# A ZString-to-Unicode Universal Translator.
 #
 # For the license of this file, please consult the LICENSE file in the
 # root directory of this distribution.
@@ -278,7 +278,7 @@ class ZsciiTranslator(object):
 
         self._load_unicode_table()
 
-        # Populate the input and output tables with the ascii and UTT
+        # Populate the input and output tables with the ASCII and UTT
         # characters.
         for code,char in [(x,unichr(x)) for x in range(32,127)]:
             self._output_table[code] = char
@@ -328,7 +328,7 @@ class ZsciiTranslator(object):
 
     def ztou(self, index):
         """Translate the given ZSCII code into the corresponding
-        output ASCII character and return it, or raise an exception if
+        output Unicode character and return it, or raise an exception if
         the requested index has no translation."""
         try:
             return self._output_table[index]
@@ -336,9 +336,9 @@ class ZsciiTranslator(object):
             raise IndexError, "No such ZSCII character"
 
     def utoz(self, char):
-        """Translate the given ASCII code into the corresponding input
-        ZSCII character and return it, or raise an exception if the
-        requested character has no translation."""
+        """Translate the given Unicode code into the corresponding
+        input ZSCII character and return it, or raise an exception if
+        the requested character has no translation."""
         try:
             return self._input_table[char]
         except KeyError:
