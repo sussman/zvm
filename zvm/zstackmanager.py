@@ -1,6 +1,6 @@
 #
 # A class which manages both (1) the general purpose stack ("data
-# stack") used by he story code to store temporary data, and (2) the
+# stack") used by the story code to store temporary data, and (2) the
 # interpreter-private stack of routines ("call stack") and their local
 # variables.
 #
