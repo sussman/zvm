@@ -661,7 +661,7 @@ Applications:}</string>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{576.423, 445}, {69, 28}}</string>
+			<string>{{578.036, 352.602}, {69, 28}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>FitText</key>
@@ -718,7 +718,7 @@ negotiation}</string>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{339.288, 401.543}, {69, 28}}</string>
+			<string>{{340.085, 352.09}, {69, 28}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>FitText</key>
@@ -785,8 +785,8 @@ negotiation}</string>
 			<integer>36</integer>
 			<key>Points</key>
 			<array>
-				<string>{661.478, 459}</string>
-				<string>{546.456, 459}</string>
+				<string>{663.091, 366.602}</string>
+				<string>{548.07, 366.602}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -923,8 +923,8 @@ Various implementations}</string>
 			<integer>24</integer>
 			<key>Points</key>
 			<array>
-				<string>{433.488, 437.876}</string>
-				<string>{315.483, 393.732}</string>
+				<string>{435.07, 366.355}</string>
+				<string>{315.515, 365.831}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -965,7 +965,7 @@ implementation}</string>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{433.956, 405}, {112, 108}}</string>
+			<string>{{435.57, 312.602}, {112, 108}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>ID</key>
@@ -993,7 +993,7 @@ implementation}</string>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{661.978, 425}, {70, 68}}</string>
+			<string>{{663.591, 332.602}, {70, 68}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>ID</key>
@@ -1132,7 +1132,7 @@ implementation}</string>
 		</dict>
 	</array>
 	<key>ModificationDate</key>
-	<string>2007-04-14 23:40:34 -0500</string>
+	<string>2007-04-14 23:42:15 -0500</string>
 	<key>Modifier</key>
 	<string>Ben Collins-Sussman</string>
 	<key>NotesVisible</key>
