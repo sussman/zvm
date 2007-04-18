@@ -55,3 +55,7 @@ Project contents:
       tests/                        automated tests for the module
       stories/                      some sample stories to interpret
       zvm/                          the actual ZVM python module
+      docs/                         notes, diagrams, instructions
+
+Note that there's also a /wiki directory at the top level of the
+repository, which contains our live wiki pages.
