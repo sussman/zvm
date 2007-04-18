@@ -47,15 +47,35 @@ You can check out the latest code from Subversion here:
      http://zvm.googlecode.com/svn/trunk
 
 
+A Note on C Code
+================
+
+Note that while ZVM itself is written exclusively in Python, it does
+have the ability to interoperate with Glk front-ends which have been
+built as shared libraries.  In order for our testing suites to test
+this functionality, we have included a slightly modified version of
+Andrew Plotkin's CheapGlk library.  The build system used to create
+this library is SCons, a Python-based build system which can be
+downloaded here:
+
+     http://www.scons.org/
+
+The SCons build scripts included in this distribution have been tested
+successfully on Windows using Microsoft Visual Studio .NET 2003, and
+on Linux using gcc.
+
+
 Project contents:
 
       README                        this file
       LICENSE                       the BSD license
+      SConstruct                    SCons script used to build C code
       run_tests.py                  script to run automated tests
       tests/                        automated tests for the module
       stories/                      some sample stories to interpret
       zvm/                          the actual ZVM python module
       docs/                         notes, diagrams, instructions
+      cheapglk/                     the CheapGlk Glk library
 
 Note that there's also a /wiki directory at the top level of the
 repository, which contains our live wiki pages.
