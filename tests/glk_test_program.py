@@ -4,8 +4,13 @@
 # For the license of this file, please consult the LICENSE file in the
 # root directory of this distribution.
 #
+import sys
 import os
 import ctypes
+
+# If we're being run from the root directory of our distribution, we
+# want said root directory to be on our path so we can import zvm.
+sys.path.append(os.getcwd())
 
 import zvm.glk as glk
 
