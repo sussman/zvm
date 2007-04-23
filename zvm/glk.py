@@ -35,11 +35,64 @@ evtype_LineInput = 3
 glui32 = ctypes.c_uint32
 winid_t = ctypes.c_void_p
 
+# TRUE, FALSE, and NULL aren't defined in glk.h, but are mentioned in
+# Section 1.9 of the Glk spec 0.7.0.
+TRUE = 1
+FALSE = 0
+NULL = ctypes.pointer(glui32(0))
+
+gestalt_Version = 0
+gestalt_CharInput = 1
+gestalt_LineInput = 2
+gestalt_CharOutput = 3
+gestalt_CharOutput_CannotPrint = 0
+gestalt_CharOutput_ApproxPrint = 1
+gestalt_CharOutput_ExactPrint = 2
+gestalt_MouseInput = 4
+gestalt_Timer = 5
+gestalt_Graphics = 6
+gestalt_DrawImage = 7
+gestalt_Sound = 8
+gestalt_SoundVolume = 9
+gestalt_SoundNotify = 10
+gestalt_Hyperlinks = 11
+gestalt_HyperlinkInput = 12
+gestalt_SoundMusic = 13
+gestalt_GraphicsTransparency = 14
+gestalt_Unicode = 15
+
 class event_t(ctypes.Structure):
     _fields_ = [("type", glui32),
                 ("win", winid_t),
                 ("val1", glui32),
                 ("val2", glui32)]
+
+keycode_Unknown  = 0xffffffff
+keycode_Left     = 0xfffffffe
+keycode_Right    = 0xfffffffd
+keycode_Up       = 0xfffffffc
+keycode_Down     = 0xfffffffb
+keycode_Return   = 0xfffffffa
+keycode_Delete   = 0xfffffff9
+keycode_Escape   = 0xfffffff8
+keycode_Tab      = 0xfffffff7
+keycode_PageUp   = 0xfffffff6
+keycode_PageDown = 0xfffffff5
+keycode_Home     = 0xfffffff4
+keycode_End      = 0xfffffff3
+keycode_Func1    = 0xffffffef
+keycode_Func2    = 0xffffffee
+keycode_Func3    = 0xffffffed
+keycode_Func4    = 0xffffffec
+keycode_Func5    = 0xffffffeb
+keycode_Func6    = 0xffffffea
+keycode_Func7    = 0xffffffe9
+keycode_Func8    = 0xffffffe8
+keycode_Func9    = 0xffffffe7
+keycode_Func10   = 0xffffffe6
+keycode_Func11   = 0xffffffe5
+keycode_Func12   = 0xffffffe4
+keycode_MAXVAL   = 28
 
 # Function prototypes for the Glk API.  It is a list of 3-tuples; each
 # item in the list represents a function prototype, and each 3-tuple
@@ -53,6 +106,9 @@ GLK_LIB_API = [
                                       glui32)),
     (None, "glk_select", (ctypes.POINTER(event_t),)),
     (None, "glk_exit", ()),
+    (glui32, "glk_gestalt", (glui32, glui32)),
+    (glui32, "glk_gestalt_ext", (glui32, glui32, ctypes.POINTER(glui32),
+                                 glui32)),
     ]
 
 class GlkLib:
@@ -77,3 +133,9 @@ class GlkLib:
             prototype = ctypes.CFUNCTYPE(result_type, *arg_types)
             function = prototype((function_name, self._dll))
             setattr(self, function_name, function)
+
+    def glk_char_to_lower(self, ch):
+        raise NotImplementedError("Use unicode.lower() instead.")
+
+    def glk_char_to_upper(self, ch):
+        raise NotImplementedError("Use unicode.upper() instead.")
