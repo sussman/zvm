@@ -125,11 +125,11 @@ class ZCharTranslator(object):
         """
         # The following three functions define the three possible
         # special character code handlers.
-        def newline(self, state):
+        def newline(state):
             """Append ZSCII 13 (newline) to the output."""
             state['zscii'].append(13)
 
-        def shift_alphabet(self, state, direction, lock):
+        def shift_alphabet(state, direction, lock):
             """Shift the current alphaber up or down. If lock is
             False, the alphabet will revert to the previous alphabet
             after outputting 1 character. Else, the alphabet will
@@ -139,7 +139,7 @@ class ZCharTranslator(object):
             if lock:
                 state['prev_alpha'] = state['curr_alpha']
 
-        def abbreviation(self, state, abbrev):
+        def abbreviation(state, abbrev):
             """Insert the given abbreviation from the given table into
             the output stream.
 
