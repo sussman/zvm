@@ -71,10 +71,9 @@ class ZCharTranslator(object):
 
         # Initialize the alphabets
         if self._mem.version == 5:
-            if not self._load_custom_alphabet():
-                self._alphabet = self.__class__.ALPHA_V5
+            self._alphabet = self._load_custom_alphabet() or self.ALPHA_V5
         else:
-            self._alphabet = self.__class__.ALPHA
+            self._alphabet = self.ALPHA
 
         # Initialize the special state handlers
         self._load_specials()
@@ -84,16 +83,15 @@ class ZCharTranslator(object):
 
     def _load_custom_alphabet(self):
         """Check for the existence of a custom alphabet, and load it
-        if it does exist. Return True if a custom alphabet was found,
-        False otherwise."""
+        if it does exist. Return the custom alphabet if it was found,
+        None otherwise."""
         # The custom alphabet table address is at 0x34 in the memory.
         if self._mem[0x34] == 0:
-            return False
-        alph_addr = self._mem.read_word(0x34)
+            return None
 
+        alph_addr = self._mem.read_word(0x34)
         alphabet = self._mem[alph_addr:alph_addr+78]
-        self.alphabet = [alphabet[0:26], alphabet[26:52], alphabet[52:78]]
-        return True
+        return [alphabet[0:26], alphabet[26:52], alphabet[52:78]]
 
     def _load_abbrev_tables(self):
         self._abbrevs = {}
@@ -122,47 +120,70 @@ class ZCharTranslator(object):
             _load_subtable(2, abbrev_base)
 
     def _load_specials(self):
+        """Load the special character code handlers for the current
+        machine version.
+        """
+        # The following three functions define the three possible
+        # special character code handlers.
+        def newline(self, state):
+            """Append ZSCII 13 (newline) to the output."""
+            state['zscii'].append(13)
+
+        def shift_alphabet(self, state, direction, lock):
+            """Shift the current alphaber up or down. If lock is
+            False, the alphabet will revert to the previous alphabet
+            after outputting 1 character. Else, the alphabet will
+            remain unchanged until the next shift.
+            """
+            state['curr_alpha'] = (state['curr_alpha'] + direction) % 3
+            if lock:
+                state['prev_alpha'] = state['curr_alpha']
+
+        def abbreviation(self, state, abbrev):
+            """Insert the given abbreviation from the given table into
+            the output stream.
+
+            This character was an abbreviation table number. The next
+            character will be the offset within that table of the
+            abbreviation. Set up a state handler to intercept the next
+            character and output the right abbreviation."""
+            def write_abbreviation(state, c, subtable):
+                state['zscii'] += self._abbrevs[(subtable, c)]
+                del state['state_handler']
+
+            # If we're parsing an abbreviation, there should be no
+            # nested abbreviations. So this is just a sanity check for
+            # people feeding us bad stories.
+            if not state['allow_abbreviations']:
+                raise ZStringIllegalAbbrevInString
+
+            state['state_handler'] = lambda s,c: write_abbrev(s, c, abbrev)
+
+        # Register the specials handlers depending on machine version.
         if self._mem.version == 1:
             self._specials = {
-                1: lambda s: self._special_newline(s),
-                2: lambda s: self._special_alpha_shift(s, +1, False),
-                3: lambda s: self._special_alpha_shift(s, -1, False),
-                4: lambda s: self._special_alpha_shift(s, +1, True),
-                5: lambda s: self._special_alpha_shift(s, -1, True),
+                1: lambda s: newline(s),
+                2: lambda s: shift_alphabet(s, +1, False),
+                3: lambda s: shift_alphabet(s, -1, False),
+                4: lambda s: shift_alphabet(s, +1, True),
+                5: lambda s: shift_alphabet(s, -1, True),
                 }
         elif self._mem.version == 2:
             self._specials = {
-                1: lambda s: self._special_abbrev(s, 0),
-                2: lambda s: self._special_alpha_shift(s, +1, False),
-                3: lambda s: self._special_alpha_shift(s, -1, False),
-                4: lambda s: self._special_alpha_shift(s, +1, True),
-                5: lambda s: self._special_alpha_shift(s, -1, True),
+                1: lambda s: abbreviation(s, 0),
+                2: lambda s: shift_alphabet(s, +1, False),
+                3: lambda s: shift_alphabet(s, -1, False),
+                4: lambda s: shift_alphabet(s, +1, True),
+                5: lambda s: shift_alphabet(s, -1, True),
                 }
         else: # ZM v3-5
             self._specials = {
-                1: lambda s: self._special_abbrev(s, 0),
-                2: lambda s: self._special_abbrev(s, 1),
-                3: lambda s: self._special_abbrev(s, 2),
-                4: lambda s: self._special_alpha_shift(s, +1, False),
-                5: lambda s: self._special_alpha_shift(s, -1, False),
+                1: lambda s: abbreviation(s, 0),
+                2: lambda s: abbreviation(s, 1),
+                3: lambda s: abbreviation(s, 2),
+                4: lambda s: shift_alphabet(s, +1, False),
+                5: lambda s: shift_alphabet(s, -1, False),
                 }
-
-    def _special_newline(self, state):
-        state['zscii'].append(13) # ZSCII 13 (newline)
-
-    def _special_alpha_shift(self, state, direction, lock):
-        state['curr_alpha'] = (state['curr_alpha'] + direction) % 3
-        if lock:
-            state['prev_alpha'] = state['curr_alpha']
-
-    def _special_abbrev(self, state, abbrev):
-        def write_abbrev(state, c, subtable):
-            state['zscii'] += self._abbrevs[(subtable, c)]
-            del state['state_handler']
-
-        if state['abbrevs']:
-            raise ZStringIllegalAbbrevInString
-        state['state_handler'] = lambda s,c: write_abbrev(s, c, abbrev)
 
     def _special_zscii(self, state, char):
         if 'zscii_char' not in state.keys():
@@ -178,27 +199,21 @@ class ZCharTranslator(object):
             'curr_alpha': 0,
             'prev_alpha': 0,
             'zscii': [],
-            'abbrevs': no_abbrev,
+            'allow_abbreviations': no_abbrev,
             }
 
         for c in zstr:
-            # If a special handler has registered itself, then hand
-            # processing over to it.
             if 'state_handler' in state.keys():
+                # If a special handler has registered itself, then hand
+                # processing over to it.
                 state['state_handler'](state, c)
-                continue
-            # Default state handling
-            else:
+            elif c in self._specials.keys():
                 # Hand off per-ZM version special char handling.
-                if c in self._specials.keys():
-                    self._specials[c](state)
-                    continue
-
+                self._specials[c](state)
+            elif state['curr_alpha'] == 2 and c == 6:
                 # Handle the strange A2/6 character
-                if state['curr_alpha'] == 2 and c == 6:
-                    state['state_handler'] = self._special_zscii
-                    continue
-
+                state['state_handler'] = self._special_zscii
+            else:
                 # Do the usual Thing: append a zscii code to the
                 # decoded sequence and revert to the "previous"
                 # alphabet (or not, if it hasn't recently changed or
