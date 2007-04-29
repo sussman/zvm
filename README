@@ -64,6 +64,8 @@ The SCons build scripts included in this distribution have been tested
 successfully on Windows using Microsoft Visual Studio .NET 2003, and
 on Linux using gcc.
 
+To build everything, just type "scons" at the root directory of the
+project.
 
 Project contents:
 
