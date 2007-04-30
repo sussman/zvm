@@ -5,12 +5,16 @@
 # root directory of this distribution.
 #
 
+import itertools
+
+
 class ZStringEndOfString(Exception):
     """No more data left in string."""
 
 class ZStringIllegalAbbrevInString(Exception):
     """String abbreviation encountered within a string in a context
     where it is not allowed."""
+
 
 class ZStringTranslator(object):
     def __init__(self, zmem):
@@ -52,6 +56,7 @@ class ZStringTranslator(object):
 
         # Just increment the intra-block counter.
         return (pos[0], pos[1], offset)
+
 
 class ZCharTranslator(object):
 
@@ -224,6 +229,7 @@ class ZCharTranslator(object):
 
         return state['zscii']
 
+
 class ZsciiTranslator(object):
     # The default Unicode Translation Table that maps to ZSCII codes
     # 155-251. The codes are unicode codepoints for a host of strange
@@ -323,23 +329,39 @@ class ZsciiTranslator(object):
     def _load_unicode_table(self):
         if self._mem.version == 5:
             # Read the header extension table address
-            ext_table = self._mem.read_word(0x38)
+            ext_table_addr = self._mem.read_word(0x36)
 
-            # If the extension header exists and defines a non-null
-            # unicode translation table, load that.
-            if (ext_table != 0 and
-                self._mem.read_word(ext_table) >= 3 and
-                self._mem.read_word(ext_table+6) != 0):
+            # If:
+            #  - The extension header's address is non-null
+            #  - There are at least 3 words in the extension header
+            #    (the unicode translation table is the third word)
+            #  - The 3rd word (unicode translation table address) is
+            #    non-null
+            #
+            # Then there is a unicode translation table other than the
+            # default that needs loading.
+            if (ext_table_addr != 0 and
+                self._mem.read_word(ext_table_addr) >= 3 and
+                self._mem.read_word(ext_table_addr+6) != 0):
 
-                # Retrieve a list of the offsets of all unicode
-                # character codes in the extension table
-                utt_range = range(ext_table+1,
-                                  ext_table+1+(self._mem[ext_table]*2),
-                                  2)
+                # The first byte is the number of unicode characters
+                # in the table.
+                utt_len = self._mem[ext_table_addr]
 
-                # And translate them
-                utt = [unichr(self._mem.read_word(i))
-                       for i in utt_range]
+                # Build the range of addresses to load from, and build
+                # the unicode translation table as a list of unicode
+                # chars.
+                utt_range = xrange(ext_table+1, ext_table+1+(utt_len*2), 2)
+                utt = [unichr(self._mem.read_word(i)) for i in utt_range]
+            else:
+                utt = self.DEFAULT_UTT
+
+            # One way or another, we have a unicode translation
+            # table. Add all the characters in it to the input and
+            # output translation tables.
+            for zscii, unichar in itertools.izip(itertools.count(155), utt):
+                self._output_table[zscii] = unichar
+                self._input_table[unichar] = zscii
 
     def ztou(self, index):
         """Translate the given ZSCII code into the corresponding
@@ -361,6 +383,7 @@ class ZsciiTranslator(object):
 
     def get(self, zscii):
         return ''.join([self.ztou(c) for c in zscii])
+
 
 class ZStringFactory(object):
     def __init__(self, zmem):
