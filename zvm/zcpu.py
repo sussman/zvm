@@ -21,7 +21,7 @@ class ZCpuUnimplementedInstruction(ZCpuError):
     "Unimplemented instruction encountered"
 
 def declare_opcodes(func, opcodes, version=(1,2,3,4,5)):
-    """Helper function used for declaring the a function implements
+    """Helper function used for declaring that a function implements
     some opcodes."""
     if hasattr(func, '_opcodes'):
         raise ZCpuOpcodeOverlap
@@ -57,23 +57,18 @@ class ZCpu(object):
         self._stackmanager = stackmanager
 
     def _get_handler(self, opcode):
-        try:
-            opcode_func = self._opcodes[(opcode, self._memory.version)]
-            print "<0x%X> (0x%X) %s" % (self._opdecoder.program_counter,
-                                        opcode, opcode_func)
-
-            # The following is a hack, based on our policy of only
-            # documenting opcodes we implement. If we ever hit an
-            # undocumented opcode, we crash with a not implemented
-            # error.
-            func = getattr(self, opcode_func)
-            if func.__doc__ == "":
-                raise ZCpuUnimplementedInstruction
-            return func
-        except KeyError:
-            print "<0x%X> (0x%X) ???" % (self._opdecoder.program_counter,
-                                         opcode)
+        opcode_func = self._opcodes.get((opcode, self._memory.version))
+        if not opcode_func:
             raise ZCpuIllegalInstruction
+
+        # The following is a hack, based on our policy of only
+        # documenting opcodes we implement. If we ever hit an
+        # undocumented opcode, we crash with a not implemented
+        # error.
+        func = getattr(self, opcode_func)
+        if func.__doc__ == "":
+            raise ZCpuUnimplementedInstruction(func)
+        return func
 
     def _read_variable(self, addr):
         """Return the value of the given variable, which can come from
@@ -125,9 +120,18 @@ class ZCpu(object):
         them around, and brings the magic to your screen!"""
         print "Execution started"
         while True:
-            (opcode, operands) = self._opdecoder.get_next_instruction()
-            self._get_handler(opcode)(*operands)
-            print
+            try:
+                (opcode, operands) = self._opdecoder.get_next_instruction()
+                func = self._get_handler(opcode)
+                print "<0x%X> (0x%X) %s %s" % (
+                    self._opdecoder.program_counter, opcode, func.__name__,
+                    ', '.join([str(x) for x in operands]))
+                func(*operands)
+            except ZCpuUnimplementedInstruction, e:
+                print "<0x%X> (0x%X) %s %s ???" % (
+                    self._opdecoder.program_counter, opcode,
+                    e.args[0].__name__, ', '.join([str(x) for x in operands]))
+                break
 
     ##
     ## Opcode implementation functions start here.
@@ -163,8 +167,14 @@ class ZCpu(object):
     declare_opcode_set(op_dec_chk, 0x04, 4, 0x20)
     append_opcode(op_dec_chk, 0xC4)
 
-    def op_inc_chk(self, *args):
-        """"""
+    def op_inc_chk(self, variable, test_value):
+        """Increment the variable, and branch if the value becomes
+        greater than the test value."""
+        val = self._read_variable(variable)
+        val = (val + 1) % 65536
+        self._write_result(val, store_addr=variable)
+        self._branch(val > test_value)
+
     declare_opcode_set(op_inc_chk, 0x05, 4, 0x20)
     append_opcode(op_inc_chk, 0xC5)
 
@@ -367,8 +377,14 @@ class ZCpu(object):
         """"""
     declare_opcode_set(op_not, 0x8F, 3, 0x10, version=(1,2,3,4))
 
-    def op_call_1n(self, *args):
-        """"""
+    def op_call_1n(self, routine_addr):
+        """Call the given routine, and discard the return value."""
+        addr = self._memory.packed_address(routine_addr)
+        current_addr = self._opdecoder.program_counter
+        new_addr = self._stackmanager.start_routine(addr, None,
+                                                    current_addr, [])
+        self._opdecoder.program_counter = new_addr
+
     declare_opcode_set(op_call_1n, 0x8F, 3, 0x10, version=(5,))
 
     ## 0OP opcodes (opcodes 176-191)
