@@ -5,27 +5,29 @@
 # root directory of this distribution.
 #
 from unittest import TestCase
-from zvm.zscii import Zscii
+from zvm import zstring
+import mock.zmemory
 
 class BitFieldTests(TestCase):
+    def build_translator(self, version, reads=None):
+        mem = mock.zmemory.MockZMemory(version, reads)
+        return zstring.ZsciiTranslator(mem)
+
     def testCreateVersions(self):
         """Test that all ZM versions can be created without
         fault. Verify that the v5 has a mouse click input event."""
-        def doClick(z):
-            z.utoz(z.MOUSE_CLICK)
-
         # ZM 1-4
-        for i in range(1,5):
-            z = Zscii(i)
-            self.failUnlessRaises(AttributeError, doClick, z)
+        for version in xrange(1,5):
+            z = self.build_translator(version)
+            self.failUnlessRaises(AttributeError, getattr, z, 'MOUSE_CLICK')
         # ZM 5
-        z = Zscii(5)
-        doClick(z)
+        z = self.build_translator(5, [(mock.zmemory.WORD, 0x36, 0)])
+        z.utoz(z.MOUSE_CLICK)
 
-    def testGetZscii(self):
+    def testGetUnicode(self):
         """Try a couple of zscii-to-unicode conversions, involving
         various ranges of the output spectrum."""
-        z = Zscii(5)
+        z = self.build_translator(5, [(mock.zmemory.WORD, 0x36, 0)])
         self.failUnlessEqual(z.ztou(97), u"a")
         self.failUnlessEqual(z.ztou(13), u"\n")
         self.failUnlessEqual(z.ztou(168), u"\xcf")
@@ -34,7 +36,7 @@ class BitFieldTests(TestCase):
     def testGetZscii(self):
         """Try a couple of unicode-to-zscii conversions, involving
         various ranges of the input spectrum."""
-        z = Zscii(5)
+        z = self.build_translator(5, [(mock.zmemory.WORD, 0x36, 0)])
         self.failUnlessEqual(z.utoz(u"a"), 97)
         self.failUnlessEqual(z.utoz(u"\n"), 13)
         self.failUnlessEqual(z.utoz(u"\xcf"), 168)
