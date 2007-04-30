@@ -48,13 +48,14 @@ class ZRoutine(object):
       raise ZStackError
     self.start_addr += 1
 
-    # Initialize the local vars in the ZRoutine's dictionary
+    # Initialize the local vars in the ZRoutine's dictionary. This is
+    # only needed on machines v1 through v4. In v5 machines, all local
+    # variables are preinitialized to zero.
     if 1 <= zmem.version <= 4:
       for i in range(num_local_vars):
         self.local_vars[i] = zmem.read_word(self.start_addr)
         self.start_addr += 2
-
-    else:
+    elif zmem.version != 5:
       raise ZStackUnsupportedVersion
 
     # Place call arguments into local vars, if available
