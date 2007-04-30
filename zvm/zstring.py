@@ -113,7 +113,7 @@ class ZCharTranslator(object):
                             for i in range(0, 32)]:
                 zaddr = self._mem.read_word(zoff)
                 zstr = xlator.get(self._mem.word_address(zaddr))
-                zchr = self.get(zstr, no_abbrev=True)
+                zchr = self.get(zstr, allow_abbreviations=False)
                 self._abbrevs[(num, i)] = zchr
 
         abbrev_base = self._mem.read_word(0x18)
@@ -162,7 +162,8 @@ class ZCharTranslator(object):
             if not state['allow_abbreviations']:
                 raise ZStringIllegalAbbrevInString
 
-            state['state_handler'] = lambda s,c: write_abbrev(s, c, abbrev)
+            state['state_handler'] = lambda s,c: write_abbreviation(s, c,
+                                                                    abbrev)
 
         # Register the specials handlers depending on machine version.
         if self._mem.version == 1:
@@ -199,12 +200,12 @@ class ZCharTranslator(object):
             del state['zscii_char']
             del state['state_handler']
 
-    def get(self, zstr, no_abbrev=False):
+    def get(self, zstr, allow_abbreviations=True):
         state = {
             'curr_alpha': 0,
             'prev_alpha': 0,
             'zscii': [],
-            'allow_abbreviations': no_abbrev,
+            'allow_abbreviations': allow_abbreviations,
             }
 
         for c in zstr:
