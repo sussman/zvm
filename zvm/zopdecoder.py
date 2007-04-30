@@ -32,7 +32,7 @@ class ZOpDecoder(object):
     ""
     self._memory = zmem
     self._parse_map = {}
-    self.program_counter = 0
+    self.program_counter = self._memory.read_word(0x6)
 
     # Create a dictionary that maps initial instruction bytes
     # to functions that properly parse the opcode and operands.
