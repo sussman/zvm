@@ -264,8 +264,9 @@ class ZCpu(object):
     declare_opcode_set(op_add, 0x14, 4, 0x20)
     append_opcode(op_add, 0xD4)
 
-    def op_sub(self, *args):
-        """"""
+    def op_sub(self, a, b):
+        """Signed 16-bit substraction"""
+        self._write_result((a - b) % 65536) # 2**16 - overflow limit
     declare_opcode_set(op_sub, 0x15, 4, 0x20)
     append_opcode(op_sub, 0xD5)
 
