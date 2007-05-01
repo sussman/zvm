@@ -161,20 +161,19 @@ class ZOpDecoder(object):
   # opcode being executed:
 
   def get_zstring(self):
-    """For string opcodes, return the zstring pointed to by the PC.
-    Increment PC just past the text.  (The caller is responsible for
-    converting the bytes into ascii.)"""
+    """For string opcodes, return the address of the zstring pointed
+    to by the PC.  Increment PC just past the text."""
 
     start_addr = self.program_counter
     bf = BitField(0)
 
     while True:
-      bf.__init__(self._memory.read_word(self.program_counter))
-      program_counter += 2
-      if bf[15] == 1:
+      bf.__init__(self._memory[self.program_counter])
+      self.program_counter += 2
+      if bf[7] == 1:
         break
 
-    return self._memory[start:self.program_counter]
+    return start_addr
 
 
   def get_store_address(self):
@@ -190,14 +189,11 @@ class ZOpDecoder(object):
     to branch if true or branch if false), and second, the address to
     jump to.  Increment the PC as necessary."""
 
-    bf = BitField(self._memory.read_word(self.program_counter))
-    if bf[14] == 1:
-      self.program_counter += 1
-      print "*** Branch offset (0-63) : %d" % bf[8:14]
-      return bf[15], bf[8:14]
+    bf = BitField(self._get_pc())
+    branch_if_true = bool(bf[7])
+    if bf[6]:
+      branch_offset = bf[0:6]
     else:
-      self.program_counter += 2
-
       # We need to do a little magic here. The branch offset is
       # written as a signed 14-bit number, with signed meaning '-n' is
       # written as '65536-n'. Or in this case, as we have 14 bits,
@@ -210,9 +206,9 @@ class ZOpDecoder(object):
       # If the MSB is not set, we just extract the value and return it.
       #
       # Can you spell "Weird" ?
-      if bf[13] == 1:
-        print "*** Branch offset (14-bit) : %d" % bf[8:14]
-        return bf[15], bf[0:14] - 16384
-      else:
-        print "*** Branch offset (0-63) : %d" % bf[8:14]
-        return bf[15], bf[0:14]
+      branch_offset = self._get_pc() + (bf[0:5] << 8)
+      if bf[5]:
+        branch_offset -= 16384
+
+    print '*** Branch if %s to offset %+d' % (branch_if_true, branch_offset)
+    return branch_if_true, branch_offset

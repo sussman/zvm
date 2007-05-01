@@ -301,10 +301,10 @@ class ZsciiTranslator(object):
         self._mem = zmem
         self._output_table = {
             0 : "",
-            13: "\n"
+            10: "\n"
             }
         self._input_table = {
-            "\n": 13
+            "\n": 10
             }
 
         self._load_unicode_table()

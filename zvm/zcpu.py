@@ -21,11 +21,12 @@ class ZCpuUnimplementedInstruction(ZCpuError):
     "Unimplemented instruction encountered"
 
 class ZCpu(object):
-    def __init__(self, zmem, zopdecoder, zstack, zobjects):
+    def __init__(self, zmem, zopdecoder, zstack, zobjects, zstring):
         self._memory = zmem
         self._opdecoder = zopdecoder
         self._stackmanager = zstack
         self._objects = zobjects
+        self._string = zstring
 
     def _get_handler(self, opcode_class, opcode_number):
         try:
@@ -94,6 +95,20 @@ class ZCpu(object):
             else:
                 self._memory.write_global(result_addr, result_value)
 
+    def _call(self, routine_address, args, store_return_value):
+        """Set up a function call to the given routine address,
+        passing the given arguments. If store_return_value is True,
+        the routine's return value will be stored."""
+        addr = self._memory.packed_address(routine_address)
+        if store_return_value:
+            return_value = self._opdecoder.get_store_address()
+        else:
+            return_value = None
+        current_addr = self._opdecoder.program_counter
+        new_addr = self._stackmanager.start_routine(
+            addr, return_value, current_addr, args)
+        self._opdecoder.program_counter = new_addr
+
     def _branch(self, test_result):
         """Retrieve the branch information, and set the instruction
         pointer according to the type of branch and the test_result."""
@@ -105,7 +120,7 @@ class ZCpu(object):
                 addr = self._stackmanager.finish_routine(branch_offset)
                 self._opdecoder.program_counter = addr
             else:
-                print ">> Jump +%d" % branch_offset
+                print ">> Jump %+d" % branch_offset
                 self._opdecoder.program_counter += (branch_offset - 2)
 
     def run(self):
@@ -138,10 +153,11 @@ class ZCpu(object):
     ##
 
     ## 2OP opcodes (opcodes 1-127 and 192-223)
-    def op_je(self, *args):
-        """Branch if the first argument is equal to any of the
-        subsequent arguments."""
-        self._branch(args[0] in args[1:])
+    def op_je(self, a, b=None):
+        """Branch if the first argument is equal to the second. Note
+        that the second operand may be absent, in which case there is
+        no jump."""
+        self._branch(b is not None and a == b)
 
     def op_jl(self, *args):
         """"""
@@ -271,13 +287,11 @@ class ZCpu(object):
         """"""
 
     def op_print_addr(self, string_byte_address):
-        """Print the ZString at the given byte address."""
-        import zstring
-        z = zstring.ZStringFactory(self._memory)
-        print z.get(string_byte_address)
-
-    def op_call_1s(self, *args):
         """"""
+
+    def op_call_1s(self, routine_address):
+        """Call the given routine and store the return value."""
+        self._call(routine_address, [], True)
 
     def op_remove_obj(self, *args):
         """"""
@@ -310,13 +324,7 @@ class ZCpu(object):
 
     def op_call_1n(self, routine_addr):
         """Call the given routine, and discard the return value."""
-        addr = self._memory.packed_address(routine_addr)
-        current_addr = self._opdecoder.program_counter
-        new_addr = self._stackmanager.start_routine(addr, None,
-                                                    current_addr, [])
-        print '%x' % new_addr
-        self._opdecoder.program_counter = new_addr
-
+        self._call(routine_addr, [], False)
 
 
     ## 0OP opcodes (opcodes 176-191)
@@ -329,9 +337,11 @@ class ZCpu(object):
         """"""
 
 
-    def op_print(self, *args):
-        """"""
-
+    def op_print(self):
+        """Print the embedded ZString."""
+        zstr_address = self._opdecoder.get_zstring()
+        # TODO: print this string properly when UI code is up.
+        print self._string.get(zstr_address)
 
     def op_print_ret(self, *args):
         """"""
@@ -467,9 +477,11 @@ class ZCpu(object):
         """"""
 
 
-    def op_erase_window(self, *args):
-        """"""
-
+    def op_erase_window(self, window_number):
+        """Clear the window with the given number. If # is -1, unsplit
+        all and clear (full reset). If # is -2, clear all but don't
+        unsplit."""
+        # TODO: erase the window when we have the UI code in place!
 
     def op_erase_line(self, *args):
         """"""
