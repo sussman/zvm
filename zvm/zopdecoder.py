@@ -13,193 +13,148 @@ class ZOperationError(Exception):
   "General exception for ZOperation class"
   pass
 
+# Constants defining the known instruction types. These types are
+# related to the number of operands the opcode has: for each operand
+# count, there is a separate opcode table, and the actual opcode
+# number is an index into that table.
+OPCODE_0OP = 0
+OPCODE_1OP = 1
+OPCODE_2OP = 2
+OPCODE_VAR = 3
+OPCODE_EXT = 4
 
-# Depending on the opcode, the list of operands that follow can be
-# extremely varied, and are stored in weird and different ways.  This
-# class parses both opcodes and operands, and manages the program
-# counter.  The ZPU merely needs to call
-# ZOpDecoder.get_next_instruction(), and a list of [opcode, [operand,
-# operand, ...]] will be returned and the program counter
-# automatically incremented.  Depending on the opcode, the ZPU may
-# also need to fetch "extra" operands related to variable storage,
-# branch offsets, and zstrings to print.  Those are available by
-# calling the public functions at the end of the class.
+# Mapping of those constants to strings describing the opcode
+# classes. Used for pretty-printing only.
+OPCODE_STRINGS = {
+  OPCODE_0OP: '0OP',
+  OPCODE_1OP: '1OP',
+  OPCODE_2OP: '2OP',
+  OPCODE_VAR: 'VAR',
+  OPCODE_EXT: 'EXT',
+  }
 
+# Constants defining the possible operand types.
+LARGE_CONSTANT = 0x0
+SMALL_CONSTANT = 0x1
+VARIABLE = 0x2
+ABSENT = 0x3
 
 class ZOpDecoder(object):
-
-  def __init__(self, zmem):
+  def __init__(self, zmem, zstack):
     ""
     self._memory = zmem
+    self._stack = zstack
     self._parse_map = {}
     self.program_counter = self._memory.read_word(0x6)
 
-    # Create a dictionary that maps initial instruction bytes
-    # to functions that properly parse the opcode and operands.
-    for i in range(0x0, 0x1f+1):
-      self._parse_map[i] = self._long_2op_small_small
-    for i in range(0x20, 0x3f+1):
-      self._parse_map[i] = self._long_2op_small_var
-    for i in range(0x40, 0x5f+1):
-      self._parse_map[i] = self._long_2op_var_small
-    for i in range(0x60, 0x7f+1):
-      self._parse_map[i] = self._long_2op_var_var
-    for i in range(0x80, 0x8f+1):
-      self._parse_map[i] = self._short_1op_large
-    for i in range(0x90, 0x9f+1):
-      self._parse_map[i] = self._short_1op_small
-    for i in range(0xa0, 0xaf+1):
-      self._parse_map[i] = self._short_1op_var
-    for i in range(0xb0, 0xbf+1):
-      self._parse_map[i] = self._short_0op
-    for i in range(0xc0, 0xdf+1):
-      self._parse_map[i] = self._variable_2op
-    for i in range(0xe0, 0xff+1):
-      self._parse_map[i] = self._variable_var
-
-    if self._memory.version == 5:  # for z5, opcode 0xbe is 'special'
-      self._parse_map[0xbe] = self._extended_var
-
+  def _get_pc(self):
+    byte = self._memory[self.program_counter]
+    self.program_counter += 1
+    return byte
 
   def get_next_instruction(self):
     """Decode the opcode & operands currently pointed to by the
     program counter, and appropriately increment the program counter
     afterwards. A decoded operation is returned to the caller in the form:
 
-       [opcode-number, [operand, operand, operand, ...]]
+       [opcode-class, opcode-number, [operand, operand, operand, ...]]
 
-    If opcode has no operands, then [opcode-number, []] is returned."""
+    If the opcode has no operands, the operand list is present but empty."""
 
-    opcode = self._memory[self.program_counter]
-    self.program_counter += 1
-    return self._parse_map[opcode](opcode)
+    opcode = self._get_pc()
 
+    # Determine the opcode type, and hand off further parsing.
+    if self._memory.version == 5 and opcode == 0xBE:
+      # Extended opcode
+      return self._parse_opcode_extended()
 
-  # Helper funcs that actually parse opcode-numbers and operands.
-  # They all examine the address pointed to by the Program Counter,
-  # parse bytes, return [opcode-number, [operand, ...]], and increment
-  # the Program Counter as needed.
+    opcode = BitField(opcode)
+    if opcode[7] == 0:
+      # Long opcode
+      return self._parse_opcode_long(opcode)
+    elif opcode[6] == 0:
+      # Short opcode
+      return self._parse_opcode_short(opcode)
+    else:
+      # Variable opcode
+      return self._parse_opcode_variable(opcode)
 
-  # The following routines all read two 1-byte operands:
-  def _read_two_bytes(self, opcode):
-    operand1 = self._memory[self.program_counter]
-    operand2 = self._memory[self.program_counter + 1]
-    self.program_counter += 2
-    return [opcode, [operand1, operand2]]
+  def _parse_opcode_long(self, opcode):
+    """Parse an opcode of the long form."""
+    # Long opcodes are always 2OP. The types of the two operands are
+    # encoded in bits 5 and 6 of the opcode.
+    LONG_OPERAND_TYPES = [SMALL_CONSTANT, VARIABLE]
+    operands = [self._parse_operand(LONG_OPERAND_TYPES[opcode[6]]),
+                self._parse_operand(LONG_OPERAND_TYPES[opcode[5]])]
+    return (OPCODE_2OP, opcode[0:5], operands)
 
-  def _long_2op_small_small(self, opcode):
-    return self._read_two_bytes(opcode)
+  def _parse_opcode_short(self, opcode):
+    """Parse an opcode of the short form."""
+    # Short opcodes can have either 1 operand, or no operand.
+    operand_type = opcode[4:6]
+    operand = self._parse_operand(operand_type)
+    if operand is None: # 0OP variant
+      return (OPCODE_0OP, opcode[0:4], [])
+    else:
+      return (OPCODE_1OP, opcode[0:4], [operand])
 
-  def _long_2op_small_var(self, opcode):
-    return self._read_two_bytes(opcode)
+  def _parse_opcode_variable(self, opcode):
+    """Parse an opcode of the variable form."""
+    if opcode[5]:
+      opcode_type = OPCODE_VAR
+    else:
+      opcode_type = OPCODE_2OP
 
-  def _long_2op_var_small(self, opcode):
-    return self._read_two_bytes(opcode)
+    opcode_num = opcode[0:5]
 
-  def _long_2op_var_var(self, opcode):
-    return self._read_two_bytes(opcode)
+    # Parse the types byte to retrieve the operands.
+    operands = self._parse_operands_byte()
 
-  # This routine reads a single 2-byte operand:
-  def _short_1op_large(self, opcode):
-    operand = self._memory.read_word(self.program_counter)
-    self.program_counter += 2
-    return [opcode, [operand]]
+    # Special case: opcodes 12 and 26 have a second operands byte.
+    if opcode_num == 0xC or opcode_num == 0x1A:
+      operands += self._parse_operands_byte()
 
-  # And these read a single 1-byte operand:
-  def _read_one_byte(self, opcode):
-    operand = self._memory[self.program_counter]
-    self.program_counter += 1
-    return [opcode, [operand]]
+    return (opcode_type, opcode_num, operands)
 
-  def _short_1op_small(self, opcode):
-    return self._read_one_byte(opcode)
+  def _parse_operand(self, operand_type):
+    """Read and return an operand of the given type.
 
-  def _short_1op_var(self, opcode):
-    return self._read_one_byte(opcode)
+    This assumes that the operand is in memory, at the address pointed
+    by the Program Counter."""
+    assert operand_type <= 0x3
 
-  # No operands at all
-  def _short_0op(self, opcode):
-    return [opcode, []]
+    if operand_type == LARGE_CONSTANT:
+      operand = self._memory.read_word(self.program_counter)
+      self.program_counter += 2
+    elif operand_type == SMALL_CONSTANT:
+      operand = self._get_pc()
+    elif operand_type == VARIABLE:
+      variable_number = self._get_pc()
+      if variable_number == 0:
+        operand = self._stack.pop_stack() # TODO: make sure this is right.
+      elif variable_number < 16:
+        operand = self._stack.get_local_variable(variable_number - 1)
+      else:
+        operand = self._memory.read_global(variable_number)
+    elif operand_type == ABSENT:
+      operand = None
 
-  # The last few routines need to examine a bunch if bit-pairs to
-  # figure out the 'type' (size) of a variable number of operands.
+    return operand
 
-  def _get_operand_types(self, byte):
-    """Parse BYTE value and leturn a list containing only 1's or 2's,
-    indicating both the number of operands to read, and the size of each."""
-
-    type_list = []
-    bf = BitField(byte)
-    field_list = [bf[6:8], bf[4:6], bf[2:4], bf[0:2]]
-    for value in field_list:
-      if value == 0:
-        type_list.append(2)
-      elif 1<= value <= 2:
-        type_list.append(1)
-    return type_list
-
-  def _variable_2op(self, opcode):
-    type_list = self._get_operand_types(self._memory[self.program_counter])
-    self.program_counter += 1
-
-    if len(type_list) != 2:
-      raise ZOperationError # sanity check
-
+  def _parse_operands_byte(self):
+    """Parse operands given by the operand byte and return a list of
+    values.
+    """
+    operand_byte = BitField(self._get_pc())
     operands = []
-    for size in type_list:
-      if size == 1:
-        operand = self._memory[self.program_counter]
-      elif size == 2:
-        operand = self._memory.read_word(self.program_counter)
+    for operand_type in [operand_byte[6:8], operand_byte[4:6],
+                         operand_byte[2:4], operand_byte[0:2]]:
+      operand = self._parse_operand(operand_type)
+      if operand is None:
+        break
       operands.append(operand)
-      self.program_counter += size
 
-    return [opcode, operands]
-
-  def _variable_var(self, opcode):
-    type_list = self._get_operand_types(self._memory[self.program_counter])
-    self.program_counter += 1
-
-    # Two opcodes are 'special' in that they have a whole extra byte
-    # of operand-types to parse.  (They can use up to 8 operands.)
-    if opcode == 236 or opcode == 250:
-      type_list2 = self._get_operand_types(self._memory[self.program_counter])
-      self.program_counter += 1
-      type_list += type_list2
-
-    operands = []
-    for size in type_list:
-      if size == 1:
-        operand = self._memory[self.program_counter]
-      elif size == 2:
-        operand = self._memory.read_word(self.program_counter)
-      operands.append(operand)
-      self.program_counter += size
-
-    return [opcode, operands]
-
-
-  # For z5, opcode 0xbe is weird.  The "true" opcode is given in
-  # subsequent byte, followed by variable number of operands.
-  def _extended_var(self, opcode):
-    actual_opcode = self._memory[self.program_counter]
-    self.program_counter += 1
-
-    type_list = self._get_operand_types(self._memory[self.program_counter])
-    self.program_counter += 1
-
-    operands = []
-    for size in type_list:
-      if size == 1:
-        operand = self._memory[self.program_counter]
-      elif size == 2:
-        operand = self._memory.read_word(self.program_counter)
-      operands.append(operand)
-      self.program_counter += size
-
-    # Return the actual opcode + 255, so that we can tell it apart
-    # from the usual, non-extended funcs.
-    return [0x100 + actual_opcode, operands]
+    return operands
 
 
   # Public funcs that the ZPU may also need to call, depending on the
@@ -226,10 +181,7 @@ class ZOpDecoder(object):
     """For store opcodes, read byte pointed to by PC and return the
     variable number in which the operation result should be stored.
     Increment the PC as necessary."""
-
-    variable_num = self._memory[self.program_counter]
-    self.program_counter += 1
-    return variable_num
+    return self._get_pc()
 
 
   def get_branch_offset(self):
