@@ -191,11 +191,13 @@ class ZCpu(object):
     def op_test(self, *args):
         """"""
 
-    def op_or(self, *args):
-        """"""
+    def op_or(self, a, b):
+        """Bitwise OR between the two arguments."""
+        self._write_result(a | b)
 
-    def op_and(self, *args):
-        """"""
+    def op_and(self, a, b):
+        """Bitwise AND between the two arguments."""
+        self._write_result(a & b)
 
     def op_test_attr(self, *args):
         """"""
