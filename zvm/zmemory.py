@@ -184,6 +184,13 @@ class ZMemory(object):
       raise ZMemoryOutOfBounds
     return (self._memory[address] << 8) + self._memory[(address + 1)]
 
+  def write_word(self, address, value):
+    """Write the given 16-bit value at ADDRESS, ADDRESS+1."""
+    if address < 0 or address >= (self._total_size - 1):
+      raise ZMemoryOutOfBounds
+    self._memory[address] = (value >> 8) & 0xFF
+    self._memory[address+1] = value & 0xFF
+
   # Normal sequence syntax cannot be used to set bytes in the 64-byte
   # header.  Instead, the interpreter or game must call one of the
   # following APIs.

@@ -27,6 +27,10 @@ class ZObjectIllegalPropertyNumber(ZObjectError):
   "Illegal property number given."
   pass
 
+class ZObjectIllegalPropertySet(ZObjectError):
+  "Illegal set of a property whose size is not 1 or 2."
+  pass
+
 class ZObjectIllegalVersion(ZObjectError):
   "Unsupported z-machine version."
   pass
@@ -284,6 +288,19 @@ class ZObjectParser(object):
 
     return proplist
 
+  def set_property(self, objectnum, propnum, value):
+    """Set a property on an object."""
+    proplist = self.get_all_properties(objectnum)
+    if propnum not in proplist:
+      raise ZObjectIllegalPropertyNumber
+
+    addr, size = proplist[propnum]
+    if size == 1:
+      self._memory[addr] = (value & 0xFF)
+    elif size == 2:
+      self._memory.write_word(addr, value)
+    else:
+      raise ZObjectIllegalPropertySet
 
   def describe_object(self, objectnum):
     """For debugging purposes, pretty-print everything known about

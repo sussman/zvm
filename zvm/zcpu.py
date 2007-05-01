@@ -21,10 +21,11 @@ class ZCpuUnimplementedInstruction(ZCpuError):
     "Unimplemented instruction encountered"
 
 class ZCpu(object):
-    def __init__(self, zmem, zopdecoder, stackmanager):
+    def __init__(self, zmem, zopdecoder, zstack, zobjects):
         self._memory = zmem
         self._opdecoder = zopdecoder
-        self._stackmanager = stackmanager
+        self._stackmanager = zstack
+        self._objects = zobjects
 
     def _get_handler(self, opcode_class, opcode_number):
         try:
@@ -43,14 +44,14 @@ class ZCpu(object):
             # opcode, and we need to select the right one based on
             # version.
             if isinstance(opcode_decl[0], (list, tuple)):
-                for func, version in opcode_decl:
+                for func,version in opcode_decl:
                     if version <= self._memory.version:
                         opcode_func = func
                         break
             # Only one implementation, check that our machine is
             # recent enough.
             elif opcode_decl[1] <= self._memory.version:
-                opcode_func = func
+                opcode_func = opcode_decl[0]
             else:
                 raise ZCpuIllegalInstruction
 
@@ -417,9 +418,9 @@ class ZCpu(object):
         """"""
 
 
-    def op_put_prop(self, *args):
-        """"""
-
+    def op_put_prop(self, object_number, property_number, value):
+        """Set an object's property to the given value."""
+        self._objects.set_property(object_number, property_number, value)
 
     def op_sread(self, *args):
         """Not implemented yet, but documented so that the detection
