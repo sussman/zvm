@@ -437,9 +437,9 @@ class ZCpu(object):
     def op_call_vs(self, *args):
         """"""
 
-    def op_storew(self, *args):
-        """"""
-
+    def op_storew(self, array, offset, value):
+        """Store the given 16-bit value at array+2*byte_index."""
+        self._write_result(value, store_addr=array+2*offset)
 
     def op_storeb(self, *args):
         """"""
