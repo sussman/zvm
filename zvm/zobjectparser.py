@@ -247,10 +247,11 @@ class ZObjectParser(object):
     # start at the beginning of the object's proptable
     addr = self._get_proptable_addr(objectnum)
     # skip past the shortname of the object
-    addr += (2 * self._memory[addr])
+    shortname_length = self._memory[addr]
+    addr += 1
+    addr += (2*shortname_length)
 
     if 1 <= self._memory.version <= 3:
-
       while self._memory[addr] != 0:
         bf = BitField(self._memory[addr])
         addr += 1
@@ -260,15 +261,16 @@ class ZObjectParser(object):
         addr += size
 
     elif 4 <= self._memory.version <= 5:
-
       while self._memory[addr] != 0:
         bf = BitField(self._memory[addr])
         addr += 1
-        pnum = bf[5:0]
+        pnum = bf[0:6]
         if bf[7]:
           bf2 = BitField(self._memory[addr])
           addr += 1
-          size = bf2[5:0]
+          size = bf2[0:6]
+          if size == 0:
+            size = 64
         else:
           if bf[6]:
             size = 2
