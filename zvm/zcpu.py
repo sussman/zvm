@@ -7,6 +7,7 @@
 #
 
 import zopdecoder
+import bitfield
 
 class ZCpuError(Exception):
     "General exception for Zcpu class"
@@ -19,6 +20,9 @@ class ZCpuIllegalInstruction(ZCpuError):
 
 class ZCpuUnimplementedInstruction(ZCpuError):
     "Unimplemented instruction encountered"
+
+class ZCpuDivideByZero(ZCpuError):
+    "Divide by zero error"
 
 class ZCpu(object):
     def __init__(self, zmem, zopdecoder, zstack, zobjects, zstring):
@@ -244,8 +248,19 @@ class ZCpu(object):
         result = reduce(lambda x,y: x*y, args) % 65536
         self._write_result(result)
 
-    def op_div(self, *args):
-        """"""
+    def op_div(self, a, b):
+        """Signed 16-bit division."""
+        # First, we need to deconvert the values to signed
+        # 16-bit. This is a little ugly.
+        bf = bitfield.BitField(a)
+        if bf[15]:
+            a = 65536 - bf[0:15]
+        bf = bitfield.BitField(b)
+        if bf[15]:
+            b = 65536 - bf[0:15]
+        if b == 0:
+            raise ZCpuDivideByZero
+        self._write_result(a/b)
 
     def op_mod(self, *args):
         """"""
@@ -482,6 +497,7 @@ class ZCpu(object):
         all and clear (full reset). If # is -2, clear all but don't
         unsplit."""
         # TODO: erase the window when we have the UI code in place!
+        print "TODO: Implement erase_window!"
 
     def op_erase_line(self, *args):
         """"""
@@ -495,9 +511,10 @@ class ZCpu(object):
         """"""
 
 
-    def op_set_text_style(self, *args):
-        """"""
-
+    def op_set_text_style(self, text_style):
+        """Set the text style."""
+        # TODO: Tell the UI to set the text style.
+        print "TODO: Implement set_text_style!"
 
     def op_buffer_mode(self, *args):
         """"""
