@@ -398,11 +398,11 @@ class ZsciiTranslator(object):
 class ZStringFactory(object):
     def __init__(self, zmem):
         self._mem = zmem
-        self._zstr = ZStringTranslator(zmem)
-        self._zchr = ZCharTranslator(zmem)
-        self._zscii = ZsciiTranslator(zmem)
+        self.zstr = ZStringTranslator(zmem)
+        self.zchr = ZCharTranslator(zmem)
+        self.zscii = ZsciiTranslator(zmem)
 
     def get(self, addr):
-        zstr = self._zstr.get(addr)
-        zchr = self._zchr.get(zstr)
-        return self._zscii.get(zchr)
+        zstr = self.zstr.get(addr)
+        zchr = self.zchr.get(zstr)
+        return self.zscii.get(zchr)

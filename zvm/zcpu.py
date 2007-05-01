@@ -454,7 +454,8 @@ class ZCpu(object):
 
     def op_storew(self, array, offset, value):
         """Store the given 16-bit value at array+2*byte_index."""
-        self._write_result(value, store_addr=array+2*offset)
+        store_address = array + 2*offset
+        self._memory.write_word(store_address, value)
 
     def op_storeb(self, *args):
         """"""
@@ -477,9 +478,10 @@ class ZCpu(object):
         """"""
 
 
-    def op_print_char(self, *args):
-        """"""
-
+    def op_print_char(self, char):
+        """Output the given ZSCII character."""
+        # TODO: Output to ZUI when it is ready.
+        print self._string.zscii.get([char])
 
     def op_print_num(self, *args):
         """"""

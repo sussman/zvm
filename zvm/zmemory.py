@@ -60,7 +60,7 @@ class ZMemory(object):
                   [1,0,0], None, [1,0,0], None,
                   [1,0,0], None, [1,0,0], None,
                   [1,0,0], None, [1,0,0], None,
-                  [1,1,1], None, None, None,
+                  [1,1,1], [1,1,1], None, None,
                   None, None, None, None,
                   [2,0,0], None, [3,0,0], None,
                   [3,0,0], None, [4,1,1], [4,1,1],
@@ -188,8 +188,17 @@ class ZMemory(object):
     """Write the given 16-bit value at ADDRESS, ADDRESS+1."""
     if address < 0 or address >= (self._total_size - 1):
       raise ZMemoryOutOfBounds
-    self._memory[address] = (value >> 8) & 0xFF
-    self._memory[address+1] = value & 0xFF
+    # Handle writing of a word to the game headers. If write_word is
+    # used for this, we assume that it's the game that is setting the
+    # header. The interpreter should use the specialized method.
+    value_msb = (value >> 8) & 0xFF
+    value_lsb = value & 0xFF
+    if 0 <= address < 64:
+      self.game_set_header(address, value_msb)
+      self.game_set_header(address+1, value_lsb)
+    else:
+      self._memory[address] = value_msb
+      self._memory[address+1] = value_lsb
 
   # Normal sequence syntax cannot be used to set bytes in the 64-byte
   # header.  Instead, the interpreter or game must call one of the

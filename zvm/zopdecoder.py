@@ -208,7 +208,7 @@ class ZOpDecoder(object):
       # Can you spell "Weird" ?
       branch_offset = self._get_pc() + (bf[0:5] << 8)
       if bf[5]:
-        branch_offset -= 16384
+        branch_offset -= 8192
 
     print '*** Branch if %s to offset %+d' % (branch_if_true, branch_offset)
     return branch_if_true, branch_offset
