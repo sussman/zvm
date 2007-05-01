@@ -68,6 +68,21 @@ class ZCpu(object):
             raise ZCpuUnimplementedInstruction(opcode_func)
         return opcode_func
 
+    def _make_signed(self, a):
+        """Turn the given 16-bit value into a signed integer."""
+        # This is a little ugly.
+        bf = bitfield.BitField(a)
+        if bf[15]:
+            a = bf[0:15] - 65536
+        return a
+
+    def _unmake_signed(self, a):
+        """Turn the given signed integer into a 16-bit value ready for
+        storage."""
+        if a < 0:
+            a = 65536 + a
+        return a
+
     def _read_variable(self, addr):
         """Return the value of the given variable, which can come from
         the stack, or from a local/global variable.  If it comes from
@@ -163,8 +178,9 @@ class ZCpu(object):
         no jump."""
         self._branch(b is not None and a == b)
 
-    def op_jl(self, *args):
-        """"""
+    def op_jl(self, a, b):
+        """Branch if the first argument is less than the second."""
+        self._branch(self._make_signed(a) < self._make_signed(b))
 
     def op_jg(self, *args):
         """"""
@@ -237,32 +253,31 @@ class ZCpu(object):
     def op_get_next_prop(self, *args):
         """"""
 
-    def op_add(self, *args):
+    def op_add(self, a, b):
         """Signed 16-bit addition."""
-        self._write_result(sum(args) % 65536) # 2**16 - overflow limit
+        result = self._unmake_signed(
+            self._make_signed(a) + self._make_signed(b))
+        self._write_result(result)
 
     def op_sub(self, a, b):
         """Signed 16-bit substraction"""
-        self._write_result((a - b) % 65536) # 2**16 - overflow limit
+        result = self._unmake_signed(
+            self._make_signed(a) - self._make_signed(b))
+        self._write_result(result)
 
-    def op_mul(self, *args):
+    def op_mul(self, a, b):
         """Signed 16-bit multiplication."""
-        result = reduce(lambda x,y: x*y, args) % 65536
+        result = self._unmake_signed(
+            self._make_signed(a) * self._make_signed(b))
         self._write_result(result)
 
     def op_div(self, a, b):
         """Signed 16-bit division."""
-        # First, we need to deconvert the values to signed
-        # 16-bit. This is a little ugly.
-        bf = bitfield.BitField(a)
-        if bf[15]:
-            a = 65536 - bf[0:15]
-        bf = bitfield.BitField(b)
-        if bf[15]:
-            b = 65536 - bf[0:15]
+        a = self._make_signed(a)
+        b = self._make_signed(b)
         if b == 0:
             raise ZCpuDivideByZero
-        self._write_result(a/b)
+        self._write_result(self._unmake_signed(a/b))
 
     def op_mod(self, *args):
         """"""
