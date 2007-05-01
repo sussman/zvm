@@ -224,7 +224,16 @@ class ZCharTranslator(object):
                 # decoded sequence and revert to the "previous"
                 # alphabet (or not, if it hasn't recently changed or
                 # was locked)
-                z = self._alphabet[state['curr_alpha']][c-6]
+                if c == 0:
+                    # Append a space.
+                    z = 32
+                elif state['curr_alpha'] == 2:
+                    # The symbol alphabet table only has 25 chars
+                    # because of the A2/6 special char, so we need to
+                    # adjust differently.
+                    z = self._alphabet[state['curr_alpha']][c-7]
+                else:
+                    z = self._alphabet[state['curr_alpha']][c-6]
                 state['zscii'].append(z)
                 state['curr_alpha'] = state['prev_alpha']
 
