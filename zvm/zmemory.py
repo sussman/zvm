@@ -120,11 +120,6 @@ class ZMemory(object):
     if self._static_start <= index <= self._static_end:
       raise ZMemoryIllegalWrite
 
-  def _check_header(self, index):
-    """Throw error if INDEX is within the header area."""
-    if 0 <= index < 64:
-      raise ZMemoryIllegalWrite
-
   def print_map(self):
     """Pretty-print a description of the memory map."""
     print "Dynamic memory: ", self._dynamic_start, "-", self._dynamic_end
@@ -140,7 +135,6 @@ class ZMemory(object):
     """Set VALUE in memory address INDEX."""
     self._check_bounds(index)
     self._check_static(index)
-    self._check_header(index)
     self._memory[index] = value
 
   def __getslice__(self, start, end):
@@ -152,11 +146,9 @@ class ZMemory(object):
   def __setslice__(self, start, end, sequence):
     """Set a range of memory addresses to SEQUENCE."""
     self._check_bounds(start)
-    self._check_bounds(end)
+    self._check_bounds(end - 1)
     self._check_static(start)
-    self._check_static(end)
-    self._check_header(start)
-    self._check_header(end)
+    self._check_static(end - 1)
     self._memory[start:end] = sequence
 
   def word_address(self, address):
