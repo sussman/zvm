@@ -28,6 +28,14 @@ import ctypes
 # of Glk.h can be found here:
 #
 #   http://www.eblong.com/zarf/glk/glk.h
+#
+# Note that there are ctypes extension libraries that can do this kind
+# of thing for us (that is, take a .h file and automatically generate
+# a ctypes wrapper from it); however, the only one that exists at the
+# time of this writing is ctypeslib, which has dependencies that would
+# make our build process quite complex.  Given the relatively small
+# size of the Glk API and the freedom we get from hand-coding the
+# interface ourselves, we're not using ctypeslib.
 
 wintype_TextBuffer = 3
 evtype_LineInput = 3
@@ -94,21 +102,41 @@ keycode_Func11   = 0xffffffe5
 keycode_Func12   = 0xffffffe4
 keycode_MAXVAL   = 28
 
+class stream_result_t(ctypes.Structure):
+    _fields_ = [("readcount", glui32),
+                ("writecount", glui32)]
+
 # Function prototypes for the Glk API.  It is a list of 3-tuples; each
 # item in the list represents a function prototype, and each 3-tuple
 # is in the form (result_type, function_name, arg_types).
 
 GLK_LIB_API = [
-    (winid_t, "glk_window_open", (winid_t, glui32, glui32, glui32, glui32)),
     (None, "glk_set_window", (winid_t,)),
     (None, "glk_put_string", (ctypes.c_char_p,)),
     (None, "glk_request_line_event", (winid_t, ctypes.c_char_p, glui32,
                                       glui32)),
     (None, "glk_select", (ctypes.POINTER(event_t),)),
     (None, "glk_exit", ()),
+    (None, "glk_tick", ()),
     (glui32, "glk_gestalt", (glui32, glui32)),
     (glui32, "glk_gestalt_ext", (glui32, glui32, ctypes.POINTER(glui32),
                                  glui32)),
+    (winid_t, "glk_window_get_root", ()),
+    (winid_t, "glk_window_open", (winid_t, glui32, glui32, glui32, glui32)),
+    (None, "glk_window_close", (winid_t, ctypes.POINTER(stream_result_t))),
+    (None, "glk_window_get_size", (winid_t, ctypes.POINTER(glui32),
+                                   ctypes.POINTER(glui32)) ),
+    (None, "glk_window_set_arrangement", (winid_t, glui32, glui32, winid_t)),
+    (None, "glk_window_get_arrangement", (winid_t, ctypes.POINTER(glui32),
+                                          ctypes.POINTER(glui32),
+                                          ctypes.POINTER(winid_t))),
+    (winid_t, "glk_window_iterate", (winid_t, ctypes.POINTER(glui32))),
+    (glui32, "glk_window_get_rock", (winid_t,)),
+    (glui32, "glk_window_get_type", (winid_t,)),
+    (winid_t, "glk_window_get_parent", (winid_t,)),
+    (winid_t, "glk_window_get_sibling", (winid_t,)),
+    (None, "glk_window_clear", (winid_t,)),
+    (None, "glk_window_move_cursor", (winid_t, glui32, glui32)),    
     ]
 
 class GlkLib:
