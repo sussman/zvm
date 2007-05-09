@@ -53,6 +53,7 @@ class QuetzalMemoryMismatch(QuetzalError):
 
 
 class QuetzalParser(object):
+  """A class to read a Quetzal save-file and modify the z-machine."""
 
   def __init__(self, filename, zmachine):
     """Prepare to parse Quetzal save-file FILENAME and re-initialize
@@ -262,9 +263,22 @@ class QuetzalParser(object):
 
 #----------------------------------
 
-# TODO:  Put this into QuetzalWriter class later on:
 
-def compress_memory():
+class QuetzalWriter(object):
+  """A class to write the current state of the z-machine into a
+  Quetzal-format file."""
+
+  def __init__(self, filename, zmachine):
+    """Prepare to write Quetzal file to FILENAME, capturing the
+    current state of ZMACHINE."""
+
+    self._zmachine = zmachine
+    self._file = open(filename, 'w')
+
+
+  def _generate_cmem_chunk(self):
+    """Return a compressed chunk of data representing the compressed
+    image of the zmachine's main memory."""
 
     # XOR the original game image with the current one
     diffarray = list(self._zmachine._pristine_mem)
@@ -287,3 +301,27 @@ def compress_memory():
           zerocounter = 0
         result.append(diffarray[index])
     return result
+
+  #--------- Public APIs -----------
+
+  def write(self):
+    """Write the Quetzal file to disk."""
+
+    ifhd_chunk = self._generate_ifhd_chunk(self)
+    cmem_chunk = self._generate_cmem_chunk(self)
+    stks_chunk = self._generate_stks_chunk(self)
+    anno_chunk = self._generate_anno_chunk(self)
+
+    total_chunk_size = len(ifhd_chunk) + len(cmem_chunk) \
+                       + len(stks_chunk) + len(anno_chunk)
+
+    # Write main FORM chunk to hold other chunks
+    self._file_write("FORM")
+    # self._file_write(total_chunk_size) -- spread over 4 bytes
+    self._file_write("IFZS")
+
+    # Write nested chunks.
+    for chunk in (ifhd_chunk, cmem_chunk, stks_chunk, anno_chunk):
+      self._file.write(chunk)
+      if DEBUG:  print "Wrote chunk."
+    if DEBUG:  print "Done writing.
