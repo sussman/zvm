@@ -288,7 +288,7 @@ UNICODE_GLK_LIB_API = [
                                           glui32, glui32))
     ]
 
-class GlkLib:
+class GlkLib(object):
     """Encapsulates the ctypes interface to a Glk shared library. When
     instantiated, it wraps the shared library with the appropriate
     function prototypes from the Glk API to reduce the chance of
