@@ -186,11 +186,11 @@ stylehint_just_LeftRight = 1
 stylehint_just_Centered = 2
 stylehint_just_RightFlush = 3
 
-# Function prototypes for the Glk API.  It is a list of 3-tuples; each
+# Function prototypes for the core Glk API.  It is a list of 3-tuples; each
 # item in the list represents a function prototype, and each 3-tuple
 # is in the form (result_type, function_name, arg_types).
 
-GLK_LIB_API = [
+CORE_GLK_LIB_API = [
     (None, "glk_exit", ()),
     (None, "glk_tick", ()),
     (glui32, "glk_gestalt", (glui32, glui32)),
@@ -265,6 +265,29 @@ GLK_LIB_API = [
     (None, "glk_cancel_mouse_event", (winid_t,)),
     ]
 
+# Function prototypes for the optional Unicode extension of the Glk
+# API.
+UNICODE_GLK_LIB_API = [
+    (None, "glk_put_char_uni", (glui32,)),
+    (None, "glk_put_string_uni", (ctypes.POINTER(glui32),)),
+    (None, "glk_put_buffer_uni", (ctypes.POINTER(glui32), glui32)),
+    (None, "glk_put_char_stream_uni", (strid_t, glui32)),
+    (None, "glk_put_string_stream_uni", (strid_t, ctypes.POINTER(glui32))),
+    (None, "glk_put_buffer_stream_uni", (strid_t, ctypes.POINTER(glui32),
+                                         glui32)),
+    (glsi32, "glk_get_char_stream_uni", (strid_t,)),
+    (glui32, "glk_get_buffer_stream_uni", (strid_t, ctypes.POINTER(glui32),
+                                           glui32)),
+    (glui32, "glk_get_line_stream_uni", (strid_t, ctypes.POINTER(glui32),
+                                         glui32)),
+    (strid_t, "glk_stream_open_file_uni", (frefid_t, glui32, glui32)),
+    (strid_t, "glk_stream_open_memory_uni", (ctypes.POINTER(glui32),
+                                             glui32, glui32, glui32)),
+    (None, "glk_request_char_event_uni", (winid_t,)),
+    (None, "glk_request_line_event_uni", (winid_t, ctypes.POINTER(glui32),
+                                          glui32, glui32))
+    ]
+
 class GlkLib:
     """Encapsulates the ctypes interface to a Glk shared library. When
     instantiated, it wraps the shared library with the appropriate
@@ -278,18 +301,51 @@ class GlkLib:
 
         self._dll = ctypes.CDLL(lib_name)
 
-        # Create function prototypes for the Glk API, bind them to
-        # functions in our shared library, and then bind the function
-        # instances as methods to this object.
+        self.__bind_prototypes(CORE_GLK_LIB_API)
 
-        for function_prototype in GLK_LIB_API:
+        if self.glk_gestalt(gestalt_Unicode, 0) == 1:
+            self.__bind_prototypes(UNICODE_GLK_LIB_API)
+        else:
+            self.__bind_not_implemented_prototypes(UNICODE_GLK_LIB_API)
+
+    def __bind_prototypes(self, function_prototypes):
+        """Create function prototypes from the given list of 3-tuples
+        of the form (result_type, function_name, arg_types), bind them
+        to functions in our shared library, and then bind the function
+        instances as methods to this object."""
+
+        for function_prototype in function_prototypes:
             result_type, function_name, arg_types = function_prototype
             prototype = ctypes.CFUNCTYPE(result_type, *arg_types)
             function = prototype((function_name, self._dll))
             setattr(self, function_name, function)
+
+    def __bind_not_implemented_prototypes(self, function_prototypes):
+        """Create functions with the names from the given list of
+        3-tuples of the form (result_type, function_name, arg_types)
+        that simply raise NotImplementedError, and bind them to this
+        object.  This should be used when a Glk library doesn't
+        support some optional extension of the Glk API."""
+
+        def notImplementedFunction(*args, **kwargs):
+            raise NotImplementedError( "Function not implemented " \
+                                       "by this Glk library." )
+
+        for function_prototype in function_prototypes:
+            _, function_name, _ = function_prototype
+            setattr(self, function_name, notImplementedFunction)
 
     def glk_char_to_lower(self, ch):
         raise NotImplementedError("Use unicode.lower() instead.")
 
     def glk_char_to_upper(self, ch):
         raise NotImplementedError("Use unicode.upper() instead.")
+
+    def glk_buffer_to_lower_case_uni(self, buf, len, numchars):
+        raise NotImplementedError("Use unicode.lower() instead.")
+
+    def glk_buffer_to_upper_case_uni(self, buf, len, numchars):
+        raise NotImplementedError("Use unicode.upper() instead.")
+
+    def glk_buffer_to_title_case_uni(self, buf, len, numchars, lowerrest):
+        raise NotImplementedError("Use unicode.title() instead.")

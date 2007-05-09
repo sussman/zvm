@@ -131,6 +131,7 @@ class AnyGlkTests(TestCase):
                     self.glkLib.glk_gestalt_ext(x, y, glk.NULL, 0)
                     )
 
+
 class CheapGlkTests(TestCase):
     """CheapGlk-specific tests."""
 
