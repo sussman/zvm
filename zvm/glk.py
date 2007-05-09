@@ -40,8 +40,13 @@ import ctypes
 wintype_TextBuffer = 3
 evtype_LineInput = 3
 
+glsi32 = ctypes.c_int32
 glui32 = ctypes.c_uint32
+
 winid_t = ctypes.c_void_p
+strid_t = ctypes.c_void_p
+frefid_t = ctypes.c_void_p
+schanid_t = ctypes.c_void_p
 
 # TRUE, FALSE, and NULL aren't defined in glk.h, but are mentioned in
 # Section 1.9 of the Glk spec 0.7.0.
@@ -68,6 +73,16 @@ gestalt_HyperlinkInput = 12
 gestalt_SoundMusic = 13
 gestalt_GraphicsTransparency = 14
 gestalt_Unicode = 15
+
+evtype_None = 0
+evtype_Timer = 1
+evtype_CharInput = 2
+evtype_LineInput = 3
+evtype_MouseInput = 4
+evtype_Arrange = 5
+evtype_Redraw = 6
+evtype_SoundNotify = 7
+evtype_Hyperlink = 8
 
 class event_t(ctypes.Structure):
     _fields_ = [("type", glui32),
@@ -102,20 +117,80 @@ keycode_Func11   = 0xffffffe5
 keycode_Func12   = 0xffffffe4
 keycode_MAXVAL   = 28
 
+style_Normal = 0
+style_Emphasized = 1
+style_Preformatted = 2
+style_Header = 3
+style_Subheader = 4
+style_Alert = 5
+style_Note = 6
+style_BlockQuote = 7
+style_Input = 8
+style_User1 = 9
+style_User2 = 10
+style_NUMSTYLES = 11
+
 class stream_result_t(ctypes.Structure):
     _fields_ = [("readcount", glui32),
                 ("writecount", glui32)]
+
+wintype_AllTypes = 0
+wintype_Pair = 1
+wintype_Blank = 2
+wintype_TextBuffer = 3
+wintype_TextGrid = 4
+wintype_Graphics = 5
+
+winmethod_Left  = 0x00
+winmethod_Right = 0x01
+winmethod_Above = 0x02
+winmethod_Below = 0x03
+winmethod_DirMask = 0x0f
+
+winmethod_Fixed = 0x10
+winmethod_Proportional = 0x20
+winmethod_DivisionMask = 0xf0
+
+fileusage_Data = 0x00
+fileusage_SavedGame = 0x01
+fileusage_Transcript = 0x02
+fileusage_InputRecord = 0x03
+fileusage_TypeMask = 0x0f
+
+fileusage_TextMode   = 0x100
+fileusage_BinaryMode = 0x000
+
+filemode_Write = 0x01
+filemode_Read = 0x02
+filemode_ReadWrite = 0x03
+filemode_WriteAppend = 0x05
+
+seekmode_Start = 0
+seekmode_Current = 1
+seekmode_End = 2
+
+stylehint_Indentation = 0
+stylehint_ParaIndentation = 1
+stylehint_Justification = 2
+stylehint_Size = 3
+stylehint_Weight = 4
+stylehint_Oblique = 5
+stylehint_Proportional = 6
+stylehint_TextColor = 7
+stylehint_BackColor = 8
+stylehint_ReverseColor = 9
+stylehint_NUMHINTS = 10
+
+stylehint_just_LeftFlush = 0
+stylehint_just_LeftRight = 1
+stylehint_just_Centered = 2
+stylehint_just_RightFlush = 3
 
 # Function prototypes for the Glk API.  It is a list of 3-tuples; each
 # item in the list represents a function prototype, and each 3-tuple
 # is in the form (result_type, function_name, arg_types).
 
 GLK_LIB_API = [
-    (None, "glk_set_window", (winid_t,)),
-    (None, "glk_put_string", (ctypes.c_char_p,)),
-    (None, "glk_request_line_event", (winid_t, ctypes.c_char_p, glui32,
-                                      glui32)),
-    (None, "glk_select", (ctypes.POINTER(event_t),)),
     (None, "glk_exit", ()),
     (None, "glk_tick", ()),
     (glui32, "glk_gestalt", (glui32, glui32)),
@@ -136,7 +211,58 @@ GLK_LIB_API = [
     (winid_t, "glk_window_get_parent", (winid_t,)),
     (winid_t, "glk_window_get_sibling", (winid_t,)),
     (None, "glk_window_clear", (winid_t,)),
-    (None, "glk_window_move_cursor", (winid_t, glui32, glui32)),    
+    (None, "glk_window_move_cursor", (winid_t, glui32, glui32)),
+    (strid_t, "glk_window_get_stream", (winid_t,)),
+    (None, "glk_window_set_echo_stream", (winid_t, strid_t)),
+    (strid_t, "glk_window_get_echo_stream", (winid_t,)),
+    (None, "glk_set_window", (winid_t,)),
+    (strid_t, "glk_stream_open_file", (frefid_t, glui32, glui32)),
+    (strid_t, "glk_stream_open_memory", (ctypes.c_char_p,
+                                         glui32, glui32, glui32)),
+    (None, "glk_stream_close", (strid_t, ctypes.POINTER(stream_result_t))),
+    (strid_t, "glk_stream_iterate", (strid_t, ctypes.POINTER(glui32))),
+    (glui32, "glk_stream_get_rock", (strid_t,)),
+    (None, "glk_stream_set_position", (strid_t, glsi32, glui32)),
+    (glui32, "glk_stream_get_position", (strid_t,)),
+    (None, "glk_stream_set_current", (strid_t,)),
+    (strid_t, "glk_stream_get_current", ()),
+    (None, "glk_put_char", (ctypes.c_ubyte,)),
+    (None, "glk_put_char_stream", (strid_t, ctypes.c_ubyte)),
+    (None, "glk_put_string", (ctypes.c_char_p,)),
+    (None, "glk_put_string_stream", (strid_t, ctypes.c_char_p)),
+    (None, "glk_put_buffer", (ctypes.c_char_p, glui32)),
+    (None, "glk_put_buffer_stream", (strid_t, ctypes.c_char_p, glui32)),
+    (None, "glk_set_style", (glui32,)),
+    (None, "glk_set_style_stream", (strid_t, glui32)),
+    (glsi32, "glk_get_char_stream", (strid_t,)),
+    (glui32, "glk_get_line_stream", (strid_t, ctypes.c_char_p, glui32)),
+    (glui32, "glk_get_buffer_stream", (strid_t, ctypes.c_char_p, glui32)),
+    (None, "glk_stylehint_set", (glui32, glui32, glui32, glsi32)),
+    (None, "glk_stylehint_clear", (glui32, glui32, glui32)),
+    (glui32, "glk_style_distinguish", (winid_t, glui32, glui32)),
+    (glui32, "glk_style_measure", (winid_t, glui32, glui32,
+                                   ctypes.POINTER(glui32))),
+    (frefid_t, "glk_fileref_create_temp", (glui32, glui32)),
+    (frefid_t, "glk_fileref_create_by_name", (glui32, ctypes.c_char_p,
+                                              glui32)),
+    (frefid_t, "glk_fileref_create_by_prompt", (glui32, glui32, glui32)),
+    (frefid_t, "glk_fileref_create_from_fileref", (glui32, frefid_t,
+                                                   glui32)),
+    (None, "glk_fileref_destroy", (frefid_t,)),
+    (frefid_t, "glk_fileref_iterate", (frefid_t, ctypes.POINTER(glui32))),
+    (glui32, "glk_fileref_get_rock", (frefid_t,)),
+    (None, "glk_fileref_delete_file", (frefid_t,)),
+    (glui32, "glk_fileref_does_file_exist", (frefid_t,)),
+    (None, "glk_select", (ctypes.POINTER(event_t),)),
+    (None, "glk_select_poll", (ctypes.POINTER(event_t),)),
+    (None, "glk_request_timer_events", (glui32,)),
+    (None, "glk_request_line_event", (winid_t, ctypes.c_char_p, glui32,
+                                      glui32)),
+    (None, "glk_request_char_event", (winid_t,)),
+    (None, "glk_request_mouse_event", (winid_t,)),
+    (None, "glk_cancel_line_event", (winid_t, ctypes.POINTER(event_t))),
+    (None, "glk_cancel_char_event", (winid_t,)),
+    (None, "glk_cancel_mouse_event", (winid_t,)),
     ]
 
 class GlkLib:
