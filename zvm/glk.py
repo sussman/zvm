@@ -37,9 +37,6 @@ import ctypes
 # size of the Glk API and the freedom we get from hand-coding the
 # interface ourselves, we're not using ctypeslib.
 
-wintype_TextBuffer = 3
-evtype_LineInput = 3
-
 glsi32 = ctypes.c_int32
 glui32 = ctypes.c_uint32
 
