@@ -16,8 +16,7 @@ import zvm.glk as glk
 
 class CheapGlkLibrary(glk.GlkLib):
     """This class encapsulates the CheapGlk library.  Just instantiate
-    it and then call its methods as though it's a ctypes interface to
-    a Glk-compliant shared library."""
+    it and then use it like you would any other glk.GlkLib instance."""
 
     def __init__(self):
         if os.name == "nt":
@@ -28,6 +27,29 @@ class CheapGlkLibrary(glk.GlkLib):
 
         # This is a CheapGlk-specific initialization function.
         self._dll.gli_initialize_misc()
+
+class WindowsGlkLibrary(glk.GlkLib):
+    """This class encapsulates the WindowsGlk library.  Just
+    instantiate it and then use it like you would any other glk.GlkLib
+    instance.
+
+    Note that WindowsGlk's Glk.dll file needs to be located in a
+    directory that is somewhere on the DLL search order.  (You should
+    be fine if you just put the DLL in the current working directory.)
+
+    The WindowsGlk distribution can be found here:
+
+      http://www.eblong.com/zarf/glk/
+
+    Just do a search for 'WindowsGlk' and you'll find a link."""
+
+    def __init__( self ):
+        glk.GlkLib.__init__(self, "Glk")
+        
+        GLK_VERSION = 0x00000601
+
+        if self._dll.InitGlk(GLK_VERSION) == 0:
+            raise RuntimeError( "InitGlk() failed." )
 
 def run_test_program(glkLib):
     """Runs the test program with the given Glk library. The given Glk
