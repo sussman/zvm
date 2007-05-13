@@ -70,7 +70,15 @@ class ZInputStream(object):
     True if input should continue to be collected, or False if input
     should stop being collected; if False is returned, then
     read_line() will return a unicode string representing the
-    characters typed so far."""
+    characters typed so far.
+
+    The timed input routine will be called from the same thread that
+    called read_line().
+
+    Note, however, that supplying a timed input routine is only useful
+    if the has_timed_input feature is supported by the input stream.
+    If it is unsupported, then the timed input routine will not be
+    called."""
 
     pass
 
