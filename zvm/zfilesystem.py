@@ -1,0 +1,51 @@
+class ZFileSystem(object):
+  """Encapsulates the interactions that the end-user has with the
+  filesystem."""
+
+  def save_game(self, data, suggested_filename=None):
+    """Prompt for a filename (possibly using suggested_filename), and
+    attempt to write DATA as a saved-game file.  Return True on
+    success, False on failure.
+
+    Note that file-handling errors such as 'disc corrupt' and 'disc
+    full' should be reported directly to the player by the method in
+    question method, and they should also cause this function to
+    return False. The error 'file not found' should cause this
+    function to return False.
+    """
+
+    pass
+
+
+  def restore_game(self):
+    """Prompt for a filename, and return file's contents.  (Presumably
+    the interpreter will attempt to use those contents to restore a
+    saved game.)  Return True on success, False on failure.
+
+    Note that file-handling errors such as 'disc corrupt' and 'disc
+    full' should be reported directly to the player by the method in
+    question method, and they should also cause this function to
+    return False. The error 'file not found' should cause this
+    function to return False."""
+
+    pass
+
+
+  def open_transcript_file_for_writing(self):
+    """Prompt for a filename in which to save either a full game
+    transcript or just a list of the user's commands.  Return standard
+    python file object that can be written to.
+
+    TODO: What if an error occurs?"""
+
+    pass
+
+
+  def open_transcript_file_for_reading(self):
+    """Prompt for a filename contain user commands, which can be used
+    to drive the interpreter.  Return standard python file object that
+    can be read from.
+
+    TODO: What if an error occurs?"""
+
+    pass

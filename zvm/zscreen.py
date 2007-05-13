@@ -1,7 +1,7 @@
 #
-# A template class representing a User Interface.
+# A template class representing the screen of a z-machine.
 #
-# Third-party programs are expected to subclass ZUI and override all
+# Third-party programs are expected to subclass zscreen and override all
 # the methods, then pass an instance of their class to be driven by
 # the main z-machine engine.
 #
@@ -10,10 +10,27 @@
 #
 
 
-class ZUI(object):
+class ZScreenObserver(object):
+  """Observer that is notified of changes in the state of a ZScreen
+  object.
 
+  Note that all methods in this class may be called by any thread at
+  any time, so they should take any necessary precautions to ensure
+  the integrity of any data they modify."""
+
+  def on_screen_size_change(self, zscreen):
+    """Called when the screen size of a ZScreen changes."""
+
+    pass
+
+  def on_font_size_change(self, zscreen):
+    """Called when the font size of a ZScreen changes."""
+
+    pass
+
+class ZScreen(object):
   def __init__(self):
-    "Constructor for UI."
+    "Constructor for the screen."
 
     # The size of the screen.
     self._columns = 80
@@ -23,6 +40,10 @@ class ZUI(object):
     self._fontheight = 1
     self._fontwidth = 1
 
+    # List of our observers; clients can directly append to and remove
+    # from this.
+    self.observers = []
+
     # Subclasses must define real values for all the features they
     # support (or don't support).
 
@@ -31,70 +52,7 @@ class ZUI(object):
       "has_upper_window" : True,
       "has_graphics_font" : False,
       "has_text_colors":  False,
-      "has_sound": False,
-      "has_mouse": False,
       }
-
-  # Private Routines
-
-  def _set_screen_size(self, rows, columns):
-    """Set my own screen size variables."""
-
-    # The UI is responsible for calling this routine whenever the
-    # screen-size changes; the z-machine will periodically poll for
-    # the screen size via get_screen_size() below.
-
-    # NOTE: be sure to globally-lock self._columns and self._rows
-    # before changing their values!!
-
-    pass
-
-  def _set_font_size(self, width, height):
-    """Set my own font size variables."""
-
-    # The UI is responsible for calling this routine whenever the font
-    # size changes; the z-machine will periodically poll for the
-    # screen size via get_font_size() below.
-
-    # NOTE: be sure to globally-lock self.fontwidth and self._fontheight
-    # before changing their values!!
-
-    pass
-
-
-  # File I/O
-
-  def save_game(self, data, suggested_filename=None):
-    """Prompt for a filename (possibly using suggested_filename), and
-    attempt to write DATA as a saved-game file.  Return True on
-    success, False on failure."""
-
-    pass
-
-
-  def restore_game(self):
-    """Prompt for a filename, and return file's contents.  (Presumably
-    the interpreter will attempt to use those contents to restore a
-    saved game.)"""
-
-    pass
-
-
-  def open_transcript_file_for_writing(self):
-    """Prompt for a filename in which to save either a full game
-    transcript or just a list of the user's commands.  Return standard
-    python file handle that can be written to."""
-
-    pass
-
-
-  def open_transcript_file_for_reading(self):
-    """Prompt for a filename contain user commands, which can be used
-    to drive the interpreter.  Return standard python file handle that
-    can be read from."""
-
-    pass
-
 
   # Window Management
   #
@@ -223,28 +181,3 @@ class ZUI(object):
      """
 
     pass
-
-
-  # Sound Effects
-  #
-  ### TODO... see section 9 of spec.
-
-
-
-
-
-#
-# What about unicode output??  (print_unicode opcode)
-#
-#   O1: see section 3.8.5.4 of spec; implementation of O1 must be able
-#   to print all unicode chars below 0x100 (ISO 8859-1-Latin chars),
-#   or suitable equivalents.  For higher character codes, if there's
-#   no glyph, then print a question mark.
-#
-#   O2:  if the code isn't ascii, use any representation you want.
-#
-#   O3:  Convert all unicode to zscii.  If not possible, print question mark.
-#
-#   O4:  Never needs to print non-zscii.
-#
-
