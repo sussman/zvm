@@ -9,6 +9,8 @@
 # root directory of this distribution.
 #
 
+import zstream
+
 
 class ZScreenObserver(object):
   """Observer that is notified of changes in the state of a ZScreen
@@ -28,7 +30,11 @@ class ZScreenObserver(object):
 
     pass
 
-class ZScreen(object):
+
+class ZScreen(zstream.ZBufferableOutputStream):
+  """Subclass of zstream.ZBufferableOutputStream that provides an
+  abstraction of a computer screen."""
+
   def __init__(self):
     "Constructor for the screen."
 
@@ -179,5 +185,15 @@ class ZScreen(object):
             7 - magenta, 8 - cyan, 9 - white, 10 - dark grey,
             11- medium grey, 12 - dark grey
      """
+
+    pass
+
+
+  # Standard output
+
+  def write(self, string):
+    """Implementation of the ZOutputStream method.  Prints the given
+    unicode string to the currently active window, using the current
+    text style settings."""
 
     pass
