@@ -82,7 +82,8 @@ class ZInputStream(object):
 
     pass
 
-  def read_char(self, timed_input_routine, timed_input_interval):
+  def read_char(self, timed_input_routine=None,
+                timed_input_interval=0):
     """
     Reads a single character from the stream and returns it as a
     unicode character.
