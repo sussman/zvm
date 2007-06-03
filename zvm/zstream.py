@@ -35,16 +35,17 @@ class ZInputStream(object):
     # support (or don't support).
 
     self.features = {
-      "has_timed_input" : True,
+      "has_timed_input" : False,
       }
 
   def read_line(self, original_text=None, max_length=0,
                 terminating_characters=None,
                 timed_input_routine=None, timed_input_interval=0):
     """Reads from the input stream and returns a unicode string
-    representing the characters the end-user entered.
+    representing the characters the end-user entered.  The characters
+    are displayed to the screen as the user types them.
 
-    original_text, if provided, is pre-filled-in text that the
+    original_text, if provided, is pre-filled-in unicode text that the
     end-user may delete or otherwise modify if they so choose.
 
     max_length is the maximum length, in characters, of the text that
@@ -53,10 +54,11 @@ class ZInputStream(object):
     is no practical limit to the number of characters the end-user can
     enter.
 
-    terminating_characters is a list of unicode characters
-    representing the characters that signify the end of a line of
-    input.  If not provided, it defaults to a list containing a
-    carriage return character.
+    terminating_characters is a string of unicode characters
+    representing the characters that can signify the end of a line of
+    input.  If not provided, it defaults to a string containing a
+    carriage return character ('\r').  The terminating character is
+    not contained in the returned string.
 
     timed_input_routine is a function that will be called every
     time_input_interval milliseconds.  This function should be of the
@@ -87,6 +89,10 @@ class ZInputStream(object):
     unicode character.
 
     timed_input_routine and timed_input_interval are the same as
-    described in the documentation for read_line()."""
+    described in the documentation for read_line().
+
+    TODO: Should the character be automatically printed to the screen?
+    The Z-Machine documentation for the read_char opcode, which this
+    function is meant to ultimately implement, doesn't specify."""
 
     pass
