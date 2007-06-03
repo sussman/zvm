@@ -22,25 +22,25 @@ class ZFilesystem(object):
     Note that file-handling errors such as 'disc corrupt' and 'disc
     full' should be reported directly to the player by the method in
     question method, and they should also cause this function to
-    return False. The error 'file not found' should cause this
-    function to return False.
-    """
+    return False.  If the user clicks 'cancel' or its equivalent,
+    this function should return False."""
 
-    pass
+    raise NotImplementedError()
 
 
   def restore_game(self):
     """Prompt for a filename, and return file's contents.  (Presumably
     the interpreter will attempt to use those contents to restore a
-    saved game.)  Return True on success, False on failure.
+    saved game.)  Returns None on failure.
 
     Note that file-handling errors such as 'disc corrupt' and 'disc
     full' should be reported directly to the player by the method in
     question method, and they should also cause this function to
-    return False. The error 'file not found' should cause this
-    function to return False."""
+    return None. The error 'file not found' should cause this function
+    to return None.  If the user clicks 'cancel' or its equivalent,
+    this function should return None."""
 
-    pass
+    raise NotImplementedError()
 
 
   def open_transcript_file_for_writing(self):
@@ -48,9 +48,10 @@ class ZFilesystem(object):
     transcript or just a list of the user's commands.  Return standard
     python file object that can be written to.
 
-    TODO: What if an error occurs?"""
+    If an error occurs, or if the user clicks 'cancel' or its
+    equivalent, return None."""
 
-    pass
+    raise NotImplementedError()
 
 
   def open_transcript_file_for_reading(self):
@@ -58,6 +59,7 @@ class ZFilesystem(object):
     to drive the interpreter.  Return standard python file object that
     can be read from.
 
-    TODO: What if an error occurs?"""
+    If an error occurs, or if the user clicks 'cancel' or its
+    equivalent, return None."""
 
-    pass
+    raise NotImplementedError()
