@@ -1,4 +1,16 @@
-class ZFileSystem(object):
+#
+# A template class representing the interactions that the end-user has
+# with the filesystem in a z-machine.
+#
+# Third-party programs are expected to subclass ZFilesystem and
+# override all the methods, then pass an instance of their class to be
+# driven by the main z-machine engine.
+#
+# For the license of this file, please consult the LICENSE file in the
+# root directory of this distribution.
+#
+
+class ZFilesystem(object):
   """Encapsulates the interactions that the end-user has with the
   filesystem."""
 

@@ -41,8 +41,7 @@ class ZInputStream(object):
   def read_line(self, original_text=None, max_length=0,
                 terminating_characters=None,
                 timed_input_routine=None, timed_input_interval=0):
-    """
-    Reads from the input stream and returns a unicode string
+    """Reads from the input stream and returns a unicode string
     representing the characters the end-user entered.
 
     original_text, if provided, is pre-filled-in text that the
@@ -84,12 +83,10 @@ class ZInputStream(object):
 
   def read_char(self, timed_input_routine=None,
                 timed_input_interval=0):
-    """
-    Reads a single character from the stream and returns it as a
+    """Reads a single character from the stream and returns it as a
     unicode character.
 
     timed_input_routine and timed_input_interval are the same as
-    described in the documentation for read_line().
-    """
+    described in the documentation for read_line()."""
 
     pass
