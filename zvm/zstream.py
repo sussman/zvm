@@ -11,7 +11,7 @@ class ZOutputStream(object):
   def write(self, string):
     """Prints the given unicode string to the output stream."""
 
-    pass
+    raise NotImplementedError()
 
 
 class ZBufferableOutputStream(ZOutputStream):
@@ -81,7 +81,7 @@ class ZInputStream(object):
     If it is unsupported, then the timed input routine will not be
     called."""
 
-    pass
+    raise NotImplementedError()
 
   def read_char(self, timed_input_routine=None,
                 timed_input_interval=0):
@@ -95,4 +95,4 @@ class ZInputStream(object):
     The Z-Machine documentation for the read_char opcode, which this
     function is meant to ultimately implement, doesn't specify."""
 
-    pass
+    raise NotImplementedError()

@@ -71,6 +71,6 @@ class ZAudio(object):
       where 'id' is the id of the sound that finished playing.
 
       This method should only be implemented if the
-      'has_more_than_a_bleep' feature is enabled."""
+      has_more_than_a_bleep feature is enabled."""
 
       raise NotImplementedError()

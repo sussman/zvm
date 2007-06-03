@@ -11,6 +11,23 @@
 
 import zstream
 
+# Constants for window numbers.
+#
+# TODO: The Z-Machine standard mentions upper and lower windows and
+# window numbers, but never appears to define a mapping between the
+# two.  So the following values are simply a best guess and may need
+# to be changed in the future.
+WINDOW_UPPER = 1
+WINDOW_LOWER = 2
+
+# Constants for fonts.  These are human-readable names for the font ID
+# numbers as described in section 8.1.2 of the Z-Machine Standards
+# Document.
+FONT_NORMAL = 1
+FONT_PICTURE = 2
+FONT_CHARACTER_GRAPHICS = 3
+FONT_FIXED_PITCH = 4
+
 
 class ZScreenObserver(object):
   """Observer that is notified of changes in the state of a ZScreen
@@ -54,8 +71,8 @@ class ZScreen(zstream.ZBufferableOutputStream):
     # support (or don't support).
 
     self.features = {
-      "has_status_line" : True,
-      "has_upper_window" : True,
+      "has_status_line" : False,
+      "has_upper_window" : False,
       "has_graphics_font" : False,
       "has_text_colors":  False,
       }
@@ -63,9 +80,10 @@ class ZScreen(zstream.ZBufferableOutputStream):
   # Window Management
   #
   # The z-machine has 2 windows for displaying text, "upper" and
-  # "lower".  (The upper window has an inital height of 0.)  If
-  # visible, the upper window is where the 'status line' typically
-  # appears.
+  # "lower".  (The upper window has an inital height of 0.)
+  #
+  # The upper window is not necessarily where the "status line"
+  # appears; see section 8.6.1.1 of the Z-Machine Standards Document.
   #
   # The UI is responsible for making the lower window scroll properly,
   # as well as wrapping words ("buffering").  The upper window,
@@ -79,39 +97,63 @@ class ZScreen(zstream.ZBufferableOutputStream):
     """Return the current size of the screen as [rows, columns]."""
 
     return [self._rows, self._columns]
-
-
-  def select_window(self, number):
+  
+  def select_window(self, window):
     """Select a window to be the 'active' window, and move that
-    window's cursor to the upper left."""
+    window's cursor to the upper left.
 
-    pass
+    WINDOW should be one of WINDOW_UPPER or WINDOW_LOWER.
+
+    This method should only be implemented if the
+    has_upper_window feature is enabled."""
+
+    raise NotImplementedError()
 
 
   def split_window(self, height):
     """Make the upper window appear and be HEIGHT lines tall.  To
-    'unsplit' a window, call with a height of 0 lines."""
+    'unsplit' a window, call with a height of 0 lines.
 
-    pass
+    This method should only be implemented if the has_upper_window
+    feature is enabled."""
+
+    raise NotImplementedError()
 
 
   def set_cursor_position(self, x, y):
     """Set the cursor to (row, column) coordinates (X,Y) in the
-    current window, where (1,1) is the upper-left corner."""
+    current window, where (1,1) is the upper-left corner.
 
-    pass
+    This function only does something if the current window is the
+    upper window; if the current window is the lower window, this
+    function has no effect.
+    
+    This method should only be implemented if the
+    has_upper_window feature is enabled."""
 
-
-  def clear_screen(self):
-    """Clear the current window of all text."""
-
-    pass
+    raise NotImplementedError()
 
 
   def erase_window(self, window, color):
-    """Erase WINDOW to background COLOR."""
+    """Erase WINDOW to background COLOR.
 
-    pass
+    WINDOW should be one of WINDOW_UPPER or WINDOW_LOWER.
+
+    If the has_upper_window feature is not supported, WINDOW is
+    ignored (in such a case, this function should clear the entire
+    screen).
+
+    If the has_text_colors feature is not supported, COLOR is ignored."""
+
+    raise NotImplementedError()
+
+
+  def erase_line(self):
+    """Erase from the current cursor position to the end of its line
+    in the current window.  If the has_upper_window feature is
+    unsupported, this function applies to the entire screen."""
+
+    raise NotImplementedError()
 
 
   # Status Line
@@ -126,9 +168,12 @@ class ZScreen(zstream.ZBufferableOutputStream):
 
         On the left side of the status line, print TEXT.
         On the right side of the status line, print SCORE/TURNS.
+
+    This method should only be implemented if the has_status_line
+    feature is enabled.
     """
 
-    pass
+    raise NotImplementedError()
 
 
   def print_status_time(self, hours, minutes):
@@ -136,9 +181,12 @@ class ZScreen(zstream.ZBufferableOutputStream):
 
         On the left side of the status line, print TEXT.
         On the right side of the status line, print HOURS:MINUTES.
+
+    This method should only be implemented if the has_status_line
+    feature is enabled.
     """
 
-    pass
+    raise NotImplementedError()
 
 
   # Text Appearances
@@ -153,15 +201,15 @@ class ZScreen(zstream.ZBufferableOutputStream):
   def set_font(self, font_number):
     """Set the current window's font to one of
 
-          1 - normal font
-          2 - picture font (IGNORE, this means nothing)
-          3 - character graphics font
-          4 - fixed-width font
+          FONT_NORMAL - normal font
+          FONT_PICTURE - picture font (IGNORE, this means nothing)
+          FONT_CHARACTER_GRAPHICS - character graphics font
+          FONT_FIXED_WIDTH - fixed-width font
 
     If a font is not available, return None.  Otherwise, set the
-    new font, and return the number of the *previous* font.  """
+    new font, and return the number of the *previous* font."""
 
-    pass
+    raise NotImplementedError()
 
 
   def set_text_style(self, style_number):
@@ -171,9 +219,9 @@ class ZScreen(zstream.ZBufferableOutputStream):
            1 - Reverse video
            2 - Bold
            4 - Italic
-           8 - Fixed-width """
+           8 - Fixed-width"""
 
-    pass
+    raise NotImplementedError()
 
 
   def set_text_color(self, foreground_color, background_color):
@@ -184,9 +232,12 @@ class ZScreen(zstream.ZBufferableOutputStream):
             2 - black,  3 - red, 4 - green, 5 -yellow, 6 - blue,
             7 - magenta, 8 - cyan, 9 - white, 10 - dark grey,
             11- medium grey, 12 - dark grey
-     """
 
-    pass
+    This method should only be implemented if the has_text_colors
+    feature is enabled.
+    """
+
+    raise NotImplementedError()
 
 
   # Standard output
@@ -196,4 +247,4 @@ class ZScreen(zstream.ZBufferableOutputStream):
     unicode string to the currently active window, using the current
     text style settings."""
 
-    pass
+    raise NotImplementedError()
