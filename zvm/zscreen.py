@@ -28,6 +28,30 @@ FONT_PICTURE = 2
 FONT_CHARACTER_GRAPHICS = 3
 FONT_FIXED_PITCH = 4
 
+# Constants for text styles.  These are human-readable names for the
+# 'style' operand of the Z-Machine's 'set_text_style' opcode.
+STYLE_ROMAN = 0
+STYLE_REVERSE_VIDEO = 1
+STYLE_BOLD = 2
+STYLE_ITALIC = 4
+STYLE_FIXED_PITCH = 8
+
+# Constants for colors.  These are human-readable names for the color
+# codes as described in section 8.3.1 of the Z-Machine Standards
+# Document.  Note that the colors defined by Z-Machine Version 6 are
+# not defined here, since we are not currently supporting that
+# version.
+COLOR_CURRENT = 0
+COLOR_DEFAULT = 1
+COLOR_BLACK = 2
+COLOR_RED = 3
+COLOR_GREEN = 4
+COLOR_YELLOW = 5
+COLOR_BLUE = 6
+COLOR_MAGENTA = 7
+COLOR_CYAN = 8
+COLOR_WHITE = 9
+
 
 class ZScreenObserver(object):
   """Observer that is notified of changes in the state of a ZScreen
@@ -98,6 +122,7 @@ class ZScreen(zstream.ZBufferableOutputStream):
 
     return [self._rows, self._columns]
   
+
   def select_window(self, window):
     """Select a window to be the 'active' window, and move that
     window's cursor to the upper left.
@@ -142,6 +167,8 @@ class ZScreen(zstream.ZBufferableOutputStream):
     If the has_upper_window feature is not supported, WINDOW is
     ignored (in such a case, this function should clear the entire
     screen).
+
+    COLOR should be one of the COLOR_* constants.
 
     If the has_text_colors feature is not supported, COLOR is ignored."""
 
@@ -212,26 +239,30 @@ class ZScreen(zstream.ZBufferableOutputStream):
     raise NotImplementedError()
 
 
-  def set_text_style(self, style_number):
-    """Set the current text style to one of
+  def set_text_style(self, style):
+    """Set the current text style to the given text style.
 
-           0 - Roman
-           1 - Reverse video
-           2 - Bold
-           4 - Italic
-           8 - Fixed-width"""
+    STYLE is a sequence, each element of which should be one of the
+    following values:
+
+           STYLE_ROMAN - Roman
+           STYLE_REVERSE_VIDEO - Reverse video
+           STYLE_BOLD - Bold
+           STYLE_ITALIC - Italic
+           STYLE_FIXED_PITCH - Fixed-width
+
+    It is not a requirement that the screen implementation support
+    every combination of style; if no combinations are possible, it is
+    acceptable to simply use the first style in the sequence and ignore
+    the rest.
+    """
 
     raise NotImplementedError()
 
 
   def set_text_color(self, foreground_color, background_color):
-    """Set current text foreground and background color to values in
-
-            0 - current color
-            1 - default color
-            2 - black,  3 - red, 4 - green, 5 -yellow, 6 - blue,
-            7 - magenta, 8 - cyan, 9 - white, 10 - dark grey,
-            11- medium grey, 12 - dark grey
+    """Set current text foreground and background color.  Each color
+    should correspond to one of the COLOR_* constants.
 
     This method should only be implemented if the has_text_colors
     feature is enabled.
