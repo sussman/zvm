@@ -79,8 +79,10 @@ class ZScreen(zstream.ZBufferableOutputStream):
   def __init__(self):
     "Constructor for the screen."
 
+    zstream.ZBufferableOutputStream.__init__(self)
+
     # The size of the screen.
-    self._columns = 80
+    self._columns = 79
     self._rows = 24
 
     # The size of the current font, in characters
@@ -153,13 +155,15 @@ class ZScreen(zstream.ZBufferableOutputStream):
     upper window; if the current window is the lower window, this
     function has no effect.
     
-    This method should only be implemented if the
-    has_upper_window feature is enabled."""
+    This method should only be implemented if the has_upper_window
+    feature is enabled, as the upper window is the only window that
+    supports cursor positioning."""
 
     raise NotImplementedError()
 
 
-  def erase_window(self, window, color):
+  def erase_window(self, window=WINDOW_LOWER,
+                   color=COLOR_CURRENT):
     """Erase WINDOW to background COLOR.
 
     WINDOW should be one of WINDOW_UPPER or WINDOW_LOWER.
@@ -177,8 +181,11 @@ class ZScreen(zstream.ZBufferableOutputStream):
 
   def erase_line(self):
     """Erase from the current cursor position to the end of its line
-    in the current window.  If the has_upper_window feature is
-    unsupported, this function applies to the entire screen."""
+    in the current window.
+
+    This method should only be implemented if the has_upper_window
+    feature is enabled, as the upper window is the only window that
+    supports cursor positioning."""
 
     raise NotImplementedError()
 
@@ -234,7 +241,11 @@ class ZScreen(zstream.ZBufferableOutputStream):
           FONT_FIXED_WIDTH - fixed-width font
 
     If a font is not available, return None.  Otherwise, set the
-    new font, and return the number of the *previous* font."""
+    new font, and return the number of the *previous* font.
+
+    The only font that must be supported is FONT_NORMAL; all others
+    are optional, as per section 8.1.3 of the Z-Machine Standards
+    Document."""
 
     raise NotImplementedError()
 
@@ -255,6 +266,10 @@ class ZScreen(zstream.ZBufferableOutputStream):
     every combination of style; if no combinations are possible, it is
     acceptable to simply use the first style in the sequence and ignore
     the rest.
+
+    As per section 8.7.1.1 of the Z-Machine Standards Document, the
+    implementation need not provide bold or italic, and is free to
+    interpret them broadly.
     """
 
     raise NotImplementedError()
