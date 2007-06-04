@@ -15,12 +15,12 @@ class ZUI(object):
     Z-Machine, providing access to all functionality that the end-user
     directly experiences or interacts with."""
 
-    def __init__(self, audio, screen, keyboardInput, filesystem):
+    def __init__(self, audio, screen, keyboard_input, filesystem):
         """Initializes the ZUI with the given components."""
 
         assert isinstance(audio, zaudio.ZAudio)
         assert isinstance(screen, zscreen.ZScreen)
-        assert isinstance(keyboardInput, zstream.ZInputStream)
+        assert isinstance(keyboard_input, zstream.ZInputStream)
         assert isinstance(filesystem, zfilesystem.ZFilesystem)
 
         # The following are all public attributes of the instance, but
@@ -29,5 +29,5 @@ class ZUI(object):
         
         self.audio = audio
         self.screen = screen
-        self.keyboardInput = keyboardInput
+        self.keyboard_input = keyboard_input
         self.filesystem = filesystem

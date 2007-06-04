@@ -120,7 +120,8 @@ class TrivialScreen(zscreen.ZScreen):
       if newline_printed:
         self.__rows_since_last_input += 1
         self.__curr_column = 0
-        if self.__rows_since_last_input == self._rows:
+        if (self.__rows_since_last_input == self._rows and
+            self._rows != zscreen.INFINITE_ROWS):
           self.__show_more_prompt()
 
   def write(self, string):
@@ -243,13 +244,13 @@ def create_zui():
 
   audio = TrivialAudio()
   screen = TrivialScreen()
-  keyboardInput = TrivialKeyboardInputStream(screen)
+  keyboard_input = TrivialKeyboardInputStream(screen)
   filesystem = TrivialFilesystem()
 
   return zui.ZUI(
     audio,
     screen,
-    keyboardInput,
+    keyboard_input,
     filesystem
     )
 

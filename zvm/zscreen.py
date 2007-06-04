@@ -52,6 +52,12 @@ COLOR_MAGENTA = 7
 COLOR_CYAN = 8
 COLOR_WHITE = 9
 
+# The number of screen rows that represents an "infinite" screen
+# height; a screen with its rows set to this value should never
+# display a [MORE] prompt, as described in section 8.4.1 of the
+# Z-Machine Standards Document.
+INFINITE_ROWS = 255
+
 
 class ZScreenObserver(object):
   """Observer that is notified of changes in the state of a ZScreen
@@ -116,8 +122,9 @@ class ZScreen(zstream.ZBufferableOutputStream):
   # however, should *never* scroll or wrap words.
   #
   # The UI is also responsible for displaying [MORE] prompts when
-  # printing more text than the screen-height can display.  (Note: if
-  # the screen height is 255, then it should never prompt [MORE].)
+  # printing more text than the screen's rows can display.  (Note: if
+  # the number of screen rows is INFINITE_ROWS, then it should never
+  # prompt [MORE].)
 
   def get_screen_size(self):
     """Return the current size of the screen as [rows, columns]."""
