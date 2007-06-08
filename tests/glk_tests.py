@@ -12,14 +12,16 @@ from unittest import TestCase
 import glk_test_program
 import zvm.glk as glk
 
-class AnyGlkTests(TestCase):
+class AnyGlkTestsMixIn:
     """Integration tests that can be used with any Glk library. Aside
     from serving as integration tests, they also ensure that the Glk
     specification is observed precisely, and as such they can be used
-    to validate the integrity of any Glk library in question."""
+    to validate the integrity of any Glk library in question.
 
-    def setUp(self):
-        self.glkLib = glk_test_program.CheapGlkLibrary()
+    This is a mix-in class, intended to be mixed-in with an existing
+    subclass of unittest.TestCase.  Subclasses should be sure to set
+    up the glkLib attribute of the class to point to a Glk library, or
+    else lots of AttributeError exceptions will occur."""
 
     def testGestaltCharInputProvidesValidInformation(self):
         # This tests Section 2.3 of the Glk spec 0.7.0, ensuring that
@@ -132,18 +134,20 @@ class AnyGlkTests(TestCase):
                     )
 
 
-class CheapGlkTests(TestCase):
+class CheapGlkTests(TestCase, AnyGlkTestsMixIn):
     """CheapGlk-specific tests."""
+
+    def setUp(self):
+        self.glkLib = glk_test_program.CheapGlkLibrary()
 
     def testGestaltVersionWorks(self):
         CHEAP_GLK_VERSION = 0x700
-        glkLib = glk_test_program.CheapGlkLibrary()
         self.assertEquals(
-            glkLib.glk_gestalt(glk.gestalt_Version, 0),
+            self.glkLib.glk_gestalt(glk.gestalt_Version, 0),
             CHEAP_GLK_VERSION
             )
         self.assertEquals(
-            glkLib.glk_gestalt_ext(glk.gestalt_Version, 0, glk.NULL, 0),
+            self.glkLib.glk_gestalt_ext(glk.gestalt_Version, 0, glk.NULL, 0),
             CHEAP_GLK_VERSION
             )
 

@@ -24,6 +24,7 @@ import zui
 
 class TrivialAudio(zaudio.ZAudio):
   def __init__(self):
+    zaudio.ZAudio.__init__(self)
     self.features = {
       "has_more_than_a_bleep": False,
       }

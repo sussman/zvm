@@ -33,44 +33,44 @@ class ZAudio(object):
       "has_more_than_a_bleep": False,
       }
 
-    def play_bleep(self, bleep_type):
-      """Plays a bleep sound of the given type:
+  def play_bleep(self, bleep_type):
+    """Plays a bleep sound of the given type:
 
-          BLEEP_HIGH - a high-pitched bleep
-          BLEEP_LOW - a low-pitched bleep
-      """
+        BLEEP_HIGH - a high-pitched bleep
+        BLEEP_LOW - a low-pitched bleep
+    """
 
-      raise NotImplementedError()
+    raise NotImplementedError()
 
-    def play_sound_effect(self, id, effect, volume, repeats,
-                          routine=None):
-      """The given effect happens to the given sound number.  The id
-      must be 3 or above is supplied by the ZAudio object for the
-      particular game in question.
+  def play_sound_effect(self, id, effect, volume, repeats,
+                        routine=None):
+    """The given effect happens to the given sound number.  The id
+    must be 3 or above is supplied by the ZAudio object for the
+    particular game in question.
 
-      The effect can be:
-    
-          EFFECT_PREPARE - prepare a sound effect for playing
-          EFFECT_START - start a sound effect
-          EFFECT_STOP - stop a sound effect
-          EFFECT_FINISH - finish a sound effect
+    The effect can be:
 
-      The volume is an integer from 1 to 8 (8 being loudest of
-      these). The volume level -1 means 'loudest possible'.
+        EFFECT_PREPARE - prepare a sound effect for playing
+        EFFECT_START - start a sound effect
+        EFFECT_STOP - stop a sound effect
+        EFFECT_FINISH - finish a sound effect
 
-      The repeats specify how many times for the sound to repeatedly
-      play itself, if it is provided.
+    The volume is an integer from 1 to 8 (8 being loudest of
+    these). The volume level -1 means 'loudest possible'.
 
-      The routine, if supplied, is a Python function that will be called
-      once the sound has finished playing.  Note that this routine may
-      be called from any thread.  The routine should have the following
-      form:
+    The repeats specify how many times for the sound to repeatedly
+    play itself, if it is provided.
 
-          def on_sound_finished(id)
+    The routine, if supplied, is a Python function that will be called
+    once the sound has finished playing.  Note that this routine may
+    be called from any thread.  The routine should have the following
+    form:
 
-      where 'id' is the id of the sound that finished playing.
+        def on_sound_finished(id)
 
-      This method should only be implemented if the
-      has_more_than_a_bleep feature is enabled."""
+    where 'id' is the id of the sound that finished playing.
 
-      raise NotImplementedError()
+    This method should only be implemented if the
+    has_more_than_a_bleep feature is enabled."""
+
+    raise NotImplementedError()
