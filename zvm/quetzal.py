@@ -17,6 +17,7 @@
 import chunk
 
 import bitfield
+import zstackmanager
 
 # The general format of Queztal is that of a "FORM" IFF file, which is
 # a container class for 'chunks'.
@@ -50,6 +51,9 @@ class QuetzalMemoryOutOfBounds(QuetzalError):
 
 class QuetzalMemoryMismatch(QuetzalError):
   "Savefile's dynamic memory image is incorrectly sized."
+
+class QuetzalStackFrameOverflow(QuetzalError):
+  "Stack frame parsing went beyond bounds of 'Stks' chunk."
 
 
 class QuetzalParser(object):
@@ -187,37 +191,103 @@ class QuetzalParser(object):
   def _parse_stks(self, data):
     """Parse a chunk of type Stks."""
 
+    # Our strategy here is simply to create an entirely new
+    # ZStackManager object and populate it with a series of ZRoutine
+    # stack-frames parses from the quetzal file.  We then attach this
+    # new ZStackManager to our z-machine, and allow the old one to be
+    # garbage collected.
+    stackmanager = zstackmanager.ZStackManager(self._zmachine._mem)
+
     self._seen_mem_or_stks = True
-    ### TODO:  implement this
+    bytes = [ord(x) for x in data]
+    total_len = len(bytes)
+    ptr = 0
+
+    # Read successive stack frames:
+    while (ptr < total_len):
+      if DEBUG:  print "  Parsing stack frame..."
+      return_pc = (bytes[ptr] << 16) + (bytes[ptr + 1] << 8) + bytes[ptr + 3]
+      ptr += 3
+      flags_bitfield = bitfield.BitField(bytes[ptr])
+      ptr += 1
+      varnum = bytes[ptr]  ### TODO: tells us which variable gets the result
+      ptr += 1
+      argflag = bytes[ptr]
+      ptr += 1
+      evalstack_size = (bytes[ptr] << 8) + bytes[ptr + 1]
+      ptr += 2
+
+      # read anywhere from 0 to 15 local vars
+      local_vars = []
+      for i in range(flags_bitfield[0:3]):
+        var = (bytes[ptr] << 8) + bytes[ptr + 1]
+        ptr += 2
+        local_vars.append(var)
+      if DEBUG:  print "    Found %d local vars" % len(local_vars)
+
+      # least recent to most recent stack values:
+      stack_values = []
+      for i in range(evalstack_size):
+        val = (bytes[ptr] << 8) + bytes[ptr + 1]
+        ptr += 2
+        stack_values.append(val)
+      if DEBUG:  print "    Found %d local stack values" % len(stack_values)
+
+      ### Interesting... the reconstructed stack frames have no 'start
+      ### address'.  I guess it doesn't matter, since we only need to
+      ### pop back to particular return addresses to resume each
+      ### routine.
+
+      ### TODO: I can exactly which of the 7 args is "supplied", but I
+      ### don't understand where the args *are*??
+
+      routine = zstackmanager.ZRoutine(0, return_pc, self._zmachine._mem,
+                                       [], local_vars, stack_values)
+      stackmanager.push_routine(routine)
+      if DEBUG:  print "    Added new frame to stack."
+
+      if (ptr > total_len):
+        raise QuetzalStackFrameOverflow
+
+    self._zmachine._stackmanager = stackmanager
+    if DEBUG: print "  Successfully installed new stack."
 
 
   def _parse_intd(self, data):
     """Parse a chunk of type IntD, which is interpreter-dependent info."""
 
-    pass
-    ### TODO:  implement this
+    bytes = [ord(x) for x in data]
+
+    os_id = bytes[0:3]
+    flags = bytes[4]
+    contents_id = bytes[5]
+    reserved = bytes[6:8]
+    interpreter_id = bytes[8:12]
+    private_data = bytes[12:]
+    ### TODO:  finish this
 
 
-  # The following 3 chunks are totally optional metadata.
-  ### TODO:  should this be only in DEBUG mode?  Do we want to
-  ### bother to display these things to the user in any way?
+  # The following 3 chunks are totally optional metadata, and are
+  # artifacts of the larger IFF standard.  We're not required to do
+  # anything when we see them, though maybe it would be nice to print
+  # them to the user?
 
   def _parse_auth(self, data):
     """Parse a chunk of type AUTH.  Display the author."""
 
-    print "Author of file:", data
+    if DEBUG:  print "Author of file:", data
 
 
   def _parse_copyright(self, data):
     """Parse a chunk of type (c) .  Display the copyright."""
 
-    print "Copyright: (C)", data
+    if DEBUG:  print "Copyright: (C)", data
 
 
   def _parse_anno(self, data):
     """Parse a chunk of type ANNO.  Display any annotation"""
 
-    print "Annotation:", data
+    if DEBUG:  print "Annotation:", data
 
 
   #--------- Public APIs -----------
@@ -324,4 +394,4 @@ class QuetzalWriter(object):
     for chunk in (ifhd_chunk, cmem_chunk, stks_chunk, anno_chunk):
       self._file.write(chunk)
       if DEBUG:  print "Wrote chunk."
-    if DEBUG:  print "Done writing.
+    if DEBUG:  print "Done writing."

@@ -28,39 +28,49 @@ class ZStackPopError(ZStackError):
   "Nothing to pop from stack!"
   pass
 
-# Helper class used by ZStackManager.  Nobody else should need to use it.
+# Helper class used by ZStackManager; a 'routine' object which
+# includes its own privae stack of data.
 class ZRoutine(object):
 
-  def __init__(self, start_addr, return_addr, zmem, args):
+  def __init__(self, start_addr, return_addr, zmem, args,
+               local_vars=None, stack=None):
     """Initialize a routine object beginning at START_ADDR in ZMEM,
-    with initial argument values in list ARGS."""
+    with initial argument values in list ARGS.  If LOCAL_VARS is None,
+    then parse them from START_ADDR."""
 
     self.start_addr = start_addr
     self.return_addr = return_addr
     self.program_counter = 0    # used when execution interrupted
-    self.local_vars = [0 for _ in range(15)]
-    self.stack = []
 
-    # First byte of routine is number of local variables
-    num_local_vars = zmem[self.start_addr]
-    if not (0 <= num_local_vars <= 15):
-      print "num local vars is", num_local_vars
-      raise ZStackError
-    self.start_addr += 1
+    if stack is None:
+      self.stack = []
+    else:
+      self.stack = stack[:]
 
-    # Initialize the local vars in the ZRoutine's dictionary. This is
-    # only needed on machines v1 through v4. In v5 machines, all local
-    # variables are preinitialized to zero.
-    if 1 <= zmem.version <= 4:
-      for i in range(num_local_vars):
-        self.local_vars[i] = zmem.read_word(self.start_addr)
-        self.start_addr += 2
-    elif zmem.version != 5:
-      raise ZStackUnsupportedVersion
+    if local_vars is not None:
+      self.local_vars = local_vars[:]
+    else:
+      num_local_vars = zmem[self.start_addr]
+      if not (0 <= num_local_vars <= 15):
+        print "num local vars is", num_local_vars
+        raise ZStackError
+      self.start_addr += 1
+
+      # Initialize the local vars in the ZRoutine's dictionary. This is
+      # only needed on machines v1 through v4. In v5 machines, all local
+      # variables are preinitialized to zero.
+      self.local_vars = [0 for _ in range(15)]
+      if 1 <= zmem.version <= 4:
+        for i in range(num_local_vars):
+          self.local_vars[i] = zmem.read_word(self.start_addr)
+          self.start_addr += 2
+      elif zmem.version != 5:
+        raise ZStackUnsupportedVersion
 
     # Place call arguments into local vars, if available
     for i in range(0, len(args)):
       self.local_vars[i] = args[i]
+
 
   def pretty_print(self):
     "Display a ZRoutine nicely, for debugging purposes."
@@ -136,6 +146,16 @@ class ZStackManager(object):
     "Return current stack frame number.  For use by 'catch' opcode."
 
     return len(self._call_stack) - 1
+
+
+  # Used by quetzal save-file parser to reconstruct stack-frames.
+  def push_routine(self, routine):
+    """Blindly push a ZRoutine object to the call stack.
+    WARNING: do not use this unless you know what you're doing; you
+    probably want the more full-featured start_routine() belowe
+    instead."""
+
+    self._call_stack.append(routine)
 
 
   # ZPU should call this whenever it decides to call a new routine.
