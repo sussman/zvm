@@ -8,6 +8,7 @@
 
 from bitfield import BitField
 from zmemory import ZMemory
+from zlogging import log
 
 class ZOperationError(Exception):
   "General exception for ZOperation class"
@@ -210,5 +211,5 @@ class ZOpDecoder(object):
       if bf[5]:
         branch_offset -= 8192
 
-    print '*** Branch if %s to offset %+d' % (branch_if_true, branch_offset)
+    log('*** Branch if %s to offset %+d' % (branch_if_true, branch_offset))
     return branch_if_true, branch_offset

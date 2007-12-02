@@ -8,6 +8,7 @@
 
 import zopdecoder
 import bitfield
+from zlogging import log
 
 class ZCpuError(Exception):
     "General exception for Zcpu class"
@@ -105,7 +106,7 @@ class ZCpu(object):
             result_addr = store_addr
 
         if result_addr != None:
-            print ">> $%d = %d" % (result_addr, result_value)
+            log(">> $%d = %d" % (result_addr, result_value))
             if result_addr == 0x0:
                 self._stackmanager.push_stack(result_value)
             elif 0x0 < result_addr < 0x10:
@@ -135,36 +136,36 @@ class ZCpu(object):
 
         if test_result == branch_cond:
             if branch_offset == 0 or branch_offset == 1:
-                print ">> Return %d" % branch_offset
+                log(">> Return %d" % branch_offset)
                 addr = self._stackmanager.finish_routine(branch_offset)
                 self._opdecoder.program_counter = addr
             else:
-                print ">> Jump %+d" % branch_offset
+                log(">> Jump %+d" % branch_offset)
                 self._opdecoder.program_counter += (branch_offset - 2)
 
     def run(self):
         """The Magic Function that takes little bits and bytes, twirls
         them around, and brings the magic to your screen!"""
-        print "Execution started"
+        log("Execution started")
         while True:
             try:
                 current_pc = self._opdecoder.program_counter
                 (opcode_class, opcode_number,
                  operands) = self._opdecoder.get_next_instruction()
                 func = self._get_handler(opcode_class, opcode_number)
-                print "<0x%x> (%s:%x) %s %s" % (
+                log("<0x%x> (%s:%x) %s %s" % (
                     current_pc, zopdecoder.OPCODE_STRINGS[opcode_class],
                     opcode_number, func.__name__,
-                    ', '.join([str(x) for x in operands]))
+                    ', '.join([str(x) for x in operands])))
 
                 # The returned function is unbound, so we must pass
                 # self to it ourselves.
                 func(self, *operands)
             except ZCpuUnimplementedInstruction, e:
-                print "<0x%x> (%s:%x) %s %s (???)" % (
+                log("<0x%x> (%s:%x) %s %s (???)" % (
                     current_pc, zopdecoder.OPCODE_STRINGS[opcode_class],
                     opcode_number, e.args[0].__name__,
-                    ', '.join([str(x) for x in operands]))
+                    ', '.join([str(x) for x in operands])))
                 break
 
     ##
@@ -516,7 +517,7 @@ class ZCpu(object):
         all and clear (full reset). If # is -2, clear all but don't
         unsplit."""
         # TODO: erase the window when we have the UI code in place!
-        print "TODO: Implement erase_window!"
+        log("TODO: Implement erase_window!")
 
     def op_erase_line(self, *args):
         """"""
@@ -533,7 +534,7 @@ class ZCpu(object):
     def op_set_text_style(self, text_style):
         """Set the text style."""
         # TODO: Tell the UI to set the text style.
-        print "TODO: Implement set_text_style!"
+        log("TODO: Implement set_text_style!")
 
     def op_buffer_mode(self, *args):
         """"""

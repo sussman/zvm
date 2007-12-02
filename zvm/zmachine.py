@@ -34,4 +34,3 @@ class ZMachine(object):
 
   def run(self):
     return self._cpu.run()
-

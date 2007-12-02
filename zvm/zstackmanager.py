@@ -52,7 +52,7 @@ class ZRoutine(object):
     else:
       num_local_vars = zmem[self.start_addr]
       if not (0 <= num_local_vars <= 15):
-        print "num local vars is", num_local_vars
+        log("num local vars is %d" % num_local_vars)
         raise ZStackError
       self.start_addr += 1
 
@@ -75,10 +75,10 @@ class ZRoutine(object):
   def pretty_print(self):
     "Display a ZRoutine nicely, for debugging purposes."
 
-    print "ZRoutine:        start address:", self.start_addr
-    print "ZRoutine: return value address:", self.return_addr
-    print "ZRoutine:      program counter:", self.program_counter
-    print "ZRoutine:      local variables:", self.local_vars
+    log("ZRoutine:        start address: %d" % self.start_addr)
+    log("ZRoutine: return value address: %d" % self.return_addr)
+    log("ZRoutine:      program counter: %d" % self.program_counter)
+    log("ZRoutine:      local variables: %d" % self.local_vars)
 
 
 class ZStackBottom(object):

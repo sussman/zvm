@@ -26,7 +26,7 @@ class ZUI(object):
         # The following are all public attributes of the instance, but
         # should be considered read-only.  In the future, we may want
         # to make them Python properties.
-        
+
         self.audio = audio
         self.screen = screen
         self.keyboard_input = keyboard_input
