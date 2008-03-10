@@ -13,8 +13,14 @@ def make_zmachine():
     story_image = file("stories/curses.z5").read()
     return zmachine.ZMachine(story_image)
 
+class QuetzalWriterTest(TestCase):
+  def testWriteQuetzalFile(self):
+    machine = make_zmachine()
+    writer = quetzal.QuetzalWriter(machine)
+    writer.write("tests/test_savefile")
+
 class QuetzalParserTest(TestCase):
-  def testLoadQuetzalFile(self):
+  def testLoadCurses(self):
     "Try loading a specific curses save-file, verify expected metadata."
     machine = make_zmachine()
     parser = quetzal.QuetzalParser(machine)

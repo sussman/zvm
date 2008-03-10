@@ -291,6 +291,7 @@ class QuetzalParser(object):
     debug=True is passed, print verbose parsing information to stdout."""
 
     self._DEBUG = debug
+    self._last_loaded_metadata = []
 
     if not os.path.isfile(savefile_path):
       raise QuetzalNoSuchSavefile
@@ -356,23 +357,31 @@ class QuetzalParser(object):
 
 
 
-#----------------------------------
+#------------------------------------------------------------------------------
 
 
 class QuetzalWriter(object):
-  """A class to write the current state of the z-machine into a
+  """A class to write the current state of a z-machine into a
   Quetzal-format file."""
 
   def __init__(self, zmachine):
 
     self._zmachine = zmachine
-    self._file = open(filename, 'w')
     self._DEBUG = False
+
+  def _generate_ifhd_chunk(self):
+    """Return a chunk of type IFhd, containing metadata about the
+    zmachine and story being played."""
+    ### TODO:  write this
+    return "0"
 
 
   def _generate_cmem_chunk(self):
     """Return a compressed chunk of data representing the compressed
     image of the zmachine's main memory."""
+
+    ### TODO:  debug this when ready
+    return "0"
 
     # XOR the original game image with the current one
     diffarray = list(self._zmachine._pristine_mem)
@@ -396,7 +405,23 @@ class QuetzalWriter(object):
         result.append(diffarray[index])
     return result
 
+
+  def _generate_stks_chunk(self):
+    """Return a stacks chunk, describing the stack state of the
+    zmachine at this moment."""
+    ### TODO:  write this
+    return "0"
+
+
+  def _generate_anno_chunk(self):
+    """Return an annotation chunk, containing metadata about the ZVM
+    interpreter which created the savefile."""
+    ### TODO:  write this
+    return "0"
+
+
   #--------- Public APIs -----------
+
 
   def write(self, savefile_path, debug = False):
     """Write the current zmachine state to a new Quetzal-file at
@@ -405,21 +430,24 @@ class QuetzalWriter(object):
 
     self._DEBUG = debug
 
-    ifhd_chunk = self._generate_ifhd_chunk(self)
-    cmem_chunk = self._generate_cmem_chunk(self)
-    stks_chunk = self._generate_stks_chunk(self)
-    anno_chunk = self._generate_anno_chunk(self)
+    self._file = open(savefile_path, 'w')
+
+    ifhd_chunk = self._generate_ifhd_chunk()
+    cmem_chunk = self._generate_cmem_chunk()
+    stks_chunk = self._generate_stks_chunk()
+    anno_chunk = self._generate_anno_chunk()
 
     total_chunk_size = len(ifhd_chunk) + len(cmem_chunk) \
                        + len(stks_chunk) + len(anno_chunk)
 
     # Write main FORM chunk to hold other chunks
-    self._file_write("FORM")
-    # self._file_write(total_chunk_size) -- spread over 4 bytes
-    self._file_write("IFZS")
+    self._file.write("FORM")
+    ### TODO: self._file_write(total_chunk_size) -- spread it over 4 bytes
+    self._file.write("IFZS")
 
     # Write nested chunks.
     for chunk in (ifhd_chunk, cmem_chunk, stks_chunk, anno_chunk):
       self._file.write(chunk)
       if self._DEBUG:  print "Wrote chunk."
+    self._file.close()
     if self._DEBUG:  print "Done writing."
