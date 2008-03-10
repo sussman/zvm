@@ -73,6 +73,7 @@ Project contents:
       LICENSE                       the BSD license
       SConstruct                    SCons script used to build C code
       run_tests.py                  script to run automated tests
+      run_story.py                  script to execute a story file
       tests/                        automated tests for the module
       stories/                      some sample stories to interpret
       zvm/                          the actual ZVM python module
