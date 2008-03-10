@@ -4,4 +4,5 @@
 #
 
 # All tests in the test suite.
-__all__ = ( "bitfield_tests", "zscii_tests", "lexer_tests", "glk_tests" )
+__all__ = ( "bitfield_tests", "zscii_tests", "lexer_tests",
+            "quetzal_tests", "glk_tests" )
