@@ -19,7 +19,7 @@ class CheapGlkLibrary(glk.GlkLib):
     it and then use it like you would any other glk.GlkLib instance."""
 
     def __init__(self):
-        if os.name == "nt":
+        if sys.platform.startswith( "win" ) or sys.platform == "darwin":
             lib_name = "cheapglk/libcheapglk"
         else:
             lib_name = "cheapglk/libcheapglk.so"

@@ -28,7 +28,7 @@ env.addToListVariable(
     [ "/DEF:%s" % File( "cheapglk.def" ).path ]
     )
 
-glkLib = env.SharedLibrary(
+glkLib = env.LoadableModule(
     target = "libcheapglk",
     source = [ glob.glob( "*.c" ) ]
     )
