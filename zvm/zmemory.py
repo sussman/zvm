@@ -93,7 +93,7 @@ class ZMemory(object):
     self._dynamic_end = self._static_start - 1
     self._high_start = self.read_word(0x04)
     self._high_end = self._total_size
-    self._global_variable_start = self._memory[0x0c]
+    self._global_variable_start = self.read_word(0x0c)
 
     # Dynamic + static must not exceed 64k
     dynamic_plus_static = ((self._dynamic_end - self._dynamic_start)
