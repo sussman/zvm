@@ -6,6 +6,9 @@
 # root directory of this distribution.
 #
 
+import random
+import time
+
 import zopdecoder
 import bitfield
 from zlogging import log, log_disasm
@@ -488,8 +491,25 @@ class ZCpu(object):
         """"""
 
 
-    def op_random(self, *args):
-        """"""
+    def op_random(self, n):
+        """Generate a random number, or seed the PRNG.
+
+        If the input is positive, generate a uniformly random number
+        in the range [1:input]. If the input is negative, seed the
+        PRNG with that value. If the input is zero, seed the PRNG with
+        the current time.
+        """
+        result = 0
+        if n > 0:
+            log("Generate random number in [1:%d]" % n)
+            result = random.randint(1, n)
+        elif n < 0:
+            log("Seed PRNG with %d" % n)
+            random.seed(n)
+        else:
+            log("Seed PRNG with time")
+            random.seed(time.time())
+        self._write_result(result)
 
 
     def op_push(self, *args):
