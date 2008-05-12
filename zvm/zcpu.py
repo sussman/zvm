@@ -453,8 +453,9 @@ class ZCpu(object):
                                                     args)
         self._opdecoder.program_counter = new_addr
 
-    def op_call_vs(self, *args):
-        """"""
+    def op_call_vs(self, routine_addr, *args):
+        """See op_call."""
+        self.op_call(routine_addr, *args)
 
     def op_storew(self, array, offset, value):
         """Store the given 16-bit value at array+2*byte_index."""
