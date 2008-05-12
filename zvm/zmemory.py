@@ -21,7 +21,9 @@ class ZMemoryError(Exception):
 
 class ZMemoryIllegalWrite(ZMemoryError):
   "Tried to write to a read-only part of memory"
-  pass
+  def __init__(self, address):
+    super(ZMemoryIllegalWrite, self).__init__(
+      "Illegal write to address %d" % address)
 
 class ZMemoryBadInitialization(ZMemoryError):
   "Failure to initialize ZMemory class"
@@ -118,7 +120,7 @@ class ZMemory(object):
   def _check_static(self, index):
     """Throw error if INDEX is within the static-memory area."""
     if self._static_start <= index <= self._static_end:
-      raise ZMemoryIllegalWrite
+      raise ZMemoryIllegalWrite(index)
 
   def print_map(self):
     """Pretty-print a description of the memory map."""
@@ -202,11 +204,11 @@ class ZMemory(object):
       raise ZMemoryOutOfBounds
     perm_tuple = self.HEADER_PERMS[address]
     if perm_tuple is None:
-      raise ZMemoryIllegalWrite
+      raise ZMemoryIllegalWrite(address)
     if self.version >= perm_tuple[0] and perm_tuple[2]:
       self._memory[address] = value
     else:
-      raise ZMemoryIllegalWrite
+      raise ZMemoryIllegalWrite(address)
 
   def game_set_header(self, address, value):
     """Possibly allow the game code to set header ADDRESS to VALUE."""
@@ -214,11 +216,11 @@ class ZMemory(object):
       raise ZMemoryOutOfBounds
     perm_tuple = self.HEADER_PERMS[address]
     if perm_tuple is None:
-      raise ZMemoryIllegalWrite
+      raise ZMemoryIllegalWrite(address)
     if self.version >= perm_tuple[0] and perm_tuple[1]:
       self._memory[address] = value
     else:
-      raise ZMemoryIllegalWrite
+      raise ZMemoryIllegalWrite(address)
 
   # The ZPU will need to read and write global variables.  The 240
   # global variables are located at a place determined by the header.
@@ -237,7 +239,7 @@ class ZMemory(object):
     if not (0x10 <= varnum <= 0xFF):
       raise ZMemoryOutOfBounds
     if not (0x00 <= value <= 0xFFFF):
-      raise ZMemoryIllegalWrite
+      raise ZMemoryIllegalWrite(address)
     actual_address = self._global_variable_start + ((varnum - 0x10) * 2)
     bf = bitfield.BitField(value)
     self._memory[actual_address] = bf[8:15]
