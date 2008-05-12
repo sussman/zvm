@@ -64,6 +64,8 @@ class ZOpDecoder(object):
 
     opcode = self._get_pc()
 
+    log("Decode opcode %x" % opcode)
+
     # Determine the opcode type, and hand off further parsing.
     if self._memory.version == 5 and opcode == 0xBE:
       # Extended opcode
@@ -84,6 +86,7 @@ class ZOpDecoder(object):
     """Parse an opcode of the long form."""
     # Long opcodes are always 2OP. The types of the two operands are
     # encoded in bits 5 and 6 of the opcode.
+    log("Opcode is long")
     LONG_OPERAND_TYPES = [SMALL_CONSTANT, VARIABLE]
     operands = [self._parse_operand(LONG_OPERAND_TYPES[opcode[6]]),
                 self._parse_operand(LONG_OPERAND_TYPES[opcode[5]])]
@@ -92,18 +95,24 @@ class ZOpDecoder(object):
   def _parse_opcode_short(self, opcode):
     """Parse an opcode of the short form."""
     # Short opcodes can have either 1 operand, or no operand.
+    log("Opcode is short")
     operand_type = opcode[4:6]
     operand = self._parse_operand(operand_type)
     if operand is None: # 0OP variant
+      log("Opcode is 0OP variant")
       return (OPCODE_0OP, opcode[0:4], [])
     else:
+      log("Opcode is 1OP variant")
       return (OPCODE_1OP, opcode[0:4], [operand])
 
   def _parse_opcode_variable(self, opcode):
     """Parse an opcode of the variable form."""
+    log("Opcode is variable")
     if opcode[5]:
+      log("Variable opcode of VAR kind")
       opcode_type = OPCODE_VAR
     else:
+      log("Variable opcode of actually of 2OP kind")
       opcode_type = OPCODE_2OP
 
     opcode_num = opcode[0:5]
@@ -113,6 +122,7 @@ class ZOpDecoder(object):
 
     # Special case: opcodes 12 and 26 have a second operands byte.
     if opcode_num == 0xC or opcode_num == 0x1A:
+      log("Opcode has second operand byte")
       operands += self._parse_operands_byte()
 
     return (opcode_type, opcode_num, operands)
@@ -125,20 +135,29 @@ class ZOpDecoder(object):
     assert operand_type <= 0x3
 
     if operand_type == LARGE_CONSTANT:
+      log("Operand is large constant")
       operand = self._memory.read_word(self.program_counter)
       self.program_counter += 2
     elif operand_type == SMALL_CONSTANT:
+      log("Operand is small constant")
       operand = self._get_pc()
     elif operand_type == VARIABLE:
       variable_number = self._get_pc()
+      log("Operand is variable %d" % variable_number)
       if variable_number == 0:
+        log("Operand value comes from stack")
         operand = self._stack.pop_stack() # TODO: make sure this is right.
       elif variable_number < 16:
+        log("Operand value comes from local variable")
         operand = self._stack.get_local_variable(variable_number - 1)
       else:
+        log("Operand value comes from global variable")
         operand = self._memory.read_global(variable_number)
     elif operand_type == ABSENT:
+      log("Operand is absent")
       operand = None
+    if operand is not None:
+      log("Operand value: %d" % operand)
 
     return operand
 

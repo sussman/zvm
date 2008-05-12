@@ -6,6 +6,7 @@
 #
 
 import bitfield
+from zlogging import log
 
 # This class that represents the "main memory" of the z-machine.  It's
 # readable and writable through normal indexing and slice notation,
@@ -240,6 +241,7 @@ class ZMemory(object):
       raise ZMemoryOutOfBounds
     if not (0x00 <= value <= 0xFFFF):
       raise ZMemoryIllegalWrite(address)
+    log("Write %d to global variable %d" % (value, varnum))
     actual_address = self._global_variable_start + ((varnum - 0x10) * 2)
     bf = bitfield.BitField(value)
     self._memory[actual_address] = bf[8:15]
