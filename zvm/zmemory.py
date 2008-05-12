@@ -114,6 +114,12 @@ class ZMemory(object):
     else:
       raise ZMemoryUnsupportedVersion
 
+    log("Memory system initialized, map follows")
+    log("  Dynamic memory: %x - %x" % (self._dynamic_start, self._dynamic_end))
+    log("  Static memory: %x - %x" % (self._static_start, self._static_end))
+    log("  High memory: %x - %x" % (self._high_start, self._high_end))
+    log("  Global variable start: %x" % self._global_variable_start)
+
   def _check_bounds(self, index):
     if not (0 <= index < self._total_size):
       raise ZMemoryOutOfBounds
