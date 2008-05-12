@@ -7,11 +7,28 @@
 
 import logging
 
-logging.basicConfig(
-    level = logging.DEBUG,
-    format = '%(asctime)s : %(message)s',
-    filename = 'debug.log',
-    filemode = 'w')
+logging.getLogger().setLevel(logging.DEBUG)
+
+mainlog = logging.FileHandler('debug.log', 'a')
+mainlog.setLevel(logging.DEBUG)
+mainlog.setFormatter(logging.Formatter('%(asctime)s: %(message)s'))
+logging.getLogger('mainlog').addHandler(mainlog)
+
+# We'll store the disassembly in a separate file, for better
+# readability.
+disasm = logging.FileHandler('disasm.log', 'a')
+disasm.setLevel(logging.DEBUG)
+disasm.setFormatter(logging.Formatter('%(message)s'))
+logging.getLogger('disasm').addHandler(disasm)
+
+mainlog = logging.getLogger('mainlog')
+mainlog.info('*** Log reopened ***')
+disasm = logging.getLogger('disasm')
+disasm.info('*** Log reopened ***')
 
 def log(msg):
-    logging.debug(msg)
+    mainlog.debug(msg)
+
+def log_disasm(pc, opcode_type, opcode_num, opcode_name, args):
+    disasm.debug("%06x  %s:%02x %s %s" % (pc, opcode_type, opcode_num,
+                                          opcode_name, args))

@@ -8,7 +8,7 @@
 
 import zopdecoder
 import bitfield
-from zlogging import log
+from zlogging import log, log_disasm
 
 class ZCpuError(Exception):
     "General exception for Zcpu class"
@@ -18,9 +18,6 @@ class ZCpuOpcodeOverlap(ZCpuError):
 
 class ZCpuIllegalInstruction(ZCpuError):
     "Illegal instruction encountered"
-
-class ZCpuUnimplementedInstruction(ZCpuError):
-    "Unimplemented instruction encountered"
 
 class ZCpuDivideByZero(ZCpuError):
     "Divide by zero error"
@@ -66,8 +63,9 @@ class ZCpu(object):
         # undocumented opcode, we crash with a not implemented
         # error.
         if not opcode_func.__doc__:
-            raise ZCpuUnimplementedInstruction(opcode_func)
-        return opcode_func
+            return False, opcode_func
+        else:
+            return True, opcode_func
 
     def _make_signed(self, a):
         """Turn the given 16-bit value into a signed integer."""
@@ -106,13 +104,17 @@ class ZCpu(object):
             result_addr = store_addr
 
         if result_addr != None:
-            log(">> $%d = %d" % (result_addr, result_value))
             if result_addr == 0x0:
+                log("Push %d to stack" % result_value)
                 self._stackmanager.push_stack(result_value)
             elif 0x0 < result_addr < 0x10:
+                log("Local variable %d = %d" % (
+                    result_addr - 1, result_value))
                 self._stackmanager.set_local_variable(result_addr - 1,
                                                       result_value)
             else:
+                log("Global variable %d = %d" % (result_addr,
+                                                 result_value))
                 self._memory.write_global(result_addr, result_value)
 
     def _call(self, routine_address, args, store_return_value):
@@ -136,11 +138,11 @@ class ZCpu(object):
 
         if test_result == branch_cond:
             if branch_offset == 0 or branch_offset == 1:
-                log(">> Return %d" % branch_offset)
+                log("Return from routine with %d" % branch_offset)
                 addr = self._stackmanager.finish_routine(branch_offset)
                 self._opdecoder.program_counter = addr
             else:
-                log(">> Jump %+d" % branch_offset)
+                log("Jump to offset %+d" % branch_offset)
                 self._opdecoder.program_counter += (branch_offset - 2)
 
     def run(self):
@@ -148,25 +150,23 @@ class ZCpu(object):
         them around, and brings the magic to your screen!"""
         log("Execution started")
         while True:
-            try:
-                current_pc = self._opdecoder.program_counter
-                (opcode_class, opcode_number,
-                 operands) = self._opdecoder.get_next_instruction()
-                func = self._get_handler(opcode_class, opcode_number)
-                log("<0x%x> (%s:%x) %s %s" % (
-                    current_pc, zopdecoder.OPCODE_STRINGS[opcode_class],
-                    opcode_number, func.__name__,
-                    ', '.join([str(x) for x in operands])))
-
-                # The returned function is unbound, so we must pass
-                # self to it ourselves.
-                func(self, *operands)
-            except ZCpuUnimplementedInstruction, e:
-                log("<0x%x> (%s:%x) %s %s (???)" % (
-                    current_pc, zopdecoder.OPCODE_STRINGS[opcode_class],
-                    opcode_number, e.args[0].__name__,
-                    ', '.join([str(x) for x in operands])))
+            log("Next opcode")
+            current_pc = self._opdecoder.program_counter
+            (opcode_class, opcode_number,
+             operands) = self._opdecoder.get_next_instruction()
+            implemented, func = self._get_handler(opcode_class,
+                                                  opcode_number)
+            log_disasm(current_pc, zopdecoder.OPCODE_STRINGS[opcode_class],
+                       opcode_number, func.__name__,
+                       ', '.join([str(x) for x in operands]))
+            if not implemented:
+                log("Unimplemented opcode %s, "
+                    "halting execution" % func.__name__)
                 break
+
+            # The returned function is unbound, so we must pass
+            # self to it ourselves.
+            func(self, *operands)
 
     ##
     ## Opcode implementation functions start here.
@@ -373,7 +373,7 @@ class ZCpu(object):
     def op_print(self):
         """Print the embedded ZString."""
         zstr_address = self._opdecoder.get_zstring()
-        # TODO: print this string properly when UI code is up.
+        log("TODO: print this string properly when UI code is up.")
         print self._string.get(zstr_address)
 
     def op_print_ret(self, *args):
@@ -481,7 +481,7 @@ class ZCpu(object):
 
     def op_print_char(self, char):
         """Output the given ZSCII character."""
-        # TODO: Output to ZUI when it is ready.
+        log("TODO: Output to ZUI when it is ready.")
         print self._string.zscii.get([char])
 
     def op_print_num(self, *args):
@@ -516,8 +516,7 @@ class ZCpu(object):
         """Clear the window with the given number. If # is -1, unsplit
         all and clear (full reset). If # is -2, clear all but don't
         unsplit."""
-        # TODO: erase the window when we have the UI code in place!
-        log("TODO: Implement erase_window!")
+        log("TODO: Implement erase_window with ZUI code")
 
     def op_erase_line(self, *args):
         """"""
