@@ -2,7 +2,7 @@
 
 import sys
 import os.path
-from zvm import zmachine
+from zvm import zmachine, trivialzui
 
 def usage():
     print """Usage: %s <story file>
@@ -26,7 +26,7 @@ def main():
         print "Error accessing %s" % story_file
         sys.exit(1)
 
-    machine = zmachine.ZMachine(story_image)
+    machine = zmachine.ZMachine(story_image, ui=trivialzui.create_zui())
     machine.run()
 
 if __name__ == '__main__':

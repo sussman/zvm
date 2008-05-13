@@ -18,7 +18,7 @@ class ZMachineError(Exception):
 class ZMachine(object):
   """The Z-Machine black box."""
 
-  def __init__(self, story):
+  def __init__(self, story, ui):
     self._pristine_mem = ZMemory(story) # the original memory image
     self._mem = ZMemory(story) # the memory image which changes during play
     self._stringfactory = ZStringFactory(self._mem)
@@ -26,9 +26,10 @@ class ZMachine(object):
     self._stackmanager = ZStackManager(self._mem)
     self._opdecoder = ZOpDecoder(self._mem, self._stackmanager)
     self._opdecoder.program_counter = self._mem.read_word(0x06)
+    self._ui = ui
 
     self._cpu = ZCpu(self._mem, self._opdecoder, self._stackmanager,\
-                     self._objectparser, self._stringfactory)
+                     self._objectparser, self._stringfactory, self._ui)
 
   #--------- Public APIs -----------
 

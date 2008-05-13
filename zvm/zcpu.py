@@ -10,6 +10,7 @@ import random
 import time
 
 import zopdecoder
+import zscreen
 import bitfield
 from zlogging import log, log_disasm
 
@@ -26,12 +27,13 @@ class ZCpuDivideByZero(ZCpuError):
     "Divide by zero error"
 
 class ZCpu(object):
-    def __init__(self, zmem, zopdecoder, zstack, zobjects, zstring):
+    def __init__(self, zmem, zopdecoder, zstack, zobjects, zstring, zui):
         self._memory = zmem
         self._opdecoder = zopdecoder
         self._stackmanager = zstack
         self._objects = zobjects
         self._string = zstring
+        self._ui = zui
 
     def _get_handler(self, opcode_class, opcode_number):
         try:
