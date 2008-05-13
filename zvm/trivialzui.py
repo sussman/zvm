@@ -21,6 +21,7 @@ import zscreen
 import zstream
 import zfilesystem
 import zui
+from zlogging import log
 
 class TrivialAudio(zaudio.ZAudio):
   def __init__(self):
@@ -48,6 +49,9 @@ class TrivialScreen(zscreen.ZScreen):
     # Number of rows displayed since we last took input; needed to
     # keep track of when we need to display the [MORE] prompt.
     self.__rows_since_last_input = 0
+
+  def split_window(self, height):
+    log("TODO: split window here to height %d" % height)
 
   def erase_window(self, window=zscreen.WINDOW_LOWER,
                    color=zscreen.COLOR_CURRENT):
