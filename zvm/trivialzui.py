@@ -71,7 +71,7 @@ class TrivialScreen(zscreen.ZScreen):
     #
     # [1] http://mail.python.org/pipermail/tutor/2004-February/028474.html
 
-    if STYLE_BOLD in style:
+    if style == zscreen.STYLE_BOLD:
       self.__styleIsAllUppercase = True
     else:
       self.__styleIsAllUppercase = False
