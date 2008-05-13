@@ -348,8 +348,10 @@ class ZCpu(object):
         self._opdecoder.program_counter += (offset - 2)
 
 
-    def op_print_paddr(self, *args):
-        """"""
+    def op_print_paddr(self, string_paddr):
+        """Print the string at the given packed address."""
+        zstr_address = self._memory.packed_address(string_paddr)
+        self._ui.screen.write(self._string.get(zstr_address))
 
 
     def op_load(self, *args):
