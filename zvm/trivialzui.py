@@ -56,6 +56,9 @@ class TrivialScreen(zscreen.ZScreen):
   def select_window(self, window_num):
     log("TODO: select window %d here" % window_num)
 
+  def set_cursor_position(self, x, y):
+    log("TODO: set cursor position to (%d,%d) here" % (x,y))
+
   def erase_window(self, window=zscreen.WINDOW_LOWER,
                    color=zscreen.COLOR_CURRENT):
     for row in range(self._rows):

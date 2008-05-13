@@ -552,8 +552,9 @@ class ZCpu(object):
         """"""
 
 
-    def op_set_cursor(self, *args):
-        """"""
+    def op_set_cursor(self, x, y):
+        """Set the cursor position within the active window."""
+        self._ui.screen.set_cursor_position(x, y)
 
 
     def op_get_cursor(self, *args):
