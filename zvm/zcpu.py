@@ -378,8 +378,7 @@ class ZCpu(object):
     def op_print(self):
         """Print the embedded ZString."""
         zstr_address = self._opdecoder.get_zstring()
-        log("TODO: print this string properly when UI code is up.")
-        print self._string.get(zstr_address)
+        self._ui.screen.write(self._string.get(zstr_address))
 
     def op_print_ret(self, *args):
         """"""
@@ -487,8 +486,7 @@ class ZCpu(object):
 
     def op_print_char(self, char):
         """Output the given ZSCII character."""
-        log("TODO: Output to ZUI when it is ready.")
-        print self._string.zscii.get([char])
+        self._ui.screen.write(self._string.zscii.get([char]))
 
     def op_print_num(self, *args):
         """"""
@@ -523,9 +521,9 @@ class ZCpu(object):
         """"""
 
 
-    def op_split_window(self, *args):
-        """"""
-
+    def op_split_window(self, height):
+        """Split or unsplit the window horizontally."""
+        self._ui.screen.split_window(height)
 
     def op_set_window(self, *args):
         """"""
@@ -539,7 +537,14 @@ class ZCpu(object):
         """Clear the window with the given number. If # is -1, unsplit
         all and clear (full reset). If # is -2, clear all but don't
         unsplit."""
-        log("TODO: Implement erase_window with ZUI code")
+        if window_number == -1:
+            self.op_split_window(0)
+            self._ui.screen.erase_window(zscreen.WINDOW_LOWER)
+        if window_number == -2:
+            self._ui.screen.erase_window(zscreen.WINDOW_LOWER)
+            self._ui.screen.erase_window(zscreen.WINDOW_UPPER)
+        else:
+            self._ui.screen.erase_window(window_number)
 
     def op_erase_line(self, *args):
         """"""
@@ -555,8 +560,7 @@ class ZCpu(object):
 
     def op_set_text_style(self, text_style):
         """Set the text style."""
-        # TODO: Tell the UI to set the text style.
-        log("TODO: Implement set_text_style!")
+        self._ui.screen.set_text_style(text_style)
 
     def op_buffer_mode(self, *args):
         """"""
