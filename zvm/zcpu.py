@@ -525,8 +525,10 @@ class ZCpu(object):
         """Split or unsplit the window horizontally."""
         self._ui.screen.split_window(height)
 
-    def op_set_window(self, *args):
-        """"""
+
+    def op_set_window(self, window_num):
+        """Set the given window as the active window."""
+        self._ui.screen.select_window(window_num)
 
 
     def op_call_vs2(self, *args):

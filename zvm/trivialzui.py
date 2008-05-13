@@ -53,6 +53,9 @@ class TrivialScreen(zscreen.ZScreen):
   def split_window(self, height):
     log("TODO: split window here to height %d" % height)
 
+  def select_window(self, window_num):
+    log("TODO: select window %d here" % window_num)
+
   def erase_window(self, window=zscreen.WINDOW_LOWER,
                    color=zscreen.COLOR_CURRENT):
     for row in range(self._rows):
