@@ -26,7 +26,9 @@ def main():
         print "Error accessing %s" % story_file
         sys.exit(1)
 
-    machine = zmachine.ZMachine(story_image, ui=trivialzui.create_zui())
+    machine = zmachine.ZMachine(story_image,
+                                ui=trivialzui.create_zui(),
+                                debugmode=True)
     machine.run()
 
 if __name__ == '__main__':

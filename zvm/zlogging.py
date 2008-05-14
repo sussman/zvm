@@ -7,8 +7,11 @@
 
 import logging
 
+# Top-level initialization
 logging.getLogger().setLevel(logging.DEBUG)
 
+# Create the logging objects regardless.  If debugmode is False, then
+# they won't actually do anything when used.
 mainlog = logging.FileHandler('debug.log', 'a')
 mainlog.setLevel(logging.DEBUG)
 mainlog.setFormatter(logging.Formatter('%(asctime)s: %(message)s'))
@@ -26,9 +29,16 @@ mainlog.info('*** Log reopened ***')
 disasm = logging.getLogger('disasm')
 disasm.info('*** Log reopened ***')
 
+# Pubilc routines used by other modules
+def set_debug(state):
+  if state:
+    logging.getLogger().setLevel(logging.DEBUG)
+  else:
+    logging.getLogger().setLevel(logging.CRITICAL)
+
 def log(msg):
-    mainlog.debug(msg)
+  mainlog.debug(msg)
 
 def log_disasm(pc, opcode_type, opcode_num, opcode_name, args):
-    disasm.debug("%06x  %s:%02x %s %s" % (pc, opcode_type, opcode_num,
-                                          opcode_name, args))
+  disasm.debug("%06x  %s:%02x %s %s" % (pc, opcode_type, opcode_num,
+                                        opcode_name, args))
