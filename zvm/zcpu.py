@@ -318,8 +318,11 @@ class ZCpu(object):
     def op_get_prop_len(self, *args):
         """"""
 
-    def op_inc(self, *args):
-        """"""
+    def op_inc(self, variable):
+        """Increment the given value."""
+        val = self._read_variable(variable)
+        val = (val + 1) % 65536
+        self._write_result(val, store_addr=variable)
 
     def op_dec(self, *args):
         """"""
