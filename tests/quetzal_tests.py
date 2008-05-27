@@ -5,13 +5,14 @@
 # root directory of this distribution.
 #
 from unittest import TestCase
-from zvm import zmachine
+from zvm import zmachine, trivialzui
 from zvm import quetzal
 
 def make_zmachine():
     # We use Graham Nelson's 'curses' game for our unittests.
     story_image = file("stories/curses.z5").read()
-    return zmachine.ZMachine(story_image)
+    ui = trivialzui.create_zui()
+    return zmachine.ZMachine(story_image, ui)
 
 class QuetzalWriterTest(TestCase):
   def testWriteQuetzalFile(self):
