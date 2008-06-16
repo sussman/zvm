@@ -266,7 +266,7 @@ class ZCpu(object):
         self._write_result(result)
 
     def op_sub(self, a, b):
-        """Signed 16-bit substraction"""
+        """Signed 16-bit subtraction"""
         result = self._unmake_signed(
             self._make_signed(a) - self._make_signed(b))
         self._write_result(result)
