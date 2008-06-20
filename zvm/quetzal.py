@@ -19,6 +19,7 @@ import os
 
 import bitfield
 import zstackmanager
+from zlogging import log
 
 # The general format of Queztal is that of a "FORM" IFF file, which is
 # a container class for 'chunks'.
@@ -59,9 +60,9 @@ class QuetzalParser(object):
   """A class to read a Quetzal save-file and modify a z-machine."""
 
   def __init__(self, zmachine):
+    log("Creating new instance of QuetzalParser")
     self._zmachine = zmachine
     self._seen_mem_or_stks = False
-    self._DEBUG = False
     self._last_loaded_metadata = []  # metadata for tests & debugging
 
 
@@ -80,9 +81,9 @@ class QuetzalParser(object):
     chunk_checksum = (ord(data[8]) << 8) + ord(data[9])
     ### TODO!!! see section 5.8.  Wha?  Huh?  Read 3 bytes of Program Counter?
 
-    if self._DEBUG: print "  Found release number", chunk_release
-    if self._DEBUG: print "  Found serial number", chunk_serial
-    if self._DEBUG: print "  Found checksum", chunk_checksum
+    log("  Found release number %d" % chunk_release)
+    log("  Found serial number %d" % int(chunk_serial))
+    log("  Found checksum %d" % chunk_checksum)
     self._last_loaded_metadata.extend([chunk_release, chunk_serial,\
                                        chunk_checksum])
 
@@ -101,14 +102,14 @@ class QuetzalParser(object):
       pass
     if mem_checksum != chunk_checksum:
       raise QuetzalMismatchedFile
-    if self._DEBUG: print "  Quetzal file correctly verifies against "\
-      "original story."
+    log("  Quetzal file correctly verifies against original story.")
 
 
   def _parse_cmem(self, data):
     """Parse a chunk of type Cmem.  Decompress an image of dynamic
     memory, and place it into the ZMachine."""
 
+    log("  Decompressing dynamic memory image")
     self._seen_mem_or_stks = True
 
     # Just duplicate the dynamic memory block of the pristine story image,
@@ -118,29 +119,27 @@ class QuetzalParser(object):
     savegame_mem = list(pmem[pmem._dynamic_start:(pmem._dynamic_end + 1)])
     memlen = len(savegame_mem)
     memcounter = 0
-    if self._DEBUG:  print "  Dynamic memory length is", memlen
+    log("  Dynamic memory length is %d" % memlen)
     self._last_loaded_metadata.append(memlen)
 
     runlength_bytes = [ord(x) for x in data]
     bytelen = len(runlength_bytes)
     bytecounter = 0
 
-    if self._DEBUG:  print "  Decompressing dynamic memory image..."
+    log("  Decompressing dynamic memory image")
     while bytecounter < bytelen:
       byte = runlength_bytes[bytecounter]
       if byte != 0:
         savegame_mem[memcounter] = byte ^ pmem[memcounter]
         memcounter += 1
         bytecounter += 1
-        if self._DEBUG: print "   Set byte", memcounter, ":",\
-          savegame_mem[memcounter]
+        log("   Set byte %d:%d" % (memcounter, savegame_mem[memcounter]))
       else:
         bytecounter += 1
         num_extra_zeros = runlength_bytes[bytecounter]
         memcounter += (1 + num_extra_zeros)
         bytecounter += 1
-        if self._DEBUG: print "   Skipped", (1 + num_extra_zeros),\
-          "unchanged bytes"
+        log("   Skipped %d unchanged bytes" % (1 + num_extra_zeros))
       if memcounter >= memlen:
         raise QuetzalMemoryOutOfBounds
 
@@ -148,7 +147,7 @@ class QuetzalParser(object):
     # just means there are no more diffs to apply.
 
     cmem[cmem._dynamic_start:(cmem._dynamic_end + 1)] = savegame_mem
-    if self._DEBUG:  print "  Successfully installed new dynamic memory."
+    log("  Successfully installed new dynamic memory.")
 
 
   def _parse_umem(self, data):
@@ -158,11 +157,12 @@ class QuetzalParser(object):
     ### TODO:  test this by either finding an interpreter that ouptuts
     ## this type of chunk, or by having own QuetzalWriter class
     ## (optionally) do it.
+    log("  Loading uncompressed dynamic memory image")
     self._seen_mem_or_stks = True
 
     cmem = self._zmachine._mem
     dynamic_len = (cmem._dynamic_end - cmem.dynamic_start) + 1
-    if self._DEBUG:  print "  Dynamic memory length is", dynamic_len
+    log("  Dynamic memory length is %d" % dynamic_len)
     self._last_loaded_metadata.append(dynamic_len)
 
     savegame_mem = [ord(x) for x in data]
@@ -170,11 +170,13 @@ class QuetzalParser(object):
       raise QuetzalMemoryMismatch
 
     cmem[cmem._dynamic_start:(cmem._dynamic_end + 1)] = savegame_mem
-    if self._DEBUG:  print "  Successfully installed new dynamic memory."
+    log("  Successfully installed new dynamic memory.")
 
 
   def _parse_stks(self, data):
     """Parse a chunk of type Stks."""
+
+    log("  Begin parsing of stack frames")
 
     # Our strategy here is simply to create an entirely new
     # ZStackManager object and populate it with a series of ZRoutine
@@ -190,7 +192,7 @@ class QuetzalParser(object):
 
     # Read successive stack frames:
     while (ptr < total_len):
-      if self._DEBUG:  print "  Parsing stack frame..."
+      log("  Parsing stack frame...")
       return_pc = (bytes[ptr] << 16) + (bytes[ptr + 1] << 8) + bytes[ptr + 3]
       ptr += 3
       flags_bitfield = bitfield.BitField(bytes[ptr])
@@ -208,7 +210,7 @@ class QuetzalParser(object):
         var = (bytes[ptr] << 8) + bytes[ptr + 1]
         ptr += 2
         local_vars.append(var)
-      if self._DEBUG:  print "    Found %d local vars" % len(local_vars)
+      log("    Found %d local vars" % len(local_vars))
 
       # least recent to most recent stack values:
       stack_values = []
@@ -216,8 +218,7 @@ class QuetzalParser(object):
         val = (bytes[ptr] << 8) + bytes[ptr + 1]
         ptr += 2
         stack_values.append(val)
-      if self._DEBUG:  print "    Found %d local stack values"\
-                       % len(stack_values)
+      log("    Found %d local stack values" % len(stack_values))
 
       ### Interesting... the reconstructed stack frames have no 'start
       ### address'.  I guess it doesn't matter, since we only need to
@@ -230,18 +231,19 @@ class QuetzalParser(object):
       routine = zstackmanager.ZRoutine(0, return_pc, self._zmachine._mem,
                                        [], local_vars, stack_values)
       stackmanager.push_routine(routine)
-      if self._DEBUG:  print "    Added new frame to stack."
+      log("    Added new frame to stack.")
 
       if (ptr > total_len):
         raise QuetzalStackFrameOverflow
 
     self._zmachine._stackmanager = stackmanager
-    if self._DEBUG: print "  Successfully installed new stack."
+    log("  Successfully installed all stack frames.")
 
 
   def _parse_intd(self, data):
     """Parse a chunk of type IntD, which is interpreter-dependent info."""
 
+    log("  Begin parsing of interpreter-dependent metadata")
     bytes = [ord(x) for x in data]
 
     os_id = bytes[0:3]
@@ -261,19 +263,19 @@ class QuetzalParser(object):
   def _parse_auth(self, data):
     """Parse a chunk of type AUTH.  Display the author."""
 
-    if self._DEBUG:  print "Author of file:", data
+    log("Author of file: %s" % data)
     self._last_loaded_metadata.append(data)
 
   def _parse_copyright(self, data):
     """Parse a chunk of type (c) .  Display the copyright."""
 
-    if self._DEBUG:  print "Copyright: (C)", data
+    log("Copyright: (C) %s" % data)
     self._last_loaded_metadata.append(data)
 
   def _parse_anno(self, data):
     """Parse a chunk of type ANNO.  Display any annotation"""
 
-    if self._DEBUG:  print "Annotation:", data
+    log("Annotation: %s" % data)
     self._last_loaded_metadata.append(data)
 
 
@@ -285,17 +287,16 @@ class QuetzalParser(object):
     debugging and test verification."""
     return self._last_loaded_metadata
 
-  def load(self, savefile_path, debug = False):
+  def load(self, savefile_path):
     """Parse each chunk of the Quetzal file at SAVEFILE_PATH,
-    initializing associated zmachine subsystems as needed.  If
-    debug=True is passed, print verbose parsing information to stdout."""
+    initializing associated zmachine subsystems as needed."""
 
-    self._DEBUG = debug
     self._last_loaded_metadata = []
 
     if not os.path.isfile(savefile_path):
       raise QuetzalNoSuchSavefile
 
+    log("Attempting to load saved game from '%s'" % savefile_path)
     self._file = open(savefile_path)
 
     # The python 'chunk' module is pretty dumb; it doesn't understand
@@ -311,7 +312,7 @@ class QuetzalParser(object):
     self._len += (ord(bytestring[1]) << 16)
     self._len += (ord(bytestring[2]) << 8)
     self._len += ord(bytestring[3])
-    if self._DEBUG:  print "Total length of FORM data is", self._len
+    log("Total length of FORM data is %d" % self._len)
     self._last_loaded_metadata.append(self._len)
 
     type = self._file.read(4)
@@ -324,8 +325,7 @@ class QuetzalParser(object):
         chunkname = c.getname()
         chunksize = c.getsize()
         data = c.read(chunksize)
-        if self._DEBUG: print "** Found chunk ID", chunkname,\
-                              ": length", chunksize
+        log("** Found chunk ID %s: length %d" % (chunkname, chunksize))
         self._last_loaded_metadata.append(chunkname)
         self._last_loaded_metadata.append(chunksize)
 
@@ -346,14 +346,14 @@ class QuetzalParser(object):
         elif chunkname == "ANNO":
           self._parse_anno(data)
         else:
-          # Unrecognized chunks are supposed to be ignored
+          # spec says to ignore and skip past unrecognized chunks
           pass
 
     except EOFError:
       pass
 
     self._file.close()
-    if self._DEBUG: print "Finished parsing Quetzal file."
+    log("Finished parsing Quetzal file.")
 
 
 
@@ -365,13 +365,13 @@ class QuetzalWriter(object):
   Quetzal-format file."""
 
   def __init__(self, zmachine):
-
+    log("Creating new instance of QuetzalWriter")
     self._zmachine = zmachine
-    self._DEBUG = False
 
   def _generate_ifhd_chunk(self):
     """Return a chunk of type IFhd, containing metadata about the
     zmachine and story being played."""
+
     ### TODO:  write this
     return "0"
 
@@ -388,7 +388,7 @@ class QuetzalWriter(object):
     for index in range(len(self._zmachine._pristine_mem._total_size)):
       diffarray[index] = self._zmachine._pristine_mem[index] \
                          ^ self._zmachine._mem[index]
-    if self._DEBUG:  print "XOR array is ", diffarray
+    log("XOR array is %s" % diffarray)
 
     # Run-length encode the resulting list of 0's and 1's.
     result = []
@@ -409,6 +409,7 @@ class QuetzalWriter(object):
   def _generate_stks_chunk(self):
     """Return a stacks chunk, describing the stack state of the
     zmachine at this moment."""
+
     ### TODO:  write this
     return "0"
 
@@ -416,6 +417,7 @@ class QuetzalWriter(object):
   def _generate_anno_chunk(self):
     """Return an annotation chunk, containing metadata about the ZVM
     interpreter which created the savefile."""
+
     ### TODO:  write this
     return "0"
 
@@ -423,13 +425,11 @@ class QuetzalWriter(object):
   #--------- Public APIs -----------
 
 
-  def write(self, savefile_path, debug = False):
+  def write(self, savefile_path):
     """Write the current zmachine state to a new Quetzal-file at
-    SAVEFILE_PATH.  If debug is set to True, print verbose information
-    to stdout."""
+    SAVEFILE_PATH."""
 
-    self._DEBUG = debug
-
+    log("Attempting to write game-state to '%s'" % savefile_path)
     self._file = open(savefile_path, 'w')
 
     ifhd_chunk = self._generate_ifhd_chunk()
@@ -448,6 +448,6 @@ class QuetzalWriter(object):
     # Write nested chunks.
     for chunk in (ifhd_chunk, cmem_chunk, stks_chunk, anno_chunk):
       self._file.write(chunk)
-      if self._DEBUG:  print "Wrote chunk."
+      log("Wrote a chunk.")
     self._file.close()
-    if self._DEBUG:  print "Done writing."
+    log("Done writing game-state to savefile.")
