@@ -575,7 +575,7 @@ class ZCpu(object):
         buffered up so that it can be word-wrapped properly. If set to
         0, it isn't."""
 
-        pass
+        self._ui.screen.buffer_mode = bool(flag)
 
     def op_output_stream(self, *args):
         """TODO: Write docstring here."""
