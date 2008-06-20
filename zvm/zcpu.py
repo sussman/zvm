@@ -189,7 +189,7 @@ class ZCpu(object):
         self._branch(self._make_signed(a) < self._make_signed(b))
 
     def op_jg(self, *args):
-        """"""
+        """TODO: Write docstring here."""
 
     def op_dec_chk(self, variable, test_value):
         """Decrement the variable, and branch if the value becomes
@@ -208,10 +208,10 @@ class ZCpu(object):
         self._branch(val > test_value)
 
     def op_jin(self, *args):
-        """"""
+        """TODO: Write docstring here."""
 
     def op_test(self, *args):
-        """"""
+        """TODO: Write docstring here."""
 
     def op_or(self, a, b):
         """Bitwise OR between the two arguments."""
@@ -222,20 +222,20 @@ class ZCpu(object):
         self._write_result(a & b)
 
     def op_test_attr(self, *args):
-        """"""
+        """TODO: Write docstring here."""
 
     def op_set_attr(self, *args):
-        """"""
+        """TODO: Write docstring here."""
 
     def op_clear_attr(self, *args):
-        """"""
+        """TODO: Write docstring here."""
 
     def op_store(self, variable, value):
         """Store the given value to the given variable."""
         self._write_result(value, store_addr=variable)
 
     def op_insert_obj(self, *args):
-        """"""
+        """TODO: Write docstring here."""
 
     def op_loadw(self, base, offset):
         """Store in the given result register the word value at
@@ -251,13 +251,13 @@ class ZCpu(object):
         self._write_result(val)
 
     def op_get_prop(self, *args):
-        """"""
+        """TODO: Write docstring here."""
 
     def op_get_prop_addr(self, *args):
-        """"""
+        """TODO: Write docstring here."""
 
     def op_get_next_prop(self, *args):
-        """"""
+        """TODO: Write docstring here."""
 
     def op_add(self, a, b):
         """Signed 16-bit addition."""
@@ -286,19 +286,19 @@ class ZCpu(object):
         self._write_result(self._unmake_signed(a/b))
 
     def op_mod(self, *args):
-        """"""
+        """TODO: Write docstring here."""
 
     def op_call_2s(self, *args):
-        """"""
+        """TODO: Write docstring here."""
 
     def op_call_2n(self, *args):
-        """"""
+        """TODO: Write docstring here."""
 
     def op_set_colour(self, *args):
-        """"""
+        """TODO: Write docstring here."""
 
     def op_throw(self, *args):
-        """"""
+        """TODO: Write docstring here."""
 
     ## 1OP opcodes (opcodes 128-175)
 
@@ -307,16 +307,16 @@ class ZCpu(object):
         self._branch(val == 0)
 
     def op_get_sibling(self, *args):
-        """"""
+        """TODO: Write docstring here."""
 
     def op_get_child(self, *args):
-        """"""
+        """TODO: Write docstring here."""
 
     def op_get_parent(self, *args):
-        """"""
+        """TODO: Write docstring here."""
 
     def op_get_prop_len(self, *args):
-        """"""
+        """TODO: Write docstring here."""
 
     def op_inc(self, variable):
         """Increment the given value."""
@@ -325,23 +325,23 @@ class ZCpu(object):
         self._write_result(val, store_addr=variable)
 
     def op_dec(self, *args):
-        """"""
+        """TODO: Write docstring here."""
 
     def op_print_addr(self, string_byte_address):
-        """"""
+        """TODO: Write docstring here."""
 
     def op_call_1s(self, routine_address):
         """Call the given routine and store the return value."""
         self._call(routine_address, [], True)
 
     def op_remove_obj(self, *args):
-        """"""
+        """TODO: Write docstring here."""
 
     def op_print_obj(self, *args):
-        """"""
+        """TODO: Write docstring here."""
 
     def op_ret(self, *args):
-        """"""
+        """TODO: Write docstring here."""
 
     def op_jump(self, *args):
         """Jump unconditionally to the given branch offset.  This
@@ -358,11 +358,11 @@ class ZCpu(object):
 
 
     def op_load(self, *args):
-        """"""
+        """TODO: Write docstring here."""
 
 
     def op_not(self, *args):
-        """"""
+        """TODO: Write docstring here."""
 
 
     def op_call_1n(self, routine_addr):
@@ -373,11 +373,11 @@ class ZCpu(object):
     ## 0OP opcodes (opcodes 176-191)
 
     def op_rtrue(self, *args):
-        """"""
+        """TODO: Write docstring here."""
 
 
     def op_rfalse(self, *args):
-        """"""
+        """TODO: Write docstring here."""
 
 
     def op_print(self):
@@ -386,63 +386,63 @@ class ZCpu(object):
         self._ui.screen.write(self._string.get(zstr_address))
 
     def op_print_ret(self, *args):
-        """"""
+        """TODO: Write docstring here."""
 
 
     def op_nop(self, *args):
-        """"""
+        """TODO: Write docstring here."""
 
 
     def op_save(self, *args):
-        """"""
+        """TODO: Write docstring here."""
 
 
     def op_save_v4(self, *args):
-        """"""
+        """TODO: Write docstring here."""
 
 
     def op_restore(self, *args):
-        """"""
+        """TODO: Write docstring here."""
 
 
     def op_restore_v4(self, *args):
-        """"""
+        """TODO: Write docstring here."""
 
 
     def op_restart(self, *args):
-        """"""
+        """TODO: Write docstring here."""
 
 
     def op_ret_popped(self, *args):
-        """"""
+        """TODO: Write docstring here."""
 
 
     def op_pop(self, *args):
-        """"""
+        """TODO: Write docstring here."""
 
 
     def op_catch(self, *args):
-        """"""
+        """TODO: Write docstring here."""
 
 
     def op_quit(self, *args):
-        """"""
+        """TODO: Write docstring here."""
 
 
     def op_new_line(self, *args):
-        """"""
+        """TODO: Write docstring here."""
 
 
     def op_show_status(self, *args):
-        """"""
+        """TODO: Write docstring here."""
 
 
     def op_verify(self, *args):
-        """"""
+        """TODO: Write docstring here."""
 
 
     def op_piracy(self, *args):
-        """"""
+        """TODO: Write docstring here."""
 
 
     ## VAR opcodes (opcodes 224-255)
@@ -469,7 +469,7 @@ class ZCpu(object):
         self._memory.write_word(store_address, value)
 
     def op_storeb(self, *args):
-        """"""
+        """TODO: Write docstring here."""
 
 
     def op_put_prop(self, object_number, property_number, value):
@@ -482,11 +482,11 @@ class ZCpu(object):
 
 
     def op_sread_v4(self, *args):
-        """"""
+        """TODO: Write docstring here."""
 
 
     def op_aread(self, *args):
-        """"""
+        """TODO: Write docstring here."""
 
 
     def op_print_char(self, char):
@@ -494,7 +494,7 @@ class ZCpu(object):
         self._ui.screen.write(self._string.zscii.get([char]))
 
     def op_print_num(self, *args):
-        """"""
+        """TODO: Write docstring here."""
 
 
     def op_random(self, n):
@@ -519,11 +519,11 @@ class ZCpu(object):
 
 
     def op_push(self, *args):
-        """"""
+        """TODO: Write docstring here."""
 
 
     def op_pull(self, *args):
-        """"""
+        """TODO: Write docstring here."""
 
 
     def op_split_window(self, height):
@@ -537,7 +537,7 @@ class ZCpu(object):
 
 
     def op_call_vs2(self, *args):
-        """"""
+        """TODO: Write docstring here."""
 
 
     def op_erase_window(self, window_number):
@@ -554,7 +554,7 @@ class ZCpu(object):
             self._ui.screen.erase_window(window_number)
 
     def op_erase_line(self, *args):
-        """"""
+        """TODO: Write docstring here."""
 
 
     def op_set_cursor(self, x, y):
@@ -563,111 +563,114 @@ class ZCpu(object):
 
 
     def op_get_cursor(self, *args):
-        """"""
+        """TODO: Write docstring here."""
 
 
     def op_set_text_style(self, text_style):
         """Set the text style."""
         self._ui.screen.set_text_style(text_style)
 
-    def op_buffer_mode(self, *args):
-        """"""
+    def op_buffer_mode(self, flag):
+        """If set to 1, text output on the lower window in stream 1 is
+        buffered up so that it can be word-wrapped properly. If set to
+        0, it isn't."""
 
+        pass
 
     def op_output_stream(self, *args):
-        """"""
+        """TODO: Write docstring here."""
 
 
     def op_output_stream_v5(self, *args):
-        """"""
+        """TODO: Write docstring here."""
 
 
     def op_input_stream(self, *args):
-        """"""
+        """TODO: Write docstring here."""
 
 
     # This one may have been used prematurely in v3 stories. Keep an
     # eye out for it if we ever get bug reports.
     def op_sound_effect(self, *args):
-        """"""
+        """TODO: Write docstring here."""
 
 
     def op_read_char(self, *args):
-        """"""
+        """TODO: Write docstring here."""
 
 
     def op_scan_table(self, *args):
-        """"""
+        """TODO: Write docstring here."""
 
 
     def op_not_v5(self, *args):
-        """"""
+        """TODO: Write docstring here."""
 
 
     def op_call_vn(self, *args):
-        """"""
+        """TODO: Write docstring here."""
 
 
     def op_call_vn2(self, *args):
-        """"""
+        """TODO: Write docstring here."""
 
 
     def op_tokenize(self, *args):
-        """"""
+        """TODO: Write docstring here."""
 
 
     def op_encode_text(self, *args):
-        """"""
+        """TODO: Write docstring here."""
 
 
     def op_copy_table(self, *args):
-        """"""
+        """TODO: Write docstring here."""
 
 
     def op_print_table(self, *args):
-        """"""
+        """TODO: Write docstring here."""
 
 
     def op_check_arg_count(self, *args):
-        """"""
+        """TODO: Write docstring here."""
 
 
     ## EXT opcodes (opcodes 256-284)
 
     def op_save_v5(self, *args):
-        """"""
+        """TODO: Write docstring here."""
 
 
     def op_restore_v5(self, *args):
-        """"""
+        """TODO: Write docstring here."""
 
 
     def op_log_shift(self, *args):
-        """"""
+        """TODO: Write docstring here."""
 
 
     def op_art_shift(self, *args):
-        """"""
+        """TODO: Write docstring here."""
 
 
     def op_set_font(self, *args):
-        """"""
+        """TODO: Write docstring here."""
 
 
     def op_save_undo(self, *args):
-        """"""
+        """TODO: Write docstring here."""
 
 
     def op_restore_undo(self, *args):
-        """"""
+        """TODO: Write docstring here."""
 
 
     def op_print_unicode(self, *args):
-        """"""
+        """TODO: Write docstring here."""
 
 
     def op_check_unicode(self, *args):
-        """"""
+        """TODO: Write docstring here."""
 
     # Declaration of the opcode tables. In a Z-Machine, opcodes are
     # divided into tables based on the operand type. Within each
