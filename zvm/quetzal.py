@@ -63,7 +63,7 @@ class QuetzalParser(object):
     log("Creating new instance of QuetzalParser")
     self._zmachine = zmachine
     self._seen_mem_or_stks = False
-    self._last_loaded_metadata = []  # metadata for tests & debugging
+    self._last_loaded_metadata = {}  # metadata for tests & debugging
 
 
   def _parse_ifhd(self, data):
@@ -84,8 +84,9 @@ class QuetzalParser(object):
     log("  Found release number %d" % chunk_release)
     log("  Found serial number %d" % int(chunk_serial))
     log("  Found checksum %d" % chunk_checksum)
-    self._last_loaded_metadata.extend([chunk_release, chunk_serial,\
-                                       chunk_checksum])
+    self._last_loaded_metadata["release number"] = chunk_release
+    self._last_loaded_metadata["serial number"] = chunk_serial
+    self._last_loaded_metadata["checksum"] = chunk_checksum
 
     # Verify the save-file params against the current z-story header
     mem = self._zmachine._mem
@@ -120,7 +121,7 @@ class QuetzalParser(object):
     memlen = len(savegame_mem)
     memcounter = 0
     log("  Dynamic memory length is %d" % memlen)
-    self._last_loaded_metadata.append(memlen)
+    self._last_loaded_metadata["memory length"] = memlen
 
     runlength_bytes = [ord(x) for x in data]
     bytelen = len(runlength_bytes)
@@ -163,7 +164,7 @@ class QuetzalParser(object):
     cmem = self._zmachine._mem
     dynamic_len = (cmem._dynamic_end - cmem.dynamic_start) + 1
     log("  Dynamic memory length is %d" % dynamic_len)
-    self._last_loaded_metadata.append(dynamic_len)
+    self._last_loaded_metadata["dynamic memory length"] = dynamic_len
 
     savegame_mem = [ord(x) for x in data]
     if len(savegame_mem) != dynamic_len:
@@ -264,19 +265,19 @@ class QuetzalParser(object):
     """Parse a chunk of type AUTH.  Display the author."""
 
     log("Author of file: %s" % data)
-    self._last_loaded_metadata.append(data)
+    self._last_loaded_metadata["author"] = data
 
   def _parse_copyright(self, data):
     """Parse a chunk of type (c) .  Display the copyright."""
 
     log("Copyright: (C) %s" % data)
-    self._last_loaded_metadata.append(data)
+    self._last_loaded_metadata["copyright"] = data
 
   def _parse_anno(self, data):
     """Parse a chunk of type ANNO.  Display any annotation"""
 
     log("Annotation: %s" % data)
-    self._last_loaded_metadata.append(data)
+    self._last_loaded_metadata["annotation"] = data
 
 
   #--------- Public APIs -----------
@@ -291,7 +292,7 @@ class QuetzalParser(object):
     """Parse each chunk of the Quetzal file at SAVEFILE_PATH,
     initializing associated zmachine subsystems as needed."""
 
-    self._last_loaded_metadata = []
+    self._last_loaded_metadata = {}
 
     if not os.path.isfile(savefile_path):
       raise QuetzalNoSuchSavefile
@@ -313,7 +314,7 @@ class QuetzalParser(object):
     self._len += (ord(bytestring[2]) << 8)
     self._len += ord(bytestring[3])
     log("Total length of FORM data is %d" % self._len)
-    self._last_loaded_metadata.append(self._len)
+    self._last_loaded_metadata["total length"] = self._len
 
     type = self._file.read(4)
     if type != "IFZS":
@@ -326,8 +327,7 @@ class QuetzalParser(object):
         chunksize = c.getsize()
         data = c.read(chunksize)
         log("** Found chunk ID %s: length %d" % (chunkname, chunksize))
-        self._last_loaded_metadata.append(chunkname)
-        self._last_loaded_metadata.append(chunksize)
+        self._last_loaded_metadata[chunkname] = chunksize
 
         if chunkname == "IFhd":
           self._parse_ifhd(data)
