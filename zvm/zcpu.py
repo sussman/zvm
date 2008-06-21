@@ -155,8 +155,8 @@ class ZCpu(object):
         them around, and brings the magic to your screen!"""
         log("Execution started")
         while True:
-            log("Next opcode")
             current_pc = self._opdecoder.program_counter
+            log("Next opcode %x" % current_pc)
             (opcode_class, opcode_number,
              operands) = self._opdecoder.get_next_instruction()
             implemented, func = self._get_handler(opcode_class,
@@ -343,11 +343,16 @@ class ZCpu(object):
     def op_ret(self, *args):
         """TODO: Write docstring here."""
 
-    def op_jump(self, *args):
+    def op_jump(self, offset):
         """Jump unconditionally to the given branch offset.  This
         opcode does not follow the usual branch decision algorithm,
         and so we do not call the _branch method to dispatch the call."""
-        cond, offset = self._opdecoder.get_branch_offset()
+        # The offset to the jump instruction is known to be a 2-byte
+        # signed integer. We need to make it signed before applying
+        # the offset.
+        if (offset >= 2**15):
+            offset = - 2**16 + offset
+        log("Jump unconditionally to offset %d" % offset)
         self._opdecoder.program_counter += (offset - 2)
 
 
