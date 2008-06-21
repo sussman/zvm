@@ -9,7 +9,7 @@ End of analysis pass, low address = a31c, high address = 2d8cc
 Main routine a31c, 0 locals
 
  a31d:  8f 34 ce                CALL_1N         d338
- a320:  b0                      RTRUE           
+ a320:  b0                      RTRUE
 
 Routine a324, 7 locals
 
@@ -33,7 +33,7 @@ Routine a324, 7 locals
  a36b:  f9 07 a2 82 01 06 0a    CALL_VN         28a08 (#0106,#0a)
  a372:  8c ff b5                JUMP            a328
  a375:  4f 02 01 05             LOADW           L01,#01 -> L04
- a379:  c1 83 05 8e 5c 8f 2b 00 05 
+ a379:  c1 83 05 8e 5c 8f 2b 00 05
                                JE              L04,"o","oops" [FALSE] a385
  a382:  8c 00 9a                JUMP            a41d
  a385:  c1 8f 05 9f 84 00 55    JE              L04,"undo" [FALSE] a3df
@@ -105,7 +105,7 @@ Routine a484, 10 locals
  a49d:  95 06                   INC             L05
  a49f:  8c ff ed                JUMP            a48d
  a4a2:  0d 36 00                STORE           G26,#00
- a4a5:  b0                      RTRUE           
+ a4a5:  b0                      RTRUE
  a4a6:  41 68 01 00 22          JE              G58,#01 [FALSE] a4cb
  a4ab:  0d 68 00                STORE           G58,#00
  a4ae:  0d 06 00                STORE           L05,#00
@@ -114,7 +114,7 @@ Routine a484, 10 locals
  a4bc:  e2 2b 5e 4e 06 00       STOREB          #5e4e,L05,(SP)+
  a4c2:  95 06                   INC             L05
  a4c4:  8c ff ec                JUMP            a4b1
- a4c7:  bb                      NEW_LINE        
+ a4c7:  bb                      NEW_LINE
  a4c8:  8c 00 0a                JUMP            a4d3
  a4cb:  f9 03 28 c9 5d d5 5e 4e CALL_VN         a324 (#5dd5,#5e4e)
  a4d3:  d0 1f 5e 4e 01 43       LOADB           #5e4e,#01 -> G33
@@ -203,7 +203,7 @@ Routine a484, 10 locals
  a67e:  e1 9b 01 00 2a          STOREW          L00,#00,G1a
  a683:  e1 9b 01 01 30          STOREW          L00,#01,G20
  a688:  e1 9b 01 02 31          STOREW          L00,#02,G21
- a68d:  b0                      RTRUE           
+ a68d:  b0                      RTRUE
  a68e:  41 06 00 80 0c          JE              L05,#00 [TRUE] a69d
  a693:  2d 44 06                STORE           G34,L05
  a696:  96 42                   DEC             G32
@@ -509,7 +509,7 @@ someone, but I can't see whom.
  ac8b:  61 4c 4d 01 47          JE              G3c,G3d [FALSE] add5
  ac90:  63 42 43 80 3b          JG              G32,G33 [TRUE] acce
  ac95:  88 33 bc 09             CALL_1S         cef0 -> L08
- ac99:  c1 83 09 9d 68 a2 9c 00 0c 
+ ac99:  c1 83 09 9d 68 a2 9c 00 0c
                                JE              L08,"then","xcomma" [FALSE] acac
  aca2:  0d 68 01                STORE           G58,#01
  aca5:  55 42 01 69             SUB             G32,#01 -> G59
@@ -580,7 +580,7 @@ someone, but I can't see whom.
  adc9:  41 68 01 00 08          JE              G58,#01 [FALSE] add4
  adce:  2d 42 69                STORE           G32,G59
  add1:  8c 03 a4                JUMP            b176
- add4:  b0                      RTRUE           
+ add4:  b0                      RTRUE
  add5:  41 08 06 00 12          JE              L07,#06 [FALSE] adea
  adda:  c1 95 72 44 46 47 80 07 JE              G62,#44,#46,#47 [TRUE] ade7
  ade2:  41 72 45 00 05          JE              G62,#45 [FALSE] adea
@@ -633,7 +633,7 @@ with"
  aed2:  2d 3b 45                STORE           G2b,G35
  aed5:  75 43 3b 00             SUB             G33,G2b -> -(SP)
  aed9:  54 00 01 3c             ADD             (SP)+,#01 -> G2c
- aedd:  b0                      RTRUE           
+ aedd:  b0                      RTRUE
  aede:  d9 2f b1 00 6b 00       CALL_2S         2c400 (G5b) -> -(SP)
  aee4:  41 00 00 80 05          JE              (SP)+,#00 [TRUE] aeec
  aee9:  8c f5 e1                JUMP            a4cb
@@ -736,7 +736,7 @@ available!
  b16f:  e0 bf 76 ff             CALL_VS         G66 -> Gef
  b173:  8c f3 57                JUMP            a4cb
  b176:  63 42 43 00 03          JG              G32,G33 [FALSE] b17c
- b17b:  b0                      RTRUE           
+ b17b:  b0                      RTRUE
  b17c:  88 33 bc 06             CALL_1S         cef0 -> L05
  b180:  c1 8f 06 9d 68 80 09    JE              L05,"then" [TRUE] b18e
  b187:  c1 8f 06 a2 9c 01 ab    JE              L05,"xcomma" [FALSE] b337
@@ -745,7 +745,7 @@ available!
  b199:  55 00 01 00             SUB             (SP)+,#01 -> -(SP)
  b19d:  e2 1b 5f a8 01 00       STOREB          #5fa8,#01,(SP)+
  b1a3:  0d 68 00                STORE           G58,#00
- b1a6:  b0                      RTRUE           
+ b1a6:  b0                      RTRUE
  b1a7:  61 28 19 00 08          JE              G18,G09 [FALSE] b1b2
  b1ac:  0d 07 00                STORE           L06,#00
  b1af:  8c 00 06                JUMP            b1b6
@@ -753,7 +753,7 @@ available!
  b1b6:  54 07 01 6c             ADD             L06,#01 -> G5c
  b1ba:  55 42 02 6d             SUB             G32,#02 -> G5d
  b1be:  88 33 bc 06             CALL_1S         cef0 -> L05
- b1c2:  c1 83 06 74 10 82 f8 00 da 
+ b1c2:  c1 83 06 74 10 82 f8 00 da
                                JE              L05,"again","g" [FALSE] b2a3
  b1cb:  0d 06 00                STORE           L05,#00
  b1ce:  62 06 07 00 3f          JL              L05,L06 [FALSE] b210
@@ -805,7 +805,7 @@ available!
  b293:  8c ff c2                JUMP            b256
  b296:  e2 1b 5f a8 01 07       STOREB          #5fa8,#01,L06
  b29c:  0d 68 01                STORE           G58,#01
- b29f:  b0                      RTRUE           
+ b29f:  b0                      RTRUE
  b2a0:  8c 00 04                JUMP            b2a5
  b2a3:  96 42                   DEC             G32
  b2a5:  0d 06 00                STORE           L05,#00
@@ -842,7 +842,7 @@ available!
  b32a:  8c ff c2                JUMP            b2ed
  b32d:  e2 1b 5f a8 01 07       STOREB          #5fa8,#01,L06
  b333:  0d 68 01                STORE           G58,#01
- b336:  b0                      RTRUE           
+ b336:  b0                      RTRUE
  b337:  0d 6a 02                STORE           G5a,#02
  b33a:  8c fb 52                JUMP            ae8d
 
@@ -902,26 +902,26 @@ Routine b3f8, 4 locals
  b411:  0d 03 00                STORE           L02,#00
  b414:  c1 8f 02 9d 56 00 05    JE              L01,"the" [FALSE] b41e
  b41b:  0d 03 01                STORE           L02,#01
- b41e:  c1 80 02 73 b6 74 97 75 1e 80 0b 
+ b41e:  c1 80 02 73 b6 74 97 75 1e 80 0b
                                JE              L01,"a","an","any" [TRUE] b432
- b429:  c1 83 02 7f aa 75 27 00 08 
+ b429:  c1 83 02 7f aa 75 27 00 08
                                JE              L01,"either","anything" [FALSE]
 b438
  b432:  0d 60 01                STORE           G50,#01
  b435:  0d 03 01                STORE           L02,#01
- b438:  c1 83 02 74 f1 8f 73 00 0c 
+ b438:  c1 83 02 74 f1 8f 73 00 0c
                                JE              L01,"another","other" [FALSE]
 b44b
  b441:  0d 60 01                STORE           G50,#01
  b444:  0d 03 01                STORE           L02,#01
  b447:  48 61 01 61             OR              G51,#01 -> G51
- b44b:  c1 80 02 8d 33 9d 95 9d 71 00 0c 
+ b44b:  c1 80 02 8d 33 9d 95 9d 71 00 0c
                                JE              L01,"my","this","these" [FALSE]
 b460
  b456:  0d 60 01                STORE           G50,#01
  b459:  0d 03 01                STORE           L02,#01
  b45c:  48 61 02 61             OR              G51,#02 -> G51
- b460:  c1 83 02 9d 4d 9d b0 00 0c 
+ b460:  c1 83 02 9d 4d 9d b0 00 0c
                                JE              L01,"that","those" [FALSE] b473
  b469:  0d 60 01                STORE           G50,#01
  b46c:  0d 03 01                STORE           L02,#01
@@ -930,12 +930,12 @@ b460
  b47a:  0d 60 01                STORE           G50,#01
  b47d:  0d 03 01                STORE           L02,#01
  b480:  48 61 10 61             OR              G51,#10 -> G51
- b484:  c1 83 02 86 6a a2 db 00 0c 
+ b484:  c1 83 02 86 6a a2 db 00 0c
                                JE              L01,"his","your" [FALSE] b497
  b48d:  0d 60 01                STORE           G50,#01
  b490:  0d 03 01                STORE           L02,#01
  b493:  48 61 20 61             OR              G51,#20 -> G51
- b497:  c1 83 02 8a 3f 8a 24 00 0c 
+ b497:  c1 83 02 8a 3f 8a 24 00 0c
                                JE              L01,"lit","lighted" [FALSE] b4aa
  b4a0:  0d 60 01                STORE           G50,#01
  b4a3:  0d 03 01                STORE           L02,#01
@@ -944,7 +944,7 @@ b460
  b4b1:  0d 60 01                STORE           G50,#01
  b4b4:  0d 03 01                STORE           L02,#01
  b4b7:  48 61 80 61             OR              G51,#80 -> G51
- b4bb:  c1 80 02 74 61 7f 59 80 79 80 09 
+ b4bb:  c1 80 02 74 61 7f 59 80 79 80 09
                                JE              L01,"all","each","every" [TRUE]
 b4cd
  b4c6:  c1 8f 02 80 82 00 17    JE              L01,"everythin" [FALSE] b4e2
@@ -977,13 +977,13 @@ b4cd
 Routine b52c, 1 local
 
  b52d:  4a 01 00 00 03          TEST_ATTR       L00,#00 [FALSE] b533
- b532:  b0                      RTRUE           
+ b532:  b0                      RTRUE
  b533:  4a 01 16 80 03          TEST_ATTR       L00,#16 [TRUE] b539
- b538:  b1                      RFALSE          
+ b538:  b1                      RFALSE
  b539:  c1 95 72 46 44 45 80 07 JE              G62,#46,#44,#45 [TRUE] b546
  b541:  41 72 47 00 03          JE              G62,#47 [FALSE] b547
- b546:  b0                      RTRUE           
- b547:  b1                      RFALSE          
+ b546:  b0                      RTRUE
+ b547:  b1                      RFALSE
 
 Routine b548, 11 locals
 
@@ -997,7 +997,7 @@ Routine b548, 11 locals
 "
  b572:  88 33 bc 04             CALL_1S         cef0 -> L03
  b576:  96 42                   DEC             G32
- b578:  c1 83 04 88 2c 9d 5f 00 12 
+ b578:  c1 83 04 88 2c 9d 5f 00 12
                                JE              L03,"it","them" [FALSE] b591
  b581:  2d 5a 04                STORE           G4a,L03
  b584:  2d 5b 5c                STORE           G4b,G4c
@@ -1016,7 +1016,7 @@ Routine b548, 11 locals
  b5b5:  41 5e 00 00 07          JE              G4e,#00 [FALSE] b5bf
  b5ba:  0d 6b 09                STORE           G5b,#09
  b5bd:  9b 00                   RET             #00
- b5bf:  c1 80 04 8b b0 8d 3c 97 9b 00 08 
+ b5bf:  c1 80 04 8b b0 8d 3c 97 9b 00 08
                                JE              L03,"me","myself","self" [FALSE]
 b5d0
  b5ca:  2d 5a 04                STORE           G4a,L03
@@ -1051,7 +1051,7 @@ number "
  b653:  d9 2f 33 e0 00 03       CALL_2S         cf80 ((SP)+) -> L02
  b659:  c1 8f 03 fc 18 00 06    JE              L02,#fc18 [FALSE] b664
  b660:  0d 6b 03                STORE           G5b,#03
- b663:  b1                      RFALSE          
+ b663:  b1                      RFALSE
  b664:  42 3e 03 80 1b          JL              G2e,#03 [TRUE] b682
  b669:  b2 ...                  PRINT           "  [Read number as "
  b67a:  e6 bf 03                PRINT_NUM       L02
@@ -1077,10 +1077,10 @@ returned "
  b6d6:  b2 ...                  PRINT           "]
 "
  b6db:  42 03 00 00 03          JL              L02,#00 [FALSE] b6e1
- b6e0:  b1                      RFALSE          
+ b6e0:  b1                      RFALSE
  b6e1:  41 03 00 00 05          JE              L02,#00 [FALSE] b6e9
  b6e6:  96 4d                   DEC             G3d
- b6e8:  b0                      RTRUE           
+ b6e8:  b0                      RTRUE
  b6e9:  41 03 01 00 12          JE              L02,#01 [FALSE] b6fe
  b6ee:  41 4e 00 00 08          JE              G3e,#00 [FALSE] b6f9
  b6f3:  2d 2d 34                STORE           G1d,G24
@@ -1223,7 +1223,7 @@ object list:
  b9a6:  2d 09 03                STORE           L08,L02
  b9a9:  74 51 55 42             ADD             G41,G45 -> G32
  b9ad:  88 33 bc 04             CALL_1S         cef0 -> L03
- b9b1:  c1 80 04 74 b2 78 cf 80 94 80 09 
+ b9b1:  c1 80 04 74 b2 78 cf 80 94 80 09
                                JE              L03,"and","but","except" [TRUE]
 b9c3
  b9bc:  c1 8f 04 a2 9c 00 75    JE              L03,"xcomma" [FALSE] ba36
@@ -1236,7 +1236,7 @@ b9c3
  b9e1:  42 02 06 80 08          JL              L01,#06 [TRUE] b9ec
  b9e6:  0d 6b 07                STORE           G5b,#07
  b9e9:  8c 00 93                JUMP            ba7d
- b9ec:  c1 83 04 78 cf 80 94 00 06 
+ b9ec:  c1 83 04 78 cf 80 94 00 06
                                JE              L03,"but","except" [FALSE] b9f9
  b9f5:  35 01 08 08             SUB             #01,L07 -> L07
  b9f9:  41 0b 00 00 31          JE              L0a,#00 [FALSE] ba2d
@@ -1298,7 +1298,7 @@ Routine ba94, 11 locals
  baea:  74 56 55 42             ADD             G46,G45 -> G32
  baee:  41 53 00 00 05          JE              G43,#00 [FALSE] baf6
  baf3:  95 42                   INC             G32
- baf5:  b1                      RFALSE          
+ baf5:  b1                      RFALSE
  baf6:  63 56 43 80 6d          JG              G46,G33 [TRUE] bb66
  bafb:  41 53 01 00 0a          JE              G43,#01 [FALSE] bb08
  bb00:  cf 1f 60 54 00 05       LOADW           #6054,#00 -> L04
@@ -1306,13 +1306,13 @@ Routine ba94, 11 locals
  bb08:  63 42 43 80 5b          JG              G32,G33 [TRUE] bb66
  bb0d:  88 33 bc 05             CALL_1S         cef0 -> L04
  bb11:  96 42                   DEC             G32
- bb13:  c1 80 05 74 b2 a2 9c 9d 68 80 4a 
+ bb13:  c1 80 05 74 b2 a2 9c 9d 68 80 4a
                                JE              L04,"and","xcomma","then" [TRUE]
 bb66
- bb1e:  c1 83 05 78 cf 80 94 80 41 
+ bb1e:  c1 83 05 78 cf 80 94 80 41
                                JE              L04,"but","except" [TRUE] bb66
  bb27:  41 5f 08 00 03          JE              G4f,#08 [FALSE] bb2d
- bb2c:  b1                      RFALSE          
+ bb2c:  b1                      RFALSE
  bb2d:  43 5f 08 00 36          JG              G4f,#08 [FALSE] bb66
  bb32:  88 33 a5 00             CALL_1S         ce94 -> -(SP)
  bb36:  61 5f 00 80 2b          JE              G4f,(SP)+ [TRUE] bb64
@@ -1323,7 +1323,7 @@ word "
  bb5b:  e6 bf 42                PRINT_NUM       G32
  bb5e:  b2 ...                  PRINT           "]
 "
- bb63:  b1                      RFALSE          
+ bb63:  b1                      RFALSE
  bb64:  96 42                   DEC             G32
  bb66:  0d 54 00                STORE           G44,#00
  bb69:  41 53 01 00 08          JE              G43,#01 [FALSE] bb74
@@ -1331,9 +1331,9 @@ word "
  bb74:  43 53 01 00 16          JG              G43,#01 [FALSE] bb8d
  bb79:  d9 2f 2f 96 03 05       CALL_2S         be58 (L02) -> L04
  bb7f:  c1 8f 05 ff ff 00 03    JE              L04,#ffff [FALSE] bb87
- bb86:  b1                      RFALSE          
+ bb86:  b1                      RFALSE
  bb87:  41 05 01 00 03          JE              L04,#01 [FALSE] bb8d
- bb8c:  b0                      RTRUE           
+ bb8c:  b0                      RTRUE
  bb8d:  41 05 00 80 19          JE              L04,#00 [TRUE] bba9
  bb92:  41 73 01 00 04          JE              G63,#01 [FALSE] bb99
  bb97:  ab 05                   RET             L04
@@ -1375,13 +1375,13 @@ word "
  bc35:  8c ff a1                JUMP            bbd7
  bc38:  b2 ...                  PRINT           "?
 "
- bc3d:  e0 03 28 c9 5f 2f 5f a8 0a 
+ bc3d:  e0 03 28 c9 5f 2f 5f a8 0a
                                CALL_VS         a324 (#5f2f,#5fa8) -> L09
  bc46:  cf 1f 5f a8 01 04       LOADW           #5fa8,#01 -> L03
- bc4c:  c1 80 04 74 61 78 1b 80 82 80 0b 
+ bc4c:  c1 80 04 74 61 78 1b 80 82 80 0b
                                JE              L03,"all","both","everythin"
 [TRUE] bc60
- bc57:  c1 83 04 80 79 7f 59 00 71 
+ bc57:  c1 83 04 80 79 7f 59 00 71
                                JE              L03,"every","each" [FALSE] bccf
  bc60:  42 03 02 80 42          JL              L02,#02 [TRUE] bca5
  bc65:  43 03 05 80 3d          JG              L02,#05 [TRUE] bca5
@@ -1398,7 +1398,7 @@ word "
  bc97:  8c ff db                JUMP            bc73
  bc9a:  74 05 08 00             ADD             L04,L07 -> -(SP)
  bc9e:  e1 1b 5e af 00 00       STOREW          #5eaf,#00,(SP)+
- bca4:  b0                      RTRUE           
+ bca4:  b0                      RTRUE
  bca5:  b2 ...                  PRINT           "Sorry, you can only have one
 item here. Which one exactly?
 "
@@ -1438,7 +1438,7 @@ item here. Which one exactly?
  bd64:  f9 17 31 b5 00 01       CALL_VN         c6d4 (#00,#01)
  bd6a:  b2 ...                  PRINT           "?
 "
- bd6f:  e0 03 28 c9 5f 2f 5f a8 0a 
+ bd6f:  e0 03 28 c9 5f 2f 5f a8 0a
                                CALL_VS         a324 (#5f2f,#5fa8) -> L09
  bd78:  cf 1f 5f a8 01 04       LOADW           #5fa8,#01 -> L03
  bd7e:  50 04 06 06             LOADB           L03,#06 -> L05
@@ -1878,7 +1878,7 @@ type "
  c527:  95 04                   INC             L03
  c529:  8c fe ed                JUMP            c417
  c52c:  0d 54 02                STORE           G44,#02
- c52f:  b0                      RTRUE           
+ c52f:  b0                      RTRUE
 
 Routine c530, 4 locals
 
@@ -1919,15 +1919,15 @@ choices
 Routine c5d0, 9 locals
 
  c5d1:  61 01 02 00 03          JE              L00,L01 [FALSE] c5d7
- c5d6:  b0                      RTRUE           
+ c5d6:  b0                      RTRUE
  c5d7:  41 01 00 80 07          JE              L00,#00 [TRUE] c5e1
  c5dc:  41 02 00 00 03          JE              L01,#00 [FALSE] c5e2
- c5e1:  b1                      RFALSE          
+ c5e1:  b1                      RFALSE
  c5e2:  a3 01 00                GET_PARENT      L00 -> -(SP)
  c5e5:  41 00 01 80 0a          JE              (SP)+,#01 [TRUE] c5f2
  c5ea:  a3 02 00                GET_PARENT      L01 -> -(SP)
  c5ed:  41 00 01 00 03          JE              (SP)+,#01 [FALSE] c5f3
- c5f2:  b1                      RFALSE          
+ c5f2:  b1                      RFALSE
  c5f3:  51 01 1d 00             GET_PROP        L00,#1d -> -(SP)
  c5f7:  41 00 00 00 0b          JE              (SP)+,#00 [FALSE] c605
  c5fc:  51 02 1d 00             GET_PROP        L01,#1d -> -(SP)
@@ -1935,7 +1935,7 @@ Routine c5d0, 9 locals
  c605:  51 02 1d 00             GET_PROP        L01,#1d -> -(SP)
  c609:  51 01 1d 00             GET_PROP        L00,#1d -> -(SP)
  c60d:  61 00 00 80 03          JE              (SP)+,(SP)+ [TRUE] c613
- c612:  b1                      RFALSE          
+ c612:  b1                      RFALSE
  c613:  cd 4f 57 01 04          STORE           G47,#0104
  c618:  2d 58 01                STORE           G48,L00
  c61b:  2d 59 02                STORE           G49,L01
@@ -1943,9 +1943,9 @@ Routine c5d0, 9 locals
  c621:  e0 27 34 7a 01 1d 07    CALL_VS         d1e8 (L00,#1d) -> L06
  c628:  2d 42 08                STORE           G32,L07
  c62b:  c1 8f 07 ff ff 00 03    JE              L06,#ffff [FALSE] c633
- c632:  b0                      RTRUE           
+ c632:  b0                      RTRUE
  c633:  c1 8f 07 ff fe 00 03    JE              L06,#fffe [FALSE] c63b
- c63a:  b1                      RFALSE          
+ c63a:  b1                      RFALSE
  c63b:  52 01 01 03             GET_PROP_ADDR   L00,#01 -> L02
  c63f:  52 01 01 00             GET_PROP_ADDR   L00,#01 -> -(SP)
  c643:  2d ff 00                STORE           Gef,(SP)+
@@ -1972,7 +1972,7 @@ Routine c5d0, 9 locals
  c68e:  95 08                   INC             L07
  c690:  8c ff e8                JUMP            c679
  c693:  41 09 00 00 03          JE              L08,#00 [FALSE] c699
- c698:  b1                      RFALSE          
+ c698:  b1                      RFALSE
  c699:  95 07                   INC             L06
  c69b:  8c ff d2                JUMP            c66e
  c69e:  0d 08 00                STORE           L07,#00
@@ -1987,10 +1987,10 @@ Routine c5d0, 9 locals
  c6c1:  95 07                   INC             L06
  c6c3:  8c ff e8                JUMP            c6ac
  c6c6:  41 09 00 00 03          JE              L08,#00 [FALSE] c6cc
- c6cb:  b1                      RFALSE          
+ c6cb:  b1                      RFALSE
  c6cc:  95 08                   INC             L07
  c6ce:  8c ff d2                JUMP            c6a1
- c6d1:  b0                      RTRUE           
+ c6d1:  b0                      RTRUE
 
 Routine c6d4, 6 locals
 
@@ -2007,7 +2007,7 @@ Routine c6d4, 6 locals
  c701:  c1 8f 03 a2 93 00 0c    JE              L02,"x" [FALSE] c712
  c708:  b2 ...                  PRINT           "examine"
  c70f:  8c 00 22                JUMP            c732
- c712:  c1 83 03 87 42 87 ed 00 0c 
+ c712:  c1 83 03 87 42 87 ed 00 0c
                                JE              L02,"i","inv" [FALSE] c725
  c71b:  b2 ...                  PRINT           "inventory"
  c722:  8c 00 0f                JUMP            c732
@@ -2035,7 +2035,7 @@ Routine c6d4, 6 locals
  c787:  0d 06 01                STORE           L05,#01
  c78a:  95 05                   INC             L04
  c78c:  8c ff ac                JUMP            c739
- c78f:  b0                      RTRUE           
+ c78f:  b0                      RTRUE
 
 Routine c790, 3 locals
 
@@ -2062,18 +2062,18 @@ Routine c7d0, 3 locals
  c7d1:  cf 1f 5e af 00 02       LOADW           #5eaf,#00 -> L01
  c7d7:  41 02 3f 00 06          JE              L01,#3f [FALSE] c7e0
  c7dc:  0d 27 01                STORE           G17,#01
- c7df:  b0                      RTRUE           
+ c7df:  b0                      RTRUE
  c7e0:  0d 03 01                STORE           L02,#01
  c7e3:  63 03 02 80 13          JG              L02,L01 [TRUE] c7f9
  c7e8:  cf 2f 5e af 03 00       LOADW           #5eaf,L02 -> -(SP)
  c7ee:  61 01 00 00 03          JE              L00,(SP)+ [FALSE] c7f4
- c7f3:  b0                      RTRUE           
+ c7f3:  b0                      RTRUE
  c7f4:  95 03                   INC             L02
  c7f6:  8c ff ec                JUMP            c7e3
  c7f9:  95 02                   INC             L01
  c7fb:  e1 2b 5e af 02 01       STOREW          #5eaf,L01,L00
  c801:  e1 1b 5e af 00 02       STOREW          #5eaf,#00,L01
- c807:  b0                      RTRUE           
+ c807:  b0                      RTRUE
 
 Routine c808, 5 locals
 
@@ -2109,15 +2109,15 @@ Routine c858, 4 locals
  c877:  8c ff e1                JUMP            c859
  c87a:  95 03                   INC             L02
  c87c:  8c ff e5                JUMP            c862
- c87f:  b0                      RTRUE           
+ c87f:  b0                      RTRUE
 
 Routine c880, 1 local
 
  c881:  42 6e 80 80 0d          JL              G5e,#80 [TRUE] c891
  c886:  55 6e 80 00             SUB             G5e,#80 -> -(SP)
  c88a:  6a 01 00 00 03          TEST_ATTR       L00,(SP)+ [FALSE] c890
- c88f:  b0                      RTRUE           
- c890:  b1                      RFALSE          
+ c88f:  b0                      RTRUE
+ c890:  b1                      RFALSE
  c891:  2d 30 01                STORE           G20,L00
  c894:  55 6e 10 00             SUB             G5e,#10 -> -(SP)
  c898:  cf 2f 72 01 00 00       LOADW           #7201,(SP)+ -> -(SP)
@@ -2138,7 +2138,7 @@ Routine c8a4, 5 locals
  c8c3:  e1 2b 5e 4e 00 00       STOREW          #5e4e,(SP)+,(SP)+
  c8c9:  6f 02 05 00             LOADW           L01,L04 -> -(SP)
  c8cd:  e1 2b 5e 4e 04 00       STOREW          #5e4e,L03,(SP)+
- c8d3:  b0                      RTRUE           
+ c8d3:  b0                      RTRUE
 
 Routine c8d4, 4 locals
 
@@ -2147,11 +2147,11 @@ Routine c8d4, 4 locals
  c8dd:  0d 77 02                STORE           G67,#02
  c8e0:  e0 bf 75 00             CALL_VS         G65 -> -(SP)
  c8e4:  41 00 00 80 03          JE              (SP)+,#00 [TRUE] c8ea
- c8e9:  b0                      RTRUE           
+ c8e9:  b0                      RTRUE
  c8ea:  c1 ab 28 01 02 00 0e    JE              G18,L00,L01 [FALSE] c8fd
  c8f1:  d9 2f b0 fa 28 00       CALL_2S         2c3e8 (G18) -> -(SP)
  c8f7:  41 00 00 80 03          JE              (SP)+,#00 [TRUE] c8fd
- c8fc:  b0                      RTRUE           
+ c8fc:  b0                      RTRUE
  c8fd:  41 03 05 00 1e          JE              L02,#05 [FALSE] c91e
  c902:  c1 8f 6f ff ff 80 17    JE              G5f,#ffff [TRUE] c91e
  c909:  d9 2f 32 4c 6f 00       CALL_2S         c930 (G5f) -> -(SP)
@@ -2160,7 +2160,7 @@ Routine c8d4, 4 locals
  c91b:  8c 00 10                JUMP            c92c
  c91e:  f9 2a 32 a6 01 02 03    CALL_VN         ca98 (L00,L01,L02)
  c925:  f9 26 32 a6 02 00 03    CALL_VN         ca98 (L01,#00,L02)
- c92c:  b0                      RTRUE           
+ c92c:  b0                      RTRUE
 
 Routine c930, 1 local
 
@@ -2168,18 +2168,18 @@ Routine c930, 1 local
  c936:  4a 01 17 80 0c          TEST_ATTR       L00,#17 [TRUE] c945
  c93b:  4a 01 03 00 08          TEST_ATTR       L00,#03 [FALSE] c946
  c940:  4a 01 0e 00 03          TEST_ATTR       L00,#0e [FALSE] c946
- c945:  b0                      RTRUE           
- c946:  b1                      RFALSE          
+ c945:  b0                      RTRUE
+ c946:  b1                      RFALSE
 
 Routine c948, 1 local
 
  c949:  c1 97 74 00 01 80 08    JE              G64,#00,#01 [TRUE] c956
  c950:  da 2f 32 59 01          CALL_2N         c964 (L00)
- c955:  b0                      RTRUE           
+ c955:  b0                      RTRUE
  c956:  2d 42 56                STORE           G32,G46
  c959:  da 2f 33 2c 01          CALL_2N         ccb0 (L00)
  c95e:  0d 70 01                STORE           G60,#01
- c961:  b0                      RTRUE           
+ c961:  b0                      RTRUE
 
 Routine c964, 3 locals
 
@@ -2200,7 +2200,7 @@ Routine c964, 3 locals
  c9b0:  41 ff 03 00 44          JE              Gef,#03 [FALSE] c9f7
  c9b5:  51 01 09 00             GET_PROP        L00,#09 -> -(SP)
  c9b9:  c1 93 00 00 ff ff 00 03 JE              (SP)+,#00,#ffff [FALSE] c9c2
- c9c1:  b0                      RTRUE           
+ c9c1:  b0                      RTRUE
  c9c2:  42 3e 02 80 23          JL              G2e,#02 [TRUE] c9e8
  c9c7:  b2 ...                  PRINT           "[Considering react_before for
 "
@@ -2213,7 +2213,7 @@ Routine c964, 3 locals
  c9f7:  41 ff 04 00 42          JE              Gef,#04 [FALSE] ca3c
  c9fc:  51 01 0b 00             GET_PROP        L00,#0b -> -(SP)
  ca00:  c1 93 00 00 ff ff 00 03 JE              (SP)+,#00,#ffff [FALSE] ca09
- ca08:  b0                      RTRUE           
+ ca08:  b0                      RTRUE
  ca09:  42 3e 02 80 21          JL              G2e,#02 [TRUE] ca2d
  ca0e:  b2 ...                  PRINT           "[Considering react_after for "
  ca23:  da 2f 38 4e 01          CALL_2N         e138 (L00)
@@ -2225,7 +2225,7 @@ Routine c964, 3 locals
  ca3c:  41 ff 02 00 37          JE              Gef,#02 [FALSE] ca76
  ca41:  52 01 1a 00             GET_PROP_ADDR   L00,#1a -> -(SP)
  ca45:  41 00 00 00 03          JE              (SP)+,#00 [FALSE] ca4b
- ca4a:  b0                      RTRUE           
+ ca4a:  b0                      RTRUE
  ca4b:  42 3e 02 80 1f          JL              G2e,#02 [TRUE] ca6d
  ca50:  b2 ...                  PRINT           "[Considering each_turn for "
  ca63:  da 2f 38 4e 01          CALL_2N         e138 (L00)
@@ -2241,15 +2241,15 @@ Routine c964, 3 locals
  ca8b:  e0 af 58 01 ff          CALL_VS         G48 (L00) -> Gef
  ca90:  2d 58 03                STORE           G48,L02
  ca93:  2d 74 02                STORE           G64,L01
- ca96:  b0                      RTRUE           
+ ca96:  b0                      RTRUE
 
 Routine ca98, 3 locals
 
  ca99:  41 01 00 00 03          JE              L00,#00 [FALSE] ca9f
- ca9e:  b0                      RTRUE           
+ ca9e:  b0                      RTRUE
  ca9f:  41 03 04 00 08          JE              L02,#04 [FALSE] caaa
  caa4:  61 01 6f 00 03          JE              L00,G5f [FALSE] caaa
- caa9:  b0                      RTRUE           
+ caa9:  b0                      RTRUE
  caaa:  41 60 00 00 16          JE              G50,#00 [FALSE] cac3
  caaf:  61 01 29 00 11          JE              L00,G19 [FALSE] cac3
  cab4:  41 74 00 00 0c          JE              G64,#00 [FALSE] cac3
@@ -2260,7 +2260,7 @@ Routine ca98, 3 locals
  cacc:  f9 2a 32 b7 01 02 03    CALL_VN         cadc (L00,L01,L02)
  cad3:  a1 01 01 c2             GET_SIBLING     L00 -> L00 [TRUE] cad7
  cad7:  8c ff ef                JUMP            cac7
- cada:  b0                      RTRUE           
+ cada:  b0                      RTRUE
 
 Routine cadc, 6 locals
 
@@ -2273,7 +2273,7 @@ Routine cadc, 6 locals
  caf7:  42 04 05 80 1b          JL              L03,#05 [TRUE] cb15
  cafc:  b2 ...                  PRINT           "     Out of text: matching "
  cb0f:  da 2f 38 4e 01          CALL_2N         e138 (L00)
- cb14:  bb                      NEW_LINE        
+ cb14:  bb                      NEW_LINE
  cb15:  f9 27 33 04 01 01       CALL_VN         cc10 (L00,#01)
  cb1b:  2d 3e 04                STORE           G2e,L03
  cb1e:  8c 00 50                JUMP            cb6f
@@ -2320,7 +2320,7 @@ Routine cadc, 6 locals
  cbd8:  f9 26 32 b7 00 00 03    CALL_VN         cadc ((SP)+,#00,L02)
  cbdf:  95 04                   INC             L03
  cbe1:  8c ff e9                JUMP            cbcb
- cbe4:  b0                      RTRUE           
+ cbe4:  b0                      RTRUE
 
 Routine cbe8, 1 local
 
@@ -2331,7 +2331,7 @@ Routine cbe8, 1 local
  cbfe:  d9 2f 37 c5 01 00       CALL_2S         df14 (L00) -> -(SP)
  cc04:  41 00 01 00 05          JE              (SP)+,#01 [FALSE] cc0c
  cc09:  0d 79 01                STORE           G69,#01
- cc0c:  b0                      RTRUE           
+ cc0c:  b0                      RTRUE
 
 Routine cc10, 3 locals
 
@@ -2346,21 +2346,21 @@ Routine cc10, 3 locals
  cc3d:  42 3e 05 80 13          JL              G2e,#05 [TRUE] cc53
  cc42:  b2 ...                  PRINT           "    Match filtered out
 "
- cc53:  b0                      RTRUE           
+ cc53:  b0                      RTRUE
  cc54:  62 02 55 00 03          JL              L01,G45 [FALSE] cc5a
- cc59:  b0                      RTRUE           
+ cc59:  b0                      RTRUE
  cc5a:  63 02 55 00 0b          JG              L01,G45 [FALSE] cc68
  cc5f:  2d 55 02                STORE           G45,L01
  cc62:  0d 53 00                STORE           G43,#00
  cc65:  8c 00 25                JUMP            cc8b
  cc68:  36 02 53 00             MUL             #02,G43 -> -(SP)
  cc6c:  42 00 80 80 03          JL              (SP)+,#80 [TRUE] cc72
- cc71:  b0                      RTRUE           
+ cc71:  b0                      RTRUE
  cc72:  0d 03 00                STORE           L02,#00
  cc75:  62 03 53 00 13          JL              L02,G43 [FALSE] cc8b
  cc7a:  cf 2f 60 54 03 00       LOADW           #6054,L02 -> -(SP)
  cc80:  61 00 01 00 03          JE              (SP)+,L00 [FALSE] cc86
- cc85:  b0                      RTRUE           
+ cc85:  b0                      RTRUE
  cc86:  95 03                   INC             L02
  cc88:  8c ff ec                JUMP            cc75
  cc8b:  e8 bf 53                PUSH            G43
@@ -2369,7 +2369,7 @@ Routine cc10, 3 locals
  cc96:  42 3e 05 80 15          JL              G2e,#05 [TRUE] ccae
  cc9b:  b2 ...                  PRINT           "    Match added to list
 "
- ccae:  b0                      RTRUE           
+ ccae:  b0                      RTRUE
 
 Routine ccb0, 5 locals
 
@@ -2386,7 +2386,7 @@ Routine ccb0, 5 locals
  ccde:  d0 1f 5e 4e 01 00       LOADB           #5e4e,#01 -> -(SP)
  cce4:  63 42 00 00 09          JG              G32,(SP)+ [FALSE] ccf0
  cce9:  f9 27 33 04 01 00       CALL_VN         cc10 (L00,#00)
- ccef:  b1                      RFALSE          
+ ccef:  b1                      RFALSE
  ccf0:  51 01 1d 00             GET_PROP        L00,#1d -> -(SP)
  ccf4:  41 00 00 80 52          JE              (SP)+,#00 [TRUE] cd49
  ccf9:  cd 4f 57 ff ff          STORE           G47,#ffff
@@ -2405,7 +2405,7 @@ Routine ccb0, 5 locals
  cd32:  41 62 00 00 05          JE              G52,#00 [FALSE] cd3a
  cd37:  0d 62 64                STORE           G52,#64
  cd3a:  f9 2b 33 04 01 03       CALL_VN         cc10 (L00,L02)
- cd40:  b1                      RFALSE          
+ cd40:  b1                      RFALSE
  cd41:  41 03 00 00 05          JE              L02,#00 [FALSE] cd49
  cd46:  8c 00 86                JUMP            cdcd
  cd49:  88 33 93 04             CALL_1S         ce4c -> L03
@@ -2418,7 +2418,7 @@ Routine ccb0, 5 locals
  cd6b:  41 04 04 00 0e          JE              L03,#04 [FALSE] cd7c
  cd70:  61 01 19 00 09          JE              L00,G09 [FALSE] cd7c
  cd75:  f9 27 33 04 01 01       CALL_VN         cc10 (L00,#01)
- cd7b:  b1                      RFALSE          
+ cd7b:  b1                      RFALSE
  cd7c:  96 42                   DEC             G32
  cd7e:  2d 05 42                STORE           L04,G32
  cd81:  d9 2f b1 04 01 02       CALL_2S         2c410 (L00) -> L01
@@ -2438,7 +2438,7 @@ Routine ccb0, 5 locals
  cdc8:  41 00 00 00 0e          JE              (SP)+,#00 [FALSE] cdd9
  cdcd:  41 60 00 80 08          JE              G50,#00 [TRUE] cdd8
  cdd2:  f9 27 33 04 01 00       CALL_VN         cc10 (L00,#00)
- cdd8:  b1                      RFALSE          
+ cdd8:  b1                      RFALSE
  cdd9:  42 02 00 00 1a          JL              L01,#00 [FALSE] cdf6
  cdde:  0d 02 01                STORE           L01,#01
  cde1:  88 33 bc 00             CALL_1S         cef0 -> -(SP)
@@ -2450,12 +2450,12 @@ Routine ccb0, 5 locals
  cdfc:  42 3e 05 80 0d          JL              G2e,#05 [TRUE] ce0c
  ce01:  b2 ...                  PRINT           "    Matched
 "
- ce0c:  b0                      RTRUE           
+ ce0c:  b0                      RTRUE
 
 Routine ce10, 5 locals
 
  ce11:  41 01 00 00 03          JE              L00,#00 [FALSE] ce17
- ce16:  b1                      RFALSE          
+ ce16:  b1                      RFALSE
  ce17:  52 01 01 03             GET_PROP_ADDR   L00,#01 -> L02
  ce1b:  52 01 01 00             GET_PROP_ADDR   L00,#01 -> -(SP)
  ce1f:  2d ff 00                STORE           Gef,(SP)+
@@ -2468,42 +2468,42 @@ Routine ce10, 5 locals
  ce36:  63 05 04 80 11          JG              L04,L03 [TRUE] ce4a
  ce3b:  6f 03 05 00             LOADW           L02,L04 -> -(SP)
  ce3f:  61 02 00 00 03          JE              L01,(SP)+ [FALSE] ce45
- ce44:  b0                      RTRUE           
+ ce44:  b0                      RTRUE
  ce45:  95 05                   INC             L04
  ce47:  8c ff ee                JUMP            ce36
- ce4a:  b1                      RFALSE          
+ ce4a:  b1                      RFALSE
 
 Routine ce4c, 1 local
 
  ce4d:  88 33 bc 01             CALL_1S         cef0 -> L00
- ce51:  c1 83 01 88 2c 9d 5f 00 04 
+ ce51:  c1 83 01 88 2c 9d 5f 00 04
                                JE              L00,"it","them" [FALSE] ce5c
  ce5a:  9b 01                   RET             #01
  ce5c:  c1 8f 01 86 46 00 04    JE              L00,"him" [FALSE] ce65
  ce63:  9b 02                   RET             #02
  ce65:  c1 8f 01 85 f5 00 04    JE              L00,"her" [FALSE] ce6e
  ce6c:  9b 03                   RET             #03
- ce6e:  c1 80 01 8b b0 8d 3c 97 9b 00 04 
+ ce6e:  c1 80 01 8b b0 8d 3c 97 9b 00 04
                                JE              L00,"me","myself","self" [FALSE]
 ce7b
  ce79:  9b 04                   RET             #04
  ce7b:  41 01 00 00 03          JE              L00,#00 [FALSE] ce81
- ce80:  b1                      RFALSE          
+ ce80:  b1                      RFALSE
  ce81:  50 01 06 00             LOADB           L00,#06 -> -(SP)
  ce85:  49 00 80 00             AND             (SP)+,#80 -> -(SP)
  ce89:  41 00 00 00 03          JE              (SP)+,#00 [FALSE] ce8f
- ce8e:  b1                      RFALSE          
+ ce8e:  b1                      RFALSE
  ce8f:  ab 01                   RET             L00
 
 Routine ce94, 2 locals
 
  ce95:  88 33 bc 02             CALL_1S         cef0 -> L01
  ce99:  41 02 00 00 03          JE              L01,#00 [FALSE] ce9f
- ce9e:  b1                      RFALSE          
+ ce9e:  b1                      RFALSE
  ce9f:  50 02 06 01             LOADB           L01,#06 -> L00
  cea3:  49 01 08 00             AND             L00,#08 -> -(SP)
  cea7:  41 00 00 00 03          JE              (SP)+,#00 [FALSE] cead
- ceac:  b1                      RFALSE          
+ ceac:  b1                      RFALSE
  cead:  50 02 08 00             LOADB           L01,#08 -> -(SP)
  ceb1:  ab 00                   RET             (SP)+
 
@@ -2526,7 +2526,7 @@ Routine cef0, 3 locals
  cef1:  d0 1f 5e 4e 01 00       LOADB           #5e4e,#01 -> -(SP)
  cef7:  63 42 00 00 05          JG              G32,(SP)+ [FALSE] ceff
  cefc:  95 42                   INC             G32
- cefe:  b1                      RFALSE          
+ cefe:  b1                      RFALSE
  ceff:  56 42 02 00             MUL             G32,#02 -> -(SP)
  cf03:  55 00 01 01             SUB             (SP)+,#01 -> L00
  cf07:  95 42                   INC             G32
@@ -2648,13 +2648,13 @@ Routine d090, 1 local
  d0ac:  2d 5e 01                STORE           G4e,L00
  d0af:  8c 00 05                JUMP            d0b5
  d0b2:  2d 5c 01                STORE           G4c,L00
- d0b5:  b0                      RTRUE           
+ d0b5:  b0                      RTRUE
 
 Routine d0b8, 1 local
 
  d0b9:  4a 01 07 80 03          TEST_ATTR       L00,#07 [TRUE] d0bf
- d0be:  b0                      RTRUE           
- d0bf:  b1                      RFALSE          
+ d0be:  b0                      RTRUE
+ d0bf:  b1                      RFALSE
 
 Routine d0c0, 4 locals
 
@@ -2665,7 +2665,7 @@ Routine d0c0, 4 locals
  d0d1:  e2 ab 01 03 00          STOREB          L00,L02,(SP)+
  d0d6:  95 03                   INC             L02
  d0d8:  8c ff ef                JUMP            d0c8
- d0db:  b0                      RTRUE           
+ d0db:  b0                      RTRUE
 
 Routine d0dc, 4 locals
 
@@ -2710,7 +2710,7 @@ Routine d148, 4 locals
  d165:  ab 00                   RET             (SP)+
  d167:  71 01 02 00             GET_PROP        L00,L01 -> -(SP)
  d16b:  c1 8f 00 ff ff 00 03    JE              (SP)+,#ffff [FALSE] d173
- d172:  b1                      RFALSE          
+ d172:  b1                      RFALSE
  d173:  71 01 02 00             GET_PROP        L00,L01 -> -(SP)
  d177:  d9 2f 34 45 00 04       CALL_2S         d114 ((SP)+) -> L03
  d17d:  c1 97 04 00 01 00 29    JE              L03,#00,#01 [FALSE] d1ab
@@ -2720,8 +2720,8 @@ prop value! **"
  d1b0:  71 01 02 00             GET_PROP        L00,L01 -> -(SP)
  d1b4:  ad 00                   PRINT_PADDR     (SP)+
  d1b6:  41 03 00 00 03          JE              L02,#00 [FALSE] d1bc
- d1bb:  bb                      NEW_LINE        
- d1bc:  b0                      RTRUE           
+ d1bb:  bb                      NEW_LINE
+ d1bc:  b0                      RTRUE
  d1bd:  e0 2b 34 7a 01 02 00    CALL_VS         d1e8 (L00,L01) -> -(SP)
  d1c4:  ab 00                   RET             (SP)+
 
@@ -2742,7 +2742,7 @@ Routine d1e8, 8 locals
  d1f3:  2d 01 1b                STORE           L00,G0b
  d1f6:  71 01 02 00             GET_PROP        L00,L01 -> -(SP)
  d1fa:  c1 87 00 ff ff 00 00 03 JE              (SP)+,#ffff,#00 [FALSE] d203
- d202:  b1                      RFALSE          
+ d202:  b1                      RFALSE
  d203:  72 01 02 04             GET_PROP_ADDR   L00,L01 -> L03
  d207:  72 01 02 00             GET_PROP_ADDR   L00,L01 -> -(SP)
  d20b:  2d ff 00                STORE           Gef,(SP)+
@@ -2763,7 +2763,7 @@ Routine d1e8, 8 locals
  d23e:  c1 8f 00 ff ff 00 09    JE              (SP)+,#ffff [FALSE] d24c
  d245:  2d 2f 07                STORE           G1f,L06
  d248:  2d 3a 08                STORE           G2a,L07
- d24b:  b1                      RFALSE          
+ d24b:  b1                      RFALSE
  d24c:  6f 04 03 00             LOADW           L03,L02 -> -(SP)
  d250:  d9 2f 34 45 00 06       CALL_2S         d114 ((SP)+) -> L05
  d256:  41 06 02 00 1a          JE              L05,#02 [FALSE] d273
@@ -2777,7 +2777,7 @@ Routine d1e8, 8 locals
  d273:  41 06 03 00 0c          JE              L05,#03 [FALSE] d282
  d278:  6f 04 03 00             LOADW           L03,L02 -> -(SP)
  d27c:  ad 00                   PRINT_PADDR     (SP)+
- d27e:  bb                      NEW_LINE        
+ d27e:  bb                      NEW_LINE
  d27f:  8c 00 2b                JUMP            d2ab
  d282:  b2 ...                  PRINT           "** Entry in property list not
 routine or string **
@@ -2786,7 +2786,7 @@ routine or string **
  d2ad:  8c ff 83                JUMP            d231
  d2b0:  2d 2f 07                STORE           G1f,L06
  d2b3:  2d 3a 08                STORE           G2a,L07
- d2b6:  b1                      RFALSE          
+ d2b6:  b1                      RFALSE
 
 Routine d2b8, 0 locals
 
@@ -2796,7 +2796,7 @@ Routine d2b8, 0 locals
  d2c6:  8c 00 0a                JUMP            d2d1
  d2c9:  57 14 3c 12             DIV             G04,#3c -> G02
  d2cd:  58 14 3c 13             MOD             G04,#3c -> G03
- d2d1:  b0                      RTRUE           
+ d2d1:  b0                      RTRUE
 
 Routine d2d4, 2 locals
 
@@ -2805,7 +2805,7 @@ Routine d2d4, 2 locals
  d2db:  0d 16 00                STORE           G06,#00
  d2de:  42 02 00 00 06          JL              L01,#00 [FALSE] d2e7
  d2e3:  35 00 02 16             SUB             #00,L01 -> G06
- d2e7:  b0                      RTRUE           
+ d2e7:  b0                      RTRUE
 
 Routine d2e8, 1 local
 
@@ -2824,7 +2824,7 @@ Routine d2e8, 1 local
  d32a:  b2 ...                  PRINT           "s"
  d32d:  b2 ...                  PRINT           ".]
 "
- d334:  b0                      RTRUE           
+ d334:  b0                      RTRUE
 
 Routine d338, 4 locals
 
@@ -3004,25 +3004,25 @@ happened, your list of commands has been cut short.)
  d64b:  8f b5 55                CALL_1N         2d554
  d64e:  e4 0f 5d d5 5e 4e ff    READ            #5dd5,#5e4e -> Gef
  d655:  cf 1f 5e 4e 01 01       LOADW           #5e4e,#01 -> L00
- d65b:  c1 83 01 93 cf 93 87 00 03 
+ d65b:  c1 83 01 93 cf 93 87 00 03
                                JE              L00,"quit","q" [FALSE] d665
- d664:  ba                      QUIT            
+ d664:  ba                      QUIT
  d665:  c1 8f 01 94 95 00 03    JE              L00,"restart" [FALSE] d66d
- d66c:  b7                      RESTART         
+ d66c:  b7                      RESTART
  d66d:  c1 8f 01 94 9e 00 08    JE              L00,"restore" [FALSE] d67a
  d674:  8f ab ee                CALL_1N         2afb8
  d677:  8c ff be                JUMP            d636
- d67a:  c1 83 01 82 dd 82 d4 00 0e 
+ d67a:  c1 83 01 82 dd 82 d4 00 0e
                                JE              L00,"fullscore","full" [FALSE]
 d68f
  d683:  01 00 00 00 09          JE              #00,#00 [FALSE] d68f
- d688:  bb                      NEW_LINE        
+ d688:  bb                      NEW_LINE
  d689:  8f a9 d9                CALL_1N         2a764
  d68c:  8c ff a9                JUMP            d636
  d68f:  41 1d 02 00 15          JE              G0d,#02 [FALSE] d6a7
  d694:  c1 8f 01 74 8e 00 0e    JE              L00,"amusing" [FALSE] d6a7
  d69b:  01 00 00 00 09          JE              #00,#00 [FALSE] d6a7
- d6a0:  bb                      NEW_LINE        
+ d6a0:  bb                      NEW_LINE
  d6a1:  8f ab 0c                CALL_1N         2ac30
  d6a4:  8c ff 91                JUMP            d636
  d6a7:  c1 8f 01 9f 84 00 2c    JE              L00,"undo" [FALSE] d6d8
@@ -3045,7 +3045,7 @@ Routine d6e4, 0 locals
  d6ee:  41 00 00 00 0c          JE              (SP)+,#00 [FALSE] d6fd
  d6f3:  cf 2f 70 dd 2a 00       LOADW           #70dd,G1a -> -(SP)
  d6f9:  e0 bf 00 ff             CALL_VS         (SP)+ -> Gef
- d6fd:  b0                      RTRUE           
+ d6fd:  b0                      RTRUE
 
 Routine d700, 7 locals
 
@@ -3097,31 +3097,31 @@ Routine d754, 6 locals
  d790:  2d 74 04                STORE           G64,L03
  d793:  2d 28 05                STORE           G18,L04
  d796:  2d 29 06                STORE           G19,L05
- d799:  b0                      RTRUE           
+ d799:  b0                      RTRUE
 
 Routine d79c, 0 locals
 
  d79d:  88 a8 99 00             CALL_1S         2a264 -> -(SP)
  d7a1:  41 00 00 80 03          JE              (SP)+,#00 [TRUE] d7a7
- d7a6:  b0                      RTRUE           
+ d7a6:  b0                      RTRUE
  d7a7:  e0 27 34 7a 19 10 00    CALL_VS         d1e8 (G09,#10) -> -(SP)
  d7ae:  41 00 00 80 03          JE              (SP)+,#00 [TRUE] d7b4
- d7b3:  b0                      RTRUE           
+ d7b3:  b0                      RTRUE
  d7b4:  41 11 00 80 0f          JE              G01,#00 [TRUE] d7c6
  d7b9:  e0 27 34 7a 11 02 00    CALL_VS         d1e8 (G01,#02) -> -(SP)
  d7c0:  41 00 00 80 03          JE              (SP)+,#00 [TRUE] d7c6
- d7c5:  b0                      RTRUE           
+ d7c5:  b0                      RTRUE
  d7c6:  0d 74 03                STORE           G64,#03
  d7c9:  0d 58 00                STORE           G48,#00
  d7cc:  f9 29 32 35 11 19 00    CALL_VN         c8d4 (G01,G09,#00)
  d7d3:  0d 74 00                STORE           G64,#00
  d7d6:  41 58 00 80 03          JE              G48,#00 [TRUE] d7dc
- d7db:  b0                      RTRUE           
+ d7db:  b0                      RTRUE
  d7dc:  43 2b 01 00 0f          JG              G1b,#01 [FALSE] d7ee
  d7e1:  e0 27 34 7a 2b 02 00    CALL_VS         d1e8 (G1b,#02) -> -(SP)
  d7e8:  41 00 00 80 03          JE              (SP)+,#00 [TRUE] d7ee
- d7ed:  b0                      RTRUE           
- d7ee:  b1                      RFALSE          
+ d7ed:  b0                      RTRUE
+ d7ee:  b1                      RFALSE
 
 Routine d7f0, 0 locals
 
@@ -3130,15 +3130,15 @@ Routine d7f0, 0 locals
  d7f7:  f9 29 32 35 11 19 00    CALL_VN         c8d4 (G01,G09,#00)
  d7fe:  0d 74 00                STORE           G64,#00
  d801:  41 58 00 80 03          JE              G48,#00 [TRUE] d807
- d806:  b0                      RTRUE           
+ d806:  b0                      RTRUE
  d807:  41 11 00 80 0f          JE              G01,#00 [TRUE] d819
  d80c:  e0 27 34 7a 11 03 00    CALL_VS         d1e8 (G01,#03) -> -(SP)
  d813:  41 00 00 80 03          JE              (SP)+,#00 [TRUE] d819
- d818:  b0                      RTRUE           
+ d818:  b0                      RTRUE
  d819:  43 2b 01 00 0f          JG              G1b,#01 [FALSE] d82b
  d81e:  e0 27 34 7a 2b 03 00    CALL_VS         d1e8 (G1b,#03) -> -(SP)
  d825:  41 00 00 80 03          JE              (SP)+,#00 [TRUE] d82b
- d82a:  b0                      RTRUE           
+ d82a:  b0                      RTRUE
  d82b:  88 b0 f7 00             CALL_1S         2c3dc -> -(SP)
  d82f:  ab 00                   RET             (SP)+
 
@@ -3165,14 +3165,14 @@ Routine d834, 7 locals
  d878:  2d 2c 05                STORE           G1c,L04
  d87b:  2d 31 05                STORE           G21,L04
  d87e:  2d 2a 06                STORE           G1a,L05
- d881:  b1                      RFALSE          
+ d881:  b1                      RFALSE
  d882:  2d 2f 07                STORE           G1f,L06
  d885:  2d 2b 04                STORE           G1b,L03
  d888:  2d 30 04                STORE           G20,L03
  d88b:  2d 2c 05                STORE           G1c,L04
  d88e:  2d 31 05                STORE           G21,L04
  d891:  2d 2a 06                STORE           G1a,L05
- d894:  b0                      RTRUE           
+ d894:  b0                      RTRUE
 
 Routine d898, 2 locals
 
@@ -3207,17 +3207,17 @@ ENTER.
  d917:  8f b5 55                CALL_1N         2d554
  d91a:  e4 0f 5d d5 5e 4e ff    READ            #5dd5,#5e4e -> Gef
  d921:  cf 1f 5e 4e 01 06       LOADW           #5e4e,#01 -> L05
- d927:  c1 83 06 93 cf 93 87 80 0d 
+ d927:  c1 83 06 93 cf 93 87 80 0d
                                JE              L05,"quit","q" [TRUE] d93b
  d930:  d0 1f 5e 4e 01 00       LOADB           #5e4e,#01 -> -(SP)
  d936:  41 00 00 00 16          JE              (SP)+,#00 [FALSE] d94f
  d93b:  96 7e                   DEC             G6e
  d93d:  43 7e 00 00 03          JG              G6e,#00 [FALSE] d943
- d942:  b1                      RFALSE          
+ d942:  b1                      RFALSE
  d943:  41 1d 00 00 08          JE              G0d,#00 [FALSE] d94e
  d948:  da 1f 36 0d 29          CALL_2N         d834 (#29)
- d94d:  b0                      RTRUE           
- d94e:  b1                      RFALSE          
+ d94d:  b0                      RTRUE
+ d94e:  b1                      RFALSE
  d94f:  d9 1f 33 e0 01 06       CALL_2S         cf80 (#01) -> L05
  d955:  42 06 01 80 07          JL              L05,#01 [TRUE] d95f
  d95a:  63 06 04 00 05          JG              L05,L03 [FALSE] d962
@@ -3227,14 +3227,14 @@ ENTER.
  d969:  41 07 02 00 05          JE              L06,#02 [FALSE] d971
  d96e:  8c ff 3c                JUMP            d8ab
  d971:  41 07 03 00 03          JE              L06,#03 [FALSE] d977
- d976:  b1                      RFALSE          
+ d976:  b1                      RFALSE
  d977:  8c ff 63                JUMP            d8db
 
 Routine d97c, 11 locals
 
  d97d:  41 7d 00 00 0a          JE              G6d,#00 [FALSE] d98a
  d982:  f9 2a 36 2a 01 02 03    CALL_VN         d8a8 (L00,L01,L02)
- d989:  b1                      RFALSE          
+ d989:  b1                      RFALSE
  d98a:  95 7e                   INC             G6e
  d98c:  0d 81 00                STORE           G71,#00
  d98f:  e0 bf 02 04             CALL_VS         L01 -> L03
@@ -3321,9 +3321,9 @@ Routine d97c, 11 locals
  db0e:  0f 00 08 00             LOADW           #00,#08 -> -(SP)
  db12:  c9 2f ff fd 00 00       AND             #fffd,(SP)+ -> -(SP)
  db18:  e1 5b 00 08 00          STOREW          #00,#08,(SP)+
- db1d:  bb                      NEW_LINE        
- db1e:  bb                      NEW_LINE        
- db1f:  bb                      NEW_LINE        
+ db1d:  bb                      NEW_LINE
+ db1e:  bb                      NEW_LINE
+ db1f:  bb                      NEW_LINE
  db20:  55 07 06 81             SUB             L06,#06 -> G71
  db24:  e0 bf 02 ff             CALL_VS         L01 -> Gef
  db28:  ed 3f ff ff             ERASE_WINDOW    #ffff
@@ -3345,7 +3345,7 @@ Routine d97c, 11 locals
  db65:  ad 80                   PRINT_PADDR     G70
  db67:  f1 7f 00                SET_TEXT_STYLE  ROMAN
  db6a:  eb 7f 00                SET_WINDOW      #00
- db6d:  bb                      NEW_LINE        
+ db6d:  bb                      NEW_LINE
  db6e:  e0 bf 03 08             CALL_VS         L02 -> L07
  db72:  41 08 02 00 05          JE              L07,#02 [FALSE] db7a
  db77:  8c fe 24                JUMP            d99c
@@ -3359,20 +3359,20 @@ Routine d97c, 11 locals
  dba6:  8c ff 00                JUMP            daa7
  dba9:  96 7e                   DEC             G6e
  dbab:  43 7e 00 00 03          JG              G6e,#00 [FALSE] dbb1
- dbb0:  b1                      RFALSE          
+ dbb0:  b1                      RFALSE
  dbb1:  0f 00 08 00             LOADW           #00,#08 -> -(SP)
  dbb5:  c9 2f ff fd 00 00       AND             #fffd,(SP)+ -> -(SP)
  dbbb:  e1 5b 00 08 00          STOREW          #00,#08,(SP)+
  dbc0:  ef 5f 01 01             SET_CURSOR      #01,#01
  dbc4:  ed 3f ff ff             ERASE_WINDOW    #ffff
  dbc8:  eb 7f 00                SET_WINDOW      #00
- dbcb:  bb                      NEW_LINE        
- dbcc:  bb                      NEW_LINE        
- dbcd:  bb                      NEW_LINE        
+ dbcb:  bb                      NEW_LINE
+ dbcc:  bb                      NEW_LINE
+ dbcd:  bb                      NEW_LINE
  dbce:  41 1d 00 00 08          JE              G0d,#00 [FALSE] dbd9
  dbd3:  da 1f 36 0d 29          CALL_2N         d834 (#29)
- dbd8:  b0                      RTRUE           
- dbd9:  b0                      RTRUE           
+ dbd8:  b0                      RTRUE
+ dbd9:  b0                      RTRUE
 
 Routine dbdc, 0 locals
 
@@ -3401,7 +3401,7 @@ Routine dc68, 3 locals
  dc7c:  d0 2f 5d 95 03 00       LOADB           #5d95,L02 -> -(SP)
  dc82:  41 00 02 00 07          JE              (SP)+,#02 [FALSE] dc8c
  dc87:  da 2f 37 0f 01          CALL_2N         dc3c (L00)
- dc8c:  b1                      RFALSE          
+ dc8c:  b1                      RFALSE
  dc8d:  95 03                   INC             L02
  dc8f:  8c ff dc                JUMP            dc6c
  dc92:  0d 03 00                STORE           L02,#00
@@ -3423,7 +3423,7 @@ Routine dc68, 3 locals
  dccf:  e1 2b 5d 55 03 01       STOREW          #5d55,L02,L00
  dcd5:  e2 27 5d 95 03 01       STOREB          #5d95,L02,#01
  dcdb:  e3 9b 01 17 02          PUT_PROP        L00,#17,L01
- dce0:  b0                      RTRUE           
+ dce0:  b0                      RTRUE
 
 Routine dce4, 2 locals
 
@@ -3434,13 +3434,13 @@ Routine dce4, 2 locals
  dcf8:  8c 00 08                JUMP            dd01
  dcfb:  95 02                   INC             L01
  dcfd:  8c ff ea                JUMP            dce8
- dd00:  b1                      RFALSE          
+ dd00:  b1                      RFALSE
  dd01:  52 01 17 00             GET_PROP_ADDR   L00,#17 -> -(SP)
  dd05:  41 00 00 00 07          JE              (SP)+,#00 [FALSE] dd0f
  dd0a:  da 2f 37 04 01          CALL_2N         dc10 (L00)
  dd0f:  e1 27 5d 55 02 00       STOREW          #5d55,L01,#00
  dd15:  e3 97 01 17 00          PUT_PROP        L00,#17,#00
- dd1a:  b0                      RTRUE           
+ dd1a:  b0                      RTRUE
 
 Routine dd1c, 2 locals
 
@@ -3451,7 +3451,7 @@ Routine dd1c, 2 locals
  dd30:  d0 2f 5d 95 02 00       LOADB           #5d95,L01 -> -(SP)
  dd36:  41 00 01 00 07          JE              (SP)+,#01 [FALSE] dd40
  dd3b:  da 2f 37 0f 01          CALL_2N         dc3c (L00)
- dd40:  b1                      RFALSE          
+ dd40:  b1                      RFALSE
  dd41:  95 02                   INC             L01
  dd43:  8c ff dc                JUMP            dd20
  dd46:  0d 02 00                STORE           L01,#00
@@ -3469,7 +3469,7 @@ Routine dd1c, 2 locals
  dd72:  8f 36 f7                CALL_1N         dbdc
  dd75:  e1 2b 5d 55 02 01       STOREW          #5d55,L01,L00
  dd7b:  e2 27 5d 95 02 02       STOREB          #5d95,L01,#02
- dd81:  b0                      RTRUE           
+ dd81:  b0                      RTRUE
 
 Routine dd84, 2 locals
 
@@ -3480,9 +3480,9 @@ Routine dd84, 2 locals
  dd98:  8c 00 08                JUMP            dda1
  dd9b:  95 02                   INC             L01
  dd9d:  8c ff ea                JUMP            dd88
- dda0:  b1                      RFALSE          
+ dda0:  b1                      RFALSE
  dda1:  e1 27 5d 55 02 00       STOREW          #5d55,L01,#00
- dda7:  b0                      RTRUE           
+ dda7:  b0                      RTRUE
 
 Routine dda8, 2 locals
 
@@ -3534,7 +3534,7 @@ Routine dda8, 2 locals
  de6a:  54 22 04 22             ADD             G12,#04 -> G12
  de6e:  a1 01 01 c2             GET_SIBLING     L00 -> L00 [TRUE] de72
  de72:  8c ff e1                JUMP            de54
- de75:  b0                      RTRUE           
+ de75:  b0                      RTRUE
 
 Routine de78, 2 locals
 
@@ -3557,19 +3557,19 @@ Routine de78, 2 locals
  debe:  41 02 00 00 0a          JE              L01,#00 [FALSE] decb
  dec3:  41 1a 00 00 05          JE              G0a,#00 [FALSE] decb
  dec8:  0d 11 0e                STORE           G01,#0e
- decb:  b0                      RTRUE           
+ decb:  b0                      RTRUE
 
 Routine decc, 2 locals
 
  decd:  41 01 00 00 03          JE              L00,#00 [FALSE] ded3
- ded2:  b1                      RFALSE          
+ ded2:  b1                      RFALSE
  ded3:  4a 01 09 00 03          TEST_ATTR       L00,#09 [FALSE] ded9
- ded8:  b0                      RTRUE           
+ ded8:  b0                      RTRUE
  ded9:  a2 01 02 c2             GET_CHILD       L00 -> L01 [TRUE] dedd
  dedd:  41 02 00 80 15          JE              L01,#00 [TRUE] def5
  dee2:  d9 2f 37 c5 02 00       CALL_2S         df14 (L01) -> -(SP)
  dee8:  41 00 01 00 03          JE              (SP)+,#01 [FALSE] deee
- deed:  b0                      RTRUE           
+ deed:  b0                      RTRUE
  deee:  a1 02 02 c2             GET_SIBLING     L01 -> L01 [TRUE] def2
  def2:  8c ff ea                JUMP            dedd
  def5:  4a 01 06 80 0d          TEST_ATTR       L00,#06 [TRUE] df05
@@ -3578,14 +3578,14 @@ Routine decc, 2 locals
  df05:  a3 01 00                GET_PARENT      L00 -> -(SP)
  df08:  d9 2f 37 b3 00 00       CALL_2S         decc ((SP)+) -> -(SP)
  df0e:  ab 00                   RET             (SP)+
- df10:  b1                      RFALSE          
+ df10:  b1                      RFALSE
 
 Routine df14, 3 locals
 
  df15:  41 01 00 00 03          JE              L00,#00 [FALSE] df1b
- df1a:  b1                      RFALSE          
+ df1a:  b1                      RFALSE
  df1b:  4a 01 09 00 03          TEST_ATTR       L00,#09 [FALSE] df21
- df20:  b0                      RTRUE           
+ df20:  b0                      RTRUE
  df21:  4a 01 06 80 0d          TEST_ATTR       L00,#06 [TRUE] df31
  df26:  d9 2f 32 4c 01 00       CALL_2S         c930 (L00) -> -(SP)
  df2c:  41 00 01 00 1e          JE              (SP)+,#01 [FALSE] df4d
@@ -3593,7 +3593,7 @@ Routine df14, 3 locals
  df35:  41 01 00 80 15          JE              L00,#00 [TRUE] df4d
  df3a:  d9 2f 37 c5 01 00       CALL_2S         df14 (L00) -> -(SP)
  df40:  41 00 01 00 03          JE              (SP)+,#01 [FALSE] df46
- df45:  b0                      RTRUE           
+ df45:  b0                      RTRUE
  df46:  a1 01 01 c2             GET_SIBLING     L00 -> L00 [TRUE] df4a
  df4a:  8c ff ea                JUMP            df35
  df4d:  52 01 0a 03             GET_PROP_ADDR   L00,#0a -> L02
@@ -3607,7 +3607,7 @@ Routine df14, 3 locals
  df6d:  f9 27 34 7a 01 0a       CALL_VN         d1e8 (L00,#0a)
  df73:  0d 78 00                STORE           G68,#00
  df76:  41 79 01 00 03          JE              G69,#01 [FALSE] df7c
- df7b:  b0                      RTRUE           
+ df7b:  b0                      RTRUE
  df7c:  8c 00 33                JUMP            dfb0
  df7f:  0d 02 00                STORE           L01,#00
  df82:  52 01 0a 00             GET_PROP_ADDR   L00,#0a -> -(SP)
@@ -3620,10 +3620,10 @@ Routine df14, 3 locals
  df9b:  6f 03 02 00             LOADW           L02,L01 -> -(SP)
  df9f:  d9 2f 37 c5 00 00       CALL_2S         df14 ((SP)+) -> -(SP)
  dfa5:  41 00 01 00 03          JE              (SP)+,#01 [FALSE] dfab
- dfaa:  b0                      RTRUE           
+ dfaa:  b0                      RTRUE
  dfab:  95 02                   INC             L01
  dfad:  8c ff d4                JUMP            df82
- dfb0:  b1                      RFALSE          
+ dfb0:  b1                      RFALSE
 
 Routine dfb4, 1 local
 
@@ -3632,7 +3632,7 @@ Routine dfb4, 1 local
  dfc1:  8c 00 0c                JUMP            dfce
  dfc4:  b2 ...                  PRINT           "means "
  dfc9:  da 2f 38 4e 01          CALL_2N         e138 (L00)
- dfce:  b0                      RTRUE           
+ dfce:  b0                      RTRUE
 
 Routine dfd0, 0 locals
     Action routine for:
@@ -3695,14 +3695,14 @@ Routine e028, 3 locals
  e0d3:  41 1a 00 00 05          JE              G0a,#00 [FALSE] e0db
  e0d8:  0d 11 0e                STORE           G01,#0e
  e0db:  2d 1c 02                STORE           G0c,L01
- e0de:  b0                      RTRUE           
+ e0de:  b0                      RTRUE
 
 Routine e0e0, 2 locals
 
  e0e1:  55 01 01 00             SUB             L00,#01 -> -(SP)
  e0e5:  0f 00 05 00             LOADW           #00,#05 -> -(SP)
  e0e9:  e1 ab 00 00 02          STOREW          (SP)+,(SP)+,L01
- e0ee:  b0                      RTRUE           
+ e0ee:  b0                      RTRUE
 
 Routine e0f0, 1 local
 
@@ -3720,41 +3720,41 @@ Routine e120, 1 local
  e126:  f9 25 34 52 01 14 01    CALL_VN         d148 (L00,#14,#01)
  e12d:  b2 ...                  PRINT           " "
  e130:  da 2f 38 57 01          CALL_2N         e15c (L00)
- e135:  b0                      RTRUE           
+ e135:  b0                      RTRUE
 
 Routine e138, 1 local
 
  e139:  4a 01 10 80 07          TEST_ATTR       L00,#10 [TRUE] e143
  e13e:  b2 ...                  PRINT           "the "
  e143:  da 2f 38 57 01          CALL_2N         e15c (L00)
- e148:  b0                      RTRUE           
+ e148:  b0                      RTRUE
 
 Routine e14c, 1 local
 
  e14d:  4a 01 10 80 05          TEST_ATTR       L00,#10 [TRUE] e155
  e152:  b2 ...                  PRINT           "The "
  e155:  da 2f 38 57 01          CALL_2N         e15c (L00)
- e15a:  b0                      RTRUE           
+ e15a:  b0                      RTRUE
 
 Routine e15c, 1 local
 
  e15d:  41 01 00 00 08          JE              L00,#00 [FALSE] e168
  e162:  b2 ...                  PRINT           "nothing"
- e167:  b0                      RTRUE           
+ e167:  b0                      RTRUE
  e168:  63 01 25 80 07          JG              L00,G15 [TRUE] e172
  e16d:  42 01 00 00 14          JL              L00,#00 [FALSE] e184
  e172:  b2 ...                  PRINT           "<no such object>"
- e183:  b0                      RTRUE           
+ e183:  b0                      RTRUE
  e184:  61 01 19 00 0a          JE              L00,G09 [FALSE] e191
  e189:  b2 ...                  PRINT           "yourself"
- e190:  b0                      RTRUE           
+ e190:  b0                      RTRUE
  e191:  52 01 1c 00             GET_PROP_ADDR   L00,#1c -> -(SP)
  e195:  41 00 00 80 10          JE              (SP)+,#00 [TRUE] e1a8
  e19a:  e0 25 34 52 01 1c 01 00 CALL_VS         d148 (L00,#1c,#01) -> -(SP)
  e1a2:  41 00 00 80 03          JE              (SP)+,#00 [TRUE] e1a8
- e1a7:  b0                      RTRUE           
+ e1a7:  b0                      RTRUE
  e1a8:  aa 01                   PRINT_OBJ       L00
- e1aa:  b0                      RTRUE           
+ e1aa:  b0                      RTRUE
 
 Routine e1ac, 1 local
 
@@ -3796,7 +3796,7 @@ Routine e1ac, 1 local
  e248:  b2 ...                  PRINT           "out"
  e24b:  8c 00 19                JUMP            e265
  e24e:  b3 ...                  PRINT_RET       "** No such direction **"
- e265:  b0                      RTRUE           
+ e265:  b0                      RTRUE
 
 Routine e268, 1 local
 
@@ -3819,7 +3819,7 @@ Routine e268, 1 local
  e2b7:  b2 ...                  PRINT           "1600"
  e2be:  b2 ...                  PRINT           " Library "
  e2c7:  8d b6 7e                PRINT_PADDR     S004
- e2ca:  bb                      NEW_LINE        
+ e2ca:  bb                      NEW_LINE
  e2cb:  43 26 00 00 27          JG              G16,#00 [FALSE] e2f5
  e2d0:  b2 ...                  PRINT           "Standard interpreter "
  e2dd:  d7 8f 26 01 00 00       DIV             G16,#0100 -> -(SP)
@@ -3829,7 +3829,7 @@ Routine e268, 1 local
  e2ef:  e6 bf 00                PRINT_NUM       (SP)+
  e2f2:  b2 ...                  PRINT           "
 "
- e2f5:  b0                      RTRUE           
+ e2f5:  b0                      RTRUE
 
 Routine e2f8, 0 locals
     Action routine for:
@@ -3847,7 +3847,7 @@ Routine e2f8, 0 locals
  e332:  8d b6 7c                PRINT_PADDR     S003
  e335:  b2 ...                  PRINT           "
 "
- e338:  b0                      RTRUE           
+ e338:  b0                      RTRUE
 
 Routine e33c, 0 locals
 
@@ -3855,7 +3855,7 @@ Routine e33c, 0 locals
  e342:  41 1d 00 00 08          JE              G0d,#00 [FALSE] e34d
  e347:  8f ab 3c                CALL_1N         2acf0
  e34a:  b2 ...                  PRINT           "  "
- e34d:  b1                      RFALSE          
+ e34d:  b1                      RFALSE
  e34e:  41 3a 18 00 44          JE              G2a,#18 [FALSE] e395
  e353:  da 1f 97 a4 00          CALL_2N         25e90 (#00)
  e358:  b2 ...                  PRINT           "You are "
@@ -3865,21 +3865,21 @@ light, and "
  e37d:  41 40 01 00 0d          JE              G30,#01 [FALSE] e38d
  e382:  b3 ...                  PRINT_RET       "carrying nothing."
  e38d:  b2 ...                  PRINT           "carrying"
- e394:  b0                      RTRUE           
+ e394:  b0                      RTRUE
  e395:  41 3a 1c 00 14          JE              G2a,#1c [FALSE] e3ac
  e39a:  41 40 04 00 0e          JE              G30,#04 [FALSE] e3ab
  e39f:  ca 8f 30 00 1c 00 07    TEST_ATTR       G20,#001c [FALSE] e3ab
  e3a6:  da 1f 97 a4 10          CALL_2N         25e90 (#10)
- e3ab:  b1                      RFALSE          
+ e3ab:  b1                      RFALSE
  e3ac:  41 3a 26 00 32          JE              G2a,#26 [FALSE] e3e1
  e3b1:  41 40 02 00 2c          JE              G30,#02 [FALSE] e3e0
  e3b6:  c1 97 8c 08 0a 00 25    JE              G7c,#08,#0a [FALSE] e3e0
  e3bd:  b3 ...                  PRINT_RET       "You drift in that direction,
 but without gaining any ground."
- e3e0:  b1                      RFALSE          
+ e3e0:  b1                      RFALSE
  e3e1:  41 3a 60 00 9a          JE              G2a,#60 [FALSE] e47e
  e3e6:  c6 2f 00 3a 11 80 03    JIN             "Austin",G01 [TRUE] e3ee
- e3ed:  b1                      RFALSE          
+ e3ed:  b1                      RFALSE
  e3ee:  41 8c 0b 00 15          JE              G7c,#0b [FALSE] e406
  e3f3:  b3 ...                  PRINT_RET       "Austin is quite unruffled."
  e406:  b2 ...                  PRINT           "For some reason, Austin is
@@ -3895,7 +3895,7 @@ projector" [FALSE] e478
  e459:  b3 ...                  PRINT_RET       "right up through the south
 wall and into Alexandria!"
  e478:  da 1f 48 7e 01          CALL_2N         121f8 (#01)
- e47d:  b1                      RFALSE          
+ e47d:  b1                      RFALSE
  e47e:  41 3a 57 00 3c          JE              G2a,#57 [FALSE] e4bd
  e483:  ca 1f 00 6f 08 00 35    TEST_ATTR       "antiquated wireless",#08
 [FALSE] e4bd
@@ -3906,7 +3906,7 @@ Jemima's Lair" [FALSE] e4bd
  e499:  c1 8f 11 00 70 00 1f    JE              G01,#0070 [FALSE] e4bd
  e4a0:  b3 ...                  PRINT_RET       "You feel your brain turning to
 rice pudding."
- e4bd:  b1                      RFALSE          
+ e4bd:  b1                      RFALSE
 
 Routine e4c0, 0 locals
 
@@ -3916,16 +3916,16 @@ Routine e4c0, 0 locals
 whose purpose is oblique. Or almost featureless: a little silver plaque is left
 blank at one end."
  e51e:  4a 2f 1d 00 03          TEST_ATTR       G1f,#1d [FALSE] e524
- e523:  b1                      RFALSE          
+ e523:  b1                      RFALSE
  e524:  b2 ...                  PRINT           "The silver plaque on this
 mahogany rod proclaims it as "
  e547:  da 2f 38 4e 2f          CALL_2N         e138 (G1f)
  e54c:  b2 ...                  PRINT           "."
  e54f:  4a 30 26 00 13          TEST_ATTR       G20,#26 [FALSE] e565
  e554:  b3 ...                  PRINT_RET       "  It is fully charged up."
- e565:  bb                      NEW_LINE        
- e566:  b0                      RTRUE           
- e567:  b1                      RFALSE          
+ e565:  bb                      NEW_LINE
+ e566:  b0                      RTRUE
+ e567:  b1                      RFALSE
 
 Routine e568, 2 locals
 
@@ -3946,25 +3946,25 @@ Routine e568, 2 locals
  e5a8:  8c 00 04                JUMP            e5ad
  e5ab:  ab 01                   RET             L00
  e5ad:  8c ff d2                JUMP            e580
- e5b0:  b1                      RFALSE          
+ e5b0:  b1                      RFALSE
 
 Routine e5b4, 0 locals
 
  e5b5:  4a 2f 22 00 14          TEST_ATTR       G1f,#22 [FALSE] e5cc
  e5ba:  b2 ...                  PRINT           "featureless mahogany rod"
- e5cb:  b0                      RTRUE           
+ e5cb:  b0                      RTRUE
  e5cc:  4a 86 1c 80 13          TEST_ATTR       G76,#1c [TRUE] e5e2
  e5d1:  4a 2f 1d 00 07          TEST_ATTR       G1f,#1d [FALSE] e5db
  e5d6:  b2 ...                  PRINT           "High "
  e5db:  b2 ...                  PRINT           "Rod of "
- e5e2:  b1                      RFALSE          
+ e5e2:  b1                      RFALSE
 
 Routine e5e4, 0 locals
 
  e5e5:  41 83 02 00 10          JE              G73,#02 [FALSE] e5f8
  e5ea:  4a 2f 26 00 0b          TEST_ATTR       G1f,#26 [FALSE] e5f8
  e5ef:  b2 ...                  PRINT           " (charged)"
- e5f8:  b1                      RFALSE          
+ e5f8:  b1                      RFALSE
 
 Routine e5fc, 0 locals
 
@@ -4000,7 +4000,7 @@ Routine e6a4, 1 local
  e6e8:  c9 8f 84 00 02 00       AND             G74,#0002 -> -(SP)
  e6ee:  41 00 00 80 08          JE              (SP)+,#00 [TRUE] e6f9
  e6f3:  d5 8f 84 00 02 84       SUB             G74,#0002 -> G74
- e6f9:  b1                      RFALSE          
+ e6f9:  b1                      RFALSE
 
 Routine e6fc, 0 locals
 
@@ -4019,7 +4019,7 @@ Routine e708, 1 local
  e726:  e3 93 01 14 b6 b1       PUT_PROP        L00,#14,S028
  e72c:  e3 97 01 0e 00          PUT_PROP        L00,#0e,#00
  e731:  e3 93 01 0c 39 a9       PUT_PROP        L00,#0c,#39a9
- e737:  b0                      RTRUE           
+ e737:  b0                      RTRUE
 
 Routine e738, 0 locals
 
@@ -4072,8 +4072,8 @@ charred gap is left to the south. You could probably squeeze through it."
 glass is very high, and amazingly it withstands the bolt of fire.
 "
  ea1f:  8f aa 21                CALL_1N         2a884
- ea22:  b1                      RFALSE          
- ea23:  c1 83 31 00 cd 00 ce 00 20 
+ ea22:  b1                      RFALSE
+ ea23:  c1 83 31 00 cd 00 ce 00 20
                                JE              G21,#00cd,#00ce [FALSE] ea4a
  ea2c:  0d 1d 01                STORE           G0d,#01
  ea2f:  b3 ...                  PRINT_RET       "(Perhaps predictably) the bomb
@@ -4119,7 +4119,7 @@ tight until it sits comfortably in the palm of your hand. You blink.
  ebe8:  2d 11 99                STORE           G01,G89
  ebeb:  6e 19 9a                INSERT_OBJ      G09,G8a
  ebee:  da 1f 36 0d 29          CALL_2N         d834 (#29)
- ebf3:  b0                      RTRUE           
+ ebf3:  b0                      RTRUE
  ebf4:  8f 6c ff                CALL_1N         1b3fc
  ebf7:  b2 ...                  PRINT           "You are engulfed in a cloud of
 spinning white lights, like insects. When the swarm clears, you find yourself
@@ -4140,7 +4140,7 @@ transported...
  ec78:  41 01 04 00 07          JE              L00,#04 [FALSE] ec82
  ec7d:  cd 4f 02 00 39          STORE           L01,#0039
  ec82:  da 2f 9d 20 02          CALL_2N         27480 (L01)
- ec87:  b0                      RTRUE           
+ ec87:  b0                      RTRUE
 
 Routine ec88, 0 locals
 
@@ -4261,7 +4261,7 @@ pulsates in your palm.
  f29c:  6e 19 9a                INSERT_OBJ      G09,G8a
  f29f:  2d 11 99                STORE           G01,G89
  f2a2:  da 1f 36 0d 29          CALL_2N         d834 (#29)
- f2a7:  b0                      RTRUE           
+ f2a7:  b0                      RTRUE
  f2a8:  61 31 19 00 76          JE              G21,G09 [FALSE] f321
  f2ad:  0d 1d 01                STORE           G0d,#01
  f2b0:  b3 ...                  PRINT_RET       "You feel a noble surge of
@@ -4330,7 +4330,7 @@ have composed yourself and can stand it, press ENTER. "
  f69f:  e2 17 5d d5 01 00       STOREB          #5dd5,#01,#00
  f6a5:  8f b5 55                CALL_1N         2d554
  f6a8:  e4 0f 5d d5 5e 4e ff    READ            #5dd5,#5e4e -> Gef
- f6af:  bb                      NEW_LINE        
+ f6af:  bb                      NEW_LINE
  f6b0:  b3 ...                  PRINT_RET       "Suddenly an enormous beanstalk
 sprouts out of the ground, exactly as per fairy tale, reaching up high into the
 sky!  You yawn convulsively."
@@ -4367,7 +4367,7 @@ then you find yourself...
 "
  f8cb:  4b 30 08                SET_ATTR        G20,#08
  f8ce:  8f 3e 35                CALL_1N         f8d4
- f8d1:  b0                      RTRUE           
+ f8d1:  b0                      RTRUE
 
 Routine f8d4, 2 locals
 
@@ -4382,7 +4382,7 @@ Routine f8d4, 2 locals
  f8f5:  8c ff eb                JUMP            f8e1
  f8f8:  ce 2f 01 49 19          INSERT_OBJ      "historical pamphlet",G09
  f8fd:  da 0f 9d 20 01 47       CALL_2N         27480 (#0147)
- f903:  b0                      RTRUE           
+ f903:  b0                      RTRUE
 
 Routine f904, 3 locals
 
@@ -4452,11 +4452,11 @@ from "
  faad:  b2 ...                  PRINT           " and whisks you away to...
 "
  fac2:  da 2f 9d 20 02          CALL_2N         27480 (L01)
- fac7:  b0                      RTRUE           
+ fac7:  b0                      RTRUE
  fac8:  c1 97 3a 46 44 00 19    JE              G2a,#46,#44 [FALSE] fae6
  facf:  b3 ...                  PRINT_RET       "There is, unsurprisingly, no
 reply."
- fae6:  b1                      RFALSE          
+ fae6:  b1                      RFALSE
 
 Routine fae8, 0 locals
 
@@ -4465,8 +4465,8 @@ Routine fae8, 0 locals
  faf2:  41 00 00 80 1b          JE              (SP)+,#00 [TRUE] fb10
  faf7:  b2 ...                  PRINT           "A beautifully realistic
 picture. "
- fb10:  b1                      RFALSE          
- fb11:  b1                      RFALSE          
+ fb10:  b1                      RFALSE
+ fb11:  b1                      RFALSE
 
 Routine fb14, 2 locals
 
@@ -4484,7 +4484,7 @@ Routine fb14, 2 locals
  fb47:  8c 00 04                JUMP            fb4c
  fb4a:  ab 01                   RET             L00
  fb4c:  8c ff d2                JUMP            fb1f
- fb4f:  b1                      RFALSE          
+ fb4f:  b1                      RFALSE
 
 Routine fb50, 0 locals
 
@@ -4499,12 +4499,12 @@ Routine fb50, 0 locals
  fb7d:  c9 8f 84 00 01 00       AND             G74,#0001 -> -(SP)
  fb83:  41 00 00 80 08          JE              (SP)+,#00 [TRUE] fb8e
  fb88:  d5 8f 84 00 01 84       SUB             G74,#0001 -> G74
- fb8e:  b1                      RFALSE          
+ fb8e:  b1                      RFALSE
 
 Routine fb90, 0 locals
 
  fb91:  88 33 bc 00             CALL_1S         cef0 -> -(SP)
- fb95:  c1 80 00 78 12 a0 41 9e 5b 00 09 
+ fb95:  c1 80 00 78 12 a0 41 9e 5b 00 09
                                JE              (SP)+,"books","volumes","tomes"
 [FALSE] fba7
  fba0:  cd 4f 57 01 05          STORE           G47,#0105
@@ -4521,11 +4521,11 @@ Routine fbac, 0 locals
  fbd2:  4a 30 1f 80 25          TEST_ATTR       G20,#1f [TRUE] fbfa
  fbd7:  b3 ...                  PRINT_RET       "Not surprisingly, it won't fit
 in the battery compartment."
- fbfa:  b1                      RFALSE          
+ fbfa:  b1                      RFALSE
  fbfb:  c1 97 3a 40 31 00 1d    JE              G2a,#40,#31 [FALSE] fc1d
  fc02:  b3 ...                  PRINT_RET       "There's no switch, just a
 battery compartment."
- fc1d:  b1                      RFALSE          
+ fc1d:  b1                      RFALSE
 
 Routine fc20, 2 locals
 
@@ -4556,7 +4556,7 @@ becomes hot enough to melt, falls from your grasp and perishes away to
 nothing."
  fd82:  c1 8f 01 00 4c 00 07    JE              L00,#004c [FALSE] fd8e
  fd89:  da 1f 9d bb 01          CALL_2N         276ec (#01)
- fd8e:  c1 83 01 00 21 00 4c 00 58 
+ fd8e:  c1 83 01 00 21 00 4c 00 58
                                JE              L00,#0021,#004c [FALSE] fded
  fd97:  51 01 17 02             GET_PROP        L00,#17 -> L01
  fd9b:  41 02 00 00 25          JE              L01,#00 [FALSE] fdc3
@@ -4567,15 +4567,15 @@ because nothing happens."
  fdcb:  b3 ...                  PRINT_RET       ", and it lights up brightly."
  fddc:  b3 ...                  PRINT_RET       ", and it lights up feebly."
  fded:  b3 ...                  PRINT_RET       "."
- fdf0:  b1                      RFALSE          
+ fdf0:  b1                      RFALSE
 
 Routine fdf4, 2 locals
 
  fdf5:  4a 2f 0d 80 03          TEST_ATTR       G1f,#0d [TRUE] fdfb
- fdfa:  b1                      RFALSE          
+ fdfa:  b1                      RFALSE
  fdfb:  a2 2f 01 c2             GET_CHILD       G1f -> L00 [TRUE] fdff
  fdff:  41 01 00 00 03          JE              L00,#00 [FALSE] fe05
- fe04:  b1                      RFALSE          
+ fe04:  b1                      RFALSE
  fe05:  51 01 17 00             GET_PROP        L00,#17 -> -(SP)
  fe09:  55 00 01 02             SUB             (SP)+,#01 -> L01
  fe0d:  42 02 c8 00 07          JL              L01,#c8 [FALSE] fe17
@@ -4590,32 +4590,32 @@ The torch finally dies out.
 "
  fe4b:  0c 20 09                CLEAR_ATTR      "electric torch",#09
  fe4e:  da 1f 97 a4 08          CALL_2N         25e90 (#08)
- fe53:  b1                      RFALSE          
+ fe53:  b1                      RFALSE
 
 Routine fe54, 0 locals
 
  fe55:  41 3a 48 00 08          JE              G2a,#48 [FALSE] fe60
  fe5a:  da 1f 9d bb 16          CALL_2N         276ec (#16)
- fe5f:  b1                      RFALSE          
- fe60:  b1                      RFALSE          
+ fe5f:  b1                      RFALSE
+ fe60:  b1                      RFALSE
 
 Routine fe64, 0 locals
 
  fe65:  41 3a 2c 00 37          JE              G2a,#2c [FALSE] fe9f
  fe6a:  ca 1f 00 27 02 80 03    TEST_ATTR       "antique jewellery box",#02
 [TRUE] fe72
- fe71:  b1                      RFALSE          
+ fe71:  b1                      RFALSE
  fe72:  cc 1f 00 27 02          CLEAR_ATTR      "antique jewellery box",#02
  fe77:  ce 1f 00 27 23          INSERT_OBJ      "antique jewellery box","Attic"
  fe7c:  b3 ...                  PRINT_RET       "You discover a lady's
 jewellery box under the trapdoor!"
- fe9f:  b1                      RFALSE          
+ fe9f:  b1                      RFALSE
 
 Routine fea0, 0 locals
 
  fea1:  41 3a 2e 00 06          JE              G2a,#2e [FALSE] feaa
  fea6:  4b 2f 09                SET_ATTR        G1f,#09
- fea9:  b1                      RFALSE          
+ fea9:  b1                      RFALSE
  feaa:  41 3a 30 00 74          JE              G2a,#30 [FALSE] ff21
  feaf:  4c 2f 09                CLEAR_ATTR      G1f,#09
  feb2:  ca 1f 00 27 02 00 3f    TEST_ATTR       "antique jewellery box",#02
@@ -4626,7 +4626,7 @@ Routine fea0, 0 locals
 surprised to see that something shiny was obscured by it."
  fef6:  b3 ...                  PRINT_RET       "You close the trapdoor once
 more. No more jewellery boxes though."
- ff21:  b1                      RFALSE          
+ ff21:  b1                      RFALSE
 
 Routine ff24, 0 locals
 
@@ -4643,19 +4643,19 @@ II)",#02
  ff95:  ce 2f 00 26 19          INSERT_OBJ      "History of the Meldrews (vol.
 II)",G09
  ff9a:  b3 ...                  PRINT_RET       "."
- ff9d:  b1                      RFALSE          
+ ff9d:  b1                      RFALSE
 
 Routine ffa0, 1 local
 
  ffa1:  41 3a 2d 0f 05          JE              G2a,#2d [FALSE] 10ea9
  ffa6:  2d 42 3b                STORE           G32,G2b
  ffa9:  88 33 bc 01             CALL_1S         cef0 -> L00
- ffad:  c1 80 01 8a d8 98 df 86 c4 00 06 
+ ffad:  c1 80 01 8a d8 98 df 86 c4 00 06
                                JE              L00,"mad","sir","honourabl"
 [FALSE] ffbc
  ffb8:  88 33 bc 01             CALL_1S         cef0 -> L00
  ffbc:  2d ff 01                STORE           Gef,L00
- ffbf:  c1 80 ff 8b b0 8d 3c 97 9b 00 2a 
+ ffbf:  c1 80 ff 8b b0 8d 3c 97 9b 00 2a
                                JE              Gef,"me","myself","self" [FALSE]
 fff2
  ffca:  da 1f 97 a4 30          CALL_2N         25e90 (#30)
@@ -4694,7 +4694,7 @@ that he refused to allow the family name to appear on them. A prominent local
 vestryman, his own writing was confined to a great many monographs on the
 problems of municipal drainage, but he died before his grand National Sewerage
 Plan was complete."
-103f4:  c1 83 ff 79 44 a1 73 00 b3 
+103f4:  c1 83 ff 79 44 a1 73 00 b3
                                JE              Gef,"capabilit","willard"
 [FALSE] 104ae
 103fd:  b3 ...                  PRINT_RET       ""Capability" Meldrew
@@ -4720,7 +4720,7 @@ noted painter and sculptress. Her relations with the family were broken off in
 the 20s when she married Anton and ran off to Paris to study art, but she has
 recently returned to the House, in search (as she puts it) of "the perfect
 blue, the blue of the sky, the blue of water". We wish her well."
-1070c:  c1 83 ff 75 0c 99 b7 00 cf 
+1070c:  c1 83 ff 75 0c 99 b7 00 cf
                                JE              Gef,"anton","smyslov" [FALSE]
 107e2
 10715:  b3 ...                  PRINT_RET       "Anton Smyslov shouldn't really
@@ -4784,8 +4784,8 @@ the madhouse."
 10e63:  b3 ...                  PRINT_RET       "Annoyingly there's no index
 (there was going to be a consolidated one in vol. I) and you can't find what
 you want."
-10ea8:  b1                      RFALSE          
-10ea9:  b1                      RFALSE          
+10ea8:  b1                      RFALSE
+10ea9:  b1                      RFALSE
 
 Routine 10eac, 0 locals
 
@@ -4814,7 +4814,7 @@ Routine 10fd4, 0 locals
 10fe1:  b3 ...                  PRINT_RET       "Racked with guilt over your
 bad language, you are unable to nod off."
 1100a:  c6 8f 19 00 2c 80 03    JIN             G09,"camp bed" [TRUE] 11012
-11011:  b1                      RFALSE          
+11011:  b1                      RFALSE
 11012:  c6 2f 00 3a 11 00 4b    JIN             "Austin",G01 [FALSE] 11062
 11019:  b3 ...                  PRINT_RET       "Austin leaps up onto the bed,
 jumps around for a bit, and then falls back onto the floor. You are unable to
@@ -4827,8 +4827,8 @@ all."
 but just as you think you are starting to wake up, you experience a sudden...
 "
 110c8:  8f 79 e9                CALL_1N         1e7a4
-110cb:  b0                      RTRUE           
-110cc:  b1                      RFALSE          
+110cb:  b0                      RTRUE
+110cc:  b1                      RFALSE
 
 Routine 110d0, 1 local
 
@@ -4865,7 +4865,7 @@ cloak."
 11222:  c1 8f 01 73 e3 00 19    JE              L00,"adamantin" [FALSE] 11240
 11229:  b3 ...                  PRINT_RET       "Hardest stone known to the
 ancients."
-11240:  c1 83 01 87 66 8e bf 00 0f 
+11240:  c1 83 01 87 66 8e bf 00 0f
                                JE              L00,"iliad","odyssey" [FALSE]
 11256
 11249:  b3 ...                  PRINT_RET       "Epic by Homer."
@@ -4883,7 +4883,7 @@ shepherds; player of the syrinx, or pipes."
 112ee:  c1 8f 01 92 28 00 19    JE              L00,"poseidon" [FALSE] 1130c
 112f5:  b3 ...                  PRINT_RET       "Greek god of the sea, and of
 horses."
-1130c:  c1 83 01 75 39 8a ab 00 1b 
+1130c:  c1 83 01 75 39 8a ab 00 1b
                                JE              L00,"apollo","loxias" [FALSE]
 1132e
 11315:  b3 ...                  PRINT_RET       "Greek god of words, music and
@@ -4914,8 +4914,8 @@ after whom the planet is named."
 11492:  c1 8f 01 7e 42 00 19    JE              L00,"dionysus" [FALSE] 114b0
 11499:  b3 ...                  PRINT_RET       "Greek god of wine, and
 revelry."
-114b0:  c1 80 01 82 e6 7c b6 80 5e 00 4f 
-                               JE             
+114b0:  c1 80 01 82 e6 7c b6 80 5e 00 4f
+                               JE
 L00,"furies","curses","eumenides" [FALSE] 11508
 114bb:  b3 ...                  PRINT_RET       "Eternally pursuing Greek
 goddesses, they enforced divine rules by punishing the families of miscreants
@@ -4923,7 +4923,7 @@ through all time."
 11508:  c1 8f 01 8f 07 00 2d    JE              L00,"omphalos" [FALSE] 1153a
 1150f:  b3 ...                  PRINT_RET       "Fabled to be the stone at the
 centre (literally "navel") of the world."
-1153a:  c1 83 01 8f 46 93 7e 00 49 
+1153a:  c1 83 01 8f 46 93 7e 00 49
                                JE              L00,"oracle","pythian" [FALSE]
 1158a
 11543:  b3 ...                  PRINT_RET       "Priestess of Apollo: her
@@ -4951,7 +4951,7 @@ monsters."
 116c3:  b3 ...                  PRINT_RET       "Earliest poet of the Greek
 tradition, legendarily blind: nothing is known about him, except that he
 (supposedly) wrote the "Iliad" and the "Odyssey"."
-11724:  c1 83 01 7f b3 80 3a 00 6d 
+11724:  c1 83 01 7f b3 80 3a 00 6d
                                JE              L00,"ekmek","eraina" [FALSE]
 11798
 1172d:  b3 ...                  PRINT_RET       "The Ekmek Special is a
@@ -4966,7 +4966,7 @@ poet, politician."
 11806:  c1 8f 01 75 b7 00 1f    JE              L00,"arthur" [FALSE] 1182a
 1180d:  b3 ...                  PRINT_RET       "Half-mythical High King of the
 Britons."
-1182a:  c1 83 01 8c 01 8c 0a 00 23 
+1182a:  c1 83 01 8c 01 8c 0a 00 23
                                JE              L00,"merlin","merlyn" [FALSE]
 11854
 11833:  b3 ...                  PRINT_RET       "Half-mythical wizard to the
@@ -4980,13 +4980,13 @@ known world in his twenties."
 118ac:  c1 8f 01 93 12 00 2f    JE              L00,"ptolemy" [FALSE] 118e0
 118b3:  b3 ...                  PRINT_RET       "General of Alexander the
 Great, governed and later inherited Egypt."
-118e0:  c1 83 01 8e b6 9f 60 00 11 
+118e0:  c1 83 01 8e b6 9f 60 00 11
                                JE              L00,"odysseus","ulysses" [FALSE]
 118f8
 118e9:  b3 ...                  PRINT_RET       "Wasn't he a sailor?"
 118f8:  b3 ...                  PRINT_RET       "Sorry, there's nothing on
 that."
-1190b:  b1                      RFALSE          
+1190b:  b1                      RFALSE
 
 Routine 1190c, 0 locals
 
@@ -5024,7 +5024,7 @@ It just misses the squirrel, who bolts away, startled.
 
 The sudden motion once more disturbs the flighty sparrows, who take to the
 skies. You feel rather deserted all of a sudden."
-11ab3:  c1 83 11 00 dd 00 fe 00 3d 
+11ab3:  c1 83 11 00 dd 00 fe 00 3d
                                JE              G01,#00dd,#00fe [FALSE] 11af7
 11abc:  b3 ...                  PRINT_RET       "
 The sacred falcon of Apollo wheels high in the sky over the cave mouth, but
@@ -5048,8 +5048,8 @@ darkness."
 distractable, the corn crake must be stone deaf. (You vaguely recall reading
 somewhere that corn crakes are the noisiest birds in Ireland, famous for
 keeping farm-hands awake at night.)"
-11c0f:  b0                      RTRUE           
-11c10:  b1                      RFALSE          
+11c0f:  b0                      RTRUE
+11c10:  b1                      RFALSE
 
 Routine 11c14, 0 locals
 
@@ -5062,7 +5062,7 @@ Champs-Elysees",G09
 on",G01
 11c2b:  b3 ...                  PRINT_RET       "You tear open the parcel to
 find a box of chocolates and a card."
-11c52:  b1                      RFALSE          
+11c52:  b1                      RFALSE
 
 Routine 11c54, 0 locals
 
@@ -5079,7 +5079,7 @@ No... wait. The eerie lamp-light is bringing out a message in invisible ink:
    Ticket 7.-
 
 The seven is crossed through in continental fashion."
-11ce7:  b1                      RFALSE          
+11ce7:  b1                      RFALSE
 
 Routine 11ce8, 0 locals
 
@@ -5088,7 +5088,7 @@ Routine 11ce8, 0 locals
 11cff:  8c 00 2d                JUMP            11d2d
 11d02:  b2 ...                  PRINT           "guaranteed-unbreakable
 medicine bottle with a child-proof lock"
-11d2d:  b0                      RTRUE           
+11d2d:  b0                      RTRUE
 
 Routine 11d30, 0 locals
 
@@ -5098,7 +5098,7 @@ in your attempt, but the glass resists all attacks. Whatever would it take to
 break the dratted thing?"
 11d87:  41 3a 2e 00 8f          JE              G2a,#2e [FALSE] 11e19
 11d8c:  4a 2f 0b 80 03          TEST_ATTR       G1f,#0b [TRUE] 11d92
-11d91:  b1                      RFALSE          
+11d91:  b1                      RFALSE
 11d92:  b3 ...                  PRINT_RET       "You try absolutely everything.
 Pushing the top down, turning it, pulling it, putting it on the floor and
 jumping up and down on it, everything. It is resolutely adult-proof. Whatever
@@ -5108,8 +5108,8 @@ would it take to break the dratted thing?"
 11e25:  c1 8f 30 00 38 80 21    JE              G20,#0038 [TRUE] 11e4b
 11e2c:  b3 ...                  PRINT_RET       "The neck is too narrow to fit
 anything but the pill."
-11e4b:  b1                      RFALSE          
-11e4c:  b1                      RFALSE          
+11e4b:  b1                      RFALSE
+11e4c:  b1                      RFALSE
 
 Routine 11e50, 0 locals
 
@@ -5118,13 +5118,13 @@ Routine 11e50, 0 locals
 11e59:  0d 9c 01                STORE           G8c,#01
 11e5c:  b3 ...                  PRINT_RET       "It tastes alarmingly of
 chocolate."
-11e75:  b1                      RFALSE          
+11e75:  b1                      RFALSE
 
 Routine 11e78, 0 locals
 
 11e79:  c6 2f 00 3a 2f 00 08    JIN             "Austin",G1f [FALSE] 11e86
 11e80:  da 0f 37 47 00 3a       CALL_2N         dd1c (#003a)
-11e86:  b1                      RFALSE          
+11e86:  b1                      RFALSE
 
 Routine 11e88, 0 locals
 
@@ -5175,15 +5175,15 @@ way to push Austin."
 way."
 11fd7:  8f a2 33                CALL_1N         288cc
 11fda:  4b 2f 0c                SET_ATTR        G1f,#0c
-11fdd:  b0                      RTRUE           
-11fde:  b1                      RFALSE          
+11fdd:  b0                      RTRUE
+11fde:  b1                      RFALSE
 
 Routine 11fe0, 0 locals
 
 11fe1:  41 3a 3e 00 1b          JE              G2a,#3e [FALSE] 11fff
 11fe6:  b3 ...                  PRINT_RET       "Austin reluctantly accompanies
 you."
-11fff:  b1                      RFALSE          
+11fff:  b1                      RFALSE
 
 Routine 12000, 0 locals
 
@@ -5214,18 +5214,18 @@ hungry."
 12135:  b2 ...                  PRINT           "Austin is unimpressed with "
 12148:  da 2f 38 4e 30          CALL_2N         e138 (G20)
 1214d:  b3 ...                  PRINT_RET       "."
-12150:  b1                      RFALSE          
+12150:  b1                      RFALSE
 
 Routine 12154, 1 local
 
 12155:  4a 2f 0c 00 06          TEST_ATTR       G1f,#0c [FALSE] 1215e
 1215a:  4c 2f 0c                CLEAR_ATTR      G1f,#0c
-1215d:  b1                      RFALSE          
+1215d:  b1                      RFALSE
 1215e:  c1 97 8c 01 0b 80 03    JE              G7c,#01,#0b [TRUE] 12166
-12165:  b1                      RFALSE          
+12165:  b1                      RFALSE
 12166:  41 8c 0b 00 86          JE              G7c,#0b [FALSE] 121ef
 1216b:  26 3a 11 80 03          JIN             "Austin",G01 [TRUE] 12171
-12170:  b1                      RFALSE          
+12170:  b1                      RFALSE
 12171:  b2 ...                  PRINT           "
 Austin "
 1217a:  e7 7f 06 01             RANDOM          #06 -> L00
@@ -5248,7 +5248,7 @@ Austin "
 121dd:  b3 ...                  PRINT_RET       " happily."
 121e4:  b3 ...                  PRINT_RET       " cheerfully."
 121ef:  da 1f 48 7e 00          CALL_2N         121f8 (#00)
-121f4:  b1                      RFALSE          
+121f4:  b1                      RFALSE
 
 Routine 121f8, 4 locals
 
@@ -5267,12 +5267,12 @@ startling him. He springs away, hissing."
 1226b:  b3 ...                  PRINT_RET       "
 Austin springs in from the potting room like a scalded cat, but hastily
 rearranges himself to his usual "cool slob" demeanour."
-122bc:  b1                      RFALSE          
+122bc:  b1                      RFALSE
 122bd:  e7 7f 0a 03             RANDOM          #0a -> L02
 122c1:  43 03 08 00 05          JG              L02,#08 [FALSE] 122c9
 122c6:  8c 01 49                JUMP            12410
 122c9:  61 02 11 80 03          JE              L01,G01 [TRUE] 122cf
-122ce:  b1                      RFALSE          
+122ce:  b1                      RFALSE
 122cf:  c6 2f 00 83 11 00 4d    JIN             "robot mouse",G01 [FALSE] 12321
 122d6:  b3 ...                  PRINT_RET       "
 Austin plays with the robot mouse, kicking it wildly across the floorboards. It
@@ -5299,14 +5299,14 @@ Austin looks ineffable again."
 123ed:  41 03 04 00 1f          JE              L02,#04 [FALSE] 1240f
 123f2:  b3 ...                  PRINT_RET       "
 Austin purrs and licks one of his paws."
-1240f:  b1                      RFALSE          
+1240f:  b1                      RFALSE
 12410:  41 02 29 00 2c          JE              L01,#29 [FALSE] 1243f
 12415:  0a 24 0e 80 27          TEST_ATTR       "hinged trapdoor",#0e [TRUE]
 1243f
 1241a:  41 11 23 00 21          JE              G01,#23 [FALSE] 1243e
 1241f:  b3 ...                  PRINT_RET       "
 There is a faint scratching noise at the trapdoor."
-1243e:  b1                      RFALSE          
+1243e:  b1                      RFALSE
 1243f:  41 02 29 00 2d          JE              L01,#29 [FALSE] 1246f
 12444:  0e 3a 23                INSERT_OBJ      "Austin","Attic"
 12447:  41 11 23 00 25          JE              G01,#23 [FALSE] 1246f
@@ -5357,7 +5357,7 @@ Austin, bored again, disappears through the trap door."
 12542:  c1 8f 11 00 40 00 21    JE              G01,#0040 [FALSE] 12568
 12549:  b3 ...                  PRINT_RET       "
 Austin seems fascinated by the beam of light."
-12568:  b1                      RFALSE          
+12568:  b1                      RFALSE
 12569:  e7 7f 03 03             RANDOM          #03 -> L02
 1256d:  41 03 01 00 05          JE              L02,#01 [FALSE] 12575
 12572:  0d 04 39                STORE           L03,#39
@@ -5374,7 +5374,7 @@ Austin seems fascinated by the beam of light."
 125a8:  c1 8f 11 00 47 00 1f    JE              G01,#0047 [FALSE] 125cc
 125af:  b3 ...                  PRINT_RET       "
 Austin stares curiously at the slideshow."
-125cc:  b1                      RFALSE          
+125cc:  b1                      RFALSE
 125cd:  cd 4f 04 00 40          STORE           L03,#0040
 125d2:  c1 8f 02 00 67 00 18    JE              L01,#0067 [FALSE] 125ef
 125d9:  e7 7f 02 03             RANDOM          #02 -> L02
@@ -5389,7 +5389,7 @@ Austin stares curiously at the slideshow."
 12604:  41 03 02 00 07          JE              L02,#02 [FALSE] 1260e
 12609:  cd 4f 04 00 67          STORE           L03,#0067
 1260e:  c1 8f 04 ff ff 00 03    JE              L03,#ffff [FALSE] 12616
-12615:  b1                      RFALSE          
+12615:  b1                      RFALSE
 12616:  2e 3a 04                INSERT_OBJ      "Austin",L03
 12619:  c1 ab 11 02 04 01 6d    JE              G01,L01,L03 [FALSE] 1278b
 12620:  41 01 00 00 96          JE              L00,#00 [FALSE] 126b9
@@ -5451,7 +5451,7 @@ Austin "
 12776:  c1 8f 03 00 43 00 0b    JE              L02,#0043 [FALSE] 12786
 1277d:  b3 ...                  PRINT_RET       "book store."
 12786:  b3 ...                  PRINT_RET       "cold."
-1278b:  b0                      RTRUE           
+1278b:  b0                      RTRUE
 
 Routine 1278c, 0 locals
 
@@ -5461,8 +5461,8 @@ Routine 1278c, 0 locals
 The room is filled with an eerie, reddish light. You feel gloomy and can't help
 thinking about aviation accident statistics.
 "
-127e4:  b1                      RFALSE          
-127e5:  b1                      RFALSE          
+127e4:  b1                      RFALSE
+127e5:  b1                      RFALSE
 
 Routine 127e8, 0 locals
 
@@ -5476,7 +5476,7 @@ Routine 127e8, 0 locals
 12812:  ce 1f 00 3e 3b          INSERT_OBJ      "red lamp","Dark Room"
 12817:  b3 ...                  PRINT_RET       "A developing lamp comes on,
 emitting an eerie red light."
-1283c:  b1                      RFALSE          
+1283c:  b1                      RFALSE
 
 Routine 12840, 0 locals
 
@@ -5489,7 +5489,7 @@ Routine 12840, 0 locals
 1285a:  41 00 02 00 15          JE              (SP)+,#02 [FALSE] 12872
 1285f:  b3 ...                  PRINT_RET       "The flash is full already."
 12872:  c1 8f 30 00 ce 00 03    JE              G20,#00ce [FALSE] 1287a
-12879:  b1                      RFALSE          
+12879:  b1                      RFALSE
 1287a:  4a 30 1f 80 1b          TEST_ATTR       G20,#1f [TRUE] 12898
 1287f:  b3 ...                  PRINT_RET       "Only batteries and timers will
 fit in."
@@ -5497,8 +5497,8 @@ fit in."
 1289c:  4a 00 1f 00 2f          TEST_ATTR       (SP)+,#1f [FALSE] 128ce
 128a1:  b3 ...                  PRINT_RET       "There is already a battery
 inside, and there's only room now for a timer."
-128ce:  b1                      RFALSE          
-128cf:  b1                      RFALSE          
+128ce:  b1                      RFALSE
+128cf:  b1                      RFALSE
 
 Routine 128d0, 0 locals
 
@@ -5506,7 +5506,7 @@ Routine 128d0, 0 locals
 128d6:  ca 1f 00 48 0d 00 07    TEST_ATTR       "slide projector",#0d [FALSE]
 128e2
 128dd:  41 9b 00 00 03          JE              G8b,#00 [FALSE] 128e3
-128e2:  b1                      RFALSE          
+128e2:  b1                      RFALSE
 128e3:  b2 ...                  PRINT           "
 A beam of white light runs into the room from the slide projector to the south,
 and hits the "
@@ -5515,8 +5515,8 @@ and hits the "
 1291d:  b3 ...                  PRINT_RET       "opaque glass ball."
 1292a:  b2 ...                  PRINT           "glass ball, which "
 12935:  8f 4a 4f                CALL_1N         1293c
-12938:  b0                      RTRUE           
-12939:  b1                      RFALSE          
+12938:  b0                      RTRUE
+12939:  b1                      RFALSE
 
 Routine 1293c, 1 local
 
@@ -5554,16 +5554,16 @@ strikes the mural at the sign of "
 "
 12aa7:  8f 4a b0                CALL_1N         12ac0
 12aaa:  da 1f 9d bb 17          CALL_2N         276ec (#17)
-12aaf:  b0                      RTRUE           
+12aaf:  b0                      RTRUE
 12ab0:  c1 8f 01 00 94 00 07    JE              L00,#0094 [FALSE] 12abc
 12ab7:  b3 ...                  PRINT_RET       "Leo."
-12abc:  b0                      RTRUE           
+12abc:  b0                      RTRUE
 
 Routine 12ac0, 0 locals
 
 12ac1:  c6 0f 00 51 00 4e 00 03 JIN             "fire escape","Dead End"
 [FALSE] 12aca
-12ac9:  b1                      RFALSE          
+12ac9:  b1                      RFALSE
 12aca:  e3 13 00 4e 07 00 51    PUT_PROP        "Dead End",#07,#0051
 12ad1:  e3 13 00 4e 0e 00 51    PUT_PROP        "Dead End",#0e,#0051
 12ad8:  ce 0f 00 51 00 4e       INSERT_OBJ      "fire escape","Dead End"
@@ -5588,7 +5588,7 @@ Routine 12bd0, 1 local
 12be5:  b2 ...                  PRINT           "You polish the ball to a nice
 shine, and get out of the way of the beam. Now the glass ball "
 12c16:  8f 4a 4f                CALL_1N         1293c
-12c19:  b0                      RTRUE           
+12c19:  b0                      RTRUE
 12c1a:  b3 ...                  PRINT_RET       "You polish the ball to a nice
 shine."
 12c2f:  c1 97 3a 2a 2b 01 f3    JE              G2a,#2a,#2b [FALSE] 12e27
@@ -5634,8 +5634,8 @@ palace."
 12e08:  41 01 0c 00 1b          JE              L00,#0c [FALSE] 12e26
 12e0d:  b3 ...                  PRINT_RET       "a vision of English
 countryside."
-12e26:  b1                      RFALSE          
-12e27:  b1                      RFALSE          
+12e26:  b1                      RFALSE
+12e27:  b1                      RFALSE
 
 Routine 12e28, 0 locals
 
@@ -5645,7 +5645,7 @@ Routine 12e28, 0 locals
 12e3a:  b3 ...                  PRINT_RET       " proves inadequate as a
 plumbing tool."
 12e53:  f9 1b 36 0d 3f 2f       CALL_VN         d834 (#3f,G1f)
-12e59:  b0                      RTRUE           
+12e59:  b0                      RTRUE
 12e5a:  c1 97 3a 5b 3f 00 e2    JE              G2a,#5b,#3f [FALSE] 12f41
 12e61:  ca 1f 00 78 08 00 17    TEST_ATTR       "steel wrench",#08 [FALSE]
 12e7d
@@ -5669,30 +5669,30 @@ unable to tighten the joint."
 12f02:  b3 ...                  PRINT_RET       "You tighten the joint with the
 wrench, just enough for the books to fall away without a gushing explosion of
 water."
-12f41:  b1                      RFALSE          
+12f41:  b1                      RFALSE
 
 Routine 12f44, 0 locals
 
 12f45:  41 3a 13 00 0e          JE              G2a,#13 [FALSE] 12f56
 12f4a:  ca 1f 00 78 08 80 06    TEST_ATTR       "steel wrench",#08 [TRUE] 12f55
 12f51:  8f 4c 28                CALL_1N         130a0
-12f54:  b0                      RTRUE           
-12f55:  b1                      RFALSE          
+12f54:  b0                      RTRUE
+12f55:  b1                      RFALSE
 12f56:  41 3a 2a 00 2c          JE              G2a,#2a [FALSE] 12f85
 12f5b:  ca 1f 00 78 08 80 1f    TEST_ATTR       "steel wrench",#08 [TRUE] 12f7f
 12f62:  b3 ...                  PRINT_RET       "You can't read it while it's
 holding the pipe up."
 12f7f:  da 1f 97 a4 23          CALL_2N         25e90 (#23)
-12f84:  b1                      RFALSE          
-12f85:  b1                      RFALSE          
+12f84:  b1                      RFALSE
+12f85:  b1                      RFALSE
 
 Routine 12f88, 0 locals
 
 12f89:  41 3a 13 00 0e          JE              G2a,#13 [FALSE] 12f9a
 12f8e:  ca 1f 00 78 08 80 06    TEST_ATTR       "steel wrench",#08 [TRUE] 12f99
 12f95:  8f 4c 28                CALL_1N         130a0
-12f98:  b0                      RTRUE           
-12f99:  b1                      RFALSE          
+12f98:  b0                      RTRUE
+12f99:  b1                      RFALSE
 12f9a:  41 3a 2a 01 01          JE              G2a,#2a [FALSE] 1309e
 12f9f:  ca 1f 00 78 08 80 1f    TEST_ATTR       "steel wrench",#08 [TRUE] 12fc3
 12fa6:  b3 ...                  PRINT_RET       "You can't read it while it's
@@ -5710,8 +5710,8 @@ arrived in the...
 "
 13094:  2e 46 11                INSERT_OBJ      "book of Twenties poetry",G01
 13097:  da 0f 9d 20 00 9a       CALL_2N         27480 (#009a)
-1309d:  b0                      RTRUE           
-1309e:  b1                      RFALSE          
+1309d:  b0                      RTRUE
+1309e:  b1                      RFALSE
 
 Routine 130a0, 0 locals
 
@@ -5745,16 +5745,16 @@ Routine 131a8, 1 local
 the projector."
 131df:  b2 ...                  PRINT           "The south wall shows "
 131ee:  da 2f 4c 53 01          CALL_2N         1314c (L00)
-131f3:  b0                      RTRUE           
-131f4:  b1                      RFALSE          
-131f5:  b1                      RFALSE          
+131f3:  b0                      RTRUE
+131f4:  b1                      RFALSE
+131f5:  b1                      RFALSE
 
 Routine 131f8, 1 local
 
 131f9:  41 3a 29 00 93          JE              G2a,#29 [FALSE] 1328f
 131fe:  ca 1f 00 48 0d 80 03    TEST_ATTR       "slide projector",#0d [TRUE]
 13206
-13205:  b1                      RFALSE          
+13205:  b1                      RFALSE
 13206:  82 00 48 01 c2          GET_CHILD       "slide projector" -> L00 [TRUE]
 1320b
 1320b:  41 01 00 00 22          JE              L00,#00 [FALSE] 13230
@@ -5769,13 +5769,13 @@ The south wall displays "
 1324b:  b3 ...                  PRINT_RET       "
 A beam of white light points directly backward from the projector, through the
 north doorway into the Observatory."
-1328e:  b0                      RTRUE           
-1328f:  b1                      RFALSE          
+1328e:  b0                      RTRUE
+1328f:  b1                      RFALSE
 
 Routine 13290, 0 locals
 
 13291:  f9 13 36 0d 15 00 49    CALL_VN         d834 (#15,#0049)
-13298:  b0                      RTRUE           
+13298:  b0                      RTRUE
 
 Routine 1329c, 0 locals
 
@@ -5788,19 +5788,19 @@ Routine 1329c, 0 locals
 to fit.
 "
 132de:  8f aa 21                CALL_1N         2a884
-132e1:  b0                      RTRUE           
+132e1:  b0                      RTRUE
 132e2:  c1 8f 30 00 93 00 17    JE              G20,#0093 [FALSE] 132fe
 132e9:  b2 ...                  PRINT           "The frame is too bulky.
 "
 132fa:  8f aa 21                CALL_1N         2a884
-132fd:  b0                      RTRUE           
-132fe:  c1 83 30 00 94 01 32 00 03 
+132fd:  b0                      RTRUE
+132fe:  c1 83 30 00 94 01 32 00 03
                                JE              G20,#0094,#0132 [FALSE] 13308
-13307:  b1                      RFALSE          
+13307:  b1                      RFALSE
 13308:  4a 30 1e 80 39          TEST_ATTR       G20,#1e [TRUE] 13344
 1330d:  b3 ...                  PRINT_RET       "It won't fit. There's only
 room for something flat and the size of, say, a playing card."
-13344:  b1                      RFALSE          
+13344:  b1                      RFALSE
 13345:  41 3a 3f 00 9b          JE              G2a,#3f [FALSE] 133e3
 1334a:  41 9b 01 00 2f          JE              G8b,#01 [FALSE] 1337c
 1334f:  0d 9b 00                STORE           G8b,#00
@@ -5816,20 +5816,20 @@ out again."
 appears backward out of the projector. As you step out of the beam, it extends
 dead straight through the north doorway."
 133dc:  b3 ...                  PRINT_RET       "Click."
-133e3:  b1                      RFALSE          
+133e3:  b1                      RFALSE
 
 Routine 133e4, 1 local
 
 133e5:  c1 8f 3a 01 01 00 0e    JE              G2a,#0101 [FALSE] 133f8
 133ec:  4a 2f 0d 00 08          TEST_ATTR       G1f,#0d [FALSE] 133f7
 133f1:  da 2f 4d c2 30          CALL_2N         13708 (G20)
-133f6:  b0                      RTRUE           
-133f7:  b1                      RFALSE          
+133f6:  b0                      RTRUE
+133f7:  b1                      RFALSE
 133f8:  c1 8f 3a 01 00 00 0e    JE              G2a,#0100 [FALSE] 1340b
 133ff:  4a 2f 0d 00 08          TEST_ATTR       G1f,#0d [FALSE] 1340a
 13404:  da 1f 4d c2 00          CALL_2N         13708 (#00)
-13409:  b0                      RTRUE           
-1340a:  b1                      RFALSE          
+13409:  b0                      RTRUE
+1340a:  b1                      RFALSE
 1340b:  41 3a 40 00 83          JE              G2a,#40 [FALSE] 13491
 13410:  0b 47 09                SET_ATTR        "Souvenirs Room",#09
 13413:  41 9b 01 00 05          JE              G8b,#01 [FALSE] 1341b
@@ -5842,16 +5842,16 @@ Routine 133e4, 1 local
 1343a:  b2 ...                  PRINT           "Also, a narrow white beam of
 light extends backwards from the projector, pointing out up through the
 Observatory doorway to the north."
-13489:  bb                      NEW_LINE        
-1348a:  b0                      RTRUE           
+13489:  bb                      NEW_LINE
+1348a:  b0                      RTRUE
 1348b:  da 2f 4d c2 01          CALL_2N         13708 (L00)
-13490:  b0                      RTRUE           
+13490:  b0                      RTRUE
 13491:  41 3a 31 00 0e          JE              G2a,#31 [FALSE] 134a2
 13496:  0c 47 09                CLEAR_ATTR      "Souvenirs Room",#09
 13499:  0c 40 09                CLEAR_ATTR      "Disused Observatory",#09
 1349c:  cb 1f 00 49 02          SET_ATTR        "south wall",#02
-134a1:  b1                      RFALSE          
-134a2:  b1                      RFALSE          
+134a1:  b1                      RFALSE
+134a2:  b1                      RFALSE
 
 Routine 134a4, 1 local
 
@@ -5876,14 +5876,14 @@ time to admire the ears of wheat before the scythe of the Grim Reaper cuts your
 soul from your body.
 "
 135b5:  da 2f 4d d6 01          CALL_2N         13758 (L00)
-135ba:  b0                      RTRUE           
+135ba:  b0                      RTRUE
 135bb:  c1 8f 01 00 a6 00 5d    JE              L00,#00a6 [FALSE] 1361d
 135c2:  b2 ...                  PRINT           "
 You are underwater, in the wreck of a ship, surrounded by the skeletons of its
 former crew, whom you abruptly join as your air runs out.
 "
 13617:  da 2f 4d d6 01          CALL_2N         13758 (L00)
-1361c:  b0                      RTRUE           
+1361c:  b0                      RTRUE
 1361d:  c1 8f 01 00 a5 00 7b    JE              L00,#00a5 [FALSE] 1369d
 13624:  b2 ...                  PRINT           "
 And find yourself stepping off a cliff. All is well for a moment, and then like
@@ -5891,12 +5891,12 @@ a cartoon character you notice there is no ground beneath you and you plummet
 to a stony death far below.
 "
 13697:  da 2f 4d d6 01          CALL_2N         13758 (L00)
-1369c:  b0                      RTRUE           
+1369c:  b0                      RTRUE
 1369d:  4b 01 08                SET_ATTR        L00,#08
 136a0:  51 01 05 00             GET_PROP        L00,#05 -> -(SP)
 136a4:  da 2f 9d 20 00          CALL_2N         27480 ((SP)+)
-136a9:  b0                      RTRUE           
-136aa:  b1                      RFALSE          
+136a9:  b0                      RTRUE
+136aa:  b1                      RFALSE
 
 Routine 136ac, 1 local
 
@@ -5919,7 +5919,7 @@ Routine 13708, 1 local
 13723:  b2 ...                  PRINT           "The south wall lights up with
 "
 13734:  da 2f 4d ab 01          CALL_2N         136ac (L00)
-13739:  b0                      RTRUE           
+13739:  b0                      RTRUE
 1373a:  0b 49 02                SET_ATTR        "south wall",#02
 1373d:  b3 ...                  PRINT_RET       "The south wall becomes blank
 again."
@@ -5940,7 +5940,7 @@ that you are staring, dazed, into the light of the slide projector, and have
 hardly moved at all.
 "
 13818:  4b 01 08                SET_ATTR        L00,#08
-1381b:  b0                      RTRUE           
+1381b:  b0                      RTRUE
 
 Routine 1381c, 0 locals
 
@@ -5971,8 +5971,8 @@ floorboards inside the cupboard without safer illumination."
 1398f:  c1 93 30 02 00 4d 00 27 JE              G20,#02,#004d [FALSE] 139bc
 13997:  b3 ...                  PRINT_RET       "But it's dark in there and you
 have no battery in your torch."
-139bc:  b1                      RFALSE          
-139bd:  b1                      RFALSE          
+139bc:  b1                      RFALSE
+139bd:  b1                      RFALSE
 
 Routine 139c0, 0 locals
 
@@ -5991,14 +5991,14 @@ Annexe"
 13a21:  b3 ...                  PRINT_RET       "You uncover a shiny new
 battery. It must have been dropped by accident when the loft insulation was
 being done."
-13a64:  b1                      RFALSE          
+13a64:  b1                      RFALSE
 
 Routine 13a68, 0 locals
 
 13a69:  41 3a 8a 00 2f          JE              G2a,#8a [FALSE] 13a9b
 13a6e:  b3 ...                  PRINT_RET       "There is no reply, and frankly
 it's hard to imagine anyone's in there."
-13a9b:  b1                      RFALSE          
+13a9b:  b1                      RFALSE
 
 Routine 13a9c, 0 locals
 
@@ -6009,7 +6009,7 @@ hollow."
 13ac0:  41 30 03 00 12          JE              G20,#03 [FALSE] 13ad5
 13ac5:  ca 1f 00 50 02 80 0b    TEST_ATTR       "secret door",#02 [TRUE] 13ad5
 13acc:  f9 22 36 0d 2a 00 50 31 CALL_VN         d834 (G1a,#0050,G21)
-13ad4:  b0                      RTRUE           
+13ad4:  b0                      RTRUE
 13ad5:  41 3a 3d 00 31          JE              G2a,#3d [FALSE] 13b09
 13ada:  41 30 03 00 2b          JE              G20,#03 [FALSE] 13b08
 13adf:  ca 1f 00 50 02 00 24    TEST_ATTR       "secret door",#02 [FALSE] 13b08
@@ -6017,7 +6017,7 @@ hollow."
 13aeb:  ce 1f 00 50 4e          INSERT_OBJ      "secret door","Dead End"
 13af0:  da 1f 9d bb 03          CALL_2N         276ec (#03)
 13af5:  b3 ...                  PRINT_RET       "A secret door springs open!"
-13b08:  b1                      RFALSE          
+13b08:  b1                      RFALSE
 13b09:  41 3a 26 00 56          JE              G2a,#26 [FALSE] 13b62
 13b0e:  c1 97 30 04 0b 00 4e    JE              G20,#04,#0b [FALSE] 13b61
 13b15:  51 2f 0e 00             GET_PROP        G1f,#0e -> -(SP)
@@ -6026,8 +6026,8 @@ hollow."
 ladder which runs right down the east wall of the Hall, and nervously
 descend...
 "
-13b61:  b1                      RFALSE          
-13b62:  b1                      RFALSE          
+13b61:  b1                      RFALSE
+13b62:  b1                      RFALSE
 
 Routine 13b64, 0 locals
 
@@ -6045,8 +6045,8 @@ Routine 13b64, 0 locals
 13b9b:  cc 1f 00 54 02          CLEAR_ATTR      "big iron fireplace",#02
 13ba0:  b3 ...                  PRINT_RET       "Taken. (There's a fireplace
 behind it, by the way.)"
-13bc3:  b1                      RFALSE          
-13bc4:  b1                      RFALSE          
+13bc3:  b1                      RFALSE
+13bc4:  b1                      RFALSE
 
 Routine 13bc8, 0 locals
 
@@ -6064,7 +6064,7 @@ Hole"
 13bfa:  da 2f 38 53 30          CALL_2N         e14c (G20)
 13bff:  b3 ...                  PRINT_RET       " rattles out of sight down the
 chimney."
-13c18:  b1                      RFALSE          
+13c18:  b1                      RFALSE
 
 Routine 13c1c, 0 locals
 
@@ -6083,7 +6083,7 @@ shutting out the sunshine."
 13c7c:  0b 55 0e                SET_ATTR        "cranked skylight",#0e
 13c7f:  b3 ...                  PRINT_RET       "winds open the skylight,
 flooding the room with sunshine."
-13ca0:  b1                      RFALSE          
+13ca0:  b1                      RFALSE
 
 Routine 13ca4, 0 locals
 
@@ -6091,13 +6091,13 @@ Routine 13ca4, 0 locals
 13caa:  b3 ...                  PRINT_RET       "After a brief ecstasy of
 fumbling, you pull it on. It smells unpleasantly of World War II leftover
 cork."
-13cf1:  b1                      RFALSE          
+13cf1:  b1                      RFALSE
 
 Routine 13cf4, 0 locals
 
 13cf5:  41 3a 13 00 9b          JE              G2a,#13 [FALSE] 13d93
 13cfa:  4a 2f 08 00 03          TEST_ATTR       G1f,#08 [FALSE] 13d00
-13cff:  b1                      RFALSE          
+13cff:  b1                      RFALSE
 13d00:  cc 1f 00 5a 02          CLEAR_ATTR      "Sir Joshua Meldrewe",#02
 13d05:  ce 8f 2f 00 5a          INSERT_OBJ      G1f,"Sir Joshua Meldrewe"
 13d0a:  e3 17 00 5a 17 05       PUT_PROP        "Sir Joshua Meldrewe",#17,#05
@@ -6106,7 +6106,7 @@ Routine 13cf4, 0 locals
 swirling mist condenses about it, into a ghostly head which opens its mouth and
 eats up the key!  The rest of the ghostly body solidifies about the head and
 rises to swagger before you."
-13d93:  b1                      RFALSE          
+13d93:  b1                      RFALSE
 
 Routine 13d94, 0 locals
 
@@ -6119,7 +6119,7 @@ catches your eye."
 Routine 13df4, 1 local
 
 13df5:  41 11 58 80 03          JE              G01,#58 [TRUE] 13dfb
-13dfa:  b1                      RFALSE          
+13dfa:  b1                      RFALSE
 13dfb:  51 2f 17 00             GET_PROP        G1f,#17 -> -(SP)
 13dff:  55 00 01 01             SUB             (SP)+,#01 -> L00
 13e03:  e3 9b 2f 17 01          PUT_PROP        G1f,#17,L00
@@ -6173,11 +6173,11 @@ odds) falls neatly down a chimney."
 14107:  c1 97 3a 42 54 00 29    JE              G2a,#42,#54 [FALSE] 14135
 1410e:  b3 ...                  PRINT_RET       "Ectoplasm is as nice to touch
 as its reputation suggests."
-14135:  c1 85 3a 01 03 46 44 00 1b 
+14135:  c1 85 3a 01 03 46 44 00 1b
                                JE              G2a,#0103,#46,#44 [FALSE] 14157
 1413e:  b3 ...                  PRINT_RET       ""I'll tell you nothing,
 varlet!""
-14157:  b1                      RFALSE          
+14157:  b1                      RFALSE
 
 Routine 14158, 1 local
 
@@ -6198,16 +6198,16 @@ you at present."
 141ce:  b2 ...                  PRINT           "You squeeze awkwardly down the
 chimney. Lucky your best clothes are all packed, because you're getting filthy.
 "
-14215:  b1                      RFALSE          
-14216:  b1                      RFALSE          
+14215:  b1                      RFALSE
+14216:  b1                      RFALSE
 
 Routine 14218, 1 local
 
 14219:  41 3a 15 00 0e          JE              G2a,#15 [FALSE] 1422a
 1421e:  c1 8f 30 00 5e 00 06    JE              G20,#005e [FALSE] 14229
 14225:  8f 50 a5                CALL_1N         14294
-14228:  b1                      RFALSE          
-14229:  b1                      RFALSE          
+14228:  b1                      RFALSE
+14229:  b1                      RFALSE
 1422a:  41 3a 26 00 63          JE              G2a,#26 [FALSE] 14290
 1422f:  41 30 0a 00 54          JE              G20,#0a [FALSE] 14286
 14234:  a2 19 01 c2             GET_CHILD       G09 -> L00 [TRUE] 14238
@@ -6222,9 +6222,9 @@ you at present."
 the chimney."
 14286:  41 30 0b 00 06          JE              G20,#0b [FALSE] 1428f
 1428b:  8f 50 a5                CALL_1N         14294
-1428e:  b1                      RFALSE          
-1428f:  b1                      RFALSE          
-14290:  b1                      RFALSE          
+1428e:  b1                      RFALSE
+1428f:  b1                      RFALSE
+14290:  b1                      RFALSE
 
 Routine 14294, 0 locals
 
@@ -6232,7 +6232,7 @@ Routine 14294, 0 locals
 1429c:  b2 ...                  PRINT           "You zoom rapidly down the
 chute, but decelerate just in time and land in a dark corner of...
 "
-142d9:  b0                      RTRUE           
+142d9:  b0                      RTRUE
 
 Routine 142dc, 1 local
 
@@ -6275,7 +6275,7 @@ with "
 14596:  b3 ...                  PRINT_RET       "the spleens of flightless
 birds."
 145ab:  b3 ...                  PRINT_RET       "melting points of metals."
-145bc:  b1                      RFALSE          
+145bc:  b1                      RFALSE
 
 Routine 145c0, 0 locals
 
@@ -6316,9 +6316,9 @@ you can see Miss Alison writing at her table, trying to see the words, and
 always on the edge of a...
 "
 147e1:  8f 7b 3a                CALL_1N         1ece8
-147e4:  b0                      RTRUE           
-147e5:  b1                      RFALSE          
-147e6:  b1                      RFALSE          
+147e4:  b0                      RTRUE
+147e5:  b1                      RFALSE
+147e6:  b1                      RFALSE
 
 Routine 147e8, 0 locals
 
@@ -6326,8 +6326,8 @@ Routine 147e8, 0 locals
 147ee:  ca 1f 01 71 18 00 07    TEST_ATTR       "Melancholy Dream",#18 [FALSE]
 147fa
 147f5:  da 1f 97 a4 2c          CALL_2N         25e90 (#2c)
-147fa:  b1                      RFALSE          
-147fb:  b1                      RFALSE          
+147fa:  b1                      RFALSE
+147fb:  b1                      RFALSE
 
 Routine 147fc, 0 locals
 
@@ -6339,7 +6339,7 @@ good blanket."
 Navy","comfortable bed"
 1482d:  b3 ...                  PRINT_RET       "You spread the flag over the
 bed as a blanket."
-14848:  b1                      RFALSE          
+14848:  b1                      RFALSE
 
 Routine 1484c, 0 locals
 
@@ -6352,25 +6352,25 @@ in a shower of flakes of paint, letting fresh summer air into the room!"
 148a2:  41 3a 15 00 17          JE              G2a,#15 [FALSE] 148bc
 148a7:  4a 2f 0e 80 11          TEST_ATTR       G1f,#0e [TRUE] 148bb
 148ac:  b3 ...                  PRINT_RET       "The windows are shut."
-148bb:  b1                      RFALSE          
+148bb:  b1                      RFALSE
 148bc:  41 3a 2e 00 1f          JE              G2a,#2e [FALSE] 148de
 148c1:  b3 ...                  PRINT_RET       "The windows are old and gummed
 up somehow."
-148de:  b1                      RFALSE          
+148de:  b1                      RFALSE
 
 Routine 148e0, 1 local
 
 148e1:  ca 1f 00 63 08 00 03    TEST_ATTR       "long vanity mirror",#08
 [FALSE] 148e9
-148e8:  b1                      RFALSE          
+148e8:  b1                      RFALSE
 148e9:  66 01 19 80 07          JIN             L00,G09 [TRUE] 148f3
 148ee:  46 01 4f 00 12          JIN             L00,"canvas rucksack" [FALSE]
 14903
 148f3:  4a 01 1c 80 0c          TEST_ATTR       L00,#1c [TRUE] 14902
 148f8:  4a 01 21 80 07          TEST_ATTR       L00,#21 [TRUE] 14902
 148fd:  4a 01 22 00 03          TEST_ATTR       L00,#22 [FALSE] 14903
-14902:  b0                      RTRUE           
-14903:  b1                      RFALSE          
+14902:  b0                      RTRUE
+14903:  b1                      RFALSE
 
 Routine 14904, 0 locals
 
@@ -6434,8 +6434,8 @@ can't bear to look at it",#08
 14b19:  ca 1f 01 a6 08 00 05    TEST_ATTR       "model of an animal so ugly you
 can't bear to look at it",#08 [FALSE] 14b23
 14b20:  8f 52 41                CALL_1N         14904
-14b23:  b0                      RTRUE           
-14b24:  b1                      RFALSE          
+14b23:  b0                      RTRUE
+14b24:  b1                      RFALSE
 
 Routine 14b28, 0 locals
 
@@ -6444,14 +6444,14 @@ Routine 14b28, 0 locals
 14b4f
 14b37:  cc 1f 00 66 02          CLEAR_ATTR      "delicate gold key",#02
 14b3c:  b3 ...                  PRINT_RET       "You dislodge something shiny!"
-14b4f:  b1                      RFALSE          
-14b50:  b1                      RFALSE          
+14b4f:  b1                      RFALSE
+14b50:  b1                      RFALSE
 
 Routine 14b54, 0 locals
 
 14b55:  41 3a 29 00 a9          JE              G2a,#29 [FALSE] 14c01
 14b5a:  4a 2f 08 00 03          TEST_ATTR       G1f,#08 [FALSE] 14b60
-14b5f:  b1                      RFALSE          
+14b5f:  b1                      RFALSE
 14b60:  4b 2f 08                SET_ATTR        G1f,#08
 14b63:  b2 ...                  PRINT           "
 As you disturb the still air, the attic key, which was balanced on top of the
@@ -6459,8 +6459,8 @@ demijohn, slips onto the floor and disappears into a crack in the floorboards.
 Your spirits sink as it does, rattling down some distance. How on earth are you
 going to get it back?
 "
-14c00:  b1                      RFALSE          
-14c01:  b1                      RFALSE          
+14c00:  b1                      RFALSE
+14c01:  b1                      RFALSE
 
 Routine 14c04, 0 locals
 
@@ -6471,7 +6471,7 @@ the bonus points had better go after all.
 14c50:  0d 8d 00                STORE           G7d,#00
 14c53:  0d 90 01                STORE           G80,#01
 14c56:  55 17 05 17             SUB             G07,#05 -> G07
-14c5a:  b1                      RFALSE          
+14c5a:  b1                      RFALSE
 
 Routine 14c5c, 0 locals
 
@@ -6479,8 +6479,8 @@ Routine 14c5c, 0 locals
 14c62:  c1 8f 31 00 68 00 29    JE              G21,#0068 [FALSE] 14c90
 14c69:  b3 ...                  PRINT_RET       "We know already what happens
 to things balanced on the demijohn."
-14c90:  b1                      RFALSE          
-14c91:  b1                      RFALSE          
+14c90:  b1                      RFALSE
+14c91:  b1                      RFALSE
 
 Routine 14c94, 0 locals
 
@@ -6490,12 +6490,12 @@ Routine 14c94, 0 locals
 14ca1:  b3 ...                  PRINT_RET       "Your hands slip on the
 screw-top of the demijohn and can't get a grip."
 14ccc:  da 1f 9d bb 04          CALL_2N         276ec (#04)
-14cd1:  b1                      RFALSE          
+14cd1:  b1                      RFALSE
 14cd2:  41 3a 42 00 45          JE              G2a,#42 [FALSE] 14d1a
 14cd7:  b3 ...                  PRINT_RET       "The demijohn is made of
 something like industrial-grade chemistry glass. You kick it and hurt your
 foot."
-14d1a:  b1                      RFALSE          
+14d1a:  b1                      RFALSE
 
 Routine 14d1c, 1 local
 
@@ -6520,11 +6520,11 @@ unconsciousness...
 "
 14e10:  2e 6a 11                INSERT_OBJ      "tourist map",G01
 14e13:  da 0f 9d 20 00 b1       CALL_2N         27480 (#00b1)
-14e19:  b0                      RTRUE           
+14e19:  b0                      RTRUE
 14e1a:  b3 ...                  PRINT_RET       "Just some anonymous streets.
 The detail of this map is so tiny that unless you have the exact four-digit
 grid reference for what you want, you'll never find it."
-14e7d:  b1                      RFALSE          
+14e7d:  b1                      RFALSE
 
 Routine 14e80, 0 locals
 
@@ -6536,8 +6536,8 @@ Cupboard" [FALSE] 14eb8
 14e95:  b2 ...                  PRINT           "
 Execrable music drifts in from the airing cupboard.
 "
-14eb8:  b1                      RFALSE          
-14eb9:  b1                      RFALSE          
+14eb8:  b1                      RFALSE
+14eb9:  b1                      RFALSE
 
 Routine 14ebc, 2 locals
 
@@ -6578,7 +6578,7 @@ some "
 14f93:  58 00 0c 00             MOD             (SP)+,#0c -> -(SP)
 14f97:  e3 9b 2f 18 00          PUT_PROP        G1f,#18,(SP)+
 14f9c:  f9 1b 36 0d 2a 2f       CALL_VN         d834 (#2a,G1f)
-14fa2:  b0                      RTRUE           
+14fa2:  b0                      RTRUE
 14fa3:  41 3a 2d 00 b3          JE              G2a,#2d [FALSE] 15059
 14fa8:  41 3c 01 00 97          JE              G2c,#01 [FALSE] 15042
 14fad:  2d 42 3b                STORE           G32,G2b
@@ -6611,10 +6611,10 @@ some "
 15031:  42 01 00 80 0e          JL              L00,#00 [TRUE] 15042
 15036:  e3 9b 2f 18 01          PUT_PROP        G1f,#18,L00
 1503b:  f9 1b 36 0d 2a 2f       CALL_VN         d834 (#2a,G1f)
-15041:  b0                      RTRUE           
+15041:  b0                      RTRUE
 15042:  b3 ...                  PRINT_RET       "It only has the usual twelve
 months."
-15059:  b1                      RFALSE          
+15059:  b1                      RFALSE
 
 Routine 1505c, 0 locals
 
@@ -6626,8 +6626,8 @@ everything else... I do it very well") is just too dreadful. "
 [FALSE] 150f5
 150d6:  b3 ...                  PRINT_RET       "But there seems to be
 something lurking beneath."
-150f5:  bb                      NEW_LINE        
-150f6:  b0                      RTRUE           
+150f5:  bb                      NEW_LINE
+150f6:  b0                      RTRUE
 150f7:  c1 95 3a 2b 2c 2a 00 96 JE              G2a,#2b,#2c,#2a [FALSE] 15193
 150ff:  ca 1f 00 6f 02 00 5b    TEST_ATTR       "antiquated wireless",#02
 [FALSE] 1515f
@@ -6643,7 +6643,7 @@ for the first time in months."
 1517e:  8c 00 07                JUMP            15186
 15181:  b2 ...                  PRINT           "hands"
 15186:  b3 ...                  PRINT_RET       " stained looking."
-15193:  b1                      RFALSE          
+15193:  b1                      RFALSE
 
 Routine 15194, 0 locals
 
@@ -6651,7 +6651,7 @@ Routine 15194, 0 locals
 [TRUE] 151a7
 1519c:  da 2f 37 61 2f          CALL_2N         dd84 (G1f)
 151a1:  cc 1f 00 6f 08          CLEAR_ATTR      "antiquated wireless",#08
-151a6:  b0                      RTRUE           
+151a6:  b0                      RTRUE
 151a7:  c6 1f 00 6f 6b 00 1d    JIN             "antiquated wireless","Aunt
 Jemima's Lair" [FALSE] 151c9
 151ae:  c1 8f 11 00 70 00 16    JE              G01,#0070 [FALSE] 151c9
@@ -6663,7 +6663,7 @@ Jemima hums along to "
 151d0:  b2 ...                  PRINT           "
 The radio plays "
 151dd:  8c 00 03                JUMP            151e1
-151e0:  b0                      RTRUE           
+151e0:  b0                      RTRUE
 151e1:  e7 7f 51 00             RANDOM          #51 -> -(SP)
 151e5:  41 00 01 00 45          JE              (SP)+,#01 [FALSE] 1522d
 151ea:  b3 ...                  PRINT_RET       "a splendid concert of the
@@ -6674,8 +6674,8 @@ Sibelius Violin Concerto by the Minot Symphony Orchestra of North Dakota."
 1523d:  ad 00                   PRINT_PADDR     (SP)+
 1523f:  d9 0f 38 3c 61 9a 00    CALL_2S         e0f0 (#619a) -> -(SP)
 15246:  ad 00                   PRINT_PADDR     (SP)+
-15248:  bb                      NEW_LINE        
-15249:  b0                      RTRUE           
+15248:  bb                      NEW_LINE
+15249:  b0                      RTRUE
 
 Routine 1524c, 0 locals
 
@@ -6701,8 +6701,8 @@ reason is awfully convoluted and due to her firm conviction that magnetic
 fields influence the growth of plants. By that time you have to leave for the
 airport..."
 15366:  8f a2 33                CALL_1N         288cc
-15369:  b0                      RTRUE           
-1536a:  b1                      RFALSE          
+15369:  b0                      RTRUE
+1536a:  b1                      RFALSE
 
 Routine 1536c, 0 locals
 
@@ -6714,13 +6714,13 @@ wireless, but nothing happens."
 1539e:  4a 2f 08 00 14          TEST_ATTR       G1f,#08 [FALSE] 153b5
 153a3:  0c 6f 08                CLEAR_ATTR      "antiquated wireless",#08
 153a6:  b3 ...                  PRINT_RET       "Thank heaven for that."
-153b5:  b1                      RFALSE          
+153b5:  b1                      RFALSE
 153b6:  41 3a 3e 00 18          JE              G2a,#3e [FALSE] 153d1
 153bb:  b2 ...                  PRINT           "It moves easily on the
 casters.
 "
-153d0:  b1                      RFALSE          
-153d1:  b1                      RFALSE          
+153d0:  b1                      RFALSE
+153d1:  b1                      RFALSE
 
 Routine 153d4, 0 locals
 
@@ -6740,7 +6740,7 @@ Jemima's Lair" [FALSE] 15471
 Execrable music begins to sound from the conservatory, and Aunt Jemima hums
 vacantly.
 "
-15471:  b1                      RFALSE          
+15471:  b1                      RFALSE
 
 Routine 15474, 0 locals
 
@@ -6767,7 +6767,7 @@ Routine 15530, 0 locals
 "Oh, silly old you," says Jemima condescendingly, "You've lost your daisy
 chain!  What colour do you want then?"
 "
-1559a:  b1                      RFALSE          
+1559a:  b1                      RFALSE
 1559b:  41 3a 29 00 5b          JE              G2a,#29 [FALSE] 155f9
 155a0:  0a 6f 08 00 28          TEST_ATTR       "antiquated wireless",#08
 [FALSE] 155cb
@@ -6783,8 +6783,8 @@ Cupboard" [FALSE] 155f8
 155d5:  b2 ...                  PRINT           "
 Happily, the radio is almost inaudible from here.
 "
-155f8:  b1                      RFALSE          
-155f9:  b1                      RFALSE          
+155f8:  b1                      RFALSE
+155f9:  b1                      RFALSE
 
 Routine 155fc, 0 locals
 
@@ -6793,7 +6793,7 @@ Routine 155fc, 0 locals
 Jemima's Lair" [FALSE] 1560d
 15607:  0a 6f 08 00 03          TEST_ATTR       "antiquated wireless",#08
 [FALSE] 1560d
-1560c:  b1                      RFALSE          
+1560c:  b1                      RFALSE
 1560d:  0a 71 0c 80 80          TEST_ATTR       "old gardeners' gloves",#0c
 [TRUE] 15690
 15612:  0d 1d 03                STORE           G0d,#03
@@ -6801,14 +6801,14 @@ Jemima's Lair" [FALSE] 1560d
 you, spins round to see you filching her gloves and screeches with irritation,
 eventually summoning the entire family. You volunteer to shift some suitcases
 about just to get away from her."
-15690:  b1                      RFALSE          
-15691:  b1                      RFALSE          
+15690:  b1                      RFALSE
+15691:  b1                      RFALSE
 
 Routine 15694, 0 locals
 
 15695:  41 11 70 80 09          JE              G01,#70 [TRUE] 156a1
 1569a:  f9 27 37 1a 2f 01       CALL_VN         dc68 (G1f,#01)
-156a0:  b0                      RTRUE           
+156a0:  b0                      RTRUE
 156a1:  b2 ...                  PRINT           "
 "There we are!  All done now."  Jemima hangs a daisy chain around your neck,
 then frowns and adjusts your hair in an exceedingly annoying way.
@@ -6818,7 +6818,7 @@ then frowns and adjusts your hair in an exceedingly annoying way.
 1570a:  cb 1f 00 73 1a          SET_ATTR        "daisy chain",#1a
 1570f:  0d 9d 01                STORE           G8d,#01
 15712:  ce 2f 00 73 19          INSERT_OBJ      "daisy chain",G09
-15717:  b0                      RTRUE           
+15717:  b0                      RTRUE
 
 Routine 15718, 1 local
 
@@ -6851,7 +6851,7 @@ biscuit and nibbles at it, but she is still sulking.
 "
 158ad:  8f aa 21                CALL_1N         2a884
 158b0:  99 22                   REMOVE_OBJ      "chocolate biscuit"
-158b2:  b0                      RTRUE           
+158b2:  b0                      RTRUE
 158b3:  41 30 38 00 31          JE              G20,#38 [FALSE] 158e7
 158b8:  b3 ...                  PRINT_RET       "Jemima looks very suspiciously
 at the pill. "Not just now, thanks.""
@@ -6875,14 +6875,14 @@ idea, but somehow "
 isn't Christmas.
 "
 15a08:  8f aa 21                CALL_1N         2a884
-15a0b:  b0                      RTRUE           
+15a0b:  b0                      RTRUE
 15a0c:  b3 ...                  PRINT_RET       " seems inappropriate."
 15a1d:  41 3a 54 00 25          JE              G2a,#54 [FALSE] 15a45
 15a22:  b2 ...                  PRINT           "She is slightly mollified, but
 only slightly.
 "
 15a41:  8f aa 21                CALL_1N         2a884
-15a44:  b0                      RTRUE           
+15a44:  b0                      RTRUE
 15a45:  41 3a 42 00 28          JE              G2a,#42 [FALSE] 15a70
 15a4a:  da 1f 97 a4 1c          CALL_2N         25e90 (#1c)
 15a4f:  b3 ...                  PRINT_RET       "Well, she's annoying, but
@@ -6898,7 +6898,7 @@ your teeth and put up with her though."
 heard, a favourite ploy of hers when sulking."
 15ae3:  0c 72 08                CLEAR_ATTR      "Jemima",#08
 15ae6:  0d 01 00                STORE           L00,#00
-15ae9:  c1 83 30 a2 c0 a2 c9 00 05 
+15ae9:  c1 83 30 a2 c0 a2 c9 00 05
                                JE              G20,"yellow","yellowish" [FALSE]
 15af5
 15af2:  0d 01 01                STORE           L00,#01
@@ -6906,7 +6906,7 @@ heard, a favourite ploy of hers when sulking."
 15afc:  0d 01 02                STORE           L00,#02
 15aff:  c1 8f 30 94 3b 00 05    JE              G20,"red" [FALSE] 15b09
 15b06:  0d 01 04                STORE           L00,#04
-15b09:  c1 83 30 a1 58 91 74 00 05 
+15b09:  c1 83 30 a1 58 91 74 00 05
                                JE              G20,"white","plain" [FALSE]
 15b15
 15b12:  0d 01 05                STORE           L00,#05
@@ -6933,35 +6933,35 @@ but force a sickly smile. Should have eaten the chocolates myself, you find
 yourself thinking."
 15c1b:  41 3a 46 02 47          JE              G2a,#46 [FALSE] 15e65
 15c20:  da 1f 97 a4 11          CALL_2N         25e90 (#11)
-15c25:  c1 83 31 7c e3 7a 13 00 29 
+15c25:  c1 83 31 7c e3 7a 13 00 29
                                JE              G21,"daisies","chains" [FALSE]
 15c55
 15c2e:  b3 ...                  PRINT_RET       "Jemima gives you a cool look.
 "They're just for decoration.""
-15c55:  c1 83 31 76 1a 79 b0 00 27 
+15c55:  c1 83 31 76 1a 79 b0 00 27
                                JE              G21,"austin","cat" [FALSE] 15c83
 15c5e:  b3 ...                  PRINT_RET       ""Wretched cat!  More trouble
 than he's worth.""
-15c83:  c1 83 31 95 eb 83 f4 00 15 
+15c83:  c1 83 31 95 eb 83 f4 00 15
                                JE              G21,"rubber","gloves" [FALSE]
 15c9f
 15c8c:  b3 ...                  PRINT_RET       ""Those are my gloves.""
-15c9f:  c1 80 31 9e 91 8b 29 90 6f 80 09 
+15c9f:  c1 80 31 9e 91 8b 29 90 6f 80 09
                                JE              G21,"tourist","map","paris"
 [TRUE] 15cb1
 15caa:  c1 8f 31 86 a9 00 27    JE              G21,"holiday" [FALSE] 15cd6
 15cb1:  b3 ...                  PRINT_RET       ""I wouldn't know. I'm not the
 one going on holiday.""
-15cd6:  c1 80 31 75 ff 88 a1 a1 cd 00 23 
+15cd6:  c1 80 31 75 ff 88 a1 a1 cd 00 23
                                JE              G21,"attic","key","winery"
 [FALSE] 15d02
 15ce1:  b3 ...                  PRINT_RET       ""You haven't lost the attic
 key again?  Hmph.""
-15d02:  c1 83 31 7d 7c 78 2d 00 13 
+15d02:  c1 83 31 7d 7c 78 2d 00 13
                                JE              G21,"demijohn","bottle" [FALSE]
 15d1c
 15d0b:  b3 ...                  PRINT_RET       ""Load of old junk.""
-15d1c:  c1 80 31 7f 2c a0 6e 7f 35 00 1f 
+15d1c:  c1 80 31 7f 2c a0 6e 7f 35 00 1f
                                JE              G21,"dumb","waiter","dumbwaite"
 [FALSE] 15d44
 15d27:  b3 ...                  PRINT_RET       ""You leave that rickety old
@@ -6969,17 +6969,17 @@ thing alone!""
 15d44:  c1 8f 31 78 fc 00 31    JE              G21,"calendar" [FALSE] 15d7a
 15d4b:  b3 ...                  PRINT_RET       ""Not bad. Of course, my
 daisies are better, but not bad for beginners.""
-15d7a:  c1 83 31 7b 60 7b 69 00 1b 
+15d7a:  c1 83 31 7b 60 7b 69 00 1b
                                JE              G21,"colour","colours" [FALSE]
 15d9c
 15d83:  b3 ...                  PRINT_RET       ""Everyone has his own
 favourite.""
-15d9c:  c1 83 31 93 ea a1 e8 00 45 
+15d9c:  c1 83 31 93 ea a1 e8 00 45
                                JE              G21,"radio","wireless" [FALSE]
 15de8
 15da5:  b3 ...                  PRINT_RET       ""I've told you a hundred
 times, I don't want a transistor radio. That old valve set is fine for me.""
-15de8:  c1 80 31 7c ad 7c b6 80 dc 00 33 
+15de8:  c1 80 31 7c ad 7c b6 80 dc 00 33
                                JE              G21,"curse","curses","family"
 [FALSE] 15e24
 15df3:  b3 ...                  PRINT_RET       ""Nothing wrong with this
@@ -6989,7 +6989,7 @@ family that a good long holiday wouldn't set right.""
 good book says.""
 15e4c:  b3 ...                  PRINT_RET       "Jemima has nothing to say on
 the subject."
-15e65:  b1                      RFALSE          
+15e65:  b1                      RFALSE
 
 Routine 15e68, 0 locals
 
@@ -7003,7 +7003,7 @@ Routine 15e68, 0 locals
 15e9c:  4c 2f 1a                CLEAR_ATTR      G1f,#1a
 15e9f:  b3 ...                  PRINT_RET       "The daisychain falls to pieces
 in your hands!  Cheer up, though, perhaps Jemima might give you another."
-15ee2:  b1                      RFALSE          
+15ee2:  b1                      RFALSE
 
 Routine 15ee4, 1 local
 
@@ -7014,12 +7014,12 @@ Routine 15ee4, 1 local
 15ef8:  4a 01 21 00 1e          TEST_ATTR       L00,#21 [FALSE] 15f19
 15efd:  b2 ...                  PRINT           " (which rustles as if with a
 magical wind)"
-15f18:  b0                      RTRUE           
+15f18:  b0                      RTRUE
 15f19:  a1 01 01 c2             GET_SIBLING     L00 -> L00 [TRUE] 15f1d
 15f1d:  8c ff d5                JUMP            15ef3
 15f20:  b2 ...                  PRINT           " (around your neck)"
-15f2f:  b0                      RTRUE           
-15f30:  b1                      RFALSE          
+15f2f:  b0                      RTRUE
+15f30:  b1                      RFALSE
 
 Routine 15f34, 1 local
 
@@ -7047,7 +7047,7 @@ Routine 15f34, 1 local
 16008:  b2 ...                  PRINT           "short-leaved Meldrew"
 16015:  41 01 0b 00 0b          JE              L00,#0b [FALSE] 16023
 1601a:  b2 ...                  PRINT           "tiny bonsai"
-16023:  b0                      RTRUE           
+16023:  b0                      RTRUE
 
 Routine 16024, 0 locals
 
@@ -7056,11 +7056,11 @@ Routine 16024, 0 locals
 16031:  c6 0f 00 76 00 77 00 0a JIN             "dumbwaiter","dark shaft"
 [FALSE] 16041
 16039:  f9 13 36 0d 15 00 76    CALL_VN         d834 (#15,#0076)
-16040:  b0                      RTRUE           
+16040:  b0                      RTRUE
 16041:  b3 ...                  PRINT_RET       "But you suffer from vertigo.
 Even the thought of the plane journey tomorrow is nerve-wracking."
-1607c:  b1                      RFALSE          
-1607d:  b1                      RFALSE          
+1607c:  b1                      RFALSE
+1607d:  b1                      RFALSE
 
 Routine 16080, 1 local
 
@@ -7068,7 +7068,7 @@ Routine 16080, 1 local
 16086:  c1 8f 31 00 78 00 21    JE              G21,#0078 [FALSE] 160ac
 1608d:  b3 ...                  PRINT_RET       "The wrench doesn't fit a
 hand-wheel like this."
-160ac:  b1                      RFALSE          
+160ac:  b1                      RFALSE
 160ad:  41 3a 3f 01 31          JE              G2a,#3f [FALSE] 161e1
 160b2:  c6 8f 19 00 76 00 31    JIN             G09,"dumbwaiter" [FALSE] 160e8
 160b9:  b3 ...                  PRINT_RET       "You can just reach the wheel
@@ -7096,9 +7096,9 @@ something in the shaft?)"
 161ce:  ce 2f 00 76 11          INSERT_OBJ      "dumbwaiter",G01
 161d3:  c1 8f 01 00 7f 00 07    JE              L00,#007f [FALSE] 161df
 161da:  ce 1f 00 76 74          INSERT_OBJ      "dumbwaiter","Storage Room"
-161df:  bb                      NEW_LINE        
-161e0:  b0                      RTRUE           
-161e1:  b1                      RFALSE          
+161df:  bb                      NEW_LINE
+161e0:  b0                      RTRUE
+161e1:  b1                      RFALSE
 
 Routine 161e4, 0 locals
 
@@ -7113,14 +7113,14 @@ Routine 161e4, 0 locals
 darkness, and there is a slight cracking noise."
 16237:  b3 ...                  PRINT_RET       "It disappears into the
 darkness."
-1624c:  b1                      RFALSE          
+1624c:  b1                      RFALSE
 
 Routine 16250, 0 locals
 
 16251:  41 3a 13 00 19          JE              G2a,#13 [FALSE] 1626d
 16256:  b3 ...                  PRINT_RET       "It's a wrench, but you take
 it."
-1626d:  b1                      RFALSE          
+1626d:  b1                      RFALSE
 
 Routine 16270, 1 local
 
@@ -7147,18 +7147,18 @@ up, and then need to stop for a rest.
 1633e:  2e 76 01                INSERT_OBJ      "dumbwaiter",L00
 16341:  2d 11 01                STORE           G01,L00
 16344:  da 1f 36 0d 29          CALL_2N         d834 (#29)
-16349:  b0                      RTRUE           
+16349:  b0                      RTRUE
 1634a:  41 3a 4b 00 27          JE              G2a,#4b [FALSE] 16374
 1634f:  b3 ...                  PRINT_RET       "If only you didn't suffer from
 such dreadful vertigo..."
-16374:  b1                      RFALSE          
+16374:  b1                      RFALSE
 
 Routine 16378, 0 locals
 
 16379:  41 3a 3c 00 21          JE              G2a,#3c [FALSE] 1639d
 1637e:  b3 ...                  PRINT_RET       "It already has been. The part
 you have, lost."
-1639d:  b1                      RFALSE          
+1639d:  b1                      RFALSE
 
 Routine 163a0, 0 locals
 
@@ -7169,8 +7169,8 @@ Routine 163a0, 0 locals
 Since the dumbwaiter isn't here, the best you can do is clamber down the shaft
 to the cellars.
 "
-163e6:  b1                      RFALSE          
-163e7:  b1                      RFALSE          
+163e6:  b1                      RFALSE
+163e7:  b1                      RFALSE
 
 Routine 163e8, 0 locals
 
@@ -7180,8 +7180,8 @@ Routine 163e8, 0 locals
 [FALSE] 1641f
 163f8:  b3 ...                  PRINT_RET       "Since the dumbwaiter is here,
 why not travel in that instead."
-1641f:  b1                      RFALSE          
-16420:  b1                      RFALSE          
+1641f:  b1                      RFALSE
+16420:  b1                      RFALSE
 
 Routine 16424, 0 locals
 
@@ -7193,9 +7193,9 @@ Routine 16424, 0 locals
 16439:  c1 8f 30 00 7d 00 13    JE              G20,#007d [FALSE] 16451
 16440:  b3 ...                  PRINT_RET       "The recess is too shallow."
 16451:  0a 56 1a 00 03          TEST_ATTR       "gas mask",#1a [FALSE] 16457
-16456:  b1                      RFALSE          
+16456:  b1                      RFALSE
 16457:  c1 97 2a 26 15 00 03    JE              G1a,#26,#15 [FALSE] 1645f
-1645e:  b1                      RFALSE          
+1645e:  b1                      RFALSE
 1645f:  b3 ...                  PRINT_RET       "The coal dust makes you cough
 and splutter, and your eyes stream. You are unable to concentrate on doing
 anything here."
@@ -7204,17 +7204,17 @@ Routine 164a8, 0 locals
 
 164a9:  41 3a 2f 00 08          JE              G2a,#2f [FALSE] 164b4
 164ae:  cc 1f 01 15 0b          CLEAR_ATTR      "coal bunker",#0b
-164b3:  b1                      RFALSE          
+164b3:  b1                      RFALSE
 164b4:  41 3a 41 00 08          JE              G2a,#41 [FALSE] 164bf
 164b9:  cb 1f 01 15 0b          SET_ATTR        "coal bunker",#0b
-164be:  b1                      RFALSE          
+164be:  b1                      RFALSE
 164bf:  41 3a 2e 00 08          JE              G2a,#2e [FALSE] 164ca
 164c4:  cb 1f 01 15 0e          SET_ATTR        "coal bunker",#0e
-164c9:  b1                      RFALSE          
+164c9:  b1                      RFALSE
 164ca:  41 3a 30 00 08          JE              G2a,#30 [FALSE] 164d5
 164cf:  cc 1f 01 15 0e          CLEAR_ATTR      "coal bunker",#0e
-164d4:  b1                      RFALSE          
-164d5:  b1                      RFALSE          
+164d4:  b1                      RFALSE
+164d5:  b1                      RFALSE
 
 Routine 164d8, 0 locals
 
@@ -7223,11 +7223,11 @@ Routine 164d8, 0 locals
 164e5:  06 76 7f 00 09          JIN             "dumbwaiter","Cellars" [FALSE]
 164f1
 164ea:  f9 17 36 0d 15 76       CALL_VN         d834 (#15,#76)
-164f0:  b0                      RTRUE           
+164f0:  b0                      RTRUE
 164f1:  b3 ...                  PRINT_RET       "No, don't. There's nothing
 there and it's nasty and dirty. Bring the dumbwaiter down instead."
-1652a:  b1                      RFALSE          
-1652b:  b1                      RFALSE          
+1652a:  b1                      RFALSE
+1652b:  b1                      RFALSE
 
 Routine 1652c, 3 locals
 
@@ -7235,19 +7235,19 @@ Routine 1652c, 3 locals
 16532:  43 01 08 80 0c          JG              L00,#08 [TRUE] 16541
 16537:  42 02 00 80 07          JL              L01,#00 [TRUE] 16541
 1653c:  43 02 06 00 03          JG              L01,#06 [FALSE] 16542
-16541:  b1                      RFALSE          
+16541:  b1                      RFALSE
 16542:  36 09 02 00             MUL             #09,L01 -> -(SP)
 16546:  74 00 01 00             ADD             (SP)+,L00 -> -(SP)
 1654a:  70 9e 00 03             LOADB           G8e,(SP)+ -> L02
 1654e:  41 03 30 00 03          JE              L02,#30 [FALSE] 16554
-16553:  b1                      RFALSE          
+16553:  b1                      RFALSE
 16554:  41 03 31 00 03          JE              L02,#31 [FALSE] 1655a
-16559:  b0                      RTRUE           
-1655a:  b0                      RTRUE           
+16559:  b0                      RTRUE
+1655a:  b0                      RTRUE
 
 Routine 1655c, 5 locals
 
-1655d:  c1 85 3a 01 03 44 46 03 ff 
+1655d:  c1 85 3a 01 03 44 46 03 ff
                                JE              G2a,#0103,#44,#46 [FALSE] 16963
 16566:  0a 56 1a 00 53          TEST_ATTR       "gas mask",#1a [FALSE] 165bc
 1656b:  41 a1 00 00 4e          JE              G91,#00 [FALSE] 165bc
@@ -7371,7 +7371,7 @@ as a magnet cuts out and something metal drops off the underside of the mouse
 onto the floor. The lost key is found!"
 1694a:  b3 ...                  PRINT_RET       "The mouse emits a low-pitched
 bleep."
-16963:  b1                      RFALSE          
+16963:  b1                      RFALSE
 
 Routine 16964, 0 locals
 
@@ -7388,12 +7388,12 @@ Routine 16a10, 0 locals
 16a11:  41 3a 5d 00 2d          JE              G2a,#5d [FALSE] 16a41
 16a16:  b3 ...                  PRINT_RET       "But you are teetotal, which is
 why the cellars have got in this state."
-16a41:  b1                      RFALSE          
+16a41:  b1                      RFALSE
 
 Routine 16a44, 0 locals
 
 16a45:  4a 2f 09 80 03          TEST_ATTR       G1f,#09 [TRUE] 16a4b
-16a4a:  b1                      RFALSE          
+16a4a:  b1                      RFALSE
 16a4b:  b3 ...                  PRINT_RET       "The barrel-shaft is too steep
 to climb. You were lucky enough not to break your neck on the way down."
 
@@ -7403,28 +7403,28 @@ Routine 16a88, 0 locals
 16a90:  41 31 86 00 17          JE              G21,#86 [FALSE] 16aaa
 16a95:  b3 ...                  PRINT_RET       "Nothing is to be gained by
 this."
-16aaa:  b1                      RFALSE          
+16aaa:  b1                      RFALSE
 16aab:  c1 8f 3a 01 00 00 17    JE              G2a,#0100 [FALSE] 16ac7
 16ab2:  b3 ...                  PRINT_RET       "There's nothing within reach
 inside."
-16ac7:  b1                      RFALSE          
+16ac7:  b1                      RFALSE
 
 Routine 16ac8, 0 locals
 
-16ac9:  c1 85 3a 01 03 46 44 00 11 
+16ac9:  c1 85 3a 01 03 46 44 00 11
                                JE              G2a,#0103,#46,#44 [FALSE] 16ae1
 16ad2:  26 83 2f 00 0b          JIN             "robot mouse",G1f [FALSE] 16ae0
 16ad7:  e0 17 34 7a 83 04 00    CALL_VS         d1e8 (#83,#04) -> -(SP)
 16ade:  ab 00                   RET             (SP)+
-16ae0:  b1                      RFALSE          
-16ae1:  b1                      RFALSE          
+16ae0:  b1                      RFALSE
+16ae1:  b1                      RFALSE
 
 Routine 16ae4, 0 locals
 
 16ae5:  41 3a 8a 00 27          JE              G2a,#8a [FALSE] 16b0f
 16aea:  b3 ...                  PRINT_RET       "You bark your knuckles
 painfully on the iron, and to no avail."
-16b0f:  b1                      RFALSE          
+16b0f:  b1                      RFALSE
 
 Routine 16b10, 1 local
 
@@ -7434,8 +7434,8 @@ Around the edge of the disc is a circular arc, surrounding the lemniscus, which
 passes through nine equally spaced sockets or cylindrical wells."
 16b6f:  d1 1f 00 8b 17 01       GET_PROP        "circular arc",#17 -> L00
 16b75:  41 01 00 00 04          JE              L00,#00 [FALSE] 16b7c
-16b7a:  bb                      NEW_LINE        
-16b7b:  b1                      RFALSE          
+16b7a:  bb                      NEW_LINE
+16b7b:  b1                      RFALSE
 16b7c:  41 01 01 00 1f          JE              L00,#01 [FALSE] 16b9e
 16b81:  b3 ...                  PRINT_RET       "  One socket contains a rod,
 fixed in place."
@@ -7463,8 +7463,8 @@ empty."
 16c8a:  41 01 09 00 1d          JE              L00,#09 [FALSE] 16caa
 16c8f:  b3 ...                  PRINT_RET       "  All nine sockets are
 occupied by rods."
-16caa:  b1                      RFALSE          
-16cab:  b1                      RFALSE          
+16caa:  b1                      RFALSE
+16cab:  b1                      RFALSE
 
 Routine 16cac, 1 local
 
@@ -7497,8 +7497,8 @@ wall.
 "
 16da5:  41 01 09 00 07          JE              L00,#09 [FALSE] 16daf
 16daa:  da 1f 9d bb 13          CALL_2N         276ec (#13)
-16daf:  b0                      RTRUE           
-16db0:  b1                      RFALSE          
+16daf:  b0                      RTRUE
+16db0:  b1                      RFALSE
 
 Routine 16db4, 0 locals
 
@@ -7522,7 +7522,7 @@ golden orb"
 16e75:  b3 ...                  PRINT_RET       "The orb fits perfectly, and
 the socket comes alive with golden light, which soaks out into the fabric of
 the cave until the whole place is shining bright."
-16eca:  b1                      RFALSE          
+16eca:  b1                      RFALSE
 
 Routine 16ecc, 0 locals
 
@@ -7530,8 +7530,8 @@ Routine 16ecc, 0 locals
 16ed4:  4a 30 1c 00 0c          TEST_ATTR       G20,#1c [FALSE] 16ee3
 16ed9:  4a 30 22 80 07          TEST_ATTR       G20,#22 [TRUE] 16ee3
 16ede:  da 1f 9d bb 1c          CALL_2N         276ec (#1c)
-16ee3:  b1                      RFALSE          
-16ee4:  b1                      RFALSE          
+16ee3:  b1                      RFALSE
+16ee4:  b1                      RFALSE
 
 Routine 16ee8, 1 local
 
@@ -7539,7 +7539,7 @@ Routine 16ee8, 1 local
 16ef0:  4a 30 1c 00 19          TEST_ATTR       G20,#1c [FALSE] 16f0c
 16ef5:  b3 ...                  PRINT_RET       "The mahogany rod fits in
 perfectly."
-16f0c:  b1                      RFALSE          
+16f0c:  b1                      RFALSE
 16f0d:  41 3a 30 00 6b          JE              G2a,#30 [FALSE] 16f7b
 16f12:  0c 91 08                CLEAR_ATTR      "gilded model coffin",#08
 16f15:  92 91 01 c2             GET_CHILD       "gilded model coffin" -> L00
@@ -7553,14 +7553,14 @@ perfectly."
 16f32:  0a 91 08 80 09          TEST_ATTR       "gilded model coffin",#08
 [TRUE] 16f3e
 16f37:  e3 53 91 11 c5 a3       PUT_PROP        "gilded model coffin",#11,S329
-16f3d:  b1                      RFALSE          
+16f3d:  b1                      RFALSE
 16f3e:  e3 53 91 11 c5 ab       PUT_PROP        "gilded model coffin",#11,S330
 16f44:  b3 ...                  PRINT_RET       "The coffin sparks, spitting
 with electricity, and begins throbbing with a life of its own!"
 16f7b:  41 3a 2e 00 09          JE              G2a,#2e [FALSE] 16f87
 16f80:  e3 93 2f 11 c5 b4       PUT_PROP        G1f,#11,S331
-16f86:  b1                      RFALSE          
-16f87:  b1                      RFALSE          
+16f86:  b1                      RFALSE
+16f87:  b1                      RFALSE
 
 Routine 16f88, 0 locals
 
@@ -7575,8 +7575,8 @@ everything goes dark!
 
 You were given a nasty shock by that coffin. "Must have been some old wiring,"
 says a doctor, leaning over you in hospital."
-1700a:  b1                      RFALSE          
-1700b:  b1                      RFALSE          
+1700a:  b1                      RFALSE
+1700b:  b1                      RFALSE
 
 Routine 1700c, 0 locals
 
@@ -7593,7 +7593,7 @@ in strange hieroglyphics:
 17076:  0f 00 08 00             LOADW           #00,#08 -> -(SP)
 1707a:  c9 2f ff fd 00 00       AND             #fffd,(SP)+ -> -(SP)
 17080:  e1 5b 00 08 00          STOREW          #00,#08,(SP)+
-17085:  b0                      RTRUE           
+17085:  b0                      RTRUE
 
 Routine 17088, 0 locals
 
@@ -7603,7 +7603,7 @@ Routine 17088, 0 locals
 17097:  ce 2f 00 95 11          INSERT_OBJ      "dog-eared old letter",G01
 1709c:  b3 ...                  PRINT_RET       "Breaking open the frame looses
 the sketch, which falls to the floor."
-170c1:  b1                      RFALSE          
+170c1:  b1                      RFALSE
 
 Routine 170c4, 0 locals
 
@@ -7627,7 +7627,7 @@ determinitives, early New Kingdom?  Pottery unclear, work continues
 1726c:  0f 00 08 00             LOADW           #00,#08 -> -(SP)
 17270:  c9 2f ff fd 00 00       AND             #fffd,(SP)+ -> -(SP)
 17276:  e1 5b 00 08 00          STOREW          #00,#08,(SP)+
-1727b:  b0                      RTRUE           
+1727b:  b0                      RTRUE
 
 Routine 1727c, 0 locals
 
@@ -7647,7 +7647,7 @@ Meldrewe",#16
 Meldrewe",#11,S343
 172b5:  b3 ...                  PRINT_RET       "You hang up Mad Isaac, who
 seems ideally placed there."
-172da:  b1                      RFALSE          
+172da:  b1                      RFALSE
 
 Routine 172dc, 0 locals
 
@@ -7677,7 +7677,7 @@ bar."
 Drifting through the streets from some distant bar comes the sound of one of
 Scott Joplin's newfangled piano pieces, accompanying song settings from "Romeo
 and Juliet"."
-17407:  b1                      RFALSE          
+17407:  b1                      RFALSE
 
 Routine 17408, 0 locals
 
@@ -7688,7 +7688,7 @@ Routine 17408, 0 locals
 1741e:  b3 ...                  PRINT_RET       "You hastily tear down the
 poster, but there's nothing interesting behind it, only painted graffiti:
 "Shantih Shantih Shantih"."
-1746f:  b1                      RFALSE          
+1746f:  b1                      RFALSE
 17470:  41 3a 39 00 3a          JE              G2a,#39 [FALSE] 174ad
 17475:  c1 8f 11 00 a8 00 32    JE              G01,#00a8 [FALSE] 174ac
 1747c:  ca 1f 00 aa 0e 80 2b    TEST_ATTR       "tourist boat",#0e [TRUE] 174ac
@@ -7696,9 +7696,9 @@ poster, but there's nothing interesting behind it, only painted graffiti:
 boat, but the boat remains unmoved.
 "
 174a8:  8f aa 21                CALL_1N         2a884
-174ab:  b0                      RTRUE           
-174ac:  b1                      RFALSE          
-174ad:  b1                      RFALSE          
+174ab:  b0                      RTRUE
+174ac:  b1                      RFALSE
+174ad:  b1                      RFALSE
 
 Routine 174b0, 1 local
 
@@ -7733,7 +7733,7 @@ painting",#11,S361
 17521:  41 01 0a 00 09          JE              L00,#0a [FALSE] 1752d
 17526:  e3 13 00 9e 11 c7 af    PUT_PROP        "Impressionist
 painting",#11,S362
-1752d:  b1                      RFALSE          
+1752d:  b1                      RFALSE
 
 Routine 17530, 1 local
 
@@ -7758,7 +7758,7 @@ Routine 17530, 1 local
 1758b:  b2 ...                  PRINT           "Queen"
 17590:  41 01 0a 00 07          JE              L00,#0a [FALSE] 1759a
 17595:  b2 ...                  PRINT           "Knave"
-1759a:  b0                      RTRUE           
+1759a:  b0                      RTRUE
 
 Routine 1759c, 3 locals
 
@@ -7840,7 +7840,7 @@ Routine 177ec, 1 local
 
 177ed:  e1 ab a2 a3 01          STOREW          G92,G93,L00
 177f2:  95 a3                   INC             G93
-177f4:  b0                      RTRUE           
+177f4:  b0                      RTRUE
 
 Routine 177f8, 3 locals
 
@@ -7879,13 +7879,13 @@ fearing death by water, crossing palms with gold and so on. Eventually she
 ushers you out.
 "
 17a55:  da 1f 9d 20 9a          CALL_2N         27480 (#9a)
-17a5a:  b0                      RTRUE           
+17a5a:  b0                      RTRUE
 
 Routine 17a5c, 0 locals
 
 17a5d:  41 3a 56 00 15          JE              G2a,#56 [FALSE] 17a75
 17a62:  b3 ...                  PRINT_RET       "You feel briefly incensed."
-17a75:  b1                      RFALSE          
+17a75:  b1                      RFALSE
 
 Routine 17a78, 0 locals
 
@@ -7898,7 +7898,7 @@ touching it!"
 17acd:  b3 ...                  PRINT_RET       "An intriguing idea, but you'll
 have to be more explicit about how to do it."
 17afe:  f9 1a 36 0d 1a 31 2f    CALL_VN         d834 (#1a,G21,G1f)
-17b05:  b0                      RTRUE           
+17b05:  b0                      RTRUE
 17b06:  c1 8f 3a 01 01 00 70    JE              G2a,#0101 [FALSE] 17b7b
 17b0d:  c6 2f 00 a3 11 00 1b    JIN             "Madame Sosostris, famous
 clairvoyante",G01 [FALSE] 17b2d
@@ -7915,7 +7915,7 @@ incongruous, surely?"
 17b7b:  c1 95 3a 2b 2a 2c 00 19 JE              G2a,#2b,#2a,#2c [FALSE] 17b9a
 17b83:  b3 ...                  PRINT_RET       "The cards defy mortal
 examination."
-17b9a:  b1                      RFALSE          
+17b9a:  b1                      RFALSE
 
 Routine 17b9c, 0 locals
 
@@ -7942,8 +7942,8 @@ changed."
 
 "
 17ccd:  8f 5d fe                CALL_1N         177f8
-17cd0:  b0                      RTRUE           
-17cd1:  b1                      RFALSE          
+17cd0:  b0                      RTRUE
+17cd1:  b1                      RFALSE
 
 Routine 17cd4, 0 locals
 
@@ -7964,7 +7964,7 @@ nothing, you know."
 17dab:  41 3a 44 00 59          JE              G2a,#44 [FALSE] 17e07
 17db0:  0a a1 08 80 15          TEST_ATTR       "curtain",#08 [TRUE] 17dc8
 17db5:  b3 ...                  PRINT_RET       "She is startled and stares."
-17dc8:  c1 83 32 80 70 8e ad 00 11 
+17dc8:  c1 83 32 80 70 8e ad 00 11
                                JE              G22,"even","odd" [FALSE] 17de0
 17dd1:  8f 5d fe                CALL_1N         177f8
 17dd4:  99 a3                   REMOVE_OBJ      "Madame Sosostris, famous
@@ -7974,23 +7974,23 @@ clairvoyante"
 clairvoyante",#08
 17ddc:  0b a3 02                SET_ATTR        "Madame Sosostris, famous
 clairvoyante",#02
-17ddf:  b0                      RTRUE           
+17ddf:  b0                      RTRUE
 17de0:  b3 ...                  PRINT_RET       ""You must answer my question!"
  She does seem anxious."
-17e07:  b1                      RFALSE          
+17e07:  b1                      RFALSE
 
 Routine 17e08, 0 locals
 
 17e09:  c1 97 3a 4e 5d 00 19    JE              G2a,#4e,#5d [FALSE] 17e27
 17e10:  b3 ...                  PRINT_RET       "That foul water?  Not a
 chance."
-17e27:  b1                      RFALSE          
+17e27:  b1                      RFALSE
 
 Routine 17e28, 0 locals
 
 17e29:  ca 1f 00 aa 0e 80 0a    TEST_ATTR       "tourist boat",#0e [TRUE] 17e38
 17e30:  f9 13 36 0d 15 00 aa    CALL_VN         d834 (#15,#00aa)
-17e37:  b0                      RTRUE           
+17e37:  b0                      RTRUE
 17e38:  8b 00 aa                RET             #00aa
 
 Routine 17e3c, 0 locals
@@ -8001,7 +8001,7 @@ Routine 17e3c, 0 locals
 17e4e:  cb 1f 00 aa 0e          SET_ATTR        "tourist boat",#0e
 17e53:  b3 ...                  PRINT_RET       "You wave the handkerchief, and
 the boat glides smoothly across the river toward you."
-17e84:  b1                      RFALSE          
+17e84:  b1                      RFALSE
 
 Routine 17e88, 0 locals
 
@@ -8009,8 +8009,8 @@ Routine 17e88, 0 locals
 17e8e:  4a 2f 0e 80 2b          TEST_ATTR       G1f,#0e [TRUE] 17ebc
 17e93:  b3 ...                  PRINT_RET       "Are you in Seine?  There is a
 river in between you and the boat."
-17ebc:  b1                      RFALSE          
-17ebd:  b1                      RFALSE          
+17ebc:  b1                      RFALSE
+17ebd:  b1                      RFALSE
 
 Routine 17ec0, 0 locals
 
@@ -8028,7 +8028,7 @@ yourself:
 17f72:  ca 1f 00 b0 0c 00 08    TEST_ATTR       "tourist map of Paris",#0c
 [FALSE] 17f7f
 17f79:  da 1f 9d 20 8a          CALL_2N         27480 (#8a)
-17f7e:  b0                      RTRUE           
+17f7e:  b0                      RTRUE
 17f7f:  da 0f 9d 20 01 14       CALL_2N         27480 (#0114)
 17f85:  0a ac 08 80 5f          TEST_ATTR       "hollow man",#08 [TRUE] 17fe7
 17f8a:  0b ac 08                SET_ATTR        "hollow man",#08
@@ -8036,7 +8036,7 @@ yourself:
 17f92:  b3 ...                  PRINT_RET       "
 Was any of that real? you wonder, as you relax in the sunshine. But then you
 realise you are clutching a tarot card which certainly is."
-17fe7:  b0                      RTRUE           
+17fe7:  b0                      RTRUE
 17fe8:  95 a4                   INC             G94
 17fea:  41 a4 01 00 33          JE              G94,#01 [FALSE] 18020
 17fef:  b3 ...                  PRINT_RET       ""I don't believe in that place
@@ -8062,14 +8062,14 @@ hollow man."
 1811b:  41 3a 46 00 1b          JE              G2a,#46 [FALSE] 18139
 18120:  b3 ...                  PRINT_RET       "Your question merely echoes
 inside him."
-18139:  b1                      RFALSE          
+18139:  b1                      RFALSE
 
 Routine 1813c, 0 locals
 
 1813d:  41 3a 4c 00 1f          JE              G2a,#4c [FALSE] 1815f
 18142:  b3 ...                  PRINT_RET       ""Q'est-ce que vous voulez
 acheter?""
-1815f:  b1                      RFALSE          
+1815f:  b1                      RFALSE
 
 Routine 18160, 0 locals
 
@@ -8097,7 +8097,7 @@ serves you, giving you a tourist map of Paris."
 on principle."
 1825e:  b3 ...                  PRINT_RET       ""Non."  And he folds his arms
 defiantly. Perhaps he has no such thing."
-1828f:  b1                      RFALSE          
+1828f:  b1                      RFALSE
 
 Routine 18290, 0 locals
 
@@ -8133,26 +8133,26 @@ turn. "
 183c1:  a1 00 00 bf fb          GET_SIBLING     (SP)+ -> -(SP) [TRUE] 183bf
 183c6:  74 00 ff 00             ADD             (SP)+,Gef -> -(SP)
 183ca:  41 00 01 00 04          JE              (SP)+,#01 [FALSE] 183d1
-183cf:  bb                      NEW_LINE        
-183d0:  b0                      RTRUE           
+183cf:  bb                      NEW_LINE
+183d0:  b0                      RTRUE
 183d1:  b3 ...                  PRINT_RET       "Interestingly, there's
 something inside this segment of it."
 183f8:  41 3a 15 00 09          JE              G2a,#15 [FALSE] 18404
 183fd:  f9 17 36 0d 26 06       CALL_VN         d834 (#26,#06)
-18403:  b0                      RTRUE           
-18404:  b1                      RFALSE          
+18403:  b0                      RTRUE
+18404:  b1                      RFALSE
 
 Routine 18408, 0 locals
 
 18409:  f9 13 36 0d 3d 00 b5    CALL_VN         d834 (#3d,#00b5)
-18410:  b0                      RTRUE           
+18410:  b0                      RTRUE
 
 Routine 18414, 0 locals
 
 18415:  c1 95 3a 3d 3f 3c 00 2f JE              G2a,#3d,#3f,#3c [FALSE] 1844a
 1841d:  b3 ...                  PRINT_RET       "You revolve clockwise with the
 door, and wind up back adjacent to the foyer."
-1844a:  b1                      RFALSE          
+1844a:  b1                      RFALSE
 
 Routine 1844c, 0 locals
 
@@ -8173,25 +8173,25 @@ as the barriers come together behind you.
 1855f:  99 b8                   REMOVE_OBJ      "beach ball"
 18561:  da 1f 9d bb 1f          CALL_2N         276ec (#1f)
 18566:  da 0f 9d 20 00 b9       CALL_2N         27480 (#00b9)
-1856c:  b0                      RTRUE           
+1856c:  b0                      RTRUE
 1856d:  8f a2 33                CALL_1N         288cc
-18570:  b0                      RTRUE           
-18571:  b1                      RFALSE          
+18570:  b0                      RTRUE
+18571:  b1                      RFALSE
 
 Routine 18574, 0 locals
 
 18575:  41 3a 3e 00 1f          JE              G2a,#3e [FALSE] 18597
 1857a:  b3 ...                  PRINT_RET       "You bounce the beach ball
 along in front of you."
-18597:  b1                      RFALSE          
+18597:  b1                      RFALSE
 
 Routine 18598, 0 locals
 
 18599:  c1 8f 3a 01 01 00 17    JE              G2a,#0101 [FALSE] 185b5
 185a0:  4a 30 1e 80 11          TEST_ATTR       G20,#1e [TRUE] 185b4
 185a5:  b3 ...                  PRINT_RET       "Only cards will fit."
-185b4:  b1                      RFALSE          
-185b5:  b1                      RFALSE          
+185b4:  b1                      RFALSE
+185b5:  b1                      RFALSE
 
 Routine 185b8, 0 locals
 
@@ -8206,24 +8206,24 @@ confusion, but your senses are assailed by some kind of vision, of a ghastly
 circle of druids watching your every move and plotting, plotting...
 
 In horror you turn back."
-186a4:  b1                      RFALSE          
-186a5:  b1                      RFALSE          
+186a4:  b1                      RFALSE
+186a5:  b1                      RFALSE
 
 Routine 186a8, 0 locals
 
 186a9:  da 1f 97 a4 0e          CALL_2N         25e90 (#0e)
-186ae:  b1                      RFALSE          
+186ae:  b1                      RFALSE
 
 Routine 186b0, 0 locals
 
 186b1:  66 19 2f 80 03          JIN             G09,G1f [TRUE] 186b7
-186b6:  b0                      RTRUE           
+186b6:  b0                      RTRUE
 186b7:  0a c3 08 80 14          TEST_ATTR       "Coven Cell",#08 [TRUE] 186ce
 186bc:  41 9c 00 00 05          JE              G8c,#00 [FALSE] 186c4
 186c1:  4b 19 08                SET_ATTR        G09,#08
 186c4:  0b c3 08                SET_ATTR        "Coven Cell",#08
 186c7:  f9 27 37 1a 2f 03       CALL_VN         dc68 (G1f,#03)
-186cd:  b0                      RTRUE           
+186cd:  b0                      RTRUE
 186ce:  b2 ...                  PRINT           "
 A key turns in the door and Doktor Stein bursts in. He stops to pat the goat
 affectionately. "Cheer up, Dobbin. As soon as I've finished this brutal human
@@ -8244,7 +8244,7 @@ Routine 187fc, 0 locals
 a kind of sheep."
 18825:  41 2a 43 80 07          JE              G1a,#43 [TRUE] 1882f
 1882a:  4a 19 08 80 03          TEST_ATTR       G09,#08 [TRUE] 18830
-1882f:  b1                      RFALSE          
+1882f:  b1                      RFALSE
 18830:  b3 ...                  PRINT_RET       "You seem to lack the will any
 more. The drug must have taken hold."
 
@@ -8266,8 +8266,8 @@ open in the goat's jaws!"
 188b9:  41 30 73 00 2b          JE              G20,#73 [FALSE] 188e7
 188be:  b3 ...                  PRINT_RET       "For heaven's sake, the daisy
 chain is far too useful for that."
-188e7:  b1                      RFALSE          
-188e8:  c1 85 3a 01 03 44 46 00 2f 
+188e7:  b1                      RFALSE
+188e8:  c1 85 3a 01 03 44 46 00 2f
                                JE              G2a,#0103,#44,#46 [FALSE] 1891e
 188f1:  c1 8f 32 7c b6 00 21    JE              G22,"curses" [FALSE] 18917
 188f8:  b2 ...                  PRINT           "In a harsh voice, the goat
@@ -8275,16 +8275,16 @@ intones:
 
 "
 18913:  8f 38 be                CALL_1N         e2f8
-18916:  b0                      RTRUE           
+18916:  b0                      RTRUE
 18917:  b3 ...                  PRINT_RET       "Grunt!"
-1891e:  b1                      RFALSE          
+1891e:  b1                      RFALSE
 
 Routine 18920, 0 locals
 
 18921:  41 3a 8a 00 39          JE              G2a,#8a [FALSE] 1895d
 18926:  b3 ...                  PRINT_RET       "They're coming as fast as they
 can!  Ritual doesn't just happen by itself, you know."
-1895d:  b1                      RFALSE          
+1895d:  b1                      RFALSE
 
 Routine 18960, 0 locals
 
@@ -8293,8 +8293,8 @@ Routine 18960, 0 locals
 1898c
 1896d:  b3 ...                  PRINT_RET       "It's too dark to see much
 inside the cabinet."
-1898c:  b1                      RFALSE          
-1898d:  b1                      RFALSE          
+1898c:  b1                      RFALSE
+1898d:  b1                      RFALSE
 
 Routine 18990, 0 locals
 
@@ -8308,7 +8308,7 @@ to be?"
 noisily. Still, the cabinet is open now."
 189e8:  c1 97 3a 2e 30 00 13    JE              G2a,#2e,#30 [FALSE] 18a00
 189ef:  b3 ...                  PRINT_RET       "The hinges are too secure."
-18a00:  b1                      RFALSE          
+18a00:  b1                      RFALSE
 
 Routine 18a04, 0 locals
 
@@ -8334,8 +8334,8 @@ perhaps the least of your problems as they drag you off...
 18b8d:  f9 17 37 1a c3 00       CALL_VN         dc68 (#c3,#00)
 18b93:  0d 9c 00                STORE           G8c,#00
 18b96:  da 1f 9d 20 c3          CALL_2N         27480 (#c3)
-18b9b:  b0                      RTRUE           
-18b9c:  b1                      RFALSE          
+18b9b:  b0                      RTRUE
+18b9c:  b1                      RFALSE
 
 Routine 18ba0, 0 locals
 
@@ -8343,8 +8343,8 @@ Routine 18ba0, 0 locals
 18ba6:  4a 2f 08 00 2b          TEST_ATTR       G1f,#08 [FALSE] 18bd4
 18bab:  b3 ...                  PRINT_RET       "Reach down the grating as you
 may, it remains just beyond reach."
-18bd4:  b1                      RFALSE          
-18bd5:  b1                      RFALSE          
+18bd4:  b1                      RFALSE
+18bd5:  b1                      RFALSE
 
 Routine 18bd8, 0 locals
 
@@ -8358,31 +8358,31 @@ Over in one corner, you can see a little square window, behind which must be
 the store of cups and glasses. Remembering this, you are distracted and unable
 to enjoy the entertainment. Even the table is annoying. It must have one leg
 shorter than the rest, or something, because it rattles now and then."
-18c9f:  b1                      RFALSE          
+18c9f:  b1                      RFALSE
 18ca0:  41 3a 76 00 5f          JE              G2a,#76 [FALSE] 18d02
 18ca5:  b3 ...                  PRINT_RET       "You look rather conspicuous
 striking the rod on the cafe table, but everyone else assumes you're part of
 the cabaret. Anyway, the rod charges up as usual."
-18d02:  b1                      RFALSE          
+18d02:  b1                      RFALSE
 
 Routine 18d04, 0 locals
 
 18d05:  ca 1f 00 cd 02 00 09    TEST_ATTR       "complicated-looking bomb",#02
 [FALSE] 18d13
 18d0c:  f9 07 37 1a 00 cd 0a    CALL_VN         dc68 (#00cd,#0a)
-18d13:  b1                      RFALSE          
+18d13:  b1                      RFALSE
 
 Routine 18d14, 0 locals
 
 18d15:  ca 1f 00 cd 02 80 09    TEST_ATTR       "complicated-looking bomb",#02
 [TRUE] 18d23
-18d1c:  bb                      NEW_LINE        
+18d1c:  bb                      NEW_LINE
 18d1d:  8f 65 2c                CALL_1N         194b0
 18d20:  8c 00 17                JUMP            18d38
 18d23:  b2 ...                  PRINT           "
 The table rattles again.
 "
-18d38:  b1                      RFALSE          
+18d38:  b1                      RFALSE
 
 Routine 18d3c, 0 locals
 
@@ -8400,12 +8400,12 @@ discoveries."
 18db4:  b3 ...                  PRINT_RET       "Even in a cafe as lively as
 this, your natural English inhibitions make it impossible for you to climb up
 on the table."
-18dfb:  b1                      RFALSE          
+18dfb:  b1                      RFALSE
 
 Routine 18dfc, 0 locals
 
 18dfd:  41 11 cb 80 03          JE              G01,#cb [TRUE] 18e03
-18e02:  b1                      RFALSE          
+18e02:  b1                      RFALSE
 18e03:  0a cd 02 80 be          TEST_ATTR       "complicated-looking bomb",#02
 [TRUE] 18ec4
 18e08:  d0 1f 62 87 00 00       LOADB           #6287,#00 -> -(SP)
@@ -8427,14 +8427,14 @@ hide the rest of the evidence under the table.
 18eb7:  ce 2f 00 ce 19          INSERT_OBJ      "timer-detonator",G09
 18ebc:  cc 1f 00 ce 13          CLEAR_ATTR      "timer-detonator",#13
 18ec1:  99 cd                   REMOVE_OBJ      "complicated-looking bomb"
-18ec3:  b0                      RTRUE           
+18ec3:  b0                      RTRUE
 18ec4:  b2 ...                  PRINT           "
 In a sudden cataclysm, there is an enormous explosion from your table, blowing
 out all the arrowslit windows, making a thunderous noise, starting a minor
 fire, and of course having one other consequence:
 "
 18f3d:  0d 1d 01                STORE           G0d,#01
-18f40:  b1                      RFALSE          
+18f40:  b1                      RFALSE
 
 Routine 18f44, 0 locals
 
@@ -8444,7 +8444,7 @@ Routine 18f44, 0 locals
 sight of you with the bomb and screams. One thing leads to another, and, well,
 you know how it is with foreign legal systems. At least the bomb gets defused,
 and twenty-five years isn't all that long."
-18fd6:  b1                      RFALSE          
+18fd6:  b1                      RFALSE
 
 Routine 18fd8, 3 locals
 
@@ -8460,7 +8460,7 @@ Routine 18fd8, 3 locals
 You hear a sharp click!
 "
 1900a:  41 02 3f 03 70          JE              L01,#3f [FALSE] 1937d
-1900f:  bb                      NEW_LINE        
+1900f:  bb                      NEW_LINE
 19010:  a2 02 03 c2             GET_CHILD       L01 -> L02 [TRUE] 19014
 19014:  41 03 ce 00 06          JE              L02,#ce [FALSE] 1901d
 19019:  a1 03 03 c2             GET_SIBLING     L02 -> L02 [TRUE] 1901d
@@ -8508,8 +8508,8 @@ arranges to have you resurrected...
 1930f:  2d 01 02                STORE           L00,L01
 19312:  8c ff e6                JUMP            192f9
 19315:  da 0f 9d 20 01 1b       CALL_2N         27480 (#011b)
-1931b:  b0                      RTRUE           
-1931c:  bb                      NEW_LINE        
+1931b:  b0                      RTRUE
+1931c:  bb                      NEW_LINE
 1931d:  26 3a 11 00 33          JIN             "Austin",G01 [FALSE] 19353
 19322:  b3 ...                  PRINT_RET       "
 Austin jumps with fear, then slouches back again into his "cool" pose."
@@ -8517,7 +8517,7 @@ Austin jumps with fear, then slouches back again into his "cool" pose."
 [FALSE] 1937d
 1935a:  b3 ...                  PRINT_RET       "
 The squirrel covers his eyes with his paws for a moment."
-1937d:  b1                      RFALSE          
+1937d:  b1                      RFALSE
 
 Routine 19380, 1 local
 
@@ -8533,7 +8533,7 @@ currently at "
 193ca:  b3 ...                  PRINT_RET       " minutes."
 193d3:  41 01 00 80 06          JE              L00,#00 [TRUE] 193dc
 193d8:  8f 65 2c                CALL_1N         194b0
-193db:  b0                      RTRUE           
+193db:  b0                      RTRUE
 193dc:  b3 ...                  PRINT_RET       "At present the clock is reset
 to zero."
 193f5:  41 3a 3a 00 48          JE              G2a,#3a [FALSE] 19440
@@ -8544,7 +8544,7 @@ to zero."
 19418:  e3 97 2f 18 01          PUT_PROP        G1f,#18,#01
 1941d:  b3 ...                  PRINT_RET       "You wind back the timer to ten
 minutes, and off it goes."
-19440:  b1                      RFALSE          
+19440:  b1                      RFALSE
 
 Routine 19444, 1 local
 
@@ -8566,8 +8566,8 @@ bomb",#18,(SP)+
 19492:  0b cd 08                SET_ATTR        "complicated-looking bomb",#08
 19495:  b3 ...                  PRINT_RET       "All four wires are now
 disconnected."
-194ae:  b0                      RTRUE           
-194af:  b1                      RFALSE          
+194ae:  b0                      RTRUE
+194af:  b1                      RFALSE
 
 Routine 194b0, 2 locals
 
@@ -8630,11 +8630,11 @@ Routine 195dc, 1 local
 
 195dd:  41 01 01 00 08          JE              L00,#01 [FALSE] 195e8
 195e2:  b2 ...                  PRINT           " and "
-195e7:  b1                      RFALSE          
+195e7:  b1                      RFALSE
 195e8:  41 01 00 00 03          JE              L00,#00 [FALSE] 195ee
-195ed:  b1                      RFALSE          
+195ed:  b1                      RFALSE
 195ee:  b2 ...                  PRINT           ", "
-195f1:  b0                      RTRUE           
+195f1:  b0                      RTRUE
 
 Routine 195f4, 1 local
 
@@ -8663,7 +8663,7 @@ suddenly carries. The others hush him."
 1979e:  41 01 06 00 27          JE              L00,#06 [FALSE] 197c8
 197a3:  b3 ...                  PRINT_RET       "
 The men walk away, perhaps a few feet, perhaps a mile."
-197c8:  b1                      RFALSE          
+197c8:  b1                      RFALSE
 
 Routine 197cc, 0 locals
 
@@ -8675,7 +8675,7 @@ Routine 197cc, 0 locals
 197f1:  ce 2f 00 d8 19          INSERT_OBJ      "model ship",G09
 197f6:  b3 ...                  PRINT_RET       "In fact there's nothing hidden
 among the crates but a model sailing ship. You pick it up from force of habit."
-19835:  b1                      RFALSE          
+19835:  b1                      RFALSE
 
 Routine 19838, 0 locals
 
@@ -8704,7 +8704,7 @@ In fact, the closer you look the more sea-sick you feel.
 
 Thank heavens for the deck rail, something to hang on to while this moment of
 queasiness passes."
-19a09:  b1                      RFALSE          
+19a09:  b1                      RFALSE
 
 Routine 19a0c, 0 locals
 
@@ -8741,7 +8741,7 @@ bottle."
 19b89:  41 2a 39 00 14          JE              G1a,#39 [FALSE] 19ba0
 19b8e:  41 30 d9 00 0f          JE              G20,#d9 [FALSE] 19ba0
 19b93:  b3 ...                  PRINT_RET       "Ever the optimist."
-19ba0:  b1                      RFALSE          
+19ba0:  b1                      RFALSE
 
 Routine 19ba4, 0 locals
 
@@ -8755,7 +8755,7 @@ be early morning, soon after dawn, from the look of the sun on the water.
 19c29:  b3 ...                  PRINT_RET       "
 You can just make out the Pharos atop the cliffs. But it seems to be earlier,
 nearer dawn, than your last visit."
-19c6e:  b0                      RTRUE           
+19c6e:  b0                      RTRUE
 
 Routine 19c70, 0 locals
 
@@ -8773,7 +8773,7 @@ catch sight of Andromeda looking suddenly cheerful. It soon becomes apparent
 why, as a Kraken wakes from the depths of the ocean and swipes you for a quick
 snack. You seem to have replaced her as sacrifice... a Pyrrhic victory which
 even the prospect of stellification does little to assuage."
-19d9f:  b1                      RFALSE          
+19d9f:  b1                      RFALSE
 
 Routine 19da0, 0 locals
 
@@ -8818,12 +8818,12 @@ in case anyone else is looking."
 but her sense of duty wins out and she refuses."
 1a01f:  b3 ...                  PRINT_RET       "She looks down her nose at
 you."
-1a034:  c1 85 3a 01 03 46 44 00 59 
+1a034:  c1 85 3a 01 03 46 44 00 59
                                JE              G2a,#0103,#46,#44 [FALSE] 1a094
 1a03d:  b3 ...                  PRINT_RET       "Andromeda hisses something
 contemptuous at you in Greek. (Attic, not Demotic, ironically enough, but then
 it's all Greek to you.)"
-1a094:  b1                      RFALSE          
+1a094:  b1                      RFALSE
 
 Routine 1a098, 0 locals
 
@@ -8838,23 +8838,23 @@ allow you to get by.
 
 Routine 1a0ec, 0 locals
 
-1a0ed:  c1 85 3a 01 03 46 44 00 09 
+1a0ed:  c1 85 3a 01 03 46 44 00 09
                                JE              G2a,#0103,#46,#44 [FALSE] 1a0fd
 1a0f6:  b3 ...                  PRINT_RET       "Grunt!"
-1a0fd:  b1                      RFALSE          
+1a0fd:  b1                      RFALSE
 
 Routine 1a100, 0 locals
 
 1a101:  c1 97 3a 4b 15 00 0f    JE              G2a,#4b,#15 [FALSE] 1a115
 1a108:  b3 ...                  PRINT_RET       "The thorns deter you."
-1a115:  b1                      RFALSE          
+1a115:  b1                      RFALSE
 
 Routine 1a118, 0 locals
 
 1a119:  41 3a 4c 00 29          JE              G2a,#4c [FALSE] 1a145
 1a11e:  b3 ...                  PRINT_RET       "Given the language difficulty,
 you'd better resort to barter."
-1a145:  b1                      RFALSE          
+1a145:  b1                      RFALSE
 
 Routine 1a148, 1 local
 
@@ -8874,7 +8874,7 @@ cousin."
 The gentle sound of bazouki music strikes up in the background, gradually
 rising to an intolerable pitch. After a moment comes a dull thud and a
 strangled noise, then blessed quiet."
-1a243:  b1                      RFALSE          
+1a243:  b1                      RFALSE
 
 Routine 1a244, 0 locals
 
@@ -8884,8 +8884,8 @@ Routine 1a244, 0 locals
 1a256:  b3 ...                  PRINT_RET       "You can't understand a word of
 what the bartender says, but the drift is clear enough. Not until you pay for
 it."
-1a297:  b1                      RFALSE          
-1a298:  b1                      RFALSE          
+1a297:  b1                      RFALSE
+1a298:  b1                      RFALSE
 
 Routine 1a29c, 0 locals
 
@@ -8898,7 +8898,7 @@ wearily, with a "how can you eat at a time like this?" look."
 1a2e6:  b2 ...                  PRINT           "The bartender looks at "
 1a2f5:  da 2f 38 4e 30          CALL_2N         e138 (G20)
 1a2fa:  b3 ...                  PRINT_RET       " with a glazed expression."
-1a30b:  c1 94 3a 46 44 01 03 00 63 
+1a30b:  c1 94 3a 46 44 01 03 00 63
                                JE              G2a,#46,#44,#0103 [FALSE] 1a375
 1a314:  b3 ...                  PRINT_RET       "Being an educated person, the
 bartender speaks a little Latin and some Aramaic. Being an uneducated one, you
@@ -8906,7 +8906,7 @@ don't, and communication proves impossible."
 1a375:  c1 97 3a 42 54 00 1b    JE              G2a,#42,#54 [FALSE] 1a395
 1a37c:  b3 ...                  PRINT_RET       "Here, surrounded by all his
 cronies?"
-1a395:  b1                      RFALSE          
+1a395:  b1                      RFALSE
 
 Routine 1a398, 0 locals
 
@@ -8934,7 +8934,7 @@ attempts to weave about."
 Routine 1a538, 0 locals
 
 1a539:  da 1f 97 a4 04          CALL_2N         25e90 (#04)
-1a53e:  b1                      RFALSE          
+1a53e:  b1                      RFALSE
 
 Routine 1a540, 0 locals
 
@@ -8954,18 +8954,18 @@ inscriptions, side by side:
 1a5ca:  e1 5b 00 08 00          STOREW          #00,#08,(SP)+
 1a5cf:  b2 ...                  PRINT           "
    #. [] = # +*+  __             an-ta re-im ka u bir ka-i
-             |||       
-        |        |     
+             |||
+        |        |
    / # -+- :; # -+-                 ka ne : to-ro-ma ka ur
-        |        |     
-                       
+        |        |
+
    >>> -> # (---)         .je-fe-im ka ur-a an-ge to-ro-ma
              |||
 "
 1a6da:  0f 00 08 00             LOADW           #00,#08 -> -(SP)
 1a6de:  c9 2f ff fd 00 00       AND             #fffd,(SP)+ -> -(SP)
 1a6e4:  e1 5b 00 08 00          STOREW          #00,#08,(SP)+
-1a6e9:  b0                      RTRUE           
+1a6e9:  b0                      RTRUE
 
 Routine 1a6ec, 0 locals
 
@@ -8977,12 +8977,12 @@ Routine 1a6ec, 0 locals
 1a71d:  0f 00 08 00             LOADW           #00,#08 -> -(SP)
 1a721:  c9 2f ff fd 00 00       AND             #fffd,(SP)+ -> -(SP)
 1a727:  e1 5b 00 08 00          STOREW          #00,#08,(SP)+
-1a72c:  b0                      RTRUE           
+1a72c:  b0                      RTRUE
 
 Routine 1a730, 0 locals
 
 1a731:  da 0f 37 61 00 f2       CALL_2N         dd84 (#00f2)
-1a737:  b1                      RFALSE          
+1a737:  b1                      RFALSE
 
 Routine 1a738, 0 locals
 
@@ -8993,7 +8993,7 @@ composing Book XIV of the Iliad."
 1a76b:  8c 00 11                JUMP            1a77d
 1a76e:  b3 ...                  PRINT_RET       "Homer is asleep.
 "
-1a77d:  b1                      RFALSE          
+1a77d:  b1                      RFALSE
 1a77e:  41 3a 53 00 eb          JE              G2a,#53 [FALSE] 1a86c
 1a783:  0a f0 08 00 13          TEST_ATTR       "Homer",#08 [FALSE] 1a799
 1a788:  b3 ...                  PRINT_RET       "Homer is awake already."
@@ -9042,13 +9042,13 @@ dismissively and falls asleep."
 the syrinx. "Now leave me alone, I got six books of the Iliad left to
 compose.""
 1a9ef:  8c ff 49                JUMP            1a939
-1a9f2:  b1                      RFALSE          
+1a9f2:  b1                      RFALSE
 
 Routine 1a9f4, 0 locals
 
 1a9f5:  0c f0 08                CLEAR_ATTR      "Homer",#08
 1a9f8:  e3 53 f0 11 cf c4       PUT_PROP        "Homer",#11,S501
-1a9fe:  b0                      RTRUE           
+1a9fe:  b0                      RTRUE
 
 Routine 1aa00, 1 local
 
@@ -9092,13 +9092,13 @@ World dictators and mad scientists. His priestess, the Oracle, steps out of the
 shadows.
 "
 1ac01:  da 1f 9d bb 22          CALL_2N         276ec (#22)
-1ac06:  b0                      RTRUE           
-1ac07:  b1                      RFALSE          
+1ac06:  b0                      RTRUE
+1ac07:  b1                      RFALSE
 
 Routine 1ac08, 0 locals
 
 1ac09:  da 2f 37 47 2f          CALL_2N         dd1c (G1f)
-1ac0e:  b1                      RFALSE          
+1ac0e:  b1                      RFALSE
 
 Routine 1ac10, 0 locals
 
@@ -9107,7 +9107,7 @@ Routine 1ac10, 0 locals
 1ac20:  4a 30 11 00 08          TEST_ATTR       G20,#11 [FALSE] 1ac2b
 1ac25:  4c 30 11                CLEAR_ATTR      G20,#11
 1ac28:  4b 30 0c                SET_ATTR        G20,#0c
-1ac2b:  b1                      RFALSE          
+1ac2b:  b1                      RFALSE
 
 Routine 1ac2c, 0 locals
 
@@ -9115,7 +9115,7 @@ Routine 1ac2c, 0 locals
 1ac34:  c1 93 30 ec 01 0f 00 0e JE              G20,#ec,#010f [FALSE] 1ac48
 1ac3c:  4a 30 13 00 09          TEST_ATTR       G20,#13 [FALSE] 1ac48
 1ac41:  e3 13 00 f3 11 cf fe    PUT_PROP        "inscriptions",#11,S506
-1ac48:  b1                      RFALSE          
+1ac48:  b1                      RFALSE
 
 Routine 1ac4c, 0 locals
 
@@ -9129,23 +9129,23 @@ Routine 1ac4c, 0 locals
 1ac72:  c1 8f 00 00 f9 00 33    JE              (SP)+,#00f9 [FALSE] 1acaa
 1ac79:  ca 1f 00 f3 0e 00 03    TEST_ATTR       "inscriptions",#0e [FALSE]
 1ac81
-1ac80:  b0                      RTRUE           
+1ac80:  b0                      RTRUE
 1ac81:  cb 1f 00 f3 0e          SET_ATTR        "inscriptions",#0e
 1ac86:  da 1f 9d bb 20          CALL_2N         276ec (#20)
 1ac8b:  b3 ...                  PRINT_RET       "
 You hear the noise of stone grating against stone."
-1acaa:  b1                      RFALSE          
+1acaa:  b1                      RFALSE
 
 Routine 1acac, 0 locals
 
 1acad:  c1 8f 3a 01 01 00 65    JE              G2a,#0101 [FALSE] 1ad17
 1acb4:  4a 2f 0e 80 03          TEST_ATTR       G1f,#0e [TRUE] 1acba
-1acb9:  b1                      RFALSE          
+1acb9:  b1                      RFALSE
 1acba:  c1 93 30 ec 01 0f 80 1c JE              G20,#ec,#010f [TRUE] 1acdc
 1acc2:  da 2f 38 53 30          CALL_2N         e14c (G20)
 1acc7:  b2 ...                  PRINT           " would simply fall through."
-1acda:  bb                      NEW_LINE        
-1acdb:  b0                      RTRUE           
+1acda:  bb                      NEW_LINE
+1acdb:  b0                      RTRUE
 1acdc:  41 30 ec 00 0b          JE              G20,#ec [FALSE] 1acea
 1ace1:  e3 93 2f 11 d0 21       PUT_PROP        G1f,#11,S511
 1ace7:  8c 00 08                JUMP            1acf0
@@ -9157,15 +9157,15 @@ Routine 1acac, 0 locals
 1acfc:  b2 ...                  PRINT           "You wedge "
 1ad03:  da 2f 38 4e 30          CALL_2N         e138 (G20)
 1ad08:  b2 ...                  PRINT           " across the opening."
-1ad15:  bb                      NEW_LINE        
-1ad16:  b0                      RTRUE           
-1ad17:  b1                      RFALSE          
+1ad15:  bb                      NEW_LINE
+1ad16:  b0                      RTRUE
+1ad17:  b1                      RFALSE
 
 Routine 1ad18, 0 locals
 
 1ad19:  41 3a 13 00 b5          JE              G2a,#13 [FALSE] 1add1
 1ad1e:  4a 2f 0c 00 03          TEST_ATTR       G1f,#0c [FALSE] 1ad24
-1ad23:  b1                      RFALSE          
+1ad23:  b1                      RFALSE
 1ad24:  b2 ...                  PRINT           "There is a horrible screeching
 sound as a trap is sprung. "
 1ad47:  0a ec 11 80 09          TEST_ATTR       "inscribed stone",#11 [TRUE]
@@ -9176,12 +9176,12 @@ sound as a trap is sprung. "
 together: but are securely wedged, and cannot move...
 
 "
-1ad88:  b1                      RFALSE          
+1ad88:  b1                      RFALSE
 1ad89:  0d 1d 01                STORE           G0d,#01
 1ad8c:  b3 ...                  PRINT_RET       "The opening crushes together,
 and so do the walls!  They reduce you to powdered dog biscuit in a matter of
 seconds."
-1add1:  b1                      RFALSE          
+1add1:  b1                      RFALSE
 
 Routine 1add4, 0 locals
 
@@ -9196,27 +9196,27 @@ statue in is to the centre of the cross, but there's a pit open in the floor
 there."
 1ae3e:  c1 97 31 0a 0b 80 06    JE              G21,#0a,#0b [TRUE] 1ae49
 1ae45:  8f a2 33                CALL_1N         288cc
-1ae48:  b0                      RTRUE           
-1ae49:  b1                      RFALSE          
-1ae4a:  b1                      RFALSE          
+1ae48:  b0                      RTRUE
+1ae49:  b1                      RFALSE
+1ae4a:  b1                      RFALSE
 
 Routine 1ae4c, 0 locals
 
 1ae4d:  41 3a 3e 00 17          JE              G2a,#3e [FALSE] 1ae67
 1ae52:  b3 ...                  PRINT_RET       "You heave the statue along
 with you."
-1ae67:  b1                      RFALSE          
+1ae67:  b1                      RFALSE
 
 Routine 1ae68, 0 locals
 
 1ae69:  c1 95 3a 42 54 20 00 23 JE              G2a,#42,#54,#20 [FALSE] 1ae92
 1ae71:  b3 ...                  PRINT_RET       "As you ought to know, the
 Oracle is inviolable."
-1ae92:  c1 91 3a 46 01 03 44 00 06 
+1ae92:  c1 91 3a 46 01 03 44 00 06
                                JE              G2a,#46,#0103,#44 [FALSE] 1ae9f
 1ae9b:  8f 6b b4                CALL_1N         1aed0
-1ae9e:  b0                      RTRUE           
-1ae9f:  b1                      RFALSE          
+1ae9e:  b0                      RTRUE
+1ae9f:  b1                      RFALSE
 
 Routine 1aea0, 1 local
 
@@ -9226,11 +9226,11 @@ Routine 1aea0, 1 local
 1aeaf:  b2 ...                  PRINT           "nought"
 1aeb4:  41 01 01 00 08          JE              L00,#01 [FALSE] 1aebf
 1aeb9:  b2 ...                  PRINT           "a pace"
-1aebe:  b1                      RFALSE          
+1aebe:  b1                      RFALSE
 1aebf:  42 01 02 80 07          JL              L00,#02 [TRUE] 1aec9
 1aec4:  da 2f 99 a2 01          CALL_2N         26688 (L00)
 1aec9:  b2 ...                  PRINT           " paces"
-1aece:  b0                      RTRUE           
+1aece:  b0                      RTRUE
 
 Routine 1aed0, 0 locals
 
@@ -9270,19 +9270,19 @@ hand
   made the salve you shall need
   to defy the Druids' earthly band:
   take care, mortal, take heed.""
-1b0db:  bb                      NEW_LINE        
+1b0db:  bb                      NEW_LINE
 1b0dc:  41 a6 01 00 3f          JE              G96,#01 [FALSE] 1b11e
 1b0e1:  b3 ...                  PRINT_RET       "
 Apollo is what you might call an annoying git, were he not also an alarmingly
 powerful deity."
-1b11e:  b0                      RTRUE           
+1b11e:  b0                      RTRUE
 
 Routine 1b120, 0 locals
 
 1b121:  c1 8f 3a 01 01 00 d7    JE              G2a,#0101 [FALSE] 1b1fd
 1b128:  61 30 19 00 09          JE              G20,G09 [FALSE] 1b134
 1b12d:  f9 1b 36 0d 15 2f       CALL_VN         d834 (#15,G1f)
-1b133:  b0                      RTRUE           
+1b133:  b0                      RTRUE
 1b134:  a9 30                   REMOVE_OBJ      G20
 1b136:  26 ff 11 80 39          JIN             "Oracle",G01 [TRUE] 1b172
 1b13b:  b3 ...                  PRINT_RET       "Perhaps the gods no longer
@@ -9300,7 +9300,7 @@ with your offering, which feeds the eternal flame."
 1b1fd:  41 3a 15 00 17          JE              G2a,#15 [FALSE] 1b217
 1b202:  b3 ...                  PRINT_RET       "You have no desire to be
 burnt."
-1b217:  b1                      RFALSE          
+1b217:  b1                      RFALSE
 
 Routine 1b218, 0 locals
 
@@ -9329,7 +9329,7 @@ the hot afternoon sun."
 1b3b3:  8c 00 3f                JUMP            1b3f3
 1b3b6:  b3 ...                  PRINT_RET       "The sun is rising and the sky
 is clear blue over the Mediterranean: it's going to be a beautiful day."
-1b3f3:  b1                      RFALSE          
+1b3f3:  b1                      RFALSE
 
 Routine 1b3f4, 0 locals
 
@@ -9345,14 +9345,14 @@ eye, you notice the flash fall out of the device.)
 "
 1b433:  ce 4f 3f 01 01          INSERT_OBJ      "photographer's
 flash","Lighthouse"
-1b438:  b0                      RTRUE           
+1b438:  b0                      RTRUE
 
 Routine 1b43c, 0 locals
 
 1b43d:  41 2a 26 00 0a          JE              G1a,#26 [FALSE] 1b44a
 1b442:  41 30 0b 00 05          JE              G20,#0b [FALSE] 1b44a
 1b447:  8f 6c ff                CALL_1N         1b3fc
-1b44a:  b1                      RFALSE          
+1b44a:  b1                      RFALSE
 
 Routine 1b44c, 0 locals
 
@@ -9363,7 +9363,7 @@ Routine 1b47c, 0 locals
 
 1b47d:  c6 1f 01 05 01 00 03    JIN             "port wall","compass" [FALSE]
 1b485
-1b484:  b1                      RFALSE          
+1b484:  b1                      RFALSE
 1b485:  ce 4f 02 01 0d          INSERT_OBJ      "north wall","flagpole"
 1b48a:  ce 4f 03 01 0d          INSERT_OBJ      "south wall","flagpole"
 1b48f:  ce 4f 04 01 0d          INSERT_OBJ      "east wall","flagpole"
@@ -9379,12 +9379,12 @@ Routine 1b47c, 0 locals
 1b4c1:  ce 1f 01 09 01          INSERT_OBJ      "some landlubber's
 direction","compass"
 1b4c6:  da 2f 37 47 2f          CALL_2N         dd1c (G1f)
-1b4cb:  b1                      RFALSE          
+1b4cb:  b1                      RFALSE
 
 Routine 1b4cc, 0 locals
 
 1b4cd:  4a 11 25 00 03          TEST_ATTR       G01,#25 [FALSE] 1b4d3
-1b4d2:  b1                      RFALSE          
+1b4d2:  b1                      RFALSE
 1b4d3:  da 2f 37 61 2f          CALL_2N         dd84 (G1f)
 1b4d8:  89 01 05                REMOVE_OBJ      "port wall"
 1b4db:  89 01 06                REMOVE_OBJ      "starboard wall"
@@ -9399,14 +9399,14 @@ Routine 1b4cc, 0 locals
 1b4f6:  0e 08 01                INSERT_OBJ      "northwest wall","compass"
 1b4f9:  0e 07 01                INSERT_OBJ      "southeast wall","compass"
 1b4fc:  0e 09 01                INSERT_OBJ      "southwest wall","compass"
-1b4ff:  b1                      RFALSE          
+1b4ff:  b1                      RFALSE
 
 Routine 1b500, 0 locals
 
 1b501:  c1 97 3a 15 4b 00 09    JE              G2a,#15,#4b [FALSE] 1b50f
 1b508:  f9 17 36 0d 26 0a       CALL_VN         d834 (#26,#0a)
-1b50e:  b0                      RTRUE           
-1b50f:  b1                      RFALSE          
+1b50e:  b0                      RTRUE
+1b50f:  b1                      RFALSE
 
 Routine 1b510, 0 locals
 
@@ -9459,7 +9459,7 @@ Navy",#08 [FALSE] 1b68d
 deck below."
 1b6a9:  c1 97 3a 76 7a 00 09    JE              G2a,#76,#7a [FALSE] 1b6b7
 1b6b0:  b3 ...                  PRINT_RET       "Up here?"
-1b6b7:  b1                      RFALSE          
+1b6b7:  b1                      RFALSE
 
 Routine 1b6b8, 0 locals
 
@@ -9473,7 +9473,7 @@ Routine 1b6b8, 0 locals
 a stone to the deck far below, where it cracks like an egg."
 1b70a:  b3 ...                  PRINT_RET       "Dropped a long way down, onto
 the deck."
-1b723:  b1                      RFALSE          
+1b723:  b1                      RFALSE
 
 Routine 1b724, 0 locals
 
@@ -9481,7 +9481,7 @@ Routine 1b724, 0 locals
 1b72d:  41 3a 3c 00 23          JE              G2a,#3c [FALSE] 1b753
 1b732:  b3 ...                  PRINT_RET       "The flagpole is very securely
 fixed to the main mast."
-1b753:  b1                      RFALSE          
+1b753:  b1                      RFALSE
 
 Routine 1b754, 0 locals
 
@@ -9491,7 +9491,7 @@ Routine 1b754, 0 locals
 1b761:  b3 ...                  PRINT_RET       "The flag seems perfect for the
 bed as it is."
 1b77c:  c6 8f 2f 01 0c 80 03    JIN             G1f,"Up the Mast" [TRUE] 1b784
-1b783:  b1                      RFALSE          
+1b783:  b1                      RFALSE
 1b784:  c1 97 3a 13 3c 00 40    JE              G2a,#13,#3c [FALSE] 1b7c9
 1b78b:  cb 1f 01 0e 08          SET_ATTR        "flag of the British Merchant
 Navy",#08
@@ -9502,25 +9502,25 @@ of the flag in one hand (though it won't pull away from the pole)."
 Navy",#08
 1b7d5:  b3 ...                  PRINT_RET       "You leave hold of the tassels
 of the flag."
-1b7ee:  b1                      RFALSE          
+1b7ee:  b1                      RFALSE
 
 Routine 1b7f0, 0 locals
 
 1b7f1:  41 3a 13 00 17          JE              G2a,#13 [FALSE] 1b80b
 1b7f6:  ca 1f 01 0f 08 80 03    TEST_ATTR       "old timber spar",#08 [TRUE]
 1b7fe
-1b7fd:  b1                      RFALSE          
+1b7fd:  b1                      RFALSE
 1b7fe:  cc 1f 01 0f 08          CLEAR_ATTR      "old timber spar",#08
 1b803:  f9 07 37 1a 01 35 05    CALL_VN         dc68 (#0135,#05)
-1b80a:  b1                      RFALSE          
-1b80b:  b1                      RFALSE          
+1b80a:  b1                      RFALSE
+1b80b:  b1                      RFALSE
 
 Routine 1b80c, 0 locals
 
 1b80d:  b2 ...                  PRINT           "You can only go aft.
 "
 1b81c:  da 1f 97 a4 0b          CALL_2N         25e90 (#0b)
-1b821:  b0                      RTRUE           
+1b821:  b0                      RTRUE
 
 Routine 1b824, 0 locals
 
@@ -9537,7 +9537,7 @@ sneeze a little, but fails to give you the bird. (Worth a try, anyway.)"
 1b8c2:  b3 ...                  PRINT_RET       "The bird is so startled by the
 cloud of pollen from the waved branch that she leaps into the skies, squawking
 with flighty anxiety."
-1b90d:  b1                      RFALSE          
+1b90d:  b1                      RFALSE
 
 Routine 1b910, 0 locals
 
@@ -9572,8 +9572,8 @@ Routine 1bab4, 0 locals
 chain."
 1bafc:  c1 97 3a 4b 15 00 09    JE              G2a,#4b,#15 [FALSE] 1bb0a
 1bb03:  f9 17 36 0d 26 0b       CALL_VN         d834 (#26,#0b)
-1bb09:  b0                      RTRUE           
-1bb0a:  b1                      RFALSE          
+1bb09:  b0                      RTRUE
+1bb0a:  b1                      RFALSE
 
 Routine 1bb0c, 0 locals
 
@@ -9582,23 +9582,23 @@ Routine 1bb0c, 0 locals
 1bb21:  41 3a 5d 00 23          JE              G2a,#5d [FALSE] 1bb47
 1bb26:  b3 ...                  PRINT_RET       "Just about drinkable. Not much
 fun, though."
-1bb47:  b1                      RFALSE          
+1bb47:  b1                      RFALSE
 
 Routine 1bb48, 0 locals
 
 1bb49:  41 3a 30 00 06          JE              G2a,#30 [FALSE] 1bb52
 1bb4e:  0c 7e 0e                CLEAR_ATTR      "metal door",#0e
-1bb51:  b1                      RFALSE          
+1bb51:  b1                      RFALSE
 1bb52:  41 3a 2e 00 06          JE              G2a,#2e [FALSE] 1bb5b
 1bb57:  0b 7e 0e                SET_ATTR        "metal door",#0e
-1bb5a:  b1                      RFALSE          
+1bb5a:  b1                      RFALSE
 1bb5b:  41 3a 2f 00 06          JE              G2a,#2f [FALSE] 1bb64
 1bb60:  0c 7e 0b                CLEAR_ATTR      "metal door",#0b
-1bb63:  b1                      RFALSE          
+1bb63:  b1                      RFALSE
 1bb64:  41 3a 41 00 06          JE              G2a,#41 [FALSE] 1bb6d
 1bb69:  0b 7e 0b                SET_ATTR        "metal door",#0b
-1bb6c:  b1                      RFALSE          
-1bb6d:  b1                      RFALSE          
+1bb6c:  b1                      RFALSE
+1bb6d:  b1                      RFALSE
 
 Routine 1bb70, 0 locals
 
@@ -9607,8 +9607,8 @@ Routine 1bb70, 0 locals
 taste, silt and algae."
 1bb99:  41 3a 15 00 08          JE              G2a,#15 [FALSE] 1bba4
 1bb9e:  da 1f 36 0d 4e          CALL_2N         d834 (#4e)
-1bba3:  b0                      RTRUE           
-1bba4:  b1                      RFALSE          
+1bba3:  b0                      RTRUE
+1bba4:  b1                      RFALSE
 
 Routine 1bba8, 0 locals
 
@@ -9618,14 +9618,14 @@ Routine 1bba8, 0 locals
 1bbc8:  b3 ...                  PRINT_RET       "You swivel the plant's tub."
 1bbdb:  c1 95 3a 3d 3e 3c 00 57 JE              G2a,#3d,#3e,#3c [FALSE] 1bc38
 1bbe3:  4a 2f 08 00 03          TEST_ATTR       G1f,#08 [FALSE] 1bbe9
-1bbe8:  b1                      RFALSE          
+1bbe8:  b1                      RFALSE
 1bbe9:  4b 2f 08                SET_ATTR        G1f,#08
 1bbec:  ce 2f 01 1a 11          INSERT_OBJ      "timber hatch",G01
 1bbf1:  e3 13 01 17 0e 01 1a    PUT_PROP        "Beside the Wall",#0e,#011a
 1bbf8:  6e 2f 11                INSERT_OBJ      G1f,G01
 1bbfb:  b3 ...                  PRINT_RET       "Pushing the shrub a little
 aside reveals an unsightly old timber hatch, about three feet in diameter."
-1bc38:  b1                      RFALSE          
+1bc38:  b1                      RFALSE
 
 Routine 1bc3c, 0 locals
 
@@ -9633,17 +9633,17 @@ Routine 1bc3c, 0 locals
 1bc44:  b3 ...                  PRINT_RET       "The old, carved garden wall is
 one of the treasures of rural England, and you're not nearly desperate enough
 to crumble it further into ruin."
-1bc9d:  b1                      RFALSE          
+1bc9d:  b1                      RFALSE
 
 Routine 1bca0, 0 locals
 
-1bca1:  c1 85 3a 01 03 44 46 00 47 
+1bca1:  c1 85 3a 01 03 44 46 00 47
                                JE              G2a,#0103,#44,#46 [FALSE] 1bcef
 1bcaa:  41 2a 75 80 11          JE              G1a,#75 [TRUE] 1bcbe
 1bcaf:  b3 ...                  PRINT_RET       "The old wall is mute."
 1bcbe:  b3 ...                  PRINT_RET       "For a moment, the slightest of
 zephyrs blows from the wall, but dies away to nothing."
-1bcef:  b1                      RFALSE          
+1bcef:  b1                      RFALSE
 
 Routine 1bcf0, 0 locals
 
@@ -9651,18 +9651,18 @@ Routine 1bcf0, 0 locals
 1bcf6:  0b 84 09                SET_ATTR        "Wine Cellars",#09
 1bcf9:  51 2f 11 00             GET_PROP        G1f,#11 -> -(SP)
 1bcfd:  ad 00                   PRINT_PADDR     (SP)+
-1bcff:  bb                      NEW_LINE        
-1bd00:  b0                      RTRUE           
+1bcff:  bb                      NEW_LINE
+1bd00:  b0                      RTRUE
 1bd01:  41 3a 30 00 06          JE              G2a,#30 [FALSE] 1bd0a
 1bd06:  0c 84 09                CLEAR_ATTR      "Wine Cellars",#09
-1bd09:  b1                      RFALSE          
-1bd0a:  b1                      RFALSE          
+1bd09:  b1                      RFALSE
+1bd0a:  b1                      RFALSE
 
 Routine 1bd0c, 0 locals
 
 1bd0d:  0d a8 04                STORE           G98,#04
 1bd10:  0d a9 06                STORE           G99,#06
-1bd13:  b1                      RFALSE          
+1bd13:  b1                      RFALSE
 
 Routine 1bd14, 0 locals
 
@@ -9682,8 +9682,8 @@ Routine 1be10, 0 locals
 
 1be11:  41 3a 4b 00 09          JE              G2a,#4b [FALSE] 1be1d
 1be16:  f9 17 36 0d 26 0a       CALL_VN         d834 (#26,#0a)
-1be1c:  b0                      RTRUE           
-1be1d:  b1                      RFALSE          
+1be1c:  b0                      RTRUE
+1be1d:  b1                      RFALSE
 
 Routine 1be20, 0 locals
 
@@ -9692,14 +9692,14 @@ Routine 1be20, 0 locals
 1be2b:  cc 1f 01 81 08          CLEAR_ATTR      "CR",#08
 1be30:  b3 ...                  PRINT_RET       "It plummets down into the
 well."
-1be45:  b1                      RFALSE          
+1be45:  b1                      RFALSE
 
 Routine 1be48, 0 locals
 
 1be49:  41 3a 60 00 18          JE              G2a,#60 [FALSE] 1be64
 1be4e:  0d 1d 01                STORE           G0d,#01
 1be51:  b3 ...                  PRINT_RET       "You fall and break your neck!"
-1be64:  b1                      RFALSE          
+1be64:  b1                      RFALSE
 
 Routine 1be68, 0 locals
 
@@ -9712,10 +9712,10 @@ to the earth below.
 "
 1be9e:  0c 37 0b                CLEAR_ATTR      "mb",#0b
 1bea1:  0b 37 0e                SET_ATTR        "mb",#0e
-1bea4:  b0                      RTRUE           
+1bea4:  b0                      RTRUE
 1bea5:  da 2f 38 53 2b          CALL_2N         e14c (G1b)
 1beaa:  b3 ...                  PRINT_RET       " plummets to the earth below."
-1bebd:  b1                      RFALSE          
+1bebd:  b1                      RFALSE
 
 Routine 1bec0, 0 locals
 
@@ -9742,15 +9742,15 @@ fit.
 to drive a garden roller over a Roman mosaic.
 "
 1bf79:  9b 02                   RET             #02
-1bf7b:  b0                      RTRUE           
-1bf7c:  b1                      RFALSE          
-1bf7d:  b1                      RFALSE          
+1bf7b:  b0                      RTRUE
+1bf7c:  b1                      RFALSE
+1bf7d:  b1                      RFALSE
 
 Routine 1bf80, 0 locals
 
 1bf81:  66 19 2f 00 07          JIN             G09,G1f [FALSE] 1bf8b
 1bf86:  4a 2f 0d 80 03          TEST_ATTR       G1f,#0d [TRUE] 1bf8c
-1bf8b:  b1                      RFALSE          
+1bf8b:  b1                      RFALSE
 1bf8c:  c1 8f 11 01 1d 00 42    JE              G01,#011d [FALSE] 1bfd3
 1bf93:  c6 0f 01 1e 01 1d 00 3a JIN             "plaster statuette","Lawn
 Ornaments" [FALSE] 1bfd3
@@ -9770,7 +9770,7 @@ the roller, seems to have been cracked.
 "
 1c02f:  0b 37 0e                SET_ATTR        "mb",#0e
 1c032:  0c 37 0b                CLEAR_ATTR      "mb",#0b
-1c035:  b1                      RFALSE          
+1c035:  b1                      RFALSE
 
 Routine 1c038, 1 local
 
@@ -9809,7 +9809,7 @@ into the grass, and does nothing obvious."
 into the seedbed, and does nothing obvious."
 1c1dd:  b3 ...                  PRINT_RET       "A stream of weed-killer soaks
 into the earth, and does nothing obvious."
-1c20c:  b1                      RFALSE          
+1c20c:  b1                      RFALSE
 
 Routine 1c210, 1 local
 
@@ -9818,7 +9818,7 @@ Routine 1c210, 1 local
 1c21a:  74 aa 00 01             ADD             G9a,(SP)+ -> L00
 1c21e:  e2 a7 a7 01 30          STOREB          G97,L00,#30
 1c223:  da 2f 37 61 2f          CALL_2N         dd84 (G1f)
-1c228:  b1                      RFALSE          
+1c228:  b1                      RFALSE
 
 Routine 1c22c, 0 locals
 
@@ -9826,19 +9826,19 @@ Routine 1c22c, 0 locals
 1c232:  b2 ...                  PRINT           "spade"
 1c237:  8c 00 17                JUMP            1c24f
 1c23a:  b2 ...                  PRINT           "bladed agricultural implement"
-1c24f:  b0                      RTRUE           
+1c24f:  b0                      RTRUE
 
 Routine 1c250, 0 locals
 
 1c251:  41 3a 2a 00 3e          JE              G2a,#2a [FALSE] 1c292
 1c256:  ca 1f 01 2a 08 00 03    TEST_ATTR       "spade",#08 [FALSE] 1c25e
-1c25d:  b1                      RFALSE          
+1c25d:  b1                      RFALSE
 1c25e:  cb 1f 01 2a 08          SET_ATTR        "spade",#08
 1c263:  d2 1f 01 2a 01 00       GET_PROP_ADDR   "spade",#01 -> -(SP)
 1c269:  e1 93 00 03 9a 50       STOREW          (SP)+,#03,"spade"
 1c26f:  b3 ...                  PRINT_RET       "On second thoughts, let's just
 call a spade a spade."
-1c292:  b1                      RFALSE          
+1c292:  b1                      RFALSE
 
 Routine 1c294, 3 locals
 
@@ -9846,15 +9846,15 @@ Routine 1c294, 3 locals
 1c29a:  43 01 08 80 0c          JG              L00,#08 [TRUE] 1c2a9
 1c29f:  42 02 00 80 07          JL              L01,#00 [TRUE] 1c2a9
 1c2a4:  43 02 06 00 03          JG              L01,#06 [FALSE] 1c2aa
-1c2a9:  b1                      RFALSE          
+1c2a9:  b1                      RFALSE
 1c2aa:  36 09 02 00             MUL             #09,L01 -> -(SP)
 1c2ae:  74 00 01 00             ADD             (SP)+,L00 -> -(SP)
 1c2b2:  70 a7 00 03             LOADB           G97,(SP)+ -> L02
 1c2b6:  41 03 30 00 03          JE              L02,#30 [FALSE] 1c2bc
-1c2bb:  b1                      RFALSE          
+1c2bb:  b1                      RFALSE
 1c2bc:  41 03 31 00 03          JE              L02,#31 [FALSE] 1c2c2
-1c2c1:  b0                      RTRUE           
-1c2c2:  b0                      RTRUE           
+1c2c1:  b0                      RTRUE
+1c2c2:  b0                      RTRUE
 
 Routine 1c2c4, 3 locals
 
@@ -9864,7 +9864,7 @@ Routine 1c2c4, 3 locals
 1c2d7:  74 00 01 00             ADD             (SP)+,L00 -> -(SP)
 1c2db:  70 a7 00 03             LOADB           G97,(SP)+ -> L02
 1c2df:  41 03 30 00 03          JE              L02,#30 [FALSE] 1c2e5
-1c2e4:  b1                      RFALSE          
+1c2e4:  b1                      RFALSE
 1c2e5:  41 03 31 00 04          JE              L02,#31 [FALSE] 1c2ec
 1c2ea:  9b 02                   RET             #02
 1c2ec:  e0 2b 70 a5 01 02 00    CALL_VS         1c294 (L00,L01) -> -(SP)
@@ -9891,7 +9891,7 @@ Routine 1c328, 0 locals
 1c329:  41 3a 60 00 18          JE              G2a,#60 [FALSE] 1c344
 1c32e:  0d 1d 01                STORE           G0d,#01
 1c331:  b3 ...                  PRINT_RET       "You fall and break your neck!"
-1c344:  b1                      RFALSE          
+1c344:  b1                      RFALSE
 
 Routine 1c348, 3 locals
 
@@ -9914,13 +9914,13 @@ follows:
 1c39a:  b2 ...                  PRINT           "###"
 1c39f:  95 02                   INC             L01
 1c3a1:  8c ff dd                JUMP            1c37f
-1c3a4:  bb                      NEW_LINE        
+1c3a4:  bb                      NEW_LINE
 1c3a5:  95 01                   INC             L00
 1c3a7:  8c ff ca                JUMP            1c372
 1c3aa:  0f 00 08 00             LOADW           #00,#08 -> -(SP)
 1c3ae:  c9 2f ff fd 00 00       AND             #fffd,(SP)+ -> -(SP)
 1c3b4:  e1 5b 00 08 00          STOREW          #00,#08,(SP)+
-1c3b9:  b1                      RFALSE          
+1c3b9:  b1                      RFALSE
 
 Routine 1c3bc, 5 locals
 
@@ -9981,7 +9981,7 @@ This is a crossroads in the maze."
 1c4da:  41 01 01 00 05          JE              L00,#01 [FALSE] 1c4e2
 1c4df:  b2 ...                  PRINT           ", "
 1c4e2:  8c ff 96                JUMP            1c479
-1c4e5:  b0                      RTRUE           
+1c4e5:  b0                      RTRUE
 
 Routine 1c4e8, 2 locals
 
@@ -9995,11 +9995,11 @@ switched off, and won't drive."
 1c530:  41 a8 04 00 0d          JE              G98,#04 [FALSE] 1c540
 1c535:  41 a9 06 00 08          JE              G99,#06 [FALSE] 1c540
 1c53a:  41 30 03 00 03          JE              G20,#03 [FALSE] 1c540
-1c53f:  b1                      RFALSE          
+1c53f:  b1                      RFALSE
 1c540:  41 a8 00 00 0d          JE              G98,#00 [FALSE] 1c550
 1c545:  41 a9 01 00 08          JE              G99,#01 [FALSE] 1c550
 1c54a:  41 30 05 00 03          JE              G20,#05 [FALSE] 1c550
-1c54f:  b1                      RFALSE          
+1c54f:  b1                      RFALSE
 1c550:  0d 01 64                STORE           L00,#64
 1c553:  0d 02 64                STORE           L01,#64
 1c556:  41 30 02 00 09          JE              G20,#02 [FALSE] 1c562
@@ -10033,35 +10033,35 @@ way."
 1c616:  ce 0f 01 28 01 2e       INSERT_OBJ      "garden roller","Patio in Maze"
 1c61c:  da 1f 97 a4 27          CALL_2N         25e90 (#27)
 1c621:  da 1f 36 0d 29          CALL_2N         d834 (#29)
-1c626:  b0                      RTRUE           
-1c627:  b1                      RFALSE          
+1c626:  b0                      RTRUE
+1c627:  b1                      RFALSE
 
 Routine 1c628, 0 locals
 
 1c629:  41 3a 29 00 06          JE              G2a,#29 [FALSE] 1c632
 1c62e:  8f 70 ef                CALL_1N         1c3bc
-1c631:  b0                      RTRUE           
-1c632:  b1                      RFALSE          
+1c631:  b0                      RTRUE
+1c632:  b1                      RFALSE
 
 Routine 1c634, 0 locals
 
 1c635:  41 3a 26 00 30          JE              G2a,#26 [FALSE] 1c668
 1c63a:  c1 97 30 0b 0a 00 03    JE              G20,#0b,#0a [FALSE] 1c642
-1c641:  b1                      RFALSE          
+1c641:  b1                      RFALSE
 1c642:  c6 8f 19 01 28 80 17    JIN             G09,"garden roller" [TRUE]
 1c65e
 1c649:  b3 ...                  PRINT_RET       "Mustn't tread on the grass
 now!"
 1c65e:  e0 07 34 7a 01 2d 02 00 CALL_VS         d1e8 (#012d,#02) -> -(SP)
 1c666:  ab 00                   RET             (SP)+
-1c668:  b1                      RFALSE          
+1c668:  b1                      RFALSE
 
 Routine 1c66c, 0 locals
 
 1c66d:  41 3a 29 00 06          JE              G2a,#29 [FALSE] 1c676
 1c672:  8f 70 ef                CALL_1N         1c3bc
-1c675:  b0                      RTRUE           
-1c676:  b1                      RFALSE          
+1c675:  b0                      RTRUE
+1c676:  b1                      RFALSE
 
 Routine 1c678, 0 locals
 
@@ -10069,7 +10069,7 @@ Routine 1c678, 0 locals
 1c680:  c1 8f 31 01 ec 00 33    JE              G21,#01ec [FALSE] 1c6b8
 1c687:  b3 ...                  PRINT_RET       "It would look perfect in
 Diana's hair, but her head is far too high to reach."
-1c6b8:  b1                      RFALSE          
+1c6b8:  b1                      RFALSE
 
 Routine 1c6bc, 0 locals
 
@@ -10079,44 +10079,44 @@ Routine 1c6bc, 0 locals
 1c6c9:  c1 8f 30 01 31 00 17    JE              G20,#0131 [FALSE] 1c6e5
 1c6d0:  b3 ...                  PRINT_RET       "The writing's too small from
 here."
-1c6e5:  b1                      RFALSE          
+1c6e5:  b1                      RFALSE
 1c6e6:  41 3a 26 00 2c          JE              G2a,#26 [FALSE] 1c715
 1c6eb:  41 30 04 00 26          JE              G20,#04 [FALSE] 1c714
 1c6f0:  c6 8f 19 01 28 80 1f    JIN             G09,"garden roller" [TRUE]
 1c714
 1c6f7:  b3 ...                  PRINT_RET       "For the sake of the grass, you
 can't go that way."
-1c714:  b1                      RFALSE          
-1c715:  b1                      RFALSE          
+1c714:  b1                      RFALSE
+1c715:  b1                      RFALSE
 
 Routine 1c718, 0 locals
 
 1c719:  0d a8 00                STORE           G98,#00
 1c71c:  0d a9 01                STORE           G99,#01
-1c71f:  b1                      RFALSE          
+1c71f:  b1                      RFALSE
 
 Routine 1c720, 0 locals
 
 1c721:  41 3a 13 00 12          JE              G2a,#13 [FALSE] 1c736
 1c726:  4a 2f 08 80 03          TEST_ATTR       G1f,#08 [TRUE] 1c72c
-1c72b:  b1                      RFALSE          
+1c72b:  b1                      RFALSE
 1c72c:  4b 2f 08                SET_ATTR        G1f,#08
 1c72f:  f9 27 37 1a 2f 05       CALL_VN         dc68 (G1f,#05)
-1c735:  b1                      RFALSE          
-1c736:  b1                      RFALSE          
+1c735:  b1                      RFALSE
+1c736:  b1                      RFALSE
 
 Routine 1c738, 0 locals
 
 1c739:  41 8c 06 00 da          JE              G7c,#06 [FALSE] 1c816
 1c73e:  b2 ...                  PRINT           "
 There is a great rumbling sound and then a thunderous avalanche of stone
-cascades down the hillside into the valley. The Folly has collapsed! 
+cascades down the hillside into the valley. The Folly has collapsed!
 Capability Meldrew and his workmen come running to investigate. In the ensuing
 confusion, they come across you and, of course, blame you for their incompetent
 masonry. You are hauled up before the county assizes...
 "
 1c813:  0d 1d 05                STORE           G0d,#05
-1c816:  b1                      RFALSE          
+1c816:  b1                      RFALSE
 
 Routine 1c818, 2 locals
 
@@ -10124,11 +10124,11 @@ Routine 1c818, 2 locals
 1c81e:  41 a8 04 00 0d          JE              G98,#04 [FALSE] 1c82e
 1c823:  41 a9 06 00 08          JE              G99,#06 [FALSE] 1c82e
 1c828:  41 30 03 00 03          JE              G20,#03 [FALSE] 1c82e
-1c82d:  b1                      RFALSE          
+1c82d:  b1                      RFALSE
 1c82e:  41 a8 00 00 0d          JE              G98,#00 [FALSE] 1c83e
 1c833:  41 a9 01 00 08          JE              G99,#01 [FALSE] 1c83e
 1c838:  41 30 05 00 03          JE              G20,#05 [FALSE] 1c83e
-1c83d:  b1                      RFALSE          
+1c83d:  b1                      RFALSE
 1c83e:  0d 01 64                STORE           L00,#64
 1c841:  0d 02 64                STORE           L01,#64
 1c844:  41 2b 02 00 09          JE              G1b,#02 [FALSE] 1c850
@@ -10165,19 +10165,19 @@ way."
 1c8e3:  2d a8 01                STORE           G98,L00
 1c8e6:  2d a9 02                STORE           G99,L01
 1c8e9:  da 1f a0 ac 01          CALL_2N         282b0 (#01)
-1c8ee:  b0                      RTRUE           
-1c8ef:  b1                      RFALSE          
+1c8ee:  b0                      RTRUE
+1c8ef:  b1                      RFALSE
 
 Routine 1c8f0, 0 locals
 
 1c8f1:  41 3a 29 00 06          JE              G2a,#29 [FALSE] 1c8fa
 1c8f6:  8f 72 48                CALL_1N         1c920
-1c8f9:  b0                      RTRUE           
+1c8f9:  b0                      RTRUE
 1c8fa:  41 3a 1c 00 22          JE              G2a,#1c [FALSE] 1c91f
 1c8ff:  0d 1d 06                STORE           G0d,#06
 1c902:  b3 ...                  PRINT_RET       "You feel an alarming wrench in
 your insides."
-1c91f:  b1                      RFALSE          
+1c91f:  b1                      RFALSE
 
 Routine 1c920, 6 locals
 
@@ -10185,7 +10185,7 @@ Routine 1c920, 6 locals
 1c928:  41 a8 07 00 0a          JE              G98,#07 [FALSE] 1c935
 1c92d:  41 a9 05 00 05          JE              G99,#05 [FALSE] 1c935
 1c932:  0d 01 02                STORE           L00,#02
-1c935:  bb                      NEW_LINE        
+1c935:  bb                      NEW_LINE
 1c936:  41 01 01 00 2b          JE              L00,#01 [FALSE] 1c964
 1c93b:  b2 ...                  PRINT           "You are standing on a bed in
 which seeds have been recently planted. "
@@ -10266,8 +10266,8 @@ sides. "
 1cae4:  74 00 03 00             ADD             (SP)+,L02 -> -(SP)
 1cae8:  74 00 05 01             ADD             (SP)+,L04 -> L00
 1caec:  41 01 00 00 04          JE              L00,#00 [FALSE] 1caf3
-1caf1:  bb                      NEW_LINE        
-1caf2:  b1                      RFALSE          
+1caf1:  bb                      NEW_LINE
+1caf2:  b1                      RFALSE
 1caf3:  41 01 01 00 0f          JE              L00,#01 [FALSE] 1cb05
 1caf8:  b2 ...                  PRINT           "There is a fence to the "
 1cb05:  41 01 02 00 0f          JE              L00,#02 [FALSE] 1cb17
@@ -10310,17 +10310,17 @@ to the south, but fortunately they haven't yet seen you."
 1cbec:  41 01 03 00 05          JE              L00,#03 [FALSE] 1cbf4
 1cbf1:  b2 ...                  PRINT           ", "
 1cbf4:  8c ff 5c                JUMP            1cb51
-1cbf7:  b0                      RTRUE           
+1cbf7:  b0                      RTRUE
 
 Routine 1cbf8, 0 locals
 
 1cbf9:  0d 1d 05                STORE           G0d,#05
-1cbfc:  b1                      RFALSE          
+1cbfc:  b1                      RFALSE
 
 Routine 1cc00, 0 locals
 
 1cc01:  da 1f 97 a4 16          CALL_2N         25e90 (#16)
-1cc06:  b1                      RFALSE          
+1cc06:  b1                      RFALSE
 
 Routine 1cc08, 0 locals
 
@@ -10353,8 +10353,8 @@ Sparrows chirp happily away to themselves around the high gutter.
 1ccd9:  b2 ...                  PRINT           "
 Startled sparrows circle high in the sky, showing no signs of calming down.
 "
-1cd0c:  b1                      RFALSE          
-1cd0d:  b1                      RFALSE          
+1cd0c:  b1                      RFALSE
+1cd0d:  b1                      RFALSE
 
 Routine 1cd10, 0 locals
 
@@ -10364,7 +10364,7 @@ sight, but quite beyond reach."
 1cd3b:  c1 97 3a 4f 39 00 21    JE              G2a,#4f,#39 [FALSE] 1cd61
 1cd42:  b3 ...                  PRINT_RET       "You come dangerously close to
 hypnotising yourself."
-1cd61:  b1                      RFALSE          
+1cd61:  b1                      RFALSE
 
 Routine 1cd64, 0 locals
 
@@ -10374,15 +10374,15 @@ Routine 1cd64, 0 locals
 [FALSE] 1cda2
 1cd79:  b3 ...                  PRINT_RET       "The squirrel rears up and nips
 you on the wrist. You withdraw, hurt."
-1cda2:  b1                      RFALSE          
-1cda3:  b1                      RFALSE          
+1cda2:  b1                      RFALSE
+1cda3:  b1                      RFALSE
 
 Routine 1cda4, 0 locals
 
 1cda5:  41 3a 2b 00 2d          JE              G2a,#2b [FALSE] 1cdd5
 1cdaa:  b3 ...                  PRINT_RET       "Through the crack you can see
 sunlight on the summer-house floorboards."
-1cdd5:  b1                      RFALSE          
+1cdd5:  b1                      RFALSE
 
 Routine 1cdd8, 0 locals
 
@@ -10401,7 +10401,7 @@ battering through the board and opening up a hole in the wall."
 1ce5b:  ce 8f 30 01 3b          INSERT_OBJ      G20,"Summer House"
 1ce60:  b3 ...                  PRINT_RET       "Thrown through the loose board
 into the summer house."
-1ce81:  b1                      RFALSE          
+1ce81:  b1                      RFALSE
 
 Routine 1ce84, 0 locals
 
@@ -10409,7 +10409,7 @@ Routine 1ce84, 0 locals
 1ce8a:  c1 8f 30 01 db 00 1f    JE              G20,#01db [FALSE] 1ceae
 1ce91:  b3 ...                  PRINT_RET       "The squirrel finds them of
 consuming interest."
-1ceae:  b1                      RFALSE          
+1ceae:  b1                      RFALSE
 1ceaf:  41 3a 22 00 e4          JE              G2a,#22 [FALSE] 1cf96
 1ceb4:  4a 30 05 00 de          TEST_ATTR       G20,#05 [FALSE] 1cf95
 1ceb9:  a9 30                   REMOVE_OBJ      G20
@@ -10425,14 +10425,14 @@ get, however unsuitable, the squirrel eagerly consumes "
 1cf51:  da 2f 38 4e 30          CALL_2N         e138 (G20)
 1cf56:  b3 ...                  PRINT_RET       ". He does of course feel no
 obligation towards you at all as a result, so don't expect any favours."
-1cf95:  b1                      RFALSE          
-1cf96:  b1                      RFALSE          
+1cf95:  b1                      RFALSE
+1cf96:  b1                      RFALSE
 
 Routine 1cf98, 0 locals
 
 1cf99:  e3 13 01 41 11 d7 f2    PUT_PROP        "irate squirrel
 friend",#11,S644
-1cfa0:  b0                      RTRUE           
+1cfa0:  b0                      RTRUE
 
 Routine 1cfa4, 2 locals
 
@@ -10450,7 +10450,7 @@ Routine 1cfa4, 2 locals
 1cfda:  b2 ...                  PRINT           " north"
 1cfdf:  8c 00 07                JUMP            1cfe7
 1cfe2:  b2 ...                  PRINT           " south"
-1cfe7:  b0                      RTRUE           
+1cfe7:  b0                      RTRUE
 
 Routine 1cfe8, 0 locals
 
@@ -10469,26 +10469,26 @@ Routine 1d0d4, 0 locals
 
 1d0d5:  0d ac 00                STORE           G9c,#00
 1d0d8:  0d ad 00                STORE           G9d,#00
-1d0db:  b1                      RFALSE          
+1d0db:  b1                      RFALSE
 
 Routine 1d0dc, 0 locals
 
 1d0dd:  41 ac 00 00 08          JE              G9c,#00 [FALSE] 1d0e8
 1d0e2:  41 ad 00 00 03          JE              G9d,#00 [FALSE] 1d0e8
-1d0e7:  b1                      RFALSE          
+1d0e7:  b1                      RFALSE
 1d0e8:  41 91 01 00 03          JE              G81,#01 [FALSE] 1d0ee
-1d0ed:  b1                      RFALSE          
+1d0ed:  b1                      RFALSE
 1d0ee:  b2 ...                  PRINT           "Croquet Lawn ("
 1d0fb:  f9 2b 73 e9 ac ad       CALL_VN         1cfa4 (G9c,G9d)
 1d101:  b2 ...                  PRINT           " of the peg)"
-1d10a:  b0                      RTRUE           
+1d10a:  b0                      RTRUE
 
 Routine 1d10c, 0 locals
 
 1d10d:  41 3a 14 00 15          JE              G2a,#14 [FALSE] 1d125
 1d112:  61 30 31 00 0f          JE              G20,G21 [FALSE] 1d124
 1d117:  b3 ...                  PRINT_RET       "It is in one piece."
-1d124:  b1                      RFALSE          
+1d124:  b1                      RFALSE
 1d125:  41 3a 2b 00 eb          JE              G2a,#2b [FALSE] 1d213
 1d12a:  83 01 45 00             GET_PARENT      "golden astrolabe" -> -(SP)
 1d12e:  c1 8f 00 01 d4 00 09    JE              (SP)+,#01d4 [FALSE] 1d13c
@@ -10504,22 +10504,22 @@ sunlit, grey triangle.
 Fascinated, you strain closer to the vision... closer...
 "
 1d20c:  da 0f 9d 20 01 ef       CALL_2N         27480 (#01ef)
-1d212:  b0                      RTRUE           
-1d213:  b1                      RFALSE          
+1d212:  b0                      RTRUE
+1d213:  b1                      RFALSE
 
 Routine 1d214, 0 locals
 
 1d215:  41 3a 13 00 08          JE              G2a,#13 [FALSE] 1d220
 1d21a:  da 1f 97 a4 2b          CALL_2N         25e90 (#2b)
-1d21f:  b1                      RFALSE          
-1d220:  b1                      RFALSE          
+1d21f:  b1                      RFALSE
+1d220:  b1                      RFALSE
 
 Routine 1d224, 0 locals
 
 1d225:  41 3a 13 00 37          JE              G2a,#13 [FALSE] 1d25f
 1d22a:  b3 ...                  PRINT_RET       "A surreal idea, somewhat
 reminiscent of the Beatles film "Yellow Submarine"."
-1d25f:  b1                      RFALSE          
+1d25f:  b1                      RFALSE
 
 Routine 1d260, 0 locals
 
@@ -10537,7 +10537,7 @@ Some vandal has dug a hole in the lawn, "
 Routine 1d2b0, 0 locals
 
 1d2b1:  da 2f 37 47 2f          CALL_2N         dd1c (G1f)
-1d2b6:  b1                      RFALSE          
+1d2b6:  b1                      RFALSE
 
 Routine 1d2b8, 1 local
 
@@ -10586,7 +10586,7 @@ of looking down in here."
 1d459:  b2 ...                  PRINT           "Unfortunately, they do think
 of looking into the kitchen well, and drag you out onto the triclinium floor.
 "
-1d49c:  c1 80 11 01 47 01 4a 01 4c 00 3c 
+1d49c:  c1 80 11 01 47 01 4a 01 4c 00 3c
                                JE              G01,#0147,#014a,#014c [FALSE]
 1d4e1
 1d4a7:  b2 ...                  PRINT           "With the kind of zeal which
@@ -10599,7 +10599,7 @@ demonstrated when they find you without difficulty.
 "
 1d519:  8f 78 48                CALL_1N         1e120
 1d51c:  43 01 07 80 03          JG              L00,#07 [TRUE] 1d522
-1d521:  b1                      RFALSE          
+1d521:  b1                      RFALSE
 1d522:  c1 8f 11 01 5a 00 68    JE              G01,#015a [FALSE] 1d58f
 1d529:  b2 ...                  PRINT           "
 An industrious-looking slave (who cooks for the horsemen) is rather surprised
@@ -10607,7 +10607,7 @@ to see you, but with creditable presence of mind he summons the guard at once.
 "
 1d58c:  8f 78 48                CALL_1N         1e120
 1d58f:  c1 8f 11 01 5d 80 03    JE              G01,#015d [TRUE] 1d597
-1d596:  b1                      RFALSE          
+1d596:  b1                      RFALSE
 1d597:  41 01 08 00 29          JE              L00,#08 [FALSE] 1d5c3
 1d59c:  b3 ...                  PRINT_RET       "
 You hear men walking across the mosaic just above your head."
@@ -10643,8 +10643,8 @@ second come the battle.""
 1d7fb:  b2 ...                  PRINT           "
 The first voice speaks once more. "
 1d812:  41 8f 00 00 04          JE              G7f,#00 [FALSE] 1d819
-1d817:  bb                      NEW_LINE        
-1d818:  b0                      RTRUE           
+1d817:  bb                      NEW_LINE
+1d818:  b0                      RTRUE
 1d819:  b3 ...                  PRINT_RET       ""Far worse is to come. The
 jumped-up kings and their new men will no longer believe in the ancient powers.
 Already I can feel the druidic magic weakening away, and we are perilously
@@ -10666,8 +10666,8 @@ site forever and keep the faith.""
 1d9fe:  b2 ...                  PRINT           "
 The younger voice speaks again. "
 1da15:  41 8f 00 00 04          JE              G7f,#00 [FALSE] 1da1c
-1da1a:  bb                      NEW_LINE        
-1da1b:  b0                      RTRUE           
+1da1a:  bb                      NEW_LINE
+1da1b:  b0                      RTRUE
 1da1c:  b3 ...                  PRINT_RET       ""For now, yes, for a century
 or two, yes, but what then?  They will forget the old ways, they will no longer
 truly be druids.""
@@ -10675,8 +10675,8 @@ truly be druids.""
 1da72:  b2 ...                  PRINT           "
 The older voice replies triumphantly. "
 1da8d:  41 8f 00 00 04          JE              G7f,#00 [FALSE] 1da94
-1da92:  bb                      NEW_LINE        
-1da93:  b0                      RTRUE           
+1da92:  bb                      NEW_LINE
+1da93:  b0                      RTRUE
 1da94:  b3 ...                  PRINT_RET       ""This is what must be done.
 They will forget, so we must give them a substitute. We shall accurse them to
 always seek after this magical stone, which it will be all but impossible for
@@ -10685,14 +10685,14 @@ hundred years, by my prophecy, religious wars in the East will capture men's
 hearts, and then they will think it is the Holy Grail, the cup which held the
 blood of Christ. A thousand years later they will think it is -"  But at this
 moment the voices move away."
-1dbcf:  b1                      RFALSE          
+1dbcf:  b1                      RFALSE
 
 Routine 1dbd0, 0 locals
 
 1dbd1:  41 3a 4b 00 09          JE              G2a,#4b [FALSE] 1dbdd
 1dbd6:  f9 17 36 0d 26 0b       CALL_VN         d834 (#26,#0b)
-1dbdc:  b0                      RTRUE           
-1dbdd:  b1                      RFALSE          
+1dbdc:  b0                      RTRUE
+1dbdd:  b1                      RFALSE
 
 Routine 1dbe0, 0 locals
 
@@ -10700,17 +10700,17 @@ Routine 1dbe0, 0 locals
 straight into a patrol of guards who capture you!
 "
 1dc12:  8f 78 48                CALL_1N         1e120
-1dc15:  b0                      RTRUE           
+1dc15:  b0                      RTRUE
 
 Routine 1dc18, 0 locals
 
 1dc19:  41 3a 4f 00 32          JE              G2a,#4f [FALSE] 1dc4e
 1dc1e:  c1 8f 30 01 4d 80 03    JE              G20,#014d [TRUE] 1dc26
-1dc25:  b1                      RFALSE          
+1dc25:  b1                      RFALSE
 1dc26:  cb 1f 01 4d 08          SET_ATTR        "hemp rope",#08
 1dc2b:  b3 ...                  PRINT_RET       "You set the rope swinging back
 and forth. Very exhilarating!"
-1dc4e:  b1                      RFALSE          
+1dc4e:  b1                      RFALSE
 
 Routine 1dc50, 0 locals
 
@@ -10719,7 +10719,7 @@ Routine 1dc50, 0 locals
 1dc58:  da 2f 38 53 30          CALL_2N         e14c (G20)
 1dc5d:  b3 ...                  PRINT_RET       " tumbles end over end into the
 valley below."
-1dc78:  b1                      RFALSE          
+1dc78:  b1                      RFALSE
 
 Routine 1dc7c, 0 locals
 
@@ -10731,18 +10731,18 @@ ear, almost out of sight."
 1dcad:  4b 2f 08                SET_ATTR        G1f,#08
 1dcb0:  b3 ...                  PRINT_RET       "Aided by the swinging of the
 rope, you pick the daisy."
-1dccf:  b1                      RFALSE          
-1dcd0:  b1                      RFALSE          
+1dccf:  b1                      RFALSE
+1dcd0:  b1                      RFALSE
 
 Routine 1dcd4, 0 locals
 
 1dcd5:  41 3a 13 00 46          JE              G2a,#13 [FALSE] 1dd1e
 1dcda:  4a 2f 0c 80 09          TEST_ATTR       G1f,#0c [TRUE] 1dce6
 1dcdf:  ca 1f 01 4d 08 00 03    TEST_ATTR       "hemp rope",#08 [FALSE] 1dce7
-1dce6:  b1                      RFALSE          
+1dce6:  b1                      RFALSE
 1dce7:  b3 ...                  PRINT_RET       "You stretch out your hand, but
 cannot quite reach the daisy, such is the size of the overhang."
-1dd1e:  b1                      RFALSE          
+1dd1e:  b1                      RFALSE
 
 Routine 1dd20, 1 local
 
@@ -10752,12 +10752,12 @@ Routine 1dd20, 1 local
 1dd2f:  41 01 00 80 22          JE              L00,#00 [TRUE] 1dd54
 1dd34:  4a 01 21 00 16          TEST_ATTR       L00,#21 [FALSE] 1dd4d
 1dd39:  b2 ...                  PRINT           " (twitching behind your ear)"
-1dd4c:  b0                      RTRUE           
+1dd4c:  b0                      RTRUE
 1dd4d:  a1 01 01 c2             GET_SIBLING     L00 -> L00 [TRUE] 1dd51
 1dd51:  8c ff dd                JUMP            1dd2f
 1dd54:  b2 ...                  PRINT           " (tucked behind your ear)"
-1dd67:  b0                      RTRUE           
-1dd68:  b1                      RFALSE          
+1dd67:  b0                      RTRUE
+1dd68:  b1                      RFALSE
 
 Routine 1dd6c, 0 locals
 
@@ -10766,14 +10766,14 @@ Routine 1dd6c, 0 locals
 1dd81:  41 3a 5d 00 19          JE              G2a,#5d [FALSE] 1dd9d
 1dd86:  b3 ...                  PRINT_RET       "Deliciously clear and
 unpolluted."
-1dd9d:  b1                      RFALSE          
+1dd9d:  b1                      RFALSE
 
 Routine 1dda0, 0 locals
 
 1dda1:  c1 97 3a 4b 15 00 09    JE              G2a,#4b,#15 [FALSE] 1ddaf
 1dda8:  f9 17 36 0d 26 0a       CALL_VN         d834 (#26,#0a)
-1ddae:  b0                      RTRUE           
-1ddaf:  b1                      RFALSE          
+1ddae:  b0                      RTRUE
+1ddaf:  b1                      RFALSE
 
 Routine 1ddb0, 0 locals
 
@@ -10790,8 +10790,8 @@ villa, find you very quickly.
 answered as...
 "
 1de2a:  0d b0 07                STORE           Ga0,#07
-1de2d:  b0                      RTRUE           
-1de2e:  b1                      RFALSE          
+1de2d:  b0                      RTRUE
+1de2e:  b1                      RFALSE
 
 Routine 1de30, 0 locals
 
@@ -10800,7 +10800,7 @@ Routine 1de30, 0 locals
 1de4b:  e7 7f 06 00             RANDOM          #06 -> -(SP)
 1de4f:  da 2f 99 a2 00          CALL_2N         26688 ((SP)+)
 1de54:  b3 ...                  PRINT_RET       "."
-1de57:  b1                      RFALSE          
+1de57:  b1                      RFALSE
 
 Routine 1de58, 0 locals
 
@@ -10822,7 +10822,7 @@ banging against the walls until finally..."
 Routine 1df30, 0 locals
 
 1df31:  c6 8f 19 01 5a 80 03    JIN             G09,"Triclinium" [TRUE] 1df39
-1df38:  b1                      RFALSE          
+1df38:  b1                      RFALSE
 1df39:  cb 1f 01 5b 08          SET_ATTR        "kitchen well",#08
 1df3e:  da 1f 97 a4 09          CALL_2N         25e90 (#09)
 1df43:  b3 ...                  PRINT_RET       "
@@ -10841,12 +10841,12 @@ well."
 1dfc4:  f9 27 37 1a 2f 02       CALL_VN         dc68 (G1f,#02)
 1dfca:  da 2f 38 53 30          CALL_2N         e14c (G20)
 1dfcf:  b3 ...                  PRINT_RET       " drops into the well-shaft."
-1dfe2:  b1                      RFALSE          
+1dfe2:  b1                      RFALSE
 
 Routine 1dfe4, 0 locals
 
 1dfe5:  c1 95 2a 29 26 2a 00 03 JE              G1a,#29,#26,#2a [FALSE] 1dfee
-1dfed:  b1                      RFALSE          
+1dfed:  b1                      RFALSE
 1dfee:  b3 ...                  PRINT_RET       "In this confined space there
 is little room for action."
 
@@ -10860,25 +10860,25 @@ This old villa must be some kind of rendezvous point. Between the men a bluish
 stone rests on the mosaic floor."
 1e0a0:  b3 ...                  PRINT_RET       "You see across the mosaic
 floor of the moonlit atrium."
-1e0c1:  b1                      RFALSE          
+1e0c1:  b1                      RFALSE
 
 Routine 1e0c4, 0 locals
 
 1e0c5:  41 3a 26 00 48          JE              G2a,#26 [FALSE] 1e110
 1e0ca:  c1 95 30 03 09 07 80 03 JE              G20,#03,#09,#07 [TRUE] 1e0d3
-1e0d2:  b1                      RFALSE          
+1e0d2:  b1                      RFALSE
 1e0d3:  b2 ...                  PRINT           "You walk out into the
 courtyard and are immediately set upon by guards, who drag you away.
 "
 1e10c:  8f 78 48                CALL_1N         1e120
-1e10f:  b0                      RTRUE           
-1e110:  b1                      RFALSE          
+1e10f:  b0                      RTRUE
+1e110:  b1                      RFALSE
 
 Routine 1e114, 0 locals
 
 1e115:  41 b0 00 00 05          JE              Ga0,#00 [FALSE] 1e11d
 1e11a:  0d b0 01                STORE           Ga0,#01
-1e11d:  b1                      RFALSE          
+1e11d:  b1                      RFALSE
 
 Routine 1e120, 2 locals
 
@@ -10904,7 +10904,7 @@ away into custody, down in the valley among the army encampments.
 1e279:  8c ff ec                JUMP            1e266
 1e27c:  0d b0 00                STORE           Ga0,#00
 1e27f:  da 0f 9d 20 01 60       CALL_2N         27480 (#0160)
-1e285:  b0                      RTRUE           
+1e285:  b0                      RTRUE
 
 Routine 1e288, 0 locals
 
@@ -10918,7 +10918,7 @@ rocks with the force - the pole was nearly broken.
 1e339:  ce 0f 01 62 01 60       INSERT_OBJ      "unconscious Saxon spy","Rough
 Tent"
 1e33f:  f9 07 37 1a 01 62 05    CALL_VN         dc68 (#0162,#05)
-1e346:  b1                      RFALSE          
+1e346:  b1                      RFALSE
 
 Routine 1e348, 0 locals
 
@@ -10926,13 +10926,13 @@ Routine 1e348, 0 locals
 1e34e:  b3 ...                  PRINT_RET       "It won't break."
 1e35b:  c1 95 3a 3d 3c 3f 00 13 JE              G2a,#3d,#3c,#3f [FALSE] 1e374
 1e363:  b3 ...                  PRINT_RET       "Its base is in the earth."
-1e374:  b1                      RFALSE          
+1e374:  b1                      RFALSE
 
 Routine 1e378, 0 locals
 
 1e379:  41 3a 13 00 90          JE              G2a,#13 [FALSE] 1e40c
 1e37e:  4a 2f 08 00 03          TEST_ATTR       G1f,#08 [FALSE] 1e384
-1e383:  b1                      RFALSE          
+1e383:  b1                      RFALSE
 1e384:  4b 2f 08                SET_ATTR        G1f,#08
 1e387:  b2 ...                  PRINT           "As you uproot the tent-pole,
 the whole tent collapses ignominiously, the animal hides falling about your
@@ -10941,13 +10941,13 @@ out...
 "
 1e3fe:  f9 07 37 1a 01 63 0a    CALL_VN         dc68 (#0163,#0a)
 1e405:  da 0f 9d 20 01 63       CALL_2N         27480 (#0163)
-1e40b:  b0                      RTRUE           
-1e40c:  b1                      RFALSE          
+1e40b:  b0                      RTRUE
+1e40c:  b1                      RFALSE
 
 Routine 1e410, 0 locals
 
 1e411:  c1 8f 11 01 60 80 03    JE              G01,#0160 [TRUE] 1e419
-1e418:  b1                      RFALSE          
+1e418:  b1                      RFALSE
 1e419:  c6 0f 01 62 01 60 00 5c JIN             "unconscious Saxon spy","Rough
 Tent" [FALSE] 1e47b
 1e421:  b2 ...                  PRINT           "
@@ -10956,7 +10956,7 @@ grimace at you as if to say, "You're next."
 "
 1e470:  89 01 62                REMOVE_OBJ      "unconscious Saxon spy"
 1e473:  f9 07 37 1a 01 62 05    CALL_VN         dc68 (#0162,#05)
-1e47a:  b0                      RTRUE           
+1e47a:  b0                      RTRUE
 1e47b:  0d 1d 01                STORE           G0d,#01
 1e47e:  b2 ...                  PRINT           "
 The men arrive once more and this time they securely grab you by the arms. If
@@ -10964,7 +10964,7 @@ you were an anthropologist, you'd be fascinated by the ritual in which you are
 bound up, then garotted with a cord and laid into a peat swamp. Instead, your
 last thought is of the celebrated body they found when they drained the marshes
 in 1974 to build a motorway service station."
-1e557:  b1                      RFALSE          
+1e557:  b1                      RFALSE
 
 Routine 1e558, 0 locals
 
@@ -10972,8 +10972,8 @@ Routine 1e558, 0 locals
 1e55e:  b3 ...                  PRINT_RET       "Not only are the guards better
 at searching suspects than you, they also did so first."
 1e593:  41 3a 53 00 03          JE              G2a,#53 [FALSE] 1e599
-1e598:  b1                      RFALSE          
-1e599:  b1                      RFALSE          
+1e598:  b1                      RFALSE
+1e599:  b1                      RFALSE
 
 Routine 1e59c, 0 locals
 
@@ -10983,16 +10983,16 @@ unconscious."
 1e5b9:  c1 95 3a 42 54 20 00 15 JE              G2a,#42,#54,#20 [FALSE] 1e5d4
 1e5c1:  b3 ...                  PRINT_RET       "Not an act worthy of a
 Meldrew."
-1e5d4:  c1 85 3a 01 03 44 46 80 07 
+1e5d4:  c1 85 3a 01 03 44 46 80 07
                                JE              G2a,#0103,#44,#46 [TRUE] 1e5e2
 1e5dd:  41 3a 22 00 0d          JE              G2a,#22 [FALSE] 1e5ed
 1e5e2:  b3 ...                  PRINT_RET       "He's asleep."
-1e5ed:  b1                      RFALSE          
+1e5ed:  b1                      RFALSE
 
 Routine 1e5f0, 0 locals
 
 1e5f1:  41 8c 07 80 03          JE              G7c,#07 [TRUE] 1e5f7
-1e5f6:  b1                      RFALSE          
+1e5f6:  b1                      RFALSE
 1e5f7:  0d 1d 01                STORE           G0d,#01
 1e5fa:  b3 ...                  PRINT_RET       "
 It had to happen sooner or later. One of the druids looks round, sees you and
@@ -11007,7 +11007,7 @@ Routine 1e668, 0 locals
 in your sandals.
 "
 1e68f:  8b 01 64                RET             #0164
-1e692:  b3 ...                  PRINT_RET       "Walk across those hot coals! 
+1e692:  b3 ...                  PRINT_RET       "Walk across those hot coals!
 You must be joking."
 
 Routine 1e6b4, 0 locals
@@ -11029,14 +11029,14 @@ the dream."
 "
 1e730:  da 1f 38 0a 0f          CALL_2N         e028 (#0f)
 1e735:  da 1f 36 0d 29          CALL_2N         d834 (#29)
-1e73a:  b0                      RTRUE           
+1e73a:  b0                      RTRUE
 1e73b:  41 8c 0a 00 0b          JE              G7c,#0a [FALSE] 1e749
 1e740:  c1 95 2a 3f 42 2a 00 03 JE              G1a,#3f,#42,#2a [FALSE] 1e749
-1e748:  b1                      RFALSE          
+1e748:  b1                      RFALSE
 1e749:  c1 95 2a 26 13 1c 00 03 JE              G1a,#26,#13,#1c [FALSE] 1e752
-1e751:  b1                      RFALSE          
+1e751:  b1                      RFALSE
 1e752:  c1 95 2a 29 18 43 00 03 JE              G1a,#29,#18,#43 [FALSE] 1e75b
-1e75a:  b1                      RFALSE          
+1e75a:  b1                      RFALSE
 1e75b:  b3 ...                  PRINT_RET       "You seem unable to concentrate
 sufficiently."
 
@@ -11050,7 +11050,7 @@ Routine 1e7a4, 0 locals
 
 1e7a5:  da 0f 38 0a 01 68       CALL_2N         e028 (#0168)
 1e7ab:  da 0f 9d 20 01 69       CALL_2N         27480 (#0169)
-1e7b1:  b0                      RTRUE           
+1e7b1:  b0                      RTRUE
 
 Routine 1e7b4, 0 locals
 
@@ -11068,11 +11068,11 @@ through the hide wall.
 
 Routine 1e800, 0 locals
 
-1e801:  c1 85 3a 01 03 46 44 00 1b 
+1e801:  c1 85 3a 01 03 46 44 00 1b
                                JE              G2a,#0103,#46,#44 [FALSE] 1e823
 1e80a:  b3 ...                  PRINT_RET       "Your mouth is too furred up to
 speak."
-1e823:  b1                      RFALSE          
+1e823:  b1                      RFALSE
 
 Routine 1e824, 0 locals
 
@@ -11087,21 +11087,21 @@ cursing you and your ill-gotten gains. But she is unable to make contact with
 you, and turns furiously to the tapestry, hissing "lagach" to the Bear. At once
 a sudden swirl of wind seems to pull her into the rough cloth, dissolving her
 to nothing."
-1e908:  b1                      RFALSE          
-1e909:  b1                      RFALSE          
+1e908:  b1                      RFALSE
+1e909:  b1                      RFALSE
 
 Routine 1e90c, 0 locals
 
 1e90d:  41 3a 22 00 1d          JE              G2a,#22 [FALSE] 1e92d
 1e912:  b3 ...                  PRINT_RET       "Now that really would not be
 very kind."
-1e92d:  b1                      RFALSE          
+1e92d:  b1                      RFALSE
 
 Routine 1e930, 1 local
 
 1e931:  c6 2f 01 6d 19 80 03    JIN             "heavy iron mascot",G09 [TRUE]
 1e939
-1e938:  b1                      RFALSE          
+1e938:  b1                      RFALSE
 1e939:  51 2f 17 00             GET_PROP        G1f,#17 -> -(SP)
 1e93d:  55 00 01 01             SUB             (SP)+,#01 -> L00
 1e941:  e3 9b 2f 17 01          PUT_PROP        G1f,#17,L00
@@ -11148,15 +11148,15 @@ You scratch yourself, unable to get rid of an itching sensation."
 1ec42:  b3 ...                  PRINT_RET       "
 Something feels very wrong indeed. Your hand begins to burn.
 "
-1ec6d:  b1                      RFALSE          
+1ec6d:  b1                      RFALSE
 
 Routine 1ec70, 0 locals
 
-1ec71:  c1 85 3a 01 03 46 44 00 25 
+1ec71:  c1 85 3a 01 03 46 44 00 25
                                JE              G2a,#0103,#46,#44 [FALSE] 1ec9d
 1ec7a:  b3 ...                  PRINT_RET       "This is one of those dreams
 where you find you cannot speak."
-1ec9d:  b1                      RFALSE          
+1ec9d:  b1                      RFALSE
 
 Routine 1eca0, 0 locals
 
@@ -11171,19 +11171,19 @@ yourself" [FALSE] 1eccd
 1ecc9:  55 17 32 17             SUB             G07,#32 -> G07
 1eccd:  b3 ...                  PRINT_RET       "
 You awaken, shivering with dread."
-1ece4:  b1                      RFALSE          
+1ece4:  b1                      RFALSE
 
 Routine 1ece8, 0 locals
 
 1ece9:  da 0f 38 0a 01 68       CALL_2N         e028 (#0168)
 1ecef:  da 0f 9d 20 01 71       CALL_2N         27480 (#0171)
-1ecf5:  b0                      RTRUE           
+1ecf5:  b0                      RTRUE
 
 Routine 1ecf8, 0 locals
 
 1ecf9:  95 b1                   INC             Ga1
 1ecfb:  41 b1 02 80 03          JE              Ga1,#02 [TRUE] 1ed01
-1ed00:  b1                      RFALSE          
+1ed00:  b1                      RFALSE
 1ed01:  ce 0f 01 73 01 71       INSERT_OBJ      "flurries of green
 luminescence","Melancholy Dream"
 1ed07:  e3 13 01 71 07 01 74    PUT_PROP        "Melancholy Dream",#07,#0174
@@ -11206,7 +11206,7 @@ Routine 1ee10, 0 locals
 1ee11:  c1 95 3a 13 14 59 00 3f JE              G2a,#13,#14,#59 [FALSE] 1ee56
 1ee19:  b3 ...                  PRINT_RET       "You bat at the flurries with
 your hand, but they're just green light (with the tiniest mosquito-sting)."
-1ee56:  b1                      RFALSE          
+1ee56:  b1                      RFALSE
 
 Routine 1ee58, 0 locals
 
@@ -11216,9 +11216,9 @@ Routine 1ee58, 0 locals
 1ee72:  0f 00 08 00             LOADW           #00,#08 -> -(SP)
 1ee76:  28 02 00 00             OR              #02,(SP)+ -> -(SP)
 1ee7a:  e1 5b 00 08 00          STOREW          #00,#08,(SP)+
-1ee7f:  b2 ...                  PRINT           "       (|/        
-   #   -o-  >>>   
-       /|)        
+1ee7f:  b2 ...                  PRINT           "       (|/
+   #   -o-  >>>
+       /|)
 "
 1eeb8:  0f 00 08 00             LOADW           #00,#08 -> -(SP)
 1eebc:  c9 2f ff fd 00 00       AND             #fffd,(SP)+ -> -(SP)
@@ -11241,13 +11241,13 @@ fraction, and a few grains of sand cascade in slow motion, rattling horribly
 against each other...
 
 It will take forever, and the air is running out..."
-1efcb:  b1                      RFALSE          
+1efcb:  b1                      RFALSE
 
 Routine 1efcc, 0 locals
 
 1efcd:  0d a8 07                STORE           G98,#07
 1efd0:  0d a9 05                STORE           G99,#05
-1efd3:  b1                      RFALSE          
+1efd3:  b1                      RFALSE
 
 Routine 1efd4, 1 local
 
@@ -11270,14 +11270,14 @@ staircase","Catacombs"
 called. Funny sort of odour for a cave - especially since, on investigating
 further, you find that it's drifting up from a concealed aluminium staircase."
 1f0c5:  b3 ...                  PRINT_RET       "Definitely ozone."
-1f0d4:  b1                      RFALSE          
+1f0d4:  b1                      RFALSE
 
 Routine 1f0d8, 0 locals
 
 1f0d9:  c1 97 3a 4b 15 00 09    JE              G2a,#4b,#15 [FALSE] 1f0e7
 1f0e0:  f9 17 36 0d 26 0b       CALL_VN         d834 (#26,#0b)
-1f0e6:  b0                      RTRUE           
-1f0e7:  b1                      RFALSE          
+1f0e6:  b0                      RTRUE
+1f0e7:  b1                      RFALSE
 
 Routine 1f0e8, 4 locals
 
@@ -11285,7 +11285,7 @@ Routine 1f0e8, 4 locals
 1f0ef:  d0 2f 62 cb 02 04       LOADB           #62cb,L01 -> L03
 1f0f5:  e2 2b 62 cb 02 03       STOREB          #62cb,L01,L02
 1f0fb:  e2 2b 62 cb 01 04       STOREB          #62cb,L00,L03
-1f101:  b0                      RTRUE           
+1f101:  b0                      RTRUE
 
 Routine 1f104, 2 locals
 
@@ -11293,12 +11293,12 @@ Routine 1f104, 2 locals
 1f109:  d0 2f 62 cb 00 02       LOADB           #62cb,(SP)+ -> L01
 1f10f:  41 02 00 00 06          JE              L01,#00 [FALSE] 1f118
 1f114:  b2 ...                  PRINT           ". "
-1f117:  b1                      RFALSE          
+1f117:  b1                      RFALSE
 1f118:  54 02 41 00             ADD             L01,#41 -> -(SP)
 1f11c:  55 00 01 02             SUB             (SP)+,#01 -> L01
 1f120:  e5 bf 02                PRINT_CHAR      L01
 1f123:  b2 ...                  PRINT           " "
-1f126:  b0                      RTRUE           
+1f126:  b0                      RTRUE
 
 Routine 1f128, 0 locals
 
@@ -11337,11 +11337,11 @@ Routine 1f128, 0 locals
 1f1c7:  da 1f 7c 41 0d          CALL_2N         1f104 (#0d)
 1f1cc:  da 1f 7c 41 0e          CALL_2N         1f104 (#0e)
 1f1d1:  da 1f 7c 41 0f          CALL_2N         1f104 (#0f)
-1f1d6:  bb                      NEW_LINE        
+1f1d6:  bb                      NEW_LINE
 1f1d7:  0f 00 08 00             LOADW           #00,#08 -> -(SP)
 1f1db:  c9 2f ff fd 00 00       AND             #fffd,(SP)+ -> -(SP)
 1f1e1:  e1 5b 00 08 00          STOREW          #00,#08,(SP)+
-1f1e6:  b0                      RTRUE           
+1f1e6:  b0                      RTRUE
 
 Routine 1f1e8, 0 locals
 
@@ -11350,7 +11350,7 @@ Routine 1f1e8, 0 locals
 1f1f2:  b2 ...                  PRINT           "Contraption Reflection"
 1f201:  8c 00 0f                JUMP            1f211
 1f204:  b2 ...                  PRINT           "Contraption Room"
-1f211:  b0                      RTRUE           
+1f211:  b0                      RTRUE
 
 Routine 1f214, 0 locals
 
@@ -11363,7 +11363,7 @@ barrier - perhaps the edge of the reflection."
 Routine 1f24c, 0 locals
 
 1f24d:  c1 97 3a 26 15 00 a5    JE              G2a,#26,#15 [FALSE] 1f2f7
-1f254:  c1 94 30 02 03 01 82 00 9b 
+1f254:  c1 94 30 02 03 01 82 00 9b
                                JE              G20,#02,#03,#0182 [FALSE] 1f2f6
 1f25d:  b2 ...                  PRINT           "
 Walking through the mirror is a wrench, but leaves you somewhere... almost
@@ -11386,13 +11386,13 @@ exactly the same...
 1f2e4:  f9 17 7c 3a 06 08       CALL_VN         1f0e8 (#06,#08)
 1f2ea:  f9 17 7c 3a 09 0b       CALL_VN         1f0e8 (#09,#0b)
 1f2f0:  f9 17 7c 3a 0c 0e       CALL_VN         1f0e8 (#0c,#0e)
-1f2f6:  b1                      RFALSE          
+1f2f6:  b1                      RFALSE
 1f2f7:  41 3a 29 00 5d          JE              G2a,#29 [FALSE] 1f357
 1f2fc:  4a 2f 08 00 2a          TEST_ATTR       G1f,#08 [FALSE] 1f329
 1f301:  b2 ...                  PRINT           "
 The lower basket contains a cannonball, and the upper is empty.
 "
-1f328:  b1                      RFALSE          
+1f328:  b1                      RFALSE
 1f329:  92 3d 00 c2             GET_CHILD       "hanging cord" -> -(SP) [TRUE]
 1f32d
 1f32d:  41 00 00 80 27          JE              (SP)+,#00 [TRUE] 1f357
@@ -11403,7 +11403,7 @@ The lower basket contains "
 1f34e
 1f34e:  f9 2b 9a 97 00 00       CALL_VN         26a5c ((SP)+,(SP)+)
 1f354:  b3 ...                  PRINT_RET       "."
-1f357:  b1                      RFALSE          
+1f357:  b1                      RFALSE
 
 Routine 1f358, 0 locals
 
@@ -11421,7 +11421,7 @@ Routine 1f3a0, 0 locals
 1f3a1:  41 3a 5a 00 2d          JE              G2a,#5a [FALSE] 1f3d1
 1f3a6:  b3 ...                  PRINT_RET       "You polish the metal a little,
 but there's far too much to do by hand."
-1f3d1:  b1                      RFALSE          
+1f3d1:  b1                      RFALSE
 
 Routine 1f3d4, 0 locals
 
@@ -11467,7 +11467,7 @@ Routine 1f594, 0 locals
 1f595:  41 2a 2a 80 19          JE              G1a,#2a [TRUE] 1f5b1
 1f59a:  b3 ...                  PRINT_RET       "It is out of reach, beyond the
 glass."
-1f5b1:  b1                      RFALSE          
+1f5b1:  b1                      RFALSE
 
 Routine 1f5b4, 3 locals
     Action routine for:
@@ -11510,8 +11510,8 @@ here."
 1f670:  55 00 01 00             SUB             (SP)+,#01 -> -(SP)
 1f674:  e5 bf 00                PRINT_CHAR      (SP)+
 1f677:  b2 ...                  PRINT           "' is not adjacent to the gap."
-1f68a:  bb                      NEW_LINE        
-1f68b:  b0                      RTRUE           
+1f68a:  bb                      NEW_LINE
+1f68b:  b0                      RTRUE
 1f68c:  95 b3                   INC             Ga3
 1f68e:  41 b3 08 00 07          JE              Ga3,#08 [FALSE] 1f698
 1f693:  da 1f 97 a4 24          CALL_2N         25e90 (#24)
@@ -11534,7 +11534,7 @@ grid looking like:
 1f6f2:  d0 2f 62 da 01 00       LOADB           #62da,L00 -> -(SP)
 1f6f8:  d0 2f 62 cb 01 00       LOADB           #62cb,L00 -> -(SP)
 1f6fe:  61 00 00 80 03          JE              (SP)+,(SP)+ [TRUE] 1f704
-1f703:  b1                      RFALSE          
+1f703:  b1                      RFALSE
 1f704:  95 01                   INC             L00
 1f706:  8c ff e6                JUMP            1f6ed
 1f709:  da 1f 9d bb 10          CALL_2N         276ec (#10)
@@ -11583,7 +11583,7 @@ The metal hand catches the cannonball beautifully.
 1f8ff:  ce 0f 01 84 01 81       INSERT_OBJ      "glowing golden orb","CR"
 1f905:  8c 00 05                JUMP            1f90b
 1f908:  89 01 84                REMOVE_OBJ      "glowing golden orb"
-1f90b:  b0                      RTRUE           
+1f90b:  b0                      RTRUE
 
 Routine 1f90c, 0 locals
 
@@ -11593,7 +11593,7 @@ precisely the same."
 1f933:  41 3a 31 00 29          JE              G2a,#31 [FALSE] 1f95f
 1f938:  b3 ...                  PRINT_RET       "Clunk-click!  Probably nothing
 very much has changed."
-1f95f:  b1                      RFALSE          
+1f95f:  b1                      RFALSE
 
 Routine 1f960, 0 locals
 
@@ -11610,7 +11610,7 @@ second warning!"
 probably best not to alter one of the fundamental constants of the physical
 universe while still inside it. On the bright side, for once you are unlikely
 to get the blame."
-1fa35:  b1                      RFALSE          
+1fa35:  b1                      RFALSE
 
 Routine 1fa38, 0 locals
 
@@ -11626,15 +11626,15 @@ confusion soon resolves to...
 1fad2:  a3 19 9a                GET_PARENT      G09 -> G8a
 1fad5:  2d 99 11                STORE           G89,G01
 1fad8:  da 0f 9d 20 01 8a       CALL_2N         27480 (#018a)
-1fade:  b0                      RTRUE           
-1fadf:  b1                      RFALSE          
+1fade:  b0                      RTRUE
+1fadf:  b1                      RFALSE
 
 Routine 1fae0, 0 locals
 
 1fae1:  41 3a 76 00 27          JE              G2a,#76 [FALSE] 1fb0b
 1fae6:  b3 ...                  PRINT_RET       "The sphere rings with a hollow
 noise, but the rod charges up."
-1fb0b:  b1                      RFALSE          
+1fb0b:  b1                      RFALSE
 
 Routine 1fb0c, 2 locals
 
@@ -11642,7 +11642,7 @@ Routine 1fb0c, 2 locals
 1fb13:  54 00 01 01             ADD             (SP)+,#01 -> L00
 1fb17:  e3 1b 01 8a 17 01       PUT_PROP        "Inside the Orb",#17,L00
 1fb1d:  41 01 01 00 03          JE              L00,#01 [FALSE] 1fb23
-1fb22:  b0                      RTRUE           
+1fb22:  b0                      RTRUE
 1fb23:  41 01 02 00 3b          JE              L00,#02 [FALSE] 1fb61
 1fb28:  b2 ...                  PRINT           "
 The sphere rotates, giving you a fresh view of the images: stylised Kings and
@@ -11690,7 +11690,7 @@ want White to win, that is.
 1fd78:  43 01 0e 00 29          JG              L00,#0e [FALSE] 1fda4
 1fd7d:  b3 ...                  PRINT_RET       "
 (The sphere rotates.)  White must break out somehow."
-1fda4:  b1                      RFALSE          
+1fda4:  b1                      RFALSE
 
 Routine 1fda8, 0 locals
 
@@ -11699,27 +11699,27 @@ Routine 1fda8, 0 locals
 1fdc5:  41 3a 4e 00 23          JE              G2a,#4e [FALSE] 1fdeb
 1fdca:  b3 ...                  PRINT_RET       "The waters are deceptively
 treacherous. Best not."
-1fdeb:  b1                      RFALSE          
+1fdeb:  b1                      RFALSE
 
 Routine 1fdec, 0 locals
 
 1fded:  da 2f 37 47 2f          CALL_2N         dd1c (G1f)
 1fdf2:  26 3a 2f 00 08          JIN             "Austin",G1f [FALSE] 1fdfd
 1fdf7:  da 0f 37 47 01 b3       CALL_2N         dd1c (#01b3)
-1fdfd:  b1                      RFALSE          
+1fdfd:  b1                      RFALSE
 
 Routine 1fe00, 1 local
 
 1fe01:  41 8c 0b 80 03          JE              G7c,#0b [TRUE] 1fe07
-1fe06:  b1                      RFALSE          
+1fe06:  b1                      RFALSE
 1fe07:  51 2f 17 00             GET_PROP        G1f,#17 -> -(SP)
 1fe0b:  54 00 01 00             ADD             (SP)+,#01 -> -(SP)
 1fe0f:  58 00 0c 00             MOD             (SP)+,#0c -> -(SP)
 1fe13:  e3 9b 2f 17 00          PUT_PROP        G1f,#17,(SP)+
-1fe18:  c1 80 11 01 95 01 b3 01 b1 80 03 
+1fe18:  c1 80 11 01 95 01 b3 01 b1 80 03
                                JE              G01,#0195,#01b3,#01b1 [TRUE]
 1fe24
-1fe23:  b1                      RFALSE          
+1fe23:  b1                      RFALSE
 1fe24:  d1 1f 01 8c 17 01       GET_PROP        "Causeway",#17 -> L00
 1fe2a:  c1 8f 11 01 b3 00 04    JE              G01,#01b3 [FALSE] 1fe33
 1fe31:  96 01                   DEC             L00
@@ -11765,7 +11765,7 @@ a shambolic crowd of revellers, drunken and maudlin."
 201ae:  43 01 0a 00 1f          JG              L00,#0a [FALSE] 201d0
 201b3:  b3 ...                  PRINT_RET       "
 The procession looks like running on forever."
-201d0:  b1                      RFALSE          
+201d0:  b1                      RFALSE
 
 Routine 201d4, 0 locals
 
@@ -11774,13 +11774,13 @@ Routine 201d4, 0 locals
 201de:  b3 ...                  PRINT_RET       "
 Down below, a wave splashes against the sea front, briefly washing up under the
 grating."
-20215:  b1                      RFALSE          
+20215:  b1                      RFALSE
 
 Routine 20218, 0 locals
 
 20219:  e7 7f 05 00             RANDOM          #05 -> -(SP)
 2021d:  41 00 01 80 03          JE              (SP)+,#01 [TRUE] 20223
-20222:  b1                      RFALSE          
+20222:  b1                      RFALSE
 20223:  0a c9 08 00 b6          TEST_ATTR       "smooth round stone",#08
 [FALSE] 202dc
 20228:  da 1f 9d bb 25          CALL_2N         276ec (#25)
@@ -11803,7 +11803,7 @@ Well, you didn't think it was going to be that easy, did you?
 "
 202d9:  8c 00 07                JUMP            202e1
 202dc:  da 2f 37 61 2f          CALL_2N         dd84 (G1f)
-202e1:  b1                      RFALSE          
+202e1:  b1                      RFALSE
 
 Routine 202e4, 0 locals
 
@@ -11827,7 +11827,7 @@ wrong shape."
 203ad:  da 2f 38 53 30          CALL_2N         e14c (G20)
 203b2:  b3 ...                  PRINT_RET       " drops through the grating and
 bounces down in the darkness."
-203d7:  b1                      RFALSE          
+203d7:  b1                      RFALSE
 
 Routine 203d8, 0 locals
 
@@ -11836,13 +11836,13 @@ Routine 203d8, 0 locals
 2040e
 203e5:  b3 ...                  PRINT_RET       "Reach down the grating as you
 may, it remains just beyond reach."
-2040e:  b1                      RFALSE          
+2040e:  b1                      RFALSE
 
 Routine 20410, 0 locals
 
 20411:  e7 7f 04 00             RANDOM          #04 -> -(SP)
 20415:  41 00 01 80 03          JE              (SP)+,#01 [TRUE] 2041b
-2041a:  b1                      RFALSE          
+2041a:  b1                      RFALSE
 2041b:  c6 8f 19 01 91 00 19    JIN             G09,"skiff" [FALSE] 20439
 20422:  b3 ...                  PRINT_RET       "
 A wave suddenly rocks the skiff."
@@ -11855,7 +11855,7 @@ Routine 20478, 0 locals
 20479:  c1 97 3a 12 4e 00 33    JE              G2a,#12,#4e [FALSE] 204b1
 20480:  b3 ...                  PRINT_RET       "The sepulchral calm of the
 ocean overwhelms you, and you can only watch and sail."
-204b1:  b1                      RFALSE          
+204b1:  b1                      RFALSE
 
 Routine 204b4, 0 locals
 
@@ -11867,10 +11867,10 @@ The sails billow, then slacken...
 204d7:  ce 0f 01 91 01 94       INSERT_OBJ      "skiff","Drifting"
 204dd:  cd 4f 11 01 94          STORE           G01,#0194
 204e2:  da 1f 36 0d 29          CALL_2N         d834 (#29)
-204e7:  b0                      RTRUE           
+204e7:  b0                      RTRUE
 204e8:  8c 00 07                JUMP            204f0
 204eb:  cb 1f 01 93 08          SET_ATTR        "Harbour Mouth",#08
-204f0:  b1                      RFALSE          
+204f0:  b1                      RFALSE
 
 Routine 204f4, 0 locals
 
@@ -11880,7 +11880,7 @@ Light brightens into day. The skiff drifts, drifts upon...
 20520:  ce 0f 01 91 01 14       INSERT_OBJ      "skiff","Garden Stream"
 20526:  cd 4f 11 01 14          STORE           G01,#0114
 2052b:  da 1f 36 0d 29          CALL_2N         d834 (#29)
-20530:  b0                      RTRUE           
+20530:  b0                      RTRUE
 
 Routine 20534, 0 locals
 
@@ -11891,13 +11891,13 @@ Routine 20534, 0 locals
 20546:  b2 ...                  PRINT           "The procession happily
 accommodates another crazily-dressed loon.
 "
-20573:  b1                      RFALSE          
+20573:  b1                      RFALSE
 20574:  c1 95 30 08 09 07 00 03 JE              G20,#08,#09,#07 [FALSE] 2057d
-2057c:  b1                      RFALSE          
+2057c:  b1                      RFALSE
 2057d:  b3 ...                  PRINT_RET       "The enormous procession, which
 throngs the great streets of Alexandria, is impossible to push your way
 through. Better just enjoy the spectacle."
-205d4:  b1                      RFALSE          
+205d4:  b1                      RFALSE
 
 Routine 205d8, 0 locals
 
@@ -11916,7 +11916,7 @@ gem","unexciting tombstone"
 the mouth of the stone face, and there is a heaving from beneath your feet...
 you topple over backward, flailing wildly. When you get up you can see a short
 flight of steps leading down. You have opened the tomb!"
-206a5:  b1                      RFALSE          
+206a5:  b1                      RFALSE
 
 Routine 206a8, 0 locals
 
@@ -11935,7 +11935,7 @@ Routine 206a8, 0 locals
 206fd:  cd 4f 5c 01 99          STORE           G4c,#0199
 20702:  b3 ...                  PRINT_RET       "You turn the cloak inside
 out."
-20715:  b1                      RFALSE          
+20715:  b1                      RFALSE
 
 Routine 20718, 0 locals
 
@@ -11943,7 +11943,7 @@ Routine 20718, 0 locals
 2071e:  b3 ...                  PRINT_RET       "Why do you only ever smell
 hard in unpleasant places?  The odour is repulsive in a termites-and-honey kind
 of way."
-20769:  b1                      RFALSE          
+20769:  b1                      RFALSE
 
 Routine 2076c, 0 locals
 
@@ -11955,9 +11955,9 @@ so restful that you slide into...
 "
 207a4:  e3 17 01 a1 17 01       PUT_PROP        "The Spirit World",#17,#01
 207aa:  da 0f 9d 20 01 a1       CALL_2N         27480 (#01a1)
-207b0:  b0                      RTRUE           
-207b1:  b1                      RFALSE          
-207b2:  b1                      RFALSE          
+207b0:  b0                      RTRUE
+207b1:  b1                      RFALSE
+207b2:  b1                      RFALSE
 
 Routine 207b4, 0 locals
 
@@ -11984,7 +11984,7 @@ couch."
 2083e:  da 1f 9d bb 27          CALL_2N         276ec (#27)
 20843:  b3 ...                  PRINT_RET       "You twist the nose, and before
 it springs back there is a rumbling of stone from below."
-20874:  b1                      RFALSE          
+20874:  b1                      RFALSE
 
 Routine 20878, 0 locals
 
@@ -12004,13 +12004,13 @@ painless way... and you wake...
 20926:  ce 8f 19 01 a3          INSERT_OBJ      G09,"wooden couch"
 2092b:  89 01 a4                REMOVE_OBJ      "Napoleonic officers"
 2092e:  da 1f 36 0d 29          CALL_2N         d834 (#29)
-20933:  b0                      RTRUE           
+20933:  b0                      RTRUE
 
 Routine 20934, 0 locals
 
 20935:  41 3a 26 00 71          JE              G2a,#26 [FALSE] 209a9
 2093a:  41 30 05 00 03          JE              G20,#05 [FALSE] 20940
-2093f:  b1                      RFALSE          
+2093f:  b1                      RFALSE
 20940:  d1 1f 01 a1 17 00       GET_PROP        "The Spirit World",#17 -> -(SP)
 20946:  41 00 04 00 47          JE              (SP)+,#04 [FALSE] 20990
 2094b:  b3 ...                  PRINT_RET       "You somehow cannot leave the
@@ -12036,9 +12036,9 @@ you deeper into...
 20a35:  54 00 01 00             ADD             (SP)+,#01 -> -(SP)
 20a39:  e3 1b 01 a1 17 00       PUT_PROP        "The Spirit World",#17,(SP)+
 20a3f:  da 0f 9d 20 01 a1       CALL_2N         27480 (#01a1)
-20a45:  b0                      RTRUE           
-20a46:  b1                      RFALSE          
-20a47:  b1                      RFALSE          
+20a45:  b0                      RTRUE
+20a46:  b1                      RFALSE
+20a47:  b1                      RFALSE
 
 Routine 20a48, 1 local
 
@@ -12061,14 +12061,14 @@ By now the tomb might be two thousand years old.
 Spirit World" [FALSE] 20b15
 20afe:  b3 ...                  PRINT_RET       "
 And at last it has been opened."
-20b15:  b1                      RFALSE          
-20b16:  b1                      RFALSE          
+20b15:  b1                      RFALSE
+20b16:  b1                      RFALSE
 
 Routine 20b18, 0 locals
 
 20b19:  d1 1f 01 a1 17 00       GET_PROP        "The Spirit World",#17 -> -(SP)
 20b1f:  42 00 04 00 03          JL              (SP)+,#04 [FALSE] 20b25
-20b24:  b1                      RFALSE          
+20b24:  b1                      RFALSE
 20b25:  95 b5                   INC             Ga5
 20b27:  41 b5 02 00 19          JE              Ga5,#02 [FALSE] 20b43
 20b2c:  b2 ...                  PRINT           "
@@ -12116,25 +12116,25 @@ investigate!
 20da0:  cb 1f 01 9e 08          SET_ATTR        "sphinxes",#08
 20da5:  ce 0f 01 a0 01 9d       INSERT_OBJ      "stone nose of a sphinx","The
 Height of Fashion"
-20dab:  b1                      RFALSE          
+20dab:  b1                      RFALSE
 
 Routine 20dac, 0 locals
 
 20dad:  c1 97 3a 54 42 00 17    JE              G2a,#54,#42 [FALSE] 20dc9
 20db4:  b3 ...                  PRINT_RET       "Your body passes through
 them."
-20dc9:  c1 85 3a 01 03 46 44 00 0f 
+20dc9:  c1 85 3a 01 03 46 44 00 0f
                                JE              G2a,#0103,#46,#44 [FALSE] 20ddf
 20dd2:  b3 ...                  PRINT_RET       "They hear nothing."
-20ddf:  b1                      RFALSE          
+20ddf:  b1                      RFALSE
 
 Routine 20de0, 0 locals
 
 20de1:  4a 2f 08 80 03          TEST_ATTR       G1f,#08 [TRUE] 20de7
-20de6:  b1                      RFALSE          
+20de6:  b1                      RFALSE
 20de7:  b2 ...                  PRINT           "model of a mischievous-looking
 monkey, which wriggles as it comes alive"
-20e14:  b0                      RTRUE           
+20e14:  b0                      RTRUE
 
 Routine 20e18, 0 locals
 
@@ -12142,7 +12142,7 @@ Routine 20e18, 0 locals
 20e20:  41 2a 12 00 14          JE              G1a,#12 [FALSE] 20e37
 20e25:  b2 ...                  PRINT           "(That's a relief.)
 "
-20e36:  b1                      RFALSE          
+20e36:  b1                      RFALSE
 20e37:  41 2a 30 80 45          JE              G1a,#30 [TRUE] 20e7f
 20e3c:  b2 ...                  PRINT           "(You are so distracted that
 common sense takes over and you clamber out of the mummy case.)
@@ -12162,8 +12162,8 @@ you are obliged to retreat before the air runs out. You trip over something as
 you do, cursing under your breath."
 20ef4:  b3 ...                  PRINT_RET       "The passage seems endless and
 you retreat."
-20f0f:  b1                      RFALSE          
-20f10:  b1                      RFALSE          
+20f0f:  b1                      RFALSE
+20f10:  b1                      RFALSE
 
 Routine 20f14, 0 locals
 
@@ -12195,7 +12195,7 @@ And even that is not the end, for you suddenly crash into buffers at one end.
 What a lucky escape, you think... for a moment...
 "
 2109d:  da 0f 9d 20 01 af       CALL_2N         27480 (#01af)
-210a3:  b0                      RTRUE           
+210a3:  b0                      RTRUE
 210a4:  4a 2f 0e 00 23          TEST_ATTR       G1f,#0e [FALSE] 210ca
 210a9:  b3 ...                  PRINT_RET       "No, don't. Once shut it would
 never open again."
@@ -12208,8 +12208,8 @@ mildly, already closed."
 someone has planned all this... and it isn't you.)
 
 "
-21137:  b1                      RFALSE          
-21138:  b1                      RFALSE          
+21137:  b1                      RFALSE
+21138:  b1                      RFALSE
 
 Routine 2113c, 0 locals
 
@@ -12238,16 +12238,16 @@ an Undertaking"
 you know it)."
 211cd:  8c 00 15                JUMP            211e3
 211d0:  b3 ...                  PRINT_RET       "Doesn't seem to fit, quite."
-211e3:  b1                      RFALSE          
-211e4:  b1                      RFALSE          
+211e3:  b1                      RFALSE
+211e4:  b1                      RFALSE
 
 Routine 211e8, 0 locals
 
 211e9:  c1 97 3a 13 14 00 0f    JE              G2a,#13,#14 [FALSE] 211fd
 211f0:  c1 8f 11 01 a8 00 07    JE              G01,#01a8 [FALSE] 211fc
 211f7:  e3 97 2f 17 00          PUT_PROP        G1f,#17,#00
-211fc:  b1                      RFALSE          
-211fd:  b1                      RFALSE          
+211fc:  b1                      RFALSE
+211fd:  b1                      RFALSE
 
 Routine 21200, 1 local
 
@@ -12258,7 +12258,7 @@ susceptible to that."
 21226:  c6 8f 2f 01 a8 00 07    JIN             G1f,"Quite an Undertaking"
 [FALSE] 21232
 2122d:  4a 2f 0c 00 03          TEST_ATTR       G1f,#0c [FALSE] 21233
-21232:  b1                      RFALSE          
+21232:  b1                      RFALSE
 21233:  51 2f 17 00             GET_PROP        G1f,#17 -> -(SP)
 21237:  41 00 00 80 2b          JE              (SP)+,#00 [TRUE] 21265
 2123c:  ca 1f 01 aa 0e 00 24    TEST_ATTR       "mummy case",#0e [FALSE] 21265
@@ -12298,15 +12298,15 @@ to rest as ""
 With an awful groaning noise, the coffin lid heaves open. And it is...
 
 Empty!"
-21361:  b0                      RTRUE           
-21362:  b1                      RFALSE          
+21361:  b0                      RTRUE
+21362:  b1                      RFALSE
 
 Routine 21364, 0 locals
 
 21365:  c1 95 2a 29 43 18 00 03 JE              G1a,#29,#43,#18 [FALSE] 2136e
-2136d:  b1                      RFALSE          
+2136d:  b1                      RFALSE
 2136e:  41 2a 49 00 03          JE              G1a,#49 [FALSE] 21374
-21373:  b1                      RFALSE          
+21373:  b1                      RFALSE
 21374:  41 2a 26 80 23          JE              G1a,#26 [TRUE] 2139a
 21379:  b3 ...                  PRINT_RET       "There's very little room, and
 the air is running out."
@@ -12326,7 +12326,7 @@ the solid gold of the coffin by sheer effort of will, finally beginning to
 recoalesce. You stagger, confused, through dark caves until you finally come to
 light, clutching something solid...
 "
-214b1:  b1                      RFALSE          
+214b1:  b1                      RFALSE
 
 Routine 214b4, 1 local
 
@@ -12344,7 +12344,7 @@ You are beginning to choke and pant."
 21542:  41 01 01 00 2b          JE              L00,#01 [FALSE] 21570
 21547:  b3 ...                  PRINT_RET       "
 The air is desperately thin now, and you struggle hopelessly."
-21570:  b1                      RFALSE          
+21570:  b1                      RFALSE
 
 Routine 21574, 0 locals
 
@@ -12373,7 +12373,7 @@ Routine 216ac, 0 locals
 216ad:  41 8c 0b 00 0c          JE              G7c,#0b [FALSE] 216bc
 216b2:  4a 11 27 80 07          TEST_ATTR       G01,#27 [TRUE] 216bc
 216b7:  26 3a 11 00 03          JIN             "Austin",G01 [FALSE] 216bd
-216bc:  b1                      RFALSE          
+216bc:  b1                      RFALSE
 216bd:  2e 3a 11                INSERT_OBJ      "Austin",G01
 216c0:  b3 ...                  PRINT_RET       "
 Austin strolls regally along with you."
@@ -12382,13 +12382,13 @@ Routine 216dc, 0 locals
 
 216dd:  41 3a 2e 00 25          JE              G2a,#2e [FALSE] 21705
 216e2:  ca 1f 01 9a 1a 00 03    TEST_ATTR       "grey cloak",#1a [FALSE] 216ea
-216e9:  b1                      RFALSE          
+216e9:  b1                      RFALSE
 216ea:  b3 ...                  PRINT_RET       "It won't open, for no reason
 you can see."
 21705:  41 3a 8a 00 43          JE              G2a,#8a [FALSE] 2174b
 2170a:  b3 ...                  PRINT_RET       "The door shakes, and its old
 wood whispers "Sosostris, the Priest of Sosostris" in a falling echo."
-2174b:  b1                      RFALSE          
+2174b:  b1                      RFALSE
 
 Routine 2174c, 0 locals
 
@@ -12409,44 +12409,44 @@ And she slips something into your palm as she bustles you out.
 2183a:  da 0f 9d 20 01 b5       CALL_2N         27480 (#01b5)
 21840:  ce 2f 01 bc 19          INSERT_OBJ      "silver keepsake",G09
 21845:  da 1f 9d bb 28          CALL_2N         276ec (#28)
-2184a:  b0                      RTRUE           
+2184a:  b0                      RTRUE
 2184b:  b2 ...                  PRINT           "Madame Sosostris brushes "
 2185e:  da 2f 38 4e 30          CALL_2N         e138 (G20)
 21863:  6e 30 11                INSERT_OBJ      G20,G01
 21866:  b3 ...                  PRINT_RET       " aside impatiently."
-21875:  b1                      RFALSE          
+21875:  b1                      RFALSE
 
 Routine 21878, 0 locals
 
 21879:  c1 97 3a 22 54 00 21    JE              G2a,#22,#54 [FALSE] 2189f
 21880:  b3 ...                  PRINT_RET       "She is staring fixedly at the
 table, meditating."
-2189f:  c1 85 3a 01 03 46 44 00 19 
+2189f:  c1 85 3a 01 03 46 44 00 19
                                JE              G2a,#0103,#46,#44 [FALSE] 218bf
 218a8:  b3 ...                  PRINT_RET       "Madame Sosostris is
 meditating."
 218bf:  41 3a 42 00 19          JE              G2a,#42 [FALSE] 218db
 218c4:  b3 ...                  PRINT_RET       "Your hand feels impotent to do
 so."
-218db:  b1                      RFALSE          
+218db:  b1                      RFALSE
 
 Routine 218dc, 0 locals
 
 218dd:  41 3a 39 00 23          JE              G2a,#39 [FALSE] 21903
 218e2:  b3 ...                  PRINT_RET       "It rumbles in your hands, but
 nothing else happens."
-21903:  b1                      RFALSE          
+21903:  b1                      RFALSE
 
 Routine 21904, 0 locals
 
 21905:  41 3a 8e 00 0a          JE              G2a,#8e [FALSE] 21912
 2190a:  f9 13 36 0d 1c 01 bf    CALL_VN         d834 (#1c,#01bf)
-21911:  b0                      RTRUE           
-21912:  b1                      RFALSE          
+21911:  b0                      RTRUE
+21912:  b1                      RFALSE
 
 Routine 21914, 0 locals
 
-21915:  c1 85 3a 01 03 46 44 00 31 
+21915:  c1 85 3a 01 03 46 44 00 31
                                JE              G2a,#0103,#46,#44 [FALSE] 2194d
 2191e:  b3 ...                  PRINT_RET       "You can't understand his
 guttural speech, but the die seems his only fascination."
@@ -12455,7 +12455,7 @@ guttural speech, but the die seems his only fascination."
 down by the docks of most ports."
 21979:  41 3a 44 00 13          JE              G2a,#44 [FALSE] 2198f
 2197e:  b3 ...                  PRINT_RET       "He is burlier than you."
-2198f:  b1                      RFALSE          
+2198f:  b1                      RFALSE
 
 Routine 21990, 1 local
 
@@ -12493,7 +12493,7 @@ The sailor stares at the die thoughtfully."
 21a42:  8c 00 17                JUMP            21a5a
 21a45:  b3 ...                  PRINT_RET       "
 The sailor hums a sea shanty."
-21a5a:  b1                      RFALSE          
+21a5a:  b1                      RFALSE
 
 Routine 21a5c, 1 local
 
@@ -12516,7 +12516,7 @@ on it. The word on top is ""
 21af2:  b2 ...                  PRINT           "You throw a ""
 21afb:  da 2f 86 c5 01          CALL_2N         21b14 (L00)
 21b00:  b3 ...                  PRINT_RET       "", whatever that means."
-21b11:  b1                      RFALSE          
+21b11:  b1                      RFALSE
 
 Routine 21b14, 1 local
 
@@ -12532,7 +12532,7 @@ Routine 21b14, 1 local
 21b3a:  b2 ...                  PRINT           "mach"
 21b3f:  41 01 06 00 07          JE              L00,#06 [FALSE] 21b49
 21b44:  b2 ...                  PRINT           "huth"
-21b49:  b0                      RTRUE           
+21b49:  b0                      RTRUE
 
 Routine 21b4c, 1 local
 
@@ -12552,7 +12552,7 @@ on","pigeonhole"
 21bf2:  54 01 01 00             ADD             L00,#01 -> -(SP)
 21bf6:  e3 1b 01 c0 17 00       PUT_PROP        "The Birdcage of the
 Muses",#17,(SP)+
-21bfc:  b1                      RFALSE          
+21bfc:  b1                      RFALSE
 
 Routine 21c00, 2 locals
 
@@ -12570,7 +12570,7 @@ Routine 21c00, 2 locals
 21c33:  8c 00 04                JUMP            21c38
 21c36:  ab 01                   RET             L00
 21c38:  8c ff d2                JUMP            21c0b
-21c3b:  b1                      RFALSE          
+21c3b:  b1                      RFALSE
 
 Routine 21c3c, 2 locals
 
@@ -12582,7 +12582,7 @@ Routine 21c3c, 2 locals
 21c57:  41 00 01 00 07          JE              (SP)+,#01 [FALSE] 21c61
 21c5c:  95 01                   INC             L00
 21c5e:  8c 00 17                JUMP            21c76
-21c61:  c1 83 02 91 e0 97 2f 00 0c 
+21c61:  c1 83 02 91 e0 97 2f 00 0c
                                JE              L01,"poems","scrolls" [FALSE]
 21c74
 21c6a:  cd 4f 57 01 05          STORE           G47,#0105
@@ -12590,7 +12590,7 @@ Routine 21c3c, 2 locals
 21c71:  8c 00 04                JUMP            21c76
 21c74:  ab 01                   RET             L00
 21c76:  8c ff d0                JUMP            21c47
-21c79:  b1                      RFALSE          
+21c79:  b1                      RFALSE
 
 Routine 21c7c, 0 locals
 
@@ -12602,20 +12602,20 @@ Routine 21c7c, 0 locals
 21ca8:  b3 ...                  PRINT_RET       "You smear some oil on your
 head, making a mental note to wash your hair in the morning. It is the least
 sacred sacred ritual you have ever taken part in."
-21d01:  b1                      RFALSE          
+21d01:  b1                      RFALSE
 
 Routine 21d04, 0 locals
 
 21d05:  c1 97 3a 5d 15 00 13    JE              G2a,#5d,#15 [FALSE] 21d1d
 21d0c:  b3 ...                  PRINT_RET       "What a revolting idea!"
-21d1d:  b1                      RFALSE          
+21d1d:  b1                      RFALSE
 
 Routine 21d20, 0 locals
 
 21d21:  41 3a 3c 00 09          JE              G2a,#3c [FALSE] 21d2d
 21d26:  f9 1b 36 0d 13 2f       CALL_VN         d834 (#13,G1f)
-21d2c:  b0                      RTRUE           
-21d2d:  b1                      RFALSE          
+21d2c:  b0                      RTRUE
+21d2d:  b1                      RFALSE
 
 Routine 21d30, 0 locals
 
@@ -12628,8 +12628,8 @@ globe",#12,S864
 21d49:  b3 ...                  PRINT_RET       "As you pull out its polar
 axis, the spindle, the Earth collapses altogether in a possibly symbolic,
 certainly dusty shambles."
-21d9c:  b1                      RFALSE          
-21d9d:  b1                      RFALSE          
+21d9c:  b1                      RFALSE
+21d9d:  b1                      RFALSE
 
 Routine 21da0, 1 local
 
@@ -12641,7 +12641,7 @@ Routine 21da0, 1 local
 21dc2:  b3 ...                  PRINT_RET       "He takes the tube, sees the
 letter on it, looks exasperated, clouts you over the head with the tube and
 pushes it back into your arms."
-21e11:  c1 83 30 01 c2 01 c3 03 10 
+21e11:  c1 83 30 01 c2 01 c3 03 10
                                JE              G20,#01c2,#01c3 [FALSE] 22128
 21e1a:  da 2f 38 53 2f          CALL_2N         e14c (G1f)
 21e1f:  b2 ...                  PRINT           " takes the tube and looks
@@ -12652,7 +12652,7 @@ inside"
 21e3e:  b3 ...                  PRINT_RET       " to find it is empty. He looks
 at you very darkly indeed but returns to his work, throwing the tube down
 impatiently."
-21e87:  c1 83 01 01 c4 01 c5 02 3b 
+21e87:  c1 83 01 01 c4 01 c5 02 3b
                                JE              L00,#01c4,#01c5 [FALSE] 220c9
 21e90:  b2 ...                  PRINT           " to see a scroll, which he
 pulls out eagerly.
@@ -12710,14 +12710,14 @@ comes as a surprise. Such a fuss is kicked up that you are quickly thrown out
 into the street.
 "
 22120:  f9 07 9d 20 01 b3 01    CALL_VN         27480 (#01b3,#01)
-22127:  b1                      RFALSE          
+22127:  b1                      RFALSE
 22128:  b3 ...                  PRINT_RET       "How could you bribe such
 disinterested men of learning as the librarians?"
-22157:  c1 85 3a 01 03 46 44 00 3d 
+22157:  c1 85 3a 01 03 46 44 00 3d
                                JE              G2a,#0103,#46,#44 [FALSE] 2219b
 22160:  b3 ...                  PRINT_RET       "As a barbarian scholar,
 unversed in Greek, you can hardly expect to converse with such as he."
-2219b:  b1                      RFALSE          
+2219b:  b1                      RFALSE
 
 Routine 2219c, 0 locals
 
@@ -12743,7 +12743,7 @@ of Alexander"
 22277:  b3 ...                  PRINT_RET       "The slave looks you over and
 sees that you do not bear the mark of an accredited visitor to the Palace. You
 are discreetly escorted out."
-222ca:  b1                      RFALSE          
+222ca:  b1                      RFALSE
 222cb:  c1 97 3a 1c 1d 00 25    JE              G2a,#1c,#1d [FALSE] 222f5
 222d2:  b3 ...                  PRINT_RET       "The slave politely holds your
 arm fast until you desist."
@@ -12751,9 +12751,9 @@ arm fast until you desist."
 222fa:  ca 1f 01 d2 08 00 06    TEST_ATTR       "Lost inside the Palace",#08
 [FALSE] 22305
 22301:  8f 88 ef                CALL_1N         223bc
-22304:  b0                      RTRUE           
-22305:  b1                      RFALSE          
-22306:  b1                      RFALSE          
+22304:  b0                      RTRUE
+22305:  b1                      RFALSE
+22306:  b1                      RFALSE
 
 Routine 22308, 0 locals
 
@@ -12783,8 +12783,8 @@ Palace"
 22361:  95 b7                   INC             Ga7
 22363:  41 b7 02 00 07          JE              Ga7,#02 [FALSE] 2236d
 22368:  da 1f 97 a4 2e          CALL_2N         25e90 (#2e)
-2236d:  b1                      RFALSE          
-2236e:  b1                      RFALSE          
+2236d:  b1                      RFALSE
+2236e:  b1                      RFALSE
 
 Routine 22370, 0 locals
 
@@ -12792,18 +12792,18 @@ Routine 22370, 0 locals
 22378:  41 2a 87 00 0d          JE              G1a,#87 [FALSE] 22388
 2237d:  4a 11 08 00 08          TEST_ATTR       G01,#08 [FALSE] 22388
 22382:  da 1f 36 0d 87          CALL_2N         d834 (#87)
-22387:  b0                      RTRUE           
+22387:  b0                      RTRUE
 22388:  b3 ...                  PRINT_RET       "The slave doesn't seem to
 notice."
 2239f:  41 3a 46 00 17          JE              G2a,#46 [FALSE] 223b9
-223a4:  c1 83 31 74 e8 80 31 00 0d 
+223a4:  c1 83 31 74 e8 80 31 00 0d
                                JE              G21,"anoppe","eppona" [FALSE]
 223b8
 223ad:  4a 11 08 00 08          TEST_ATTR       G01,#08 [FALSE] 223b8
 223b2:  da 1f 36 0d 87          CALL_2N         d834 (#87)
-223b7:  b0                      RTRUE           
-223b8:  b1                      RFALSE          
-223b9:  b1                      RFALSE          
+223b7:  b0                      RTRUE
+223b8:  b1                      RFALSE
+223b9:  b1                      RFALSE
 
 Routine 223bc, 0 locals
 
@@ -12812,7 +12812,7 @@ adviser merely disguised as a deaf mute, reacts at once, taking you by the arm
 and leading you on a convoluted path through the Palace to the...
 "
 22426:  da 0f 9d 20 01 d4       CALL_2N         27480 (#01d4)
-2242c:  b0                      RTRUE           
+2242c:  b0                      RTRUE
 
 Routine 22430, 0 locals
 
@@ -12823,7 +12823,7 @@ Routine 22430, 0 locals
 beautifully graceful motion, plunging perfectly into the icy and (fortunately)
 deep waters below. You then struggle to the surface in a panicky, floundering
 motion, and finally wash up out of the water in a clumsy, ridiculous one."
-224db:  b1                      RFALSE          
+224db:  b1                      RFALSE
 
 Routine 224dc, 0 locals
 
@@ -12840,7 +12840,7 @@ Balustrade"
 2250b:  b3 ...                  PRINT_RET       "It fits beautifully, as if
 designed to go there."
 2252c:  b3 ...                  PRINT_RET       "Doesn't fit."
-22537:  b1                      RFALSE          
+22537:  b1                      RFALSE
 
 Routine 22538, 0 locals
 
@@ -12852,15 +12852,15 @@ Routine 22538, 0 locals
 you scale the old fire escape once again, breathing a sigh of relief as you
 haul yourself in through the open hatchway at the top.
 "
-225af:  b1                      RFALSE          
-225b0:  b1                      RFALSE          
+225af:  b1                      RFALSE
+225b0:  b1                      RFALSE
 
 Routine 225b4, 0 locals
 
 225b5:  c1 97 3a 4b 15 00 09    JE              G2a,#4b,#15 [FALSE] 225c3
 225bc:  f9 17 36 0d 26 0a       CALL_VN         d834 (#26,#0a)
-225c2:  b0                      RTRUE           
-225c3:  b1                      RFALSE          
+225c2:  b0                      RTRUE
+225c3:  b1                      RFALSE
 
 Routine 225c4, 0 locals
 
@@ -12879,15 +12879,15 @@ Routine 22654, 0 locals
 2267f
 22662:  b3 ...                  PRINT_RET       "The corn crake won't let you
 near her nest."
-2267f:  b1                      RFALSE          
+2267f:  b1                      RFALSE
 
 Routine 22680, 0 locals
 
-22681:  c1 85 3a 01 03 46 44 00 17 
+22681:  c1 85 3a 01 03 46 44 00 17
                                JE              G2a,#0103,#46,#44 [FALSE] 2269f
 2268a:  b3 ...                  PRINT_RET       "The bird seems not to have
 heard."
-2269f:  b1                      RFALSE          
+2269f:  b1                      RFALSE
 
 Routine 226a0, 0 locals
 
@@ -12915,8 +12915,8 @@ mean?"
 22783:  b3 ...                  PRINT_RET       "Evans looks sadly at the
 mascot. But it is tarnished now, you have spoilt it. Your guilt increases
 further."
-227c4:  b1                      RFALSE          
-227c5:  b1                      RFALSE          
+227c4:  b1                      RFALSE
+227c5:  b1                      RFALSE
 
 Routine 227c8, 0 locals
 
@@ -12924,15 +12924,15 @@ Routine 227c8, 0 locals
 227ce:  4a 2f 0e 80 1b          TEST_ATTR       G1f,#0e [TRUE] 227ec
 227d3:  b3 ...                  PRINT_RET       "The Church door is barred from
 the far side."
-227ec:  b1                      RFALSE          
-227ed:  b1                      RFALSE          
+227ec:  b1                      RFALSE
+227ed:  b1                      RFALSE
 
 Routine 227f0, 0 locals
 
 227f1:  41 3a 15 00 25          JE              G2a,#15 [FALSE] 22819
 227f6:  b3 ...                  PRINT_RET       "The pub is closed, licensing
 laws being what they are."
-22819:  b1                      RFALSE          
+22819:  b1                      RFALSE
 
 Routine 2281c, 0 locals
 
@@ -12942,7 +12942,7 @@ It jumps about, cheeping."
 22847:  41 3a 54 00 21          JE              G2a,#54 [FALSE] 2286b
 2284c:  b3 ...                  PRINT_RET       "Evans rather resents this
 importunate advance."
-2286b:  b1                      RFALSE          
+2286b:  b1                      RFALSE
 
 Routine 2286c, 0 locals
 
@@ -12950,22 +12950,22 @@ Routine 2286c, 0 locals
 22874:  c6 8f 2f 01 de 00 21    JIN             G1f,"Old Evans" [FALSE] 2289a
 2287b:  b3 ...                  PRINT_RET       "Evans isn't giving up his
 mascot that easily."
-2289a:  b1                      RFALSE          
-2289b:  b1                      RFALSE          
+2289a:  b1                      RFALSE
+2289b:  b1                      RFALSE
 
 Routine 2289c, 0 locals
 
 2289d:  c1 97 3a 13 14 00 19    JE              G2a,#13,#14 [FALSE] 228bb
 228a4:  b3 ...                  PRINT_RET       "Evans isn't giving up his
 paper."
-228bb:  b1                      RFALSE          
+228bb:  b1                      RFALSE
 
 Routine 228bc, 0 locals
 
 228bd:  c1 97 3a 13 14 00 1b    JE              G2a,#13,#14 [FALSE] 228dd
 228c4:  b3 ...                  PRINT_RET       "Evans isn't giving up his
 hat-band."
-228dd:  b1                      RFALSE          
+228dd:  b1                      RFALSE
 
 Routine 228e0, 0 locals
 
@@ -12991,7 +12991,7 @@ Routine 229a0, 0 locals
 
 229a1:  41 3a 2a 00 08          JE              G2a,#2a [FALSE] 229ac
 229a6:  da 1f 97 a4 2f          CALL_2N         25e90 (#2f)
-229ab:  b1                      RFALSE          
+229ab:  b1                      RFALSE
 229ac:  c1 95 3a 2e 3d 3c 80 07 JE              G2a,#2e,#3d,#3c [TRUE] 229b9
 229b4:  41 3a 13 00 3a          JE              G2a,#13 [FALSE] 229f1
 229b9:  da 1f 97 a4 13          CALL_2N         25e90 (#13)
@@ -13003,8 +13003,8 @@ down the stone, but if so it's far too heavy to budge."
 229ff:  b3 ...                  PRINT_RET       "The knight comes a little
 closer, cupping one ear to pantomime listening. He does seem to have partial
 hearing."
-22a42:  b1                      RFALSE          
-22a43:  b1                      RFALSE          
+22a42:  b1                      RFALSE
+22a43:  b1                      RFALSE
 
 Routine 22a44, 0 locals
 
@@ -13022,7 +13022,7 @@ cannot touch the surface!"
 22aa9:  b3 ...                  PRINT_RET       "Warning (once only!): the
 three High Rods seem to balanced extremely delicately on the edge of the pit."
 22aea:  da 1f 9d bb 2c          CALL_2N         276ec (#2c)
-22aef:  b1                      RFALSE          
+22aef:  b1                      RFALSE
 
 Routine 22af0, 0 locals
 
@@ -13047,14 +13047,14 @@ Routine 22af0, 0 locals
 
 As you take it, you upset the balance and the other two High Rods rattle away
 down the crystal passageway into the underworld."
-22b82:  b1                      RFALSE          
+22b82:  b1                      RFALSE
 
 Routine 22b84, 0 locals
 
 22b85:  c1 95 3a 5b 1a 1b 00 e1 JE              G2a,#5b,#1a,#1b [FALSE] 22c6c
 22b8d:  c1 8f 31 01 e9 80 03    JE              G21,#01e9 [TRUE] 22b95
-22b94:  b1                      RFALSE          
-22b95:  c1 80 30 01 f0 01 b0 01 92 80 13 
+22b94:  b1                      RFALSE
+22b95:  c1 80 30 01 f0 01 b0 01 92 80 13
                                JE              G20,#01f0,#01b0,#0192 [TRUE]
 22bb1
 22ba0:  b3 ...                  PRINT_RET       "That seems incongruous."
@@ -13077,9 +13077,9 @@ onto the "neck" of the adamantine knight."
 22c3d:  cb 1f 01 92 08          SET_ATTR        "adamantine heart",#08
 22c42:  b3 ...                  PRINT_RET       "The heart sits well in the
 so-empty ribcage of the adamantine knight."
-22c6b:  b1                      RFALSE          
+22c6b:  b1                      RFALSE
 22c6c:  41 3a 3f 00 7b          JE              G2a,#3f [FALSE] 22cea
-22c71:  c1 83 30 01 b0 01 f0 00 71 
+22c71:  c1 83 30 01 b0 01 f0 00 71
                                JE              G20,#01b0,#01f0 [FALSE] 22ce9
 22c7a:  4a 30 02 00 6c          TEST_ATTR       G20,#02 [FALSE] 22ce9
 22c7f:  c1 8f 30 01 f0 00 2f    JE              G20,#01f0 [FALSE] 22cb3
@@ -13096,8 +13096,8 @@ the adamantine knight."
 22cc5:  cc 1f 01 b0 02          CLEAR_ATTR      "adamantine skull",#02
 22cca:  b3 ...                  PRINT_RET       "The skull screws tightly onto
 the adamantine knight."
-22ce9:  b1                      RFALSE          
-22cea:  b1                      RFALSE          
+22ce9:  b1                      RFALSE
+22cea:  b1                      RFALSE
 
 Routine 22cec, 0 locals
 
@@ -13105,8 +13105,8 @@ Routine 22cec, 0 locals
 22cf2:  c6 0f 01 e9 01 e8 00 05 JIN             "adamantine statue","West Side
 Chapel" [FALSE] 22cfd
 22cfa:  8f 8b e8                CALL_1N         22fa0
-22cfd:  b1                      RFALSE          
-22cfe:  b1                      RFALSE          
+22cfd:  b1                      RFALSE
+22cfe:  b1                      RFALSE
 
 Routine 22d00, 0 locals
 
@@ -13122,7 +13122,7 @@ The skull wobbles and falls off the knight again."
 22d3d:  cc 1f 01 f0 02          CLEAR_ATTR      "adamantine hand",#02
 22d42:  b3 ...                  PRINT_RET       "
 The hand wavers and falls off the knight again."
-22d5f:  b1                      RFALSE          
+22d5f:  b1                      RFALSE
 
 Routine 22d60, 0 locals
 
@@ -13138,14 +13138,14 @@ flower. "
 [TRUE] 22df8
 22dcb:  b3 ...                  PRINT_RET       "He gazes sadly at Diana,
 wanting only to be of chivalrous service."
-22df8:  bb                      NEW_LINE        
-22df9:  b0                      RTRUE           
+22df8:  bb                      NEW_LINE
+22df9:  b0                      RTRUE
 
 Routine 22dfc, 0 locals
 
 22dfd:  c1 8f 3a 01 03 00 06    JE              G2a,#0103 [FALSE] 22e08
 22e04:  8f 8c 16                CALL_1N         23058
-22e07:  b0                      RTRUE           
+22e07:  b0                      RTRUE
 22e08:  c1 97 3a 46 44 00 21    JE              G2a,#46,#44 [FALSE] 22e2e
 22e0f:  b3 ...                  PRINT_RET       "A shame there were no
 adamantine ears, really."
@@ -13176,7 +13176,7 @@ sadness in his eye as he turns away from her."
 earthly things in the service of Diana."
 22f8d:  41 3a 42 00 0d          JE              G2a,#42 [FALSE] 22f9d
 22f92:  b3 ...                  PRINT_RET       "He is adamant."
-22f9d:  b1                      RFALSE          
+22f9d:  b1                      RFALSE
 
 Routine 22fa0, 0 locals
 
@@ -13309,15 +13309,15 @@ Routine 234ec, 0 locals
 for Diana, and is now in your service."
 23529:  b3 ...                  PRINT_RET       "The knight is unable to think
 how he can serve Diana."
-2354a:  b1                      RFALSE          
-2354b:  b1                      RFALSE          
+2354a:  b1                      RFALSE
+2354b:  b1                      RFALSE
 
 Routine 2354c, 0 locals
 
 2354d:  c1 95 3a 3c 3d 50 00 1b JE              G2a,#3c,#3d,#50 [FALSE] 2356e
 23555:  b3 ...                  PRINT_RET       "You ring an amateurish,
 jangling peal."
-2356e:  b1                      RFALSE          
+2356e:  b1                      RFALSE
 
 Routine 23570, 0 locals
 
@@ -13334,7 +13334,7 @@ Routine 23594, 6 locals
 235a0:  0d 06 00                STORE           L05,#00
 235a3:  6f 01 03 00             LOADW           L00,L02 -> -(SP)
 235a7:  c1 8f 00 ff ff 00 03    JE              (SP)+,#ffff [FALSE] 235af
-235ae:  b1                      RFALSE          
+235ae:  b1                      RFALSE
 235af:  6f 01 03 00             LOADW           L00,L02 -> -(SP)
 235b3:  42 00 14 00 11          JL              (SP)+,#14 [FALSE] 235c7
 235b8:  6f 01 03 00             LOADW           L00,L02 -> -(SP)
@@ -13354,15 +13354,15 @@ Routine 23594, 6 locals
 235eb:  ab 00                   RET             (SP)+
 235ed:  95 03                   INC             L02
 235ef:  8c ff a8                JUMP            23598
-235f2:  b0                      RTRUE           
+235f2:  b0                      RTRUE
 
 Routine 235f4, 2 locals
 
 235f5:  e0 0b 8d 65 62 e9 01 02 CALL_VS         23594 (#62e9,L00) -> L01
 235fd:  41 02 00 80 06          JE              L01,#00 [TRUE] 23606
 23602:  ad 02                   PRINT_PADDR     L01
-23604:  bb                      NEW_LINE        
-23605:  b0                      RTRUE           
+23604:  bb                      NEW_LINE
+23605:  b0                      RTRUE
 23606:  e0 0b 8d 65 63 e9 01 00 CALL_VS         23594 (#63e9,L00) -> -(SP)
 2360e:  41 00 00 80 51          JE              (SP)+,#00 [TRUE] 23662
 23613:  b3 ...                  PRINT_RET       ""That's a question you'd
@@ -13372,15 +13372,15 @@ something else.""
 empowered to answer," says the demon with a nervous glance behind him. "Try
 something else."
 "
-236b1:  b1                      RFALSE          
+236b1:  b1                      RFALSE
 
 Routine 236b4, 2 locals
 
 236b5:  e0 0b 8d 65 63 e9 01 02 CALL_VS         23594 (#63e9,L00) -> L01
 236bd:  41 02 00 80 06          JE              L01,#00 [TRUE] 236c6
 236c2:  ad 02                   PRINT_PADDR     L01
-236c4:  bb                      NEW_LINE        
-236c5:  b0                      RTRUE           
+236c4:  bb                      NEW_LINE
+236c5:  b0                      RTRUE
 236c6:  e0 0b 8d 65 62 e9 01 00 CALL_VS         23594 (#62e9,L00) -> -(SP)
 236ce:  41 00 00 80 53          JE              (SP)+,#00 [TRUE] 23724
 236d3:  b3 ...                  PRINT_RET       ""That's a question you'd
@@ -13391,7 +13391,7 @@ something else."
 empowered to answer," says the angel with a beatific smile upward. "Try
 something else."
 "
-23771:  b1                      RFALSE          
+23771:  b1                      RFALSE
 
 Routine 23774, 0 locals
 
@@ -13402,7 +13402,7 @@ living."
 Routine 23790, 1 local
 
 23791:  41 3a 29 01 ef          JE              G2a,#29 [FALSE] 23983
-23796:  bb                      NEW_LINE        
+23796:  bb                      NEW_LINE
 23797:  ca 1f 01 f3 08 00 27    TEST_ATTR       "demon",#08 [FALSE] 237c3
 2379e:  b3 ...                  PRINT_RET       ""Thought what you wanted to
 ask yet?" says the demon."
@@ -13427,7 +13427,7 @@ you to our little information service. We try to be as helpful as possible to
 explorers who are lost, or can't think how to solve their problems, you know
 the kind of thing. So just tell me what you want to know, or show me something
 to look at. You get the usual three hints.""
-23983:  b1                      RFALSE          
+23983:  b1                      RFALSE
 
 Routine 23984, 1 local
 
@@ -13444,7 +13444,7 @@ You can almost, but not quite, make out the noise of shouting."
 23a09:  41 01 04 00 23          JE              L00,#04 [FALSE] 23a2f
 23a0e:  b3 ...                  PRINT_RET       "
 Thunder and lightning can be heard from the fiery depths."
-23a2f:  b1                      RFALSE          
+23a2f:  b1                      RFALSE
 
 Routine 23a30, 0 locals
 
@@ -13455,25 +13455,25 @@ Routine 23a30, 0 locals
 23a56:  b3 ...                  PRINT_RET       ""Under Regulation 3, paragraph
 15 (i) clause (f), only one hint per visit to the infernal domain. You'll have
 to go away again and come back if you want another. So sorry.""
-23ac7:  b1                      RFALSE          
+23ac7:  b1                      RFALSE
 
 Routine 23ac8, 1 local
 
 23ac9:  c1 97 3a 44 46 00 1d    JE              G2a,#44,#46 [FALSE] 23aeb
 23ad0:  88 8e 8c 00             CALL_1S         23a30 -> -(SP)
 23ad4:  41 00 00 80 03          JE              (SP)+,#00 [TRUE] 23ada
-23ad9:  b0                      RTRUE           
+23ad9:  b0                      RTRUE
 23ada:  d9 2f 8d 7d 32 00       CALL_2S         235f4 (G22) -> -(SP)
 23ae0:  41 00 00 80 07          JE              (SP)+,#00 [TRUE] 23aea
 23ae5:  cc 1f 01 f3 08          CLEAR_ATTR      "demon",#08
-23aea:  b0                      RTRUE           
+23aea:  b0                      RTRUE
 23aeb:  c1 8f 3a 01 03 00 1f    JE              G2a,#0103 [FALSE] 23b0f
 23af2:  b3 ...                  PRINT_RET       "One does not give orders to
 such a character."
 23b0f:  c1 97 3a 22 24 00 e1    JE              G2a,#22,#24 [FALSE] 23bf5
 23b16:  88 8e 8c 00             CALL_1S         23a30 -> -(SP)
 23b1a:  41 00 00 80 03          JE              (SP)+,#00 [TRUE] 23b20
-23b1f:  b0                      RTRUE           
+23b1f:  b0                      RTRUE
 23b20:  b2 ...                  PRINT           "The demon glances lazily at "
 23b33:  da 2f 38 4e 30          CALL_2N         e138 (G20)
 23b38:  b2 ...                  PRINT           " and rouses himself to say: ""
@@ -13491,7 +13491,7 @@ counterpart doesn't.""
 23bdb:  b3 ...                  PRINT_RET       "I know just what that's for.""
 23bf0:  ad 01                   PRINT_PADDR     L00
 23bf2:  b3 ...                  PRINT_RET       """
-23bf5:  b1                      RFALSE          
+23bf5:  b1                      RFALSE
 
 Routine 23bf8, 0 locals
 
@@ -13503,12 +13503,12 @@ Routine 23c14, 0 locals
 
 23c15:  41 3a 76 00 13          JE              G2a,#76 [FALSE] 23c2b
 23c1a:  b3 ...                  PRINT_RET       "The clouds are too fluffy."
-23c2b:  b1                      RFALSE          
+23c2b:  b1                      RFALSE
 
 Routine 23c2c, 1 local
 
 23c2d:  41 3a 29 01 f7          JE              G2a,#29 [FALSE] 23e27
-23c32:  bb                      NEW_LINE        
+23c32:  bb                      NEW_LINE
 23c33:  ca 1f 01 f5 08 00 25    TEST_ATTR       "angel",#08 [FALSE] 23c5d
 23c3a:  b3 ...                  PRINT_RET       ""Take all the time you need,"
 says the angel kindly."
@@ -13535,7 +13535,7 @@ explorers who are lost, or can't think how to solve their problems. Is there
 anything, pray, which you would like a hint about, or which you'd like to show
 me?  You are permitted three hints in all, in accordance with standard
 practice.""
-23e27:  b1                      RFALSE          
+23e27:  b1                      RFALSE
 
 Routine 23e28, 1 local
 
@@ -13552,7 +13552,7 @@ Burnished-gold sunlight strokes the tops of the clouds here."
 23ead:  41 01 04 00 2b          JE              L00,#04 [FALSE] 23edb
 23eb2:  b3 ...                  PRINT_RET       "
 The choir invisible almost, for a moment, becomes audible."
-23edb:  b1                      RFALSE          
+23edb:  b1                      RFALSE
 
 Routine 23edc, 0 locals
 
@@ -13563,25 +13563,25 @@ Routine 23edc, 0 locals
 23f02:  b3 ...                  PRINT_RET       ""Under Regulation 3, paragraph
 15 (i) clause (f), only one hint per visit to the sacred domain. You'll have to
 go away again and come back if you want another. So sorry.""
-23f73:  b1                      RFALSE          
+23f73:  b1                      RFALSE
 
 Routine 23f74, 1 local
 
 23f75:  c1 97 3a 44 46 00 1d    JE              G2a,#44,#46 [FALSE] 23f97
 23f7c:  88 8f b7 00             CALL_1S         23edc -> -(SP)
 23f80:  41 00 00 80 03          JE              (SP)+,#00 [TRUE] 23f86
-23f85:  b0                      RTRUE           
+23f85:  b0                      RTRUE
 23f86:  d9 2f 8d ad 32 00       CALL_2S         236b4 (G22) -> -(SP)
 23f8c:  41 00 00 80 07          JE              (SP)+,#00 [TRUE] 23f96
 23f91:  cc 1f 01 f3 08          CLEAR_ATTR      "demon",#08
-23f96:  b0                      RTRUE           
+23f96:  b0                      RTRUE
 23f97:  c1 8f 3a 01 03 00 1f    JE              G2a,#0103 [FALSE] 23fbb
 23f9e:  b3 ...                  PRINT_RET       "One does not give orders to
 such a character."
 23fbb:  c1 97 3a 22 24 00 95    JE              G2a,#22,#24 [FALSE] 24055
 23fc2:  88 8f b7 00             CALL_1S         23edc -> -(SP)
 23fc6:  41 00 00 80 03          JE              (SP)+,#00 [TRUE] 23fcc
-23fcb:  b0                      RTRUE           
+23fcb:  b0                      RTRUE
 23fcc:  b2 ...                  PRINT           "The angel looks keenly at "
 23fdd:  da 2f 38 4e 30          CALL_2N         e138 (G20)
 23fe2:  b2 ...                  PRINT           " and rouses himself to say: ""
@@ -13596,14 +13596,14 @@ that tailed gentleman.""
 there.""
 24050:  ad 01                   PRINT_PADDR     L00
 24052:  b3 ...                  PRINT_RET       """
-24055:  b1                      RFALSE          
+24055:  b1                      RFALSE
 
 Routine 24058, 0 locals
 
 24059:  41 3a 48 00 09          JE              G2a,#48 [FALSE] 24065
 2405e:  f9 1b 36 0d 6f 2f       CALL_VN         d834 (#6f,G1f)
-24064:  b0                      RTRUE           
-24065:  b1                      RFALSE          
+24064:  b0                      RTRUE
+24065:  b1                      RFALSE
 
 Routine 24068, 0 locals
     Action routine for:
@@ -13619,10 +13619,10 @@ to try the following:
   "help legal"          makes some legal disclaimers; or
   "help inform"         which advertises the compiler Inform,
   "help archive"        and the interactive fiction archive."
-2416d:  f9 00 36 5f f4 30 90 5f 90 91 
+2416d:  f9 00 36 5f f4 30 90 5f 90 91
                                CALL_VN         d97c (S1036,#905f,#9091)
 24177:  0d 90 01                STORE           G80,#01
-2417a:  b0                      RTRUE           
+2417a:  b0                      RTRUE
 
 Routine 2417c, 0 locals
 
@@ -13651,7 +13651,7 @@ Routine 2417c, 0 locals
 241da:  41 81 07 00 0a          JE              G71,#07 [FALSE] 241e7
 241df:  0d 7f 05                STORE           G6f,#05
 241e2:  cd 4f 80 f4 7c          STORE           G70,S1044
-241e7:  b0                      RTRUE           
+241e7:  b0                      RTRUE
 
 Routine 241e8, 0 locals
     Action routine for:
@@ -13676,7 +13676,7 @@ Routine 241e8, 0 locals
 24237:  8f 90 1a                CALL_1N         24068
 2423a:  8c 00 07                JUMP            24242
 2423d:  da 2f 90 91 81          CALL_2N         24244 (G71)
-24242:  b0                      RTRUE           
+24242:  b0                      RTRUE
 
 Routine 24244, 0 locals
 
@@ -13969,7 +13969,7 @@ like this on almost any computer.
 "Curses" itself, and the ANSI C source for its compiler "Inform", together with
 manuals in a choice of formats and code for several example games, are archived
 there."
-25e8d:  b0                      RTRUE           
+25e8d:  b0                      RTRUE
 
 Routine 25e90, 1 local
 
@@ -13977,7 +13977,7 @@ Routine 25e90, 1 local
 25e97:  41 00 00 00 0b          JE              (SP)+,#00 [FALSE] 25ea5
 25e9c:  e2 27 65 25 01 01       STOREB          #6525,L00,#01
 25ea2:  2d bf 01                STORE           Gaf,L00
-25ea5:  b0                      RTRUE           
+25ea5:  b0                      RTRUE
 
 Routine 25ea8, 1 local
 
@@ -14317,13 +14317,13 @@ Routine 25ea8, 1 local
 26673:  e1 97 c0 05 00          STOREW          Gb0,#05,#00
 26678:  e1 93 c0 06 f9 44       STOREW          Gb0,#06,S1232
 2667e:  e0 16 b6 33 07 32 c0 ff CALL_VS         2d8cc (#07,#32,Gb0) -> Gef
-26686:  b0                      RTRUE           
+26686:  b0                      RTRUE
 
 Routine 26688, 3 locals
 
 26689:  41 01 00 00 08          JE              L00,#00 [FALSE] 26694
 2668e:  b2 ...                  PRINT           "zero"
-26693:  b1                      RFALSE          
+26693:  b1                      RFALSE
 26694:  42 01 00 00 0b          JL              L00,#00 [FALSE] 266a2
 26699:  b2 ...                  PRINT           "minus "
 2669e:  35 00 01 01             SUB             #00,L00 -> L00
@@ -14342,12 +14342,12 @@ Routine 26688, 3 locals
 266e1:  58 01 64 01             MOD             L00,#64 -> L00
 266e5:  0d 03 01                STORE           L02,#01
 266e8:  41 01 00 00 03          JE              L00,#00 [FALSE] 266ee
-266ed:  b1                      RFALSE          
+266ed:  b1                      RFALSE
 266ee:  41 03 01 00 07          JE              L02,#01 [FALSE] 266f8
 266f3:  b2 ...                  PRINT           " and "
 266f8:  42 01 0a 00 08          JL              L00,#0a [FALSE] 26703
 266fd:  da 2f 99 fa 01          CALL_2N         267e8 (L00)
-26702:  b1                      RFALSE          
+26702:  b1                      RFALSE
 26703:  42 01 14 80 6f          JL              L00,#14 [TRUE] 26775
 26708:  57 01 0a 02             DIV             L00,#0a -> L01
 2670c:  41 02 02 00 07          JE              L01,#02 [FALSE] 26716
@@ -14368,71 +14368,71 @@ Routine 26688, 3 locals
 26759:  b2 ...                  PRINT           "ninety"
 2675e:  58 01 0a 00             MOD             L00,#0a -> -(SP)
 26762:  41 00 00 00 03          JE              (SP)+,#00 [FALSE] 26768
-26767:  b1                      RFALSE          
+26767:  b1                      RFALSE
 26768:  b2 ...                  PRINT           "-"
 2676b:  58 01 0a 00             MOD             L00,#0a -> -(SP)
 2676f:  da 2f 99 fa 00          CALL_2N         267e8 ((SP)+)
-26774:  b1                      RFALSE          
+26774:  b1                      RFALSE
 26775:  41 01 0a 00 06          JE              L00,#0a [FALSE] 2677e
 2677a:  b2 ...                  PRINT           "ten"
-2677d:  b1                      RFALSE          
+2677d:  b1                      RFALSE
 2677e:  41 01 0b 00 08          JE              L00,#0b [FALSE] 26789
 26783:  b2 ...                  PRINT           "eleven"
-26788:  b1                      RFALSE          
+26788:  b1                      RFALSE
 26789:  41 01 0c 00 08          JE              L00,#0c [FALSE] 26794
 2678e:  b2 ...                  PRINT           "twelve"
-26793:  b1                      RFALSE          
+26793:  b1                      RFALSE
 26794:  41 01 0d 00 0a          JE              L00,#0d [FALSE] 267a1
 26799:  b2 ...                  PRINT           "thirteen"
-267a0:  b1                      RFALSE          
+267a0:  b1                      RFALSE
 267a1:  41 01 0e 00 0a          JE              L00,#0e [FALSE] 267ae
 267a6:  b2 ...                  PRINT           "fourteen"
-267ad:  b1                      RFALSE          
+267ad:  b1                      RFALSE
 267ae:  41 01 0f 00 0a          JE              L00,#0f [FALSE] 267bb
 267b3:  b2 ...                  PRINT           "fifteen"
-267ba:  b1                      RFALSE          
+267ba:  b1                      RFALSE
 267bb:  41 01 10 00 0a          JE              L00,#10 [FALSE] 267c8
 267c0:  b2 ...                  PRINT           "sixteen"
-267c7:  b1                      RFALSE          
+267c7:  b1                      RFALSE
 267c8:  41 01 11 00 0a          JE              L00,#11 [FALSE] 267d5
 267cd:  b2 ...                  PRINT           "seventeen"
-267d4:  b1                      RFALSE          
+267d4:  b1                      RFALSE
 267d5:  41 01 12 00 08          JE              L00,#12 [FALSE] 267e0
 267da:  b2 ...                  PRINT           "eighteen"
-267df:  b1                      RFALSE          
+267df:  b1                      RFALSE
 267e0:  b2 ...                  PRINT           "nineteen"
-267e7:  b0                      RTRUE           
+267e7:  b0                      RTRUE
 
 Routine 267e8, 1 local
 
 267e9:  41 01 01 00 06          JE              L00,#01 [FALSE] 267f2
 267ee:  b2 ...                  PRINT           "one"
-267f1:  b1                      RFALSE          
+267f1:  b1                      RFALSE
 267f2:  41 01 02 00 06          JE              L00,#02 [FALSE] 267fb
 267f7:  b2 ...                  PRINT           "two"
-267fa:  b1                      RFALSE          
+267fa:  b1                      RFALSE
 267fb:  41 01 03 00 08          JE              L00,#03 [FALSE] 26806
 26800:  b2 ...                  PRINT           "three"
-26805:  b1                      RFALSE          
+26805:  b1                      RFALSE
 26806:  41 01 04 00 08          JE              L00,#04 [FALSE] 26811
 2680b:  b2 ...                  PRINT           "four"
-26810:  b1                      RFALSE          
+26810:  b1                      RFALSE
 26811:  41 01 05 00 08          JE              L00,#05 [FALSE] 2681c
 26816:  b2 ...                  PRINT           "five"
-2681b:  b1                      RFALSE          
+2681b:  b1                      RFALSE
 2681c:  41 01 06 00 06          JE              L00,#06 [FALSE] 26825
 26821:  b2 ...                  PRINT           "six"
-26824:  b1                      RFALSE          
+26824:  b1                      RFALSE
 26825:  41 01 07 00 08          JE              L00,#07 [FALSE] 26830
 2682a:  b2 ...                  PRINT           "seven"
-2682f:  b1                      RFALSE          
+2682f:  b1                      RFALSE
 26830:  41 01 08 00 06          JE              L00,#08 [FALSE] 26839
 26835:  b2 ...                  PRINT           "eight"
-26838:  b1                      RFALSE          
+26838:  b1                      RFALSE
 26839:  41 01 09 00 08          JE              L00,#09 [FALSE] 26844
 2683e:  b2 ...                  PRINT           "nine"
-26843:  b1                      RFALSE          
-26844:  b0                      RTRUE           
+26843:  b1                      RFALSE
+26844:  b0                      RTRUE
 
 Routine 26848, 2 locals
 
@@ -14485,16 +14485,16 @@ Routine 26908, 1 local
 
 26909:  49 84 20 00             AND             G74,#20 -> -(SP)
 2690d:  41 00 00 80 03          JE              (SP)+,#00 [TRUE] 26913
-26912:  b0                      RTRUE           
+26912:  b0                      RTRUE
 26913:  49 84 10 00             AND             G74,#10 -> -(SP)
 26917:  41 00 00 00 03          JE              (SP)+,#00 [FALSE] 2691d
-2691c:  b1                      RFALSE          
+2691c:  b1                      RFALSE
 2691d:  4a 01 17 80 11          TEST_ATTR       L00,#17 [TRUE] 26931
 26922:  4a 01 14 80 0c          TEST_ATTR       L00,#14 [TRUE] 26931
 26927:  4a 01 03 00 08          TEST_ATTR       L00,#03 [FALSE] 26932
 2692c:  4a 01 0e 00 03          TEST_ATTR       L00,#0e [FALSE] 26932
-26931:  b0                      RTRUE           
-26932:  b1                      RFALSE          
+26931:  b0                      RTRUE
+26932:  b1                      RFALSE
 
 Routine 26934, 2 locals
 
@@ -14502,12 +14502,12 @@ Routine 26934, 2 locals
 26939:  41 00 00 80 0e          JE              (SP)+,#00 [TRUE] 2694a
 2693e:  d9 2f 9a 42 01 00       CALL_2S         26908 (L00) -> -(SP)
 26944:  41 00 00 80 03          JE              (SP)+,#00 [TRUE] 2694a
-26949:  b1                      RFALSE          
+26949:  b1                      RFALSE
 2694a:  a2 02 00 c2             GET_CHILD       L01 -> -(SP) [TRUE] 2694e
 2694e:  41 00 00 80 0e          JE              (SP)+,#00 [TRUE] 2695f
 26953:  d9 2f 9a 42 02 00       CALL_2S         26908 (L01) -> -(SP)
 26959:  41 00 00 80 03          JE              (SP)+,#00 [TRUE] 2695f
-2695e:  b1                      RFALSE          
+2695e:  b1                      RFALSE
 2695f:  14 04 80 00             ADD             #04,#80 -> -(SP)
 26963:  69 84 00 00             AND             G74,(SP)+ -> -(SP)
 26967:  41 00 00 80 2c          JE              (SP)+,#00 [TRUE] 26996
@@ -14515,12 +14515,12 @@ Routine 26934, 2 locals
 26971:  4a 02 1a 80 0c          TEST_ATTR       L01,#1a [TRUE] 26980
 26976:  4a 02 1a 80 08          TEST_ATTR       L01,#1a [TRUE] 26981
 2697b:  4a 01 1a 00 03          TEST_ATTR       L00,#1a [FALSE] 26981
-26980:  b1                      RFALSE          
+26980:  b1                      RFALSE
 26981:  4a 01 09 80 07          TEST_ATTR       L00,#09 [TRUE] 2698b
 26986:  4a 02 09 80 0c          TEST_ATTR       L01,#09 [TRUE] 26995
 2698b:  4a 02 09 80 08          TEST_ATTR       L01,#09 [TRUE] 26996
 26990:  4a 01 09 00 03          TEST_ATTR       L00,#09 [FALSE] 26996
-26995:  b1                      RFALSE          
+26995:  b1                      RFALSE
 26996:  e0 2b 31 74 01 02 00    CALL_VS         c5d0 (L00,L01) -> -(SP)
 2699d:  ab 00                   RET             (SP)+
 
@@ -14547,7 +14547,7 @@ Routine 269a0, 2 locals
 269e7:  92 0c 00 c2             GET_CHILD       "outside" -> -(SP) [TRUE] 269eb
 269eb:  6e 00 01                INSERT_OBJ      (SP)+,L00
 269ee:  8c ff ef                JUMP            269de
-269f1:  b0                      RTRUE           
+269f1:  b0                      RTRUE
 
 Routine 269f4, 4 locals
 
@@ -14562,7 +14562,7 @@ Routine 269f4, 4 locals
 26a18:  a1 02 02 c2             GET_SIBLING     L01 -> L01 [TRUE] 26a1c
 26a1c:  8c ff ed                JUMP            26a0a
 26a1f:  41 02 00 00 03          JE              L01,#00 [FALSE] 26a25
-26a24:  b1                      RFALSE          
+26a24:  b1                      RFALSE
 26a25:  a1 02 04 c2             GET_SIBLING     L01 -> L03 [TRUE] 26a29
 26a29:  41 04 00 80 25          JE              L03,#00 [TRUE] 26a51
 26a2e:  51 04 0c 00             GET_PROP        L03,#0c -> -(SP)
@@ -14576,7 +14576,7 @@ Routine 269f4, 4 locals
 26a4e:  8c ff da                JUMP            26a29
 26a51:  a1 02 02 c2             GET_SIBLING     L01 -> L01 [TRUE] 26a55
 26a55:  8c ff a2                JUMP            269f8
-26a58:  b0                      RTRUE           
+26a58:  b0                      RTRUE
 
 Routine 26a5c, 3 locals
 
@@ -14602,10 +14602,10 @@ Routine 26a5c, 3 locals
 26ab1:  a1 01 01 c2             GET_SIBLING     L00 -> L00 [TRUE] 26ab5
 26ab5:  8c ff ec                JUMP            26aa2
 26ab8:  41 01 00 00 03          JE              L00,#00 [FALSE] 26abe
-26abd:  b1                      RFALSE          
+26abd:  b1                      RFALSE
 26abe:  0d 88 00                STORE           G78,#00
 26ac1:  f9 2b 9a b2 01 03       CALL_VN         26ac8 (L00,L02)
-26ac7:  b0                      RTRUE           
+26ac7:  b0                      RTRUE
 
 Routine 26ac8, 15 locals
 
@@ -14814,7 +14814,7 @@ Routine 26ac8, 15 locals
 26dfe:  41 00 00 80 0c          JE              (SP)+,#00 [TRUE] 26e0d
 26e03:  49 84 01 00             AND             G74,#01 -> -(SP)
 26e07:  41 00 00 00 03          JE              (SP)+,#00 [FALSE] 26e0d
-26e0c:  bb                      NEW_LINE        
+26e0c:  bb                      NEW_LINE
 26e0d:  2d 84 0d                STORE           G74,L0c
 26e10:  51 07 0c 0f             GET_PROP        L06,#0c -> L0e
 26e14:  8c 00 72                JUMP            26e87
@@ -14850,7 +14850,7 @@ Routine 26ac8, 15 locals
 26ea2:  95 06                   INC             L05
 26ea4:  96 0e                   DEC             L0d
 26ea6:  8c fd bf                JUMP            26c66
-26ea9:  b0                      RTRUE           
+26ea9:  b0                      RTRUE
 26eaa:  2d 0c 07                STORE           L0b,L06
 26ead:  0d 06 01                STORE           L05,#01
 26eb0:  2d 07 01                STORE           L06,L00
@@ -14943,7 +14943,7 @@ Routine 26ac8, 15 locals
 27014:  41 00 00 80 0c          JE              (SP)+,#00 [TRUE] 27023
 27019:  49 84 01 00             AND             G74,#01 -> -(SP)
 2701d:  41 00 00 00 03          JE              (SP)+,#00 [FALSE] 27023
-27022:  bb                      NEW_LINE        
+27022:  bb                      NEW_LINE
 27023:  2d 84 0d                STORE           G74,L0c
 27026:  51 07 0c 0f             GET_PROP        L06,#0c -> L0e
 2702a:  8c 00 43                JUMP            2706e
@@ -14971,7 +14971,7 @@ Routine 26ac8, 15 locals
 27091:  e0 2b 9a 12 07 02 07    CALL_VS         26848 (L06,L01) -> L06
 27098:  95 06                   INC             L05
 2709a:  8c fe 5f                JUMP            26efa
-2709d:  b0                      RTRUE           
+2709d:  b0                      RTRUE
 
 Routine 270a0, 3 locals
 
@@ -14993,7 +14993,7 @@ Routine 270a0, 3 locals
 270e3:  41 03 01 00 0c          JE              L02,#01 [FALSE] 270f2
 270e8:  49 84 01 00             AND             G74,#01 -> -(SP)
 270ec:  41 00 00 80 03          JE              (SP)+,#00 [TRUE] 270f2
-270f1:  bb                      NEW_LINE        
+270f1:  bb                      NEW_LINE
 270f2:  ab 03                   RET             L02
 
 Routine 270f4, 8 locals
@@ -15037,8 +15037,8 @@ light)"
 271ef:  41 00 00 80 0d          JE              (SP)+,#00 [TRUE] 271ff
 271f4:  49 84 01 00             AND             G74,#01 -> -(SP)
 271f8:  41 00 00 80 03          JE              (SP)+,#00 [TRUE] 271fe
-271fd:  bb                      NEW_LINE        
-271fe:  b0                      RTRUE           
+271fd:  bb                      NEW_LINE
+271fe:  b0                      RTRUE
 271ff:  4a 01 09 00 22          TEST_ATTR       L00,#09 [FALSE] 27224
 27204:  4a 01 1a 00 1d          TEST_ATTR       L00,#1a [FALSE] 27224
 27209:  b2 ...                  PRINT           " (providing light and being
@@ -15141,7 +15141,7 @@ worn"
 273d9:  b2 ...                  PRINT           "is "
 273dc:  49 84 01 00             AND             G74,#01 -> -(SP)
 273e0:  41 00 00 80 03          JE              (SP)+,#00 [TRUE] 273e6
-273e5:  bb                      NEW_LINE        
+273e5:  bb                      NEW_LINE
 273e6:  41 04 01 00 11          JE              L03,#01 [FALSE] 273fa
 273eb:  54 02 01 00             ADD             L01,#01 -> -(SP)
 273ef:  a2 01 00 c2             GET_CHILD       L00 -> -(SP) [TRUE] 273f3
@@ -15150,7 +15150,7 @@ worn"
 273ff:  49 84 40 00             AND             G74,#40 -> -(SP)
 27403:  41 00 00 80 05          JE              (SP)+,#00 [TRUE] 2740b
 27408:  b2 ...                  PRINT           ")"
-2740b:  b0                      RTRUE           
+2740b:  b0                      RTRUE
 
 Routine 2740c, 5 locals
 
@@ -15183,7 +15183,7 @@ Routine 2740c, 5 locals
 27475:  8c ff e3                JUMP            27459
 27478:  95 01                   INC             L00
 2747a:  8c ff 96                JUMP            27411
-2747d:  b0                      RTRUE           
+2747d:  b0                      RTRUE
 
 Routine 27480, 2 locals
 
@@ -15202,13 +15202,13 @@ Routine 27480, 2 locals
 274af:  8f a0 a6                CALL_1N         28298
 274b2:  41 02 02 00 07          JE              L01,#02 [FALSE] 274bc
 274b7:  da 1f a0 ac 01          CALL_2N         282b0 (#01)
-274bc:  b0                      RTRUE           
+274bc:  b0                      RTRUE
 
 Routine 274c0, 1 local
 
 274c1:  f9 1b 36 0d 26 01       CALL_VN         d834 (#26,L00)
 274c7:  da 1f 36 0d 29          CALL_2N         d834 (#29)
-274cc:  b0                      RTRUE           
+274cc:  b0                      RTRUE
 
 Routine 274d0, 1 local
 
@@ -15217,16 +15217,16 @@ Routine 274d0, 1 local
 274dc:  8f b5 55                CALL_1N         2d554
 274df:  e4 0f 5d d5 5e 4e ff    READ            #5dd5,#5e4e -> Gef
 274e6:  cf 1f 5e 4e 01 01       LOADW           #5e4e,#01 -> L00
-274ec:  c1 83 01 a2 d2 a2 ae 00 03 
+274ec:  c1 83 01 a2 d2 a2 ae 00 03
                                JE              L00,"yes","y" [FALSE] 274f6
-274f5:  b0                      RTRUE           
-274f6:  c1 83 01 8d cc 8d 4e 00 03 
+274f5:  b0                      RTRUE
+274f6:  c1 83 01 8d cc 8d 4e 00 03
                                JE              L00,"no","n" [FALSE] 27500
-274ff:  b1                      RFALSE          
+274ff:  b1                      RFALSE
 27500:  f9 17 a2 82 02 01       CALL_VN         28a08 (#02,#01)
 27506:  b2 ...                  PRINT           "> "
 2750b:  8c ff c5                JUMP            274d1
-2750e:  b0                      RTRUE           
+2750e:  b0                      RTRUE
 
 Routine 27510, 0 locals
     Action routine for:
@@ -15235,8 +15235,8 @@ Routine 27510, 0 locals
 27511:  f9 17 a2 82 02 02       CALL_VN         28a08 (#02,#02)
 27517:  88 9d 34 00             CALL_1S         274d0 -> -(SP)
 2751b:  41 00 00 80 03          JE              (SP)+,#00 [TRUE] 27521
-27520:  ba                      QUIT            
-27521:  b0                      RTRUE           
+27520:  ba                      QUIT
+27521:  b0                      RTRUE
 
 Routine 27524, 0 locals
     Action routine for:
@@ -15245,9 +15245,9 @@ Routine 27524, 0 locals
 27525:  f9 17 a2 82 04 01       CALL_VN         28a08 (#04,#01)
 2752b:  88 9d 34 00             CALL_1S         274d0 -> -(SP)
 2752f:  41 00 00 80 09          JE              (SP)+,#00 [TRUE] 2753b
-27534:  b7                      RESTART         
+27534:  b7                      RESTART
 27535:  f9 17 a2 82 04 02       CALL_VN         28a08 (#04,#02)
-2753b:  b0                      RTRUE           
+2753b:  b0                      RTRUE
 
 Routine 2753c, 0 locals
     Action routine for:
@@ -15258,7 +15258,7 @@ Routine 2753c, 0 locals
 27542:  e0 17 a2 82 05 01 00    CALL_VS         28a08 (#05,#01) -> -(SP)
 27549:  ab 00                   RET             (SP)+
 2754b:  f9 17 a2 82 05 02       CALL_VN         28a08 (#05,#02)
-27551:  b0                      RTRUE           
+27551:  b0                      RTRUE
 
 Routine 27554, 0 locals
     Action routine for:
@@ -15274,7 +15274,7 @@ Routine 27554, 0 locals
 2756e:  e1 5b 00 08 00          STOREW          #00,#08,(SP)+
 27573:  f9 17 a2 82 07 02       CALL_VN         28a08 (#07,#02)
 27579:  8f 38 be                CALL_1N         e2f8
-2757c:  b0                      RTRUE           
+2757c:  b0                      RTRUE
 
 Routine 27580, 0 locals
     Action routine for:
@@ -15289,7 +15289,7 @@ Routine 27580, 0 locals
 27598:  0f 00 08 00             LOADW           #00,#08 -> -(SP)
 2759c:  c9 8f 00 ff fe 00       AND             (SP)+,#fffe -> -(SP)
 275a2:  e1 5b 00 08 00          STOREW          #00,#08,(SP)+
-275a7:  b0                      RTRUE           
+275a7:  b0                      RTRUE
 
 Routine 275a8, 0 locals
     Action routine for:
@@ -15297,7 +15297,7 @@ Routine 275a8, 0 locals
 
 275a9:  0d 20 01                STORE           G10,#01
 275ac:  da 1f a2 82 0d          CALL_2N         28a08 (#0d)
-275b1:  b0                      RTRUE           
+275b1:  b0                      RTRUE
 
 Routine 275b4, 0 locals
     Action routine for:
@@ -15305,7 +15305,7 @@ Routine 275b4, 0 locals
 
 275b5:  0d 20 00                STORE           G10,#00
 275b8:  da 1f a2 82 0e          CALL_2N         28a08 (#0e)
-275bd:  b0                      RTRUE           
+275bd:  b0                      RTRUE
 
 Routine 275c0, 3 locals
     Action routine for:
@@ -15332,7 +15332,7 @@ Routine 275c0, 3 locals
 27607:  b2 ...                  PRINT           ", "
 2760a:  95 01                   INC             L00
 2760c:  8c ff d0                JUMP            275dd
-2760f:  b0                      RTRUE           
+2760f:  b0                      RTRUE
 
 Routine 27610, 3 locals
     Action routine for:
@@ -15375,12 +15375,12 @@ Routine 27610, 3 locals
 276be:  b2 ...                  PRINT           ")"
 276c1:  8c 00 0b                JUMP            276cd
 276c4:  b2 ...                  PRINT           "   (lost)"
-276cd:  bb                      NEW_LINE        
+276cd:  bb                      NEW_LINE
 276ce:  95 01                   INC             L00
 276d0:  8c ff 49                JUMP            2761a
 276d3:  41 03 00 00 08          JE              L02,#00 [FALSE] 276de
 276d8:  f9 17 a2 82 11 02       CALL_VN         28a08 (#11,#02)
-276de:  b0                      RTRUE           
+276de:  b0                      RTRUE
 
 Routine 276e0, 0 locals
     Action routine for:
@@ -15388,7 +15388,7 @@ Routine 276e0, 0 locals
 
 276e1:  da 1f a2 82 00          CALL_2N         28a08 (#00)
 276e6:  8f a8 fb                CALL_1N         2a3ec
-276e9:  b0                      RTRUE           
+276e9:  b0                      RTRUE
 
 Routine 276ec, 1 local
 
@@ -15397,7 +15397,7 @@ Routine 276ec, 1 local
 276f8:  e2 27 65 77 01 01       STOREB          #6577,L00,#01
 276fe:  70 10 01 00             LOADB           G00,L00 -> -(SP)
 27702:  74 17 00 17             ADD             G07,(SP)+ -> G07
-27706:  b0                      RTRUE           
+27706:  b0                      RTRUE
 
 Routine 27708, 2 locals
 
@@ -15416,7 +15416,7 @@ Routine 27708, 2 locals
 27739:  b2 ...                  PRINT           " "
 2773c:  e6 bf 01                PRINT_NUM       L00
 2773f:  b2 ...                  PRINT           " "
-27742:  b0                      RTRUE           
+27742:  b0                      RTRUE
 
 Routine 27744, 0 locals
     Action routine for:
@@ -15425,7 +15425,7 @@ Routine 27744, 0 locals
 27745:  14 04 08 00             ADD             #04,#08 -> -(SP)
 27749:  54 00 10 89             ADD             (SP)+,#10 -> G79
 2774d:  da 1f 36 0d 18          CALL_2N         d834 (#18)
-27752:  b0                      RTRUE           
+27752:  b0                      RTRUE
 
 Routine 27754, 0 locals
     Action routine for:
@@ -15435,7 +15435,7 @@ Routine 27754, 0 locals
 27759:  54 00 01 00             ADD             (SP)+,#01 -> -(SP)
 2775d:  54 00 10 89             ADD             (SP)+,#10 -> G79
 27761:  da 1f 36 0d 18          CALL_2N         d834 (#18)
-27766:  b0                      RTRUE           
+27766:  b0                      RTRUE
 
 Routine 27768, 0 locals
     Action routine for:
@@ -15448,7 +15448,7 @@ Routine 27768, 0 locals
 27779:  ab 00                   RET             (SP)+
 2777b:  41 89 00 00 08          JE              G79,#00 [FALSE] 27786
 27780:  da 1f 36 0d 27          CALL_2N         d834 (#27)
-27785:  b0                      RTRUE           
+27785:  b0                      RTRUE
 27786:  f9 17 a2 82 18 02       CALL_VN         28a08 (#18,#02)
 2778c:  49 89 01 00             AND             G79,#01 -> -(SP)
 27790:  41 00 00 80 0a          JE              (SP)+,#00 [TRUE] 2779d
@@ -15463,7 +15463,7 @@ Routine 27768, 0 locals
 277b4:  b2 ...                  PRINT           ".
 "
 277b9:  8f 35 fc                CALL_1N         d7f0
-277bc:  b0                      RTRUE           
+277bc:  b0                      RTRUE
 
 Routine 277c0, 0 locals
     Action routine for:
@@ -15481,20 +15481,20 @@ Routine 277c0, 0 locals
 277ce:  41 11 0e 00 11          JE              G01,#0e [FALSE] 277e2
 277d3:  d9 2f 9e 04 1b 00       CALL_2S         27810 (G0b) -> -(SP)
 277d9:  41 00 00 80 03          JE              (SP)+,#00 [TRUE] 277df
-277de:  b0                      RTRUE           
+277de:  b0                      RTRUE
 277df:  8c 00 0e                JUMP            277ee
 277e2:  d9 2f 9e 04 11 00       CALL_2S         27810 (G01) -> -(SP)
 277e8:  41 00 00 80 03          JE              (SP)+,#00 [TRUE] 277ee
-277ed:  b0                      RTRUE           
+277ed:  b0                      RTRUE
 277ee:  88 35 fc 00             CALL_1S         d7f0 -> -(SP)
 277f2:  41 00 01 00 03          JE              (SP)+,#01 [FALSE] 277f8
-277f7:  b0                      RTRUE           
+277f7:  b0                      RTRUE
 277f8:  2d 36 37                STORE           G26,G27
 277fb:  41 36 01 80 07          JE              G26,#01 [TRUE] 27805
 27800:  41 8a 01 00 03          JE              G7a,#01 [FALSE] 27806
-27805:  b0                      RTRUE           
+27805:  b0                      RTRUE
 27806:  f9 17 a2 82 13 01       CALL_VN         28a08 (#13,#01)
-2780c:  b0                      RTRUE           
+2780c:  b0                      RTRUE
 
 Routine 27810, 5 locals
 
@@ -15520,7 +15520,7 @@ Routine 27810, 5 locals
 27866:  e0 27 34 7a 02 02 00    CALL_VS         d1e8 (L01,#02) -> -(SP)
 2786d:  41 00 00 80 06          JE              (SP)+,#00 [TRUE] 27876
 27872:  2d 2a 04                STORE           G1a,L03
-27875:  b0                      RTRUE           
+27875:  b0                      RTRUE
 27876:  2d 2a 04                STORE           G1a,L03
 27879:  61 02 01 80 5a          JE              L01,L00 [TRUE] 278d6
 2787e:  41 02 00 80 55          JE              L01,#00 [TRUE] 278d6
@@ -15578,7 +15578,7 @@ Routine 27810, 5 locals
 27969:  0d 8a 00                STORE           G7a,#00
 2796c:  46 03 4f 80 03          JIN             L02,"canvas rucksack" [TRUE]
 27972
-27971:  b0                      RTRUE           
+27971:  b0                      RTRUE
 27972:  8c 00 0b                JUMP            2797e
 27975:  e0 17 a2 82 13 0c 00    CALL_VS         28a08 (#13,#0c) -> -(SP)
 2797c:  ab 00                   RET             (SP)+
@@ -15592,9 +15592,9 @@ Routine 27810, 5 locals
 2799a:  e0 27 34 7a 05 03 00    CALL_VS         d1e8 (L04,#03) -> -(SP)
 279a1:  41 00 00 80 06          JE              (SP)+,#00 [TRUE] 279aa
 279a6:  2d 2a 04                STORE           G1a,L03
-279a9:  b0                      RTRUE           
+279a9:  b0                      RTRUE
 279aa:  2d 2a 04                STORE           G1a,L03
-279ad:  b1                      RFALSE          
+279ad:  b1                      RFALSE
 
 Routine 279b0, 1 local
     Action routine for:
@@ -15614,14 +15614,14 @@ Routine 279b0, 1 local
 279d5:  f9 16 a2 82 1c 03 30    CALL_VN         28a08 (#1c,#03,G20)
 279dc:  f9 1b 36 0d 16 30       CALL_VN         d834 (#16,G20)
 279e2:  4a 30 1a 00 03          TEST_ATTR       G20,#1a [FALSE] 279e8
-279e7:  b0                      RTRUE           
+279e7:  b0                      RTRUE
 279e8:  a3 19 00                GET_PARENT      G09 -> -(SP)
 279eb:  6e 30 00                INSERT_OBJ      G20,(SP)+
 279ee:  88 35 fc 00             CALL_1S         d7f0 -> -(SP)
 279f2:  41 00 01 00 03          JE              (SP)+,#01 [FALSE] 279f8
-279f7:  b0                      RTRUE           
+279f7:  b0                      RTRUE
 279f8:  41 8a 01 00 03          JE              G7a,#01 [FALSE] 279fe
-279fd:  b0                      RTRUE           
+279fd:  b0                      RTRUE
 279fe:  e0 17 a2 82 1c 04 00    CALL_VS         28a08 (#1c,#04) -> -(SP)
 27a05:  ab 00                   RET             (SP)+
 
@@ -15644,17 +15644,17 @@ Routine 27a08, 1 local
 27a3a:  ab 00                   RET             (SP)+
 27a3c:  d9 2f 9e 04 31 00       CALL_2S         27810 (G21) -> -(SP)
 27a42:  41 00 00 80 03          JE              (SP)+,#00 [TRUE] 27a48
-27a47:  b0                      RTRUE           
+27a47:  b0                      RTRUE
 27a48:  0d 2a 13                STORE           G1a,#13
 27a4b:  88 35 fc 00             CALL_1S         d7f0 -> -(SP)
 27a4f:  41 00 01 00 03          JE              (SP)+,#01 [FALSE] 27a55
-27a54:  b0                      RTRUE           
+27a54:  b0                      RTRUE
 27a55:  0d 2a 14                STORE           G1a,#14
 27a58:  88 35 fc 00             CALL_1S         d7f0 -> -(SP)
 27a5c:  41 00 01 00 03          JE              (SP)+,#01 [FALSE] 27a62
-27a61:  b0                      RTRUE           
+27a61:  b0                      RTRUE
 27a62:  41 8a 01 00 03          JE              G7a,#01 [FALSE] 27a68
-27a67:  b0                      RTRUE           
+27a67:  b0                      RTRUE
 27a68:  e0 17 a2 82 14 04 00    CALL_VS         28a08 (#14,#04) -> -(SP)
 27a6f:  ab 00                   RET             (SP)+
 
@@ -15662,10 +15662,10 @@ Routine 27a74, 2 locals
 
 27a75:  41 02 00 80 0e          JE              L01,#00 [TRUE] 27a86
 27a7a:  61 01 02 00 03          JE              L00,L01 [FALSE] 27a80
-27a7f:  b0                      RTRUE           
+27a7f:  b0                      RTRUE
 27a80:  a3 02 02                GET_PARENT      L01 -> L01
 27a83:  8c ff f1                JUMP            27a75
-27a86:  b1                      RFALSE          
+27a86:  b1                      RFALSE
 
 Routine 27a88, 0 locals
     Action routine for:
@@ -15678,7 +15678,7 @@ Routine 27a88, 0 locals
 27a89:  0d 8b 1b                STORE           G7b,#1b
 27a8c:  41 31 0b 00 09          JE              G21,#0b [FALSE] 27a98
 27a91:  f9 1b 36 0d 1c 30       CALL_VN         d834 (#1c,G20)
-27a97:  b1                      RFALSE          
+27a97:  b1                      RFALSE
 27a98:  a3 30 00                GET_PARENT      G20 -> -(SP)
 27a9b:  61 00 19 80 0c          JE              (SP)+,G09 [TRUE] 27aaa
 27aa0:  e0 16 a2 82 1b 01 30 00 CALL_VS         28a08 (#1b,#01,G20) -> -(SP)
@@ -15688,7 +15688,7 @@ Routine 27a88, 0 locals
 27ab4:  e0 27 34 7a 31 02 00    CALL_VS         d1e8 (G21,#02) -> -(SP)
 27abb:  41 00 00 80 06          JE              (SP)+,#00 [TRUE] 27ac4
 27ac0:  0d 2a 1b                STORE           G1a,#1b
-27ac3:  b0                      RTRUE           
+27ac3:  b0                      RTRUE
 27ac4:  0d 2a 1b                STORE           G1a,#1b
 27ac7:  e0 2b 9e 9d 30 31 00    CALL_VS         27a74 (G20,G21) -> -(SP)
 27ace:  41 00 01 00 0b          JE              (SP)+,#01 [FALSE] 27adc
@@ -15705,7 +15705,7 @@ Routine 27a88, 0 locals
 27b01:  f9 17 a2 82 1b 05       CALL_VN         28a08 (#1b,#05)
 27b07:  f9 1b 36 0d 16 30       CALL_VN         d834 (#16,G20)
 27b0d:  4a 30 1a 00 03          TEST_ATTR       G20,#1a [FALSE] 27b13
-27b12:  b0                      RTRUE           
+27b12:  b0                      RTRUE
 27b13:  e0 27 34 72 31 1b 00    CALL_VS         d1c8 (G21,#1b) -> -(SP)
 27b1a:  0d ff 00                STORE           Gef,#00
 27b1d:  a2 31 00 49             GET_CHILD       G21 -> -(SP) [FALSE] 27b28
@@ -15718,21 +15718,21 @@ Routine 27a88, 0 locals
 27b3b:  6e 30 31                INSERT_OBJ      G20,G21
 27b3e:  88 35 fc 00             CALL_1S         d7f0 -> -(SP)
 27b42:  41 00 01 00 03          JE              (SP)+,#01 [FALSE] 27b48
-27b47:  b0                      RTRUE           
+27b47:  b0                      RTRUE
 27b48:  43 31 01 00 1a          JG              G21,#01 [FALSE] 27b65
 27b4d:  cd 4f 2a 01 01          STORE           G1a,#0101
 27b52:  e0 27 34 7a 31 03 00    CALL_VS         d1e8 (G21,#03) -> -(SP)
 27b59:  41 00 00 80 06          JE              (SP)+,#00 [TRUE] 27b62
 27b5e:  0d 2a 1b                STORE           G1a,#1b
-27b61:  b0                      RTRUE           
+27b61:  b0                      RTRUE
 27b62:  0d 2a 1b                STORE           G1a,#1b
 27b65:  41 8a 01 00 03          JE              G7a,#01 [FALSE] 27b6b
-27b6a:  b0                      RTRUE           
+27b6a:  b0                      RTRUE
 27b6b:  41 35 01 00 0b          JE              G25,#01 [FALSE] 27b79
 27b70:  e0 17 a2 82 1b 07 00    CALL_VS         28a08 (#1b,#07) -> -(SP)
 27b77:  ab 00                   RET             (SP)+
 27b79:  f9 16 a2 82 1b 08 30    CALL_VN         28a08 (#1b,#08,G20)
-27b80:  b0                      RTRUE           
+27b80:  b0                      RTRUE
 
 Routine 27b84, 0 locals
     Action routine for:
@@ -15757,7 +15757,7 @@ Routine 27b84, 0 locals
 27b85:  0d 8b 1a                STORE           G7b,#1a
 27b88:  41 31 0b 00 09          JE              G21,#0b [FALSE] 27b94
 27b8d:  f9 1b 36 0d 1c 30       CALL_VN         d834 (#1c,G20)
-27b93:  b0                      RTRUE           
+27b93:  b0                      RTRUE
 27b94:  a3 30 00                GET_PARENT      G20 -> -(SP)
 27b97:  61 00 19 80 0b          JE              (SP)+,G09 [TRUE] 27ba5
 27b9c:  e0 17 a2 82 1a 01 00    CALL_VS         28a08 (#1a,#01) -> -(SP)
@@ -15767,7 +15767,7 @@ Routine 27b84, 0 locals
 27baf:  e0 27 34 7a 31 02 00    CALL_VS         d1e8 (G21,#02) -> -(SP)
 27bb6:  41 00 00 80 06          JE              (SP)+,#00 [TRUE] 27bbf
 27bbb:  0d 2a 1a                STORE           G1a,#1a
-27bbe:  b0                      RTRUE           
+27bbe:  b0                      RTRUE
 27bbf:  0d 2a 1a                STORE           G1a,#1a
 27bc2:  4a 31 03 80 0b          TEST_ATTR       G21,#03 [TRUE] 27bd0
 27bc7:  e0 17 a2 82 1a 02 00    CALL_VS         28a08 (#1a,#02) -> -(SP)
@@ -15783,7 +15783,7 @@ Routine 27b84, 0 locals
 27bf8:  f9 17 a2 82 1a 06       CALL_VN         28a08 (#1a,#06)
 27bfe:  f9 1b 36 0d 16 30       CALL_VN         d834 (#16,G20)
 27c04:  4a 30 1a 00 03          TEST_ATTR       G20,#1a [FALSE] 27c0a
-27c09:  b0                      RTRUE           
+27c09:  b0                      RTRUE
 27c0a:  e0 27 34 72 31 1b 00    CALL_VS         d1c8 (G21,#1b) -> -(SP)
 27c11:  0d ff 00                STORE           Gef,#00
 27c14:  a2 31 00 49             GET_CHILD       G21 -> -(SP) [FALSE] 27c1f
@@ -15796,21 +15796,21 @@ Routine 27b84, 0 locals
 27c32:  6e 30 31                INSERT_OBJ      G20,G21
 27c35:  88 35 fc 00             CALL_1S         d7f0 -> -(SP)
 27c39:  41 00 01 00 03          JE              (SP)+,#01 [FALSE] 27c3f
-27c3e:  b0                      RTRUE           
+27c3e:  b0                      RTRUE
 27c3f:  43 31 01 00 1a          JG              G21,#01 [FALSE] 27c5c
 27c44:  cd 4f 2a 01 01          STORE           G1a,#0101
 27c49:  e0 27 34 7a 31 03 00    CALL_VS         d1e8 (G21,#03) -> -(SP)
 27c50:  41 00 00 80 06          JE              (SP)+,#00 [TRUE] 27c59
 27c55:  0d 2a 1a                STORE           G1a,#1a
-27c58:  b0                      RTRUE           
+27c58:  b0                      RTRUE
 27c59:  0d 2a 1a                STORE           G1a,#1a
 27c5c:  41 8a 01 00 03          JE              G7a,#01 [FALSE] 27c62
-27c61:  b0                      RTRUE           
+27c61:  b0                      RTRUE
 27c62:  41 35 01 00 0b          JE              G25,#01 [FALSE] 27c70
 27c67:  e0 17 a2 82 1a 08 00    CALL_VS         28a08 (#1a,#08) -> -(SP)
 27c6e:  ab 00                   RET             (SP)+
 27c70:  f9 16 a2 82 1a 09 30    CALL_VN         28a08 (#1a,#09,G20)
-27c77:  b0                      RTRUE           
+27c77:  b0                      RTRUE
 
 Routine 27c78, 5 locals
     Action routine for:
@@ -15845,7 +15845,7 @@ Routine 27c78, 5 locals
 27cde:  e0 27 34 7a 05 02 00    CALL_VS         d1e8 (L04,#02) -> -(SP)
 27ce5:  41 00 00 80 06          JE              (SP)+,#00 [TRUE] 27cee
 27cea:  2d 2a 03                STORE           G1a,L02
-27ced:  b0                      RTRUE           
+27ced:  b0                      RTRUE
 27cee:  2d 2a 03                STORE           G1a,L02
 27cf1:  6e 30 19                INSERT_OBJ      G20,G09
 27cf4:  41 04 00 80 1d          JE              L03,#00 [TRUE] 27d14
@@ -15854,18 +15854,18 @@ Routine 27c78, 5 locals
 27d01:  e0 27 34 7a 04 03 00    CALL_VS         d1e8 (L03,#03) -> -(SP)
 27d08:  41 00 00 80 06          JE              (SP)+,#00 [TRUE] 27d11
 27d0d:  2d 2a 03                STORE           G1a,L02
-27d10:  b0                      RTRUE           
+27d10:  b0                      RTRUE
 27d11:  2d 2a 03                STORE           G1a,L02
 27d14:  41 02 1c 00 09          JE              L01,#1c [FALSE] 27d20
 27d19:  f9 1b 36 0d 1c 30       CALL_VN         d834 (#1c,G20)
-27d1f:  b0                      RTRUE           
+27d1f:  b0                      RTRUE
 27d20:  41 02 1a 00 0a          JE              L01,#1a [FALSE] 27d2d
 27d25:  f9 1a 36 0d 1a 30 31    CALL_VN         d834 (#1a,G20,G21)
-27d2c:  b0                      RTRUE           
+27d2c:  b0                      RTRUE
 27d2d:  41 02 1b 00 0a          JE              L01,#1b [FALSE] 27d3a
 27d32:  f9 1a 36 0d 1b 30 31    CALL_VN         d834 (#1b,G20,G21)
-27d39:  b0                      RTRUE           
-27d3a:  b0                      RTRUE           
+27d39:  b0                      RTRUE
+27d3a:  b0                      RTRUE
 
 Routine 27d3c, 0 locals
     Action routine for:
@@ -15875,7 +15875,7 @@ Routine 27d3c, 0 locals
 
 27d3d:  0d 31 0b                STORE           G21,#0b
 27d40:  8f 9f 51                CALL_1N         27d44
-27d43:  b0                      RTRUE           
+27d43:  b0                      RTRUE
 
 Routine 27d44, 2 locals
     Action routine for:
@@ -15908,7 +15908,7 @@ Routine 27d44, 2 locals
 27daa:  f9 1a 36 0d 1f 01 31    CALL_VN         d834 (#1f,L00,G21)
 27db1:  2d 01 02                STORE           L00,L01
 27db4:  8c ff e4                JUMP            27d99
-27db7:  b0                      RTRUE           
+27db7:  b0                      RTRUE
 
 Routine 27db8, 0 locals
     Action routine for:
@@ -15924,16 +15924,16 @@ Routine 27db8, 0 locals
 27dd8:  ab 00                   RET             (SP)+
 27dda:  e0 27 36 26 31 22 00    CALL_VS         d898 (G21,#22) -> -(SP)
 27de1:  41 00 00 80 03          JE              (SP)+,#00 [TRUE] 27de7
-27de6:  b1                      RFALSE          
+27de6:  b1                      RFALSE
 27de7:  f9 16 a2 82 22 03 31    CALL_VN         28a08 (#22,#03,G21)
-27dee:  b0                      RTRUE           
+27dee:  b0                      RTRUE
 
 Routine 27df0, 0 locals
     Action routine for:
         "feed CREATURE HELD"
 
 27df1:  f9 1a 36 0d 22 31 30    CALL_VN         d834 (#22,G21,G20)
-27df8:  b0                      RTRUE           
+27df8:  b0                      RTRUE
 
 Routine 27dfc, 0 locals
     Action routine for:
@@ -15945,19 +15945,19 @@ Routine 27dfc, 0 locals
 27e0d:  ab 00                   RET             (SP)+
 27e0f:  61 31 19 00 09          JE              G21,G09 [FALSE] 27e1b
 27e14:  f9 1b 36 0d 2a 30       CALL_VN         d834 (#2a,G20)
-27e1a:  b0                      RTRUE           
+27e1a:  b0                      RTRUE
 27e1b:  e0 27 36 26 31 24 00    CALL_VS         d898 (G21,#24) -> -(SP)
 27e22:  41 00 00 80 03          JE              (SP)+,#00 [TRUE] 27e28
-27e27:  b1                      RFALSE          
+27e27:  b1                      RFALSE
 27e28:  f9 16 a2 82 24 02 31    CALL_VN         28a08 (#24,#02,G21)
-27e2f:  b0                      RTRUE           
+27e2f:  b0                      RTRUE
 
 Routine 27e30, 0 locals
     Action routine for:
         "display CREATURE HELD"
 
 27e31:  f9 1a 36 0d 24 31 30    CALL_VN         d834 (#24,G21,G20)
-27e38:  b0                      RTRUE           
+27e38:  b0                      RTRUE
 
 Routine 27e3c, 1 local
     Action routine for:
@@ -15979,7 +15979,7 @@ Routine 27e3c, 1 local
 
 27e3d:  4a 30 04 00 09          TEST_ATTR       G20,#04 [FALSE] 27e49
 27e42:  f9 1b 36 0d 26 30       CALL_VN         d834 (#26,G20)
-27e48:  b0                      RTRUE           
+27e48:  b0                      RTRUE
 27e49:  a3 19 01                GET_PARENT      G09 -> L00
 27e4c:  61 01 11 80 0c          JE              L00,G01 [TRUE] 27e5b
 27e51:  e0 16 a2 82 15 01 01 00 CALL_VS         28a08 (#15,#01,L00) -> -(SP)
@@ -15987,7 +15987,7 @@ Routine 27e3c, 1 local
 27e5b:  a3 30 01                GET_PARENT      G20 -> L00
 27e5e:  41 01 01 00 09          JE              L00,#01 [FALSE] 27e6a
 27e63:  f9 1b 36 0d 26 30       CALL_VN         d834 (#26,G20)
-27e69:  b0                      RTRUE           
+27e69:  b0                      RTRUE
 27e6a:  4a 30 06 80 0b          TEST_ATTR       G20,#06 [TRUE] 27e78
 27e6f:  e0 17 a2 82 15 02 00    CALL_VS         28a08 (#15,#02) -> -(SP)
 27e76:  ab 00                   RET             (SP)+
@@ -16001,12 +16001,12 @@ Routine 27e3c, 1 local
 27e9a:  6e 19 30                INSERT_OBJ      G09,G20
 27e9d:  88 35 fc 00             CALL_1S         d7f0 -> -(SP)
 27ea1:  41 00 01 00 03          JE              (SP)+,#01 [FALSE] 27ea7
-27ea6:  b0                      RTRUE           
+27ea6:  b0                      RTRUE
 27ea7:  41 8a 01 00 03          JE              G7a,#01 [FALSE] 27ead
-27eac:  b0                      RTRUE           
+27eac:  b0                      RTRUE
 27ead:  f9 16 a2 82 15 05 30    CALL_VN         28a08 (#15,#05,G20)
 27eb4:  da 2f a0 3e 30          CALL_2N         280f8 (G20)
-27eb9:  b0                      RTRUE           
+27eb9:  b0                      RTRUE
 
 Routine 27ebc, 0 locals
     Action routine for:
@@ -16015,9 +16015,9 @@ Routine 27ebc, 0 locals
 27ebd:  a3 19 00                GET_PARENT      G09 -> -(SP)
 27ec0:  61 00 30 00 08          JE              (SP)+,G20 [FALSE] 27ecb
 27ec5:  da 1f 36 0d 12          CALL_2N         d834 (#12)
-27eca:  b0                      RTRUE           
+27eca:  b0                      RTRUE
 27ecb:  f9 16 a2 82 17 01 30    CALL_VN         28a08 (#17,#01,G20)
-27ed2:  b0                      RTRUE           
+27ed2:  b0                      RTRUE
 
 Routine 27ed4, 1 local
     Action routine for:
@@ -16038,7 +16038,7 @@ Routine 27ed4, 1 local
 27ef5:  51 1b 10 00             GET_PROP        G0b,#10 -> -(SP)
 27ef9:  41 00 00 80 09          JE              (SP)+,#00 [TRUE] 27f05
 27efe:  f9 17 36 0d 26 0c       CALL_VN         d834 (#26,#0c)
-27f04:  b0                      RTRUE           
+27f04:  b0                      RTRUE
 27f05:  e0 17 a2 82 12 01 00    CALL_VS         28a08 (#12,#01) -> -(SP)
 27f0c:  ab 00                   RET             (SP)+
 27f0e:  4a 01 03 00 11          TEST_ATTR       L00,#03 [FALSE] 27f22
@@ -16051,19 +16051,19 @@ Routine 27ed4, 1 local
 27f2d:  6e 19 11                INSERT_OBJ      G09,G01
 27f30:  88 35 fc 00             CALL_1S         d7f0 -> -(SP)
 27f34:  41 00 01 00 03          JE              (SP)+,#01 [FALSE] 27f3a
-27f39:  b0                      RTRUE           
+27f39:  b0                      RTRUE
 27f3a:  41 8a 01 00 03          JE              G7a,#01 [FALSE] 27f40
-27f3f:  b0                      RTRUE           
+27f3f:  b0                      RTRUE
 27f40:  f9 16 a2 82 12 03 01    CALL_VN         28a08 (#12,#03,L00)
 27f47:  da 1f a0 ac 01          CALL_2N         282b0 (#01)
-27f4c:  b0                      RTRUE           
+27f4c:  b0                      RTRUE
 
 Routine 27f50, 0 locals
     Action routine for:
         "go"
 
 27f51:  da 1f a2 82 25          CALL_2N         28a08 (#25)
-27f56:  b0                      RTRUE           
+27f56:  b0                      RTRUE
 
 Routine 27f58, 0 locals
     Action routine for:
@@ -16071,7 +16071,7 @@ Routine 27f58, 0 locals
         "in"
 
 27f59:  f9 17 36 0d 26 0d       CALL_VN         d834 (#26,#0d)
-27f5f:  b0                      RTRUE           
+27f5f:  b0                      RTRUE
 
 Routine 27f60, 6 locals
     Action routine for:
@@ -16095,7 +16095,7 @@ Routine 27f60, 6 locals
 27fa0:  8c 00 0f                JUMP            27fb0
 27fa3:  41 03 00 00 09          JE              L02,#00 [FALSE] 27faf
 27fa8:  f9 16 a2 82 26 01 01    CALL_VN         28a08 (#26,#01,L00)
-27faf:  b0                      RTRUE           
+27faf:  b0                      RTRUE
 27fb0:  51 30 08 06             GET_PROP        G20,#08 -> L05
 27fb4:  d9 2f 34 45 06 00       CALL_2S         d114 (L05) -> -(SP)
 27fba:  41 00 02 00 09          JE              (SP)+,#02 [FALSE] 27fc6
@@ -16104,18 +16104,18 @@ Routine 27f60, 6 locals
 27fca:  d9 2f 34 45 02 03       CALL_2S         d114 (L01) -> L02
 27fd0:  41 03 03 00 06          JE              L02,#03 [FALSE] 27fd9
 27fd5:  ad 02                   PRINT_PADDR     L01
-27fd7:  bb                      NEW_LINE        
-27fd8:  b1                      RFALSE          
+27fd7:  bb                      NEW_LINE
+27fd8:  b1                      RFALSE
 27fd9:  41 03 02 00 0f          JE              L02,#02 [FALSE] 27feb
 27fde:  e0 2b 34 7a 01 06 02    CALL_VS         d1e8 (L00,L05) -> L01
 27fe5:  41 02 01 00 03          JE              L01,#01 [FALSE] 27feb
-27fea:  b0                      RTRUE           
+27fea:  b0                      RTRUE
 27feb:  41 03 00 80 07          JE              L02,#00 [TRUE] 27ff5
 27ff0:  41 02 00 00 12          JE              L01,#00 [FALSE] 28005
 27ff5:  51 01 15 00             GET_PROP        L00,#15 -> -(SP)
 27ff9:  41 00 00 80 08          JE              (SP)+,#00 [TRUE] 28004
 27ffe:  f9 27 34 52 01 15       CALL_VN         d148 (L00,#15)
-28004:  b1                      RFALSE          
+28004:  b1                      RFALSE
 28005:  4a 02 04 00 6f          TEST_ATTR       L01,#04 [FALSE] 28077
 2800a:  4a 02 02 00 0b          TEST_ATTR       L01,#02 [FALSE] 28018
 2800f:  e0 17 a2 82 26 02 00    CALL_VS         28a08 (#26,#02) -> -(SP)
@@ -16139,7 +16139,7 @@ Routine 27f60, 6 locals
 28067:  e0 16 a2 82 26 06 02 00 CALL_VS         28a08 (#26,#06,L01) -> -(SP)
 2806f:  ab 00                   RET             (SP)+
 28071:  41 02 01 00 03          JE              L01,#01 [FALSE] 28077
-28076:  b0                      RTRUE           
+28076:  b0                      RTRUE
 28077:  41 05 00 00 08          JE              L04,#00 [FALSE] 28082
 2807c:  6e 19 02                INSERT_OBJ      G09,L01
 2807f:  8c 00 05                JUMP            28085
@@ -16156,17 +16156,17 @@ Routine 27f60, 6 locals
 280a7:  0d 1a 00                STORE           G0a,#00
 280aa:  88 35 fc 00             CALL_1S         d7f0 -> -(SP)
 280ae:  41 00 01 00 03          JE              (SP)+,#01 [FALSE] 280b4
-280b3:  b0                      RTRUE           
+280b3:  b0                      RTRUE
 280b4:  41 8a 01 00 03          JE              G7a,#01 [FALSE] 280ba
-280b9:  b0                      RTRUE           
+280b9:  b0                      RTRUE
 280ba:  da 1f a0 ac 01          CALL_2N         282b0 (#01)
-280bf:  b0                      RTRUE           
+280bf:  b0                      RTRUE
 
 Routine 280c0, 3 locals
 
 280c1:  a3 19 00                GET_PARENT      G09 -> -(SP)
 280c4:  61 01 00 00 03          JE              L00,(SP)+ [FALSE] 280ca
-280c9:  b1                      RFALSE          
+280c9:  b1                      RFALSE
 280ca:  a2 01 02 c2             GET_CHILD       L00 -> L01 [TRUE] 280ce
 280ce:  41 02 00 80 16          JE              L01,#00 [TRUE] 280e7
 280d3:  4a 02 02 80 0a          TEST_ATTR       L01,#02 [TRUE] 280e0
@@ -16175,9 +16175,9 @@ Routine 280c0, 3 locals
 280e0:  a1 02 02 c2             GET_SIBLING     L01 -> L01 [TRUE] 280e4
 280e4:  8c ff e9                JUMP            280ce
 280e7:  41 03 00 00 03          JE              L02,#00 [FALSE] 280ed
-280ec:  b1                      RFALSE          
+280ec:  b1                      RFALSE
 280ed:  f9 16 a2 82 29 04 01    CALL_VN         28a08 (#29,#04,L00)
-280f4:  b0                      RTRUE           
+280f4:  b0                      RTRUE
 
 Routine 280f8, 9 locals
 
@@ -16225,7 +16225,7 @@ Routine 280f8, 9 locals
 281a2:  8c 00 2d                JUMP            281d0
 281a5:  71 04 05 07             GET_PROP        L03,L04 -> L06
 281a9:  41 07 00 80 24          JE              L06,#00 [TRUE] 281d0
-281ae:  bb                      NEW_LINE        
+281ae:  bb                      NEW_LINE
 281af:  f9 2b 34 52 04 05       CALL_VN         d148 (L03,L04)
 281b5:  0d 08 01                STORE           L07,#01
 281b8:  4c 04 19                CLEAR_ATTR      L03,#19
@@ -16244,7 +16244,7 @@ Routine 280f8, 9 locals
 281ed:  41 06 00 00 04          JE              L05,#00 [FALSE] 281f4
 281f2:  9b 00                   RET             #00
 281f4:  41 02 00 80 34          JE              L01,#00 [TRUE] 2822b
-281f9:  bb                      NEW_LINE        
+281f9:  bb                      NEW_LINE
 281fa:  41 08 01 00 05          JE              L07,#01 [FALSE] 28202
 281ff:  2d 02 03                STORE           L01,L02
 28202:  ad 02                   PRINT_PADDR     L01
@@ -16261,7 +16261,7 @@ Routine 280f8, 9 locals
 28230:  f9 16 a2 82 29 05 01    CALL_VN         28a08 (#29,#05,L00)
 28237:  8c 00 09                JUMP            28241
 2823a:  f9 16 a2 82 29 06 01    CALL_VN         28a08 (#29,#06,L00)
-28241:  b0                      RTRUE           
+28241:  b0                      RTRUE
 
 Routine 28244, 0 locals
     Action routine for:
@@ -16270,7 +16270,7 @@ Routine 28244, 0 locals
 28245:  0d 23 01                STORE           G13,#01
 28248:  8d b6 69                PRINT_PADDR     S001
 2824b:  da 1f a2 82 0b          CALL_2N         28a08 (#0b)
-28250:  b0                      RTRUE           
+28250:  b0                      RTRUE
 
 Routine 28254, 0 locals
     Action routine for:
@@ -16279,7 +16279,7 @@ Routine 28254, 0 locals
 28255:  0d 23 02                STORE           G13,#02
 28258:  8d b6 69                PRINT_PADDR     S001
 2825b:  da 1f a2 82 0a          CALL_2N         28a08 (#0a)
-28260:  b0                      RTRUE           
+28260:  b0                      RTRUE
 
 Routine 28264, 0 locals
     Action routine for:
@@ -16288,7 +16288,7 @@ Routine 28264, 0 locals
 28265:  0d 23 03                STORE           G13,#03
 28268:  8d b6 69                PRINT_PADDR     S001
 2826b:  da 1f a2 82 09          CALL_2N         28a08 (#09)
-28270:  b0                      RTRUE           
+28270:  b0                      RTRUE
 
 Routine 28274, 1 local
 
@@ -16300,7 +16300,7 @@ Routine 28274, 1 local
 2828c:  8f aa 43                CALL_1N         2a90c
 2828f:  8f 9d 03                CALL_1N         2740c
 28292:  2d 24 01                STORE           G14,L00
-28295:  b0                      RTRUE           
+28295:  b0                      RTRUE
 
 Routine 28298, 0 locals
 
@@ -16309,7 +16309,7 @@ Routine 28298, 0 locals
 282a1:  4a 11 12 00 0a          TEST_ATTR       G01,#12 [FALSE] 282ae
 282a6:  54 17 05 17             ADD             G07,#05 -> G07
 282aa:  54 21 05 21             ADD             G11,#05 -> G11
-282ae:  b0                      RTRUE           
+282ae:  b0                      RTRUE
 
 Routine 282b0, 3 locals
     Action routine for:
@@ -16320,7 +16320,7 @@ Routine 282b0, 3 locals
 282b9:  b3 ...                  PRINT_RET       "** Error: player has no
 location **"
 282d8:  8f a0 9d                CALL_1N         28274
-282db:  bb                      NEW_LINE        
+282db:  bb                      NEW_LINE
 282dc:  f1 7f 02                SET_TEXT_STYLE  BOLDFACE
 282df:  da 2f 38 57 11          CALL_2N         e15c (G01)
 282e4:  f1 7f 00                SET_TEXT_STYLE  ROMAN
@@ -16344,7 +16344,7 @@ location **"
 2832d:  b2 ...                  PRINT           " "
 28330:  aa 19                   PRINT_OBJ       G09
 28332:  b2 ...                  PRINT           ")"
-28335:  bb                      NEW_LINE        
+28335:  bb                      NEW_LINE
 28336:  42 23 03 00 52          JL              G13,#03 [FALSE] 2838b
 2833b:  41 01 01 00 0c          JE              L00,#01 [FALSE] 2834a
 28340:  41 23 02 80 07          JE              G13,#02 [TRUE] 2834a
@@ -16367,8 +16367,8 @@ location **"
 283a0:  0d 2a 29                STORE           G1a,#29
 283a3:  88 35 fc 00             CALL_1S         d7f0 -> -(SP)
 283a7:  41 00 01 00 03          JE              (SP)+,#01 [FALSE] 283ad
-283ac:  b0                      RTRUE           
-283ad:  b0                      RTRUE           
+283ac:  b0                      RTRUE
+283ad:  b0                      RTRUE
 
 Routine 283b0, 1 local
     Action routine for:
@@ -16383,10 +16383,10 @@ Routine 283b0, 1 local
 283c3:  41 01 00 00 25          JE              L00,#00 [FALSE] 283eb
 283c8:  4a 30 03 00 09          TEST_ATTR       G20,#03 [FALSE] 283d4
 283cd:  f9 1b 36 0d 2b 30       CALL_VN         d834 (#2b,G20)
-283d3:  b0                      RTRUE           
+283d3:  b0                      RTRUE
 283d4:  4a 30 15 00 0a          TEST_ATTR       G20,#15 [FALSE] 283e1
 283d9:  f9 16 a2 82 2a 03 30    CALL_VN         28a08 (#2a,#03,G20)
-283e0:  b1                      RFALSE          
+283e0:  b1                      RFALSE
 283e1:  e0 16 a2 82 2a 02 30 00 CALL_VS         28a08 (#2a,#02,G20) -> -(SP)
 283e9:  ab 00                   RET             (SP)+
 283eb:  f9 27 34 52 30 12       CALL_VN         d148 (G20,#12)
@@ -16394,8 +16394,8 @@ Routine 283b0, 1 local
 283f6:  f9 16 a2 82 2a 03 30    CALL_VN         28a08 (#2a,#03,G20)
 283fd:  88 35 fc 00             CALL_1S         d7f0 -> -(SP)
 28401:  41 00 01 00 03          JE              (SP)+,#01 [FALSE] 28407
-28406:  b0                      RTRUE           
-28407:  b0                      RTRUE           
+28406:  b0                      RTRUE
+28407:  b0                      RTRUE
 
 Routine 28408, 0 locals
     Action routine for:
@@ -16405,7 +16405,7 @@ Routine 28408, 0 locals
 2840e:  e0 17 a2 82 2c 01 00    CALL_VS         28a08 (#2c,#01) -> -(SP)
 28415:  ab 00                   RET             (SP)+
 28417:  f9 17 a2 82 2c 02       CALL_VN         28a08 (#2c,#02)
-2841d:  b0                      RTRUE           
+2841d:  b0                      RTRUE
 
 Routine 28420, 2 locals
     Action routine for:
@@ -16440,7 +16440,7 @@ Routine 28420, 2 locals
 28484:  ab 00                   RET             (SP)+
 28486:  88 35 fc 00             CALL_1S         d7f0 -> -(SP)
 2848a:  41 00 01 00 03          JE              (SP)+,#01 [FALSE] 28490
-2848f:  b0                      RTRUE           
+2848f:  b0                      RTRUE
 28490:  0d ff 00                STORE           Gef,#00
 28493:  a2 30 00 49             GET_CHILD       G20 -> -(SP) [FALSE] 2849e
 28497:  95 ff                   INC             Gef
@@ -16451,7 +16451,7 @@ Routine 28420, 2 locals
 284aa:  e0 16 a2 82 2b 06 30 00 CALL_VS         28a08 (#2b,#06,G20) -> -(SP)
 284b2:  ab 00                   RET             (SP)+
 284b4:  f9 16 a2 82 2b 07 30    CALL_VN         28a08 (#2b,#07,G20)
-284bb:  b0                      RTRUE           
+284bb:  b0                      RTRUE
 
 Routine 284bc, 0 locals
     Action routine for:
@@ -16471,11 +16471,11 @@ Routine 284bc, 0 locals
 284eb:  4c 30 0b                CLEAR_ATTR      G20,#0b
 284ee:  88 35 fc 00             CALL_1S         d7f0 -> -(SP)
 284f2:  41 00 01 00 03          JE              (SP)+,#01 [FALSE] 284f8
-284f7:  b0                      RTRUE           
+284f7:  b0                      RTRUE
 284f8:  41 8a 01 00 03          JE              G7a,#01 [FALSE] 284fe
-284fd:  b0                      RTRUE           
+284fd:  b0                      RTRUE
 284fe:  f9 16 a2 82 2f 04 30    CALL_VN         28a08 (#2f,#04,G20)
-28505:  b0                      RTRUE           
+28505:  b0                      RTRUE
 
 Routine 28508, 0 locals
     Action routine for:
@@ -16497,11 +16497,11 @@ Routine 28508, 0 locals
 28545:  4b 30 0b                SET_ATTR        G20,#0b
 28548:  88 35 fc 00             CALL_1S         d7f0 -> -(SP)
 2854c:  41 00 01 00 03          JE              (SP)+,#01 [FALSE] 28552
-28551:  b0                      RTRUE           
+28551:  b0                      RTRUE
 28552:  41 8a 01 00 03          JE              G7a,#01 [FALSE] 28558
-28557:  b0                      RTRUE           
+28557:  b0                      RTRUE
 28558:  f9 16 a2 82 41 05 30    CALL_VN         28a08 (#41,#05,G20)
-2855f:  b0                      RTRUE           
+2855f:  b0                      RTRUE
 
 Routine 28560, 0 locals
     Action routine for:
@@ -16521,11 +16521,11 @@ Routine 28560, 0 locals
 2857d:  4b 30 0d                SET_ATTR        G20,#0d
 28580:  88 35 fc 00             CALL_1S         d7f0 -> -(SP)
 28584:  41 00 01 00 03          JE              (SP)+,#01 [FALSE] 2858a
-28589:  b0                      RTRUE           
+28589:  b0                      RTRUE
 2858a:  41 8a 01 00 03          JE              G7a,#01 [FALSE] 28590
-2858f:  b0                      RTRUE           
+2858f:  b0                      RTRUE
 28590:  f9 16 a2 82 40 03 30    CALL_VN         28a08 (#40,#03,G20)
-28597:  b0                      RTRUE           
+28597:  b0                      RTRUE
 
 Routine 28598, 0 locals
     Action routine for:
@@ -16544,11 +16544,11 @@ Routine 28598, 0 locals
 285b5:  4c 30 0d                CLEAR_ATTR      G20,#0d
 285b8:  88 35 fc 00             CALL_1S         d7f0 -> -(SP)
 285bc:  41 00 01 00 03          JE              (SP)+,#01 [FALSE] 285c2
-285c1:  b0                      RTRUE           
+285c1:  b0                      RTRUE
 285c2:  41 8a 01 00 03          JE              G7a,#01 [FALSE] 285c8
-285c7:  b0                      RTRUE           
+285c7:  b0                      RTRUE
 285c8:  f9 16 a2 82 31 03 30    CALL_VN         28a08 (#31,#03,G20)
-285cf:  b0                      RTRUE           
+285cf:  b0                      RTRUE
 
 Routine 285d0, 0 locals
     Action routine for:
@@ -16566,9 +16566,9 @@ Routine 285d0, 0 locals
 285fb:  4b 30 0e                SET_ATTR        G20,#0e
 285fe:  88 35 fc 00             CALL_1S         d7f0 -> -(SP)
 28602:  41 00 01 00 03          JE              (SP)+,#01 [FALSE] 28608
-28607:  b0                      RTRUE           
+28607:  b0                      RTRUE
 28608:  41 8a 01 00 03          JE              G7a,#01 [FALSE] 2860e
-2860d:  b0                      RTRUE           
+2860d:  b0                      RTRUE
 2860e:  4a 30 03 00 1a          TEST_ATTR       G20,#03 [FALSE] 2862b
 28613:  4a 30 17 80 15          TEST_ATTR       G20,#17 [TRUE] 2862b
 28618:  a2 30 00 c2             GET_CHILD       G20 -> -(SP) [TRUE] 2861c
@@ -16576,7 +16576,7 @@ Routine 285d0, 0 locals
 28621:  e0 16 a2 82 2e 04 30 00 CALL_VS         28a08 (#2e,#04,G20) -> -(SP)
 28629:  ab 00                   RET             (SP)+
 2862b:  f9 16 a2 82 2e 05 30    CALL_VN         28a08 (#2e,#05,G20)
-28632:  b0                      RTRUE           
+28632:  b0                      RTRUE
 
 Routine 28634, 0 locals
     Action routine for:
@@ -16592,11 +16592,11 @@ Routine 28634, 0 locals
 28651:  4c 30 0e                CLEAR_ATTR      G20,#0e
 28654:  88 35 fc 00             CALL_1S         d7f0 -> -(SP)
 28658:  41 00 01 00 03          JE              (SP)+,#01 [FALSE] 2865e
-2865d:  b0                      RTRUE           
+2865d:  b0                      RTRUE
 2865e:  41 8a 01 00 03          JE              G7a,#01 [FALSE] 28664
-28663:  b0                      RTRUE           
+28663:  b0                      RTRUE
 28664:  f9 16 a2 82 30 03 30    CALL_VN         28a08 (#30,#03,G20)
-2866b:  b0                      RTRUE           
+2866b:  b0                      RTRUE
 
 Routine 2866c, 0 locals
     Action routine for:
@@ -16610,11 +16610,11 @@ Routine 2866c, 0 locals
 2867b:  4c 30 1a                CLEAR_ATTR      G20,#1a
 2867e:  88 35 fc 00             CALL_1S         d7f0 -> -(SP)
 28682:  41 00 01 00 03          JE              (SP)+,#01 [FALSE] 28688
-28687:  b0                      RTRUE           
+28687:  b0                      RTRUE
 28688:  41 8a 01 00 03          JE              G7a,#01 [FALSE] 2868e
-2868d:  b0                      RTRUE           
+2868d:  b0                      RTRUE
 2868e:  f9 16 a2 82 16 02 30    CALL_VN         28a08 (#16,#02,G20)
-28695:  b0                      RTRUE           
+28695:  b0                      RTRUE
 
 Routine 28698, 0 locals
     Action routine for:
@@ -16634,11 +16634,11 @@ Routine 28698, 0 locals
 286c6:  4b 30 1a                SET_ATTR        G20,#1a
 286c9:  88 35 fc 00             CALL_1S         d7f0 -> -(SP)
 286cd:  41 00 01 00 03          JE              (SP)+,#01 [FALSE] 286d3
-286d2:  b0                      RTRUE           
+286d2:  b0                      RTRUE
 286d3:  41 8a 01 00 03          JE              G7a,#01 [FALSE] 286d9
-286d8:  b0                      RTRUE           
+286d8:  b0                      RTRUE
 286d9:  f9 16 a2 82 19 04 30    CALL_VN         28a08 (#19,#04,G20)
-286e0:  b0                      RTRUE           
+286e0:  b0                      RTRUE
 
 Routine 286e4, 0 locals
     Action routine for:
@@ -16650,25 +16650,25 @@ Routine 286e4, 0 locals
 286f3:  a9 30                   REMOVE_OBJ      G20
 286f5:  88 35 fc 00             CALL_1S         d7f0 -> -(SP)
 286f9:  41 00 01 00 03          JE              (SP)+,#01 [FALSE] 286ff
-286fe:  b0                      RTRUE           
+286fe:  b0                      RTRUE
 286ff:  41 8a 01 00 03          JE              G7a,#01 [FALSE] 28705
-28704:  b0                      RTRUE           
+28704:  b0                      RTRUE
 28705:  f9 16 a2 82 48 02 30    CALL_VN         28a08 (#48,#02,G20)
-2870c:  b0                      RTRUE           
+2870c:  b0                      RTRUE
 
 Routine 28710, 0 locals
     Action routine for:
         "y"
 
 28711:  da 1f a2 82 33          CALL_2N         28a08 (#33)
-28716:  b0                      RTRUE           
+28716:  b0                      RTRUE
 
 Routine 28718, 0 locals
     Action routine for:
         "no"
 
 28719:  da 1f a2 82 34          CALL_2N         28a08 (#34)
-2871e:  b0                      RTRUE           
+2871e:  b0                      RTRUE
 
 Routine 28720, 0 locals
     Action routine for:
@@ -16676,14 +16676,14 @@ Routine 28720, 0 locals
         "burn NOUN with HELD"
 
 28721:  da 1f a2 82 5c          CALL_2N         28a08 (#5c)
-28726:  b0                      RTRUE           
+28726:  b0                      RTRUE
 
 Routine 28728, 0 locals
     Action routine for:
         "pray"
 
 28729:  da 1f a2 82 51          CALL_2N         28a08 (#51)
-2872e:  b0                      RTRUE           
+2872e:  b0                      RTRUE
 
 Routine 28730, 0 locals
     Action routine for:
@@ -16691,7 +16691,7 @@ Routine 28730, 0 locals
         "awake up"
 
 28731:  da 1f a2 82 52          CALL_2N         28a08 (#52)
-28736:  b0                      RTRUE           
+28736:  b0                      RTRUE
 
 Routine 28738, 0 locals
     Action routine for:
@@ -16701,16 +16701,16 @@ Routine 28738, 0 locals
 
 28739:  e0 27 36 26 30 53 00    CALL_VS         d898 (G20,#53) -> -(SP)
 28740:  41 00 00 80 03          JE              (SP)+,#00 [TRUE] 28746
-28745:  b1                      RFALSE          
+28745:  b1                      RFALSE
 28746:  da 1f a2 82 53          CALL_2N         28a08 (#53)
-2874b:  b0                      RTRUE           
+2874b:  b0                      RTRUE
 
 Routine 2874c, 0 locals
     Action routine for:
         "think"
 
 2874d:  da 1f a2 82 55          CALL_2N         28a08 (#55)
-28752:  b0                      RTRUE           
+28752:  b0                      RTRUE
 
 Routine 28754, 0 locals
     Action routine for:
@@ -16718,7 +16718,7 @@ Routine 28754, 0 locals
         "smell NOUN"
 
 28755:  da 1f a2 82 56          CALL_2N         28a08 (#56)
-2875a:  b0                      RTRUE           
+2875a:  b0                      RTRUE
 
 Routine 2875c, 0 locals
     Action routine for:
@@ -16727,28 +16727,28 @@ Routine 2875c, 0 locals
         "hear to NOUN"
 
 2875d:  da 1f a2 82 57          CALL_2N         28a08 (#57)
-28762:  b0                      RTRUE           
+28762:  b0                      RTRUE
 
 Routine 28764, 0 locals
     Action routine for:
         "taste NOUN"
 
 28765:  da 1f a2 82 58          CALL_2N         28a08 (#58)
-2876a:  b0                      RTRUE           
+2876a:  b0                      RTRUE
 
 Routine 2876c, 0 locals
     Action routine for:
         "chop NOUN"
 
 2876d:  da 1f a2 82 5f          CALL_2N         28a08 (#5f)
-28772:  b0                      RTRUE           
+28772:  b0                      RTRUE
 
 Routine 28774, 0 locals
     Action routine for:
         "hop over NOUN"
 
 28775:  da 1f a2 82 61          CALL_2N         28a08 (#61)
-2877a:  b0                      RTRUE           
+2877a:  b0                      RTRUE
 
 Routine 2877c, 0 locals
     Action routine for:
@@ -16758,7 +16758,7 @@ Routine 2877c, 0 locals
         "add NOUN to NOUN"
 
 2877d:  da 1f a2 82 5b          CALL_2N         28a08 (#5b)
-28782:  b0                      RTRUE           
+28782:  b0                      RTRUE
 
 Routine 28784, 0 locals
     Action routine for:
@@ -16766,14 +16766,14 @@ Routine 28784, 0 locals
         "drink NOUN"
 
 28785:  da 1f a2 82 5d          CALL_2N         28a08 (#5d)
-2878a:  b0                      RTRUE           
+2878a:  b0                      RTRUE
 
 Routine 2878c, 0 locals
     Action routine for:
         "dive"
 
 2878d:  da 1f a2 82 4e          CALL_2N         28a08 (#4e)
-28792:  b0                      RTRUE           
+28792:  b0                      RTRUE
 
 Routine 28794, 0 locals
     Action routine for:
@@ -16782,7 +16782,7 @@ Routine 28794, 0 locals
         "swing on NOUN"
 
 28795:  da 1f a2 82 4f          CALL_2N         28a08 (#4f)
-2879a:  b0                      RTRUE           
+2879a:  b0                      RTRUE
 
 Routine 2879c, 0 locals
     Action routine for:
@@ -16791,7 +16791,7 @@ Routine 2879c, 0 locals
         "play HELD"
 
 2879d:  da 1f a2 82 50          CALL_2N         28a08 (#50)
-287a2:  b0                      RTRUE           
+287a2:  b0                      RTRUE
 
 Routine 287a4, 0 locals
     Action routine for:
@@ -16799,28 +16799,28 @@ Routine 287a4, 0 locals
         "scratch NOUN"
 
 287a5:  da 1f a2 82 5a          CALL_2N         28a08 (#5a)
-287aa:  b0                      RTRUE           
+287aa:  b0                      RTRUE
 
 Routine 287ac, 0 locals
     Action routine for:
         "adjust NOUN"
 
 287ad:  da 1f a2 82 3a          CALL_2N         28a08 (#3a)
-287b2:  b0                      RTRUE           
+287b2:  b0                      RTRUE
 
 Routine 287b4, 0 locals
     Action routine for:
         "adjust NOUN to SPECIAL"
 
 287b5:  da 1f a2 82 3b          CALL_2N         28a08 (#3b)
-287ba:  b0                      RTRUE           
+287ba:  b0                      RTRUE
 
 Routine 287bc, 0 locals
     Action routine for:
         "wave"
 
 287bd:  da 1f a2 82 38          CALL_2N         28a08 (#38)
-287c2:  b0                      RTRUE           
+287c2:  b0                      RTRUE
 
 Routine 287c4, 0 locals
     Action routine for:
@@ -16828,7 +16828,7 @@ Routine 287c4, 0 locals
         "achetez SPECIAL"
 
 287c5:  da 1f a2 82 4c          CALL_2N         28a08 (#4c)
-287ca:  b0                      RTRUE           
+287ca:  b0                      RTRUE
 
 Routine 287cc, 0 locals
     Action routine for:
@@ -16837,7 +16837,7 @@ Routine 287cc, 0 locals
         "exhibit"
 
 287cd:  da 1f a2 82 4a          CALL_2N         28a08 (#4a)
-287d2:  b0                      RTRUE           
+287d2:  b0                      RTRUE
 
 Routine 287d4, 0 locals
     Action routine for:
@@ -16846,14 +16846,14 @@ Routine 287d4, 0 locals
         "climb over NOUN"
 
 287d5:  da 1f a2 82 4b          CALL_2N         28a08 (#4b)
-287da:  b0                      RTRUE           
+287da:  b0                      RTRUE
 
 Routine 287dc, 0 locals
     Action routine for:
         "nap"
 
 287dd:  da 1f a2 82 49          CALL_2N         28a08 (#49)
-287e2:  b0                      RTRUE           
+287e2:  b0                      RTRUE
 
 Routine 287e4, 0 locals
     Action routine for:
@@ -16866,7 +16866,7 @@ Routine 287e4, 0 locals
         "rotate NOUN to TEXT [parse 2]"
 
 287e5:  f9 16 a2 82 2d 01 30    CALL_VN         28a08 (#2d,#01,G20)
-287ec:  b0                      RTRUE           
+287ec:  b0                      RTRUE
 
 Routine 287f0, 0 locals
     Action routine for:
@@ -16880,7 +16880,7 @@ Routine 287f0, 0 locals
 28804:  e0 17 a2 82 59 01 00    CALL_VS         28a08 (#59,#01) -> -(SP)
 2880b:  ab 00                   RET             (SP)+
 2880d:  f9 17 a2 82 59 02       CALL_VN         28a08 (#59,#02)
-28813:  b0                      RTRUE           
+28813:  b0                      RTRUE
 
 Routine 28814, 0 locals
     Action routine for:
@@ -16896,7 +16896,7 @@ Routine 28814, 0 locals
 28836:  e0 17 a2 82 3c 04 00    CALL_VS         28a08 (#3c,#04) -> -(SP)
 2883d:  ab 00                   RET             (SP)+
 2883f:  f9 17 a2 82 3c 03       CALL_VN         28a08 (#3c,#03)
-28845:  b0                      RTRUE           
+28845:  b0                      RTRUE
 
 Routine 28848, 0 locals
     Action routine for:
@@ -16913,7 +16913,7 @@ Routine 28848, 0 locals
 2886a:  e0 17 a2 82 3c 04 00    CALL_VS         28a08 (#3c,#04) -> -(SP)
 28871:  ab 00                   RET             (SP)+
 28873:  f9 17 a2 82 3d 03       CALL_VN         28a08 (#3d,#03)
-28879:  b0                      RTRUE           
+28879:  b0                      RTRUE
 
 Routine 2887c, 0 locals
     Action routine for:
@@ -16934,7 +16934,7 @@ Routine 2887c, 0 locals
 2889e:  e0 17 a2 82 3c 04 00    CALL_VS         28a08 (#3c,#04) -> -(SP)
 288a5:  ab 00                   RET             (SP)+
 288a7:  f9 17 a2 82 3f 03       CALL_VN         28a08 (#3f,#03)
-288ad:  b0                      RTRUE           
+288ad:  b0                      RTRUE
 
 Routine 288b0, 0 locals
     Action routine for:
@@ -16942,16 +16942,16 @@ Routine 288b0, 0 locals
 
 288b1:  88 35 fc 00             CALL_1S         d7f0 -> -(SP)
 288b5:  41 00 01 00 03          JE              (SP)+,#01 [FALSE] 288bb
-288ba:  b0                      RTRUE           
+288ba:  b0                      RTRUE
 288bb:  da 1f a2 82 43          CALL_2N         28a08 (#43)
-288c0:  b0                      RTRUE           
+288c0:  b0                      RTRUE
 
 Routine 288c4, 0 locals
     Action routine for:
         "clear NOUN NOUN"
 
 288c5:  f9 17 a2 82 3e 01       CALL_VN         28a08 (#3e,#01)
-288cb:  b0                      RTRUE           
+288cb:  b0                      RTRUE
 
 Routine 288cc, 1 local
 
@@ -16970,7 +16970,7 @@ Routine 288cc, 1 local
 28902:  6e 01 1b                INSERT_OBJ      L00,G0b
 28905:  8c 00 05                JUMP            2890b
 28908:  6e 01 11                INSERT_OBJ      L00,G01
-2890b:  b0                      RTRUE           
+2890b:  b0                      RTRUE
 
 Routine 2890c, 0 locals
     Action routine for:
@@ -16980,7 +16980,7 @@ Routine 2890c, 0 locals
 28912:  e0 17 a2 82 4d 01 00    CALL_VS         28a08 (#4d,#01) -> -(SP)
 28919:  ab 00                   RET             (SP)+
 2891b:  f9 17 a2 82 4d 02       CALL_VN         28a08 (#4d,#02)
-28921:  b0                      RTRUE           
+28921:  b0                      RTRUE
 
 Routine 28924, 0 locals
     Action routine for:
@@ -16992,16 +16992,16 @@ Routine 28924, 0 locals
 2892f:  e0 27 34 7a 31 02 00    CALL_VS         d1e8 (G21,#02) -> -(SP)
 28936:  41 00 00 80 06          JE              (SP)+,#00 [TRUE] 2893f
 2893b:  0d 2a 20                STORE           G1a,#20
-2893e:  b0                      RTRUE           
+2893e:  b0                      RTRUE
 2893f:  0d 2a 20                STORE           G1a,#20
 28942:  4a 31 00 80 0b          TEST_ATTR       G21,#00 [TRUE] 28950
 28947:  e0 17 a2 82 20 01 00    CALL_VS         28a08 (#20,#01) -> -(SP)
 2894e:  ab 00                   RET             (SP)+
 28950:  e0 27 36 26 31 20 00    CALL_VS         d898 (G21,#20) -> -(SP)
 28957:  41 00 00 80 03          JE              (SP)+,#00 [TRUE] 2895d
-2895c:  b1                      RFALSE          
+2895c:  b1                      RFALSE
 2895d:  f9 17 a2 82 20 02       CALL_VN         28a08 (#20,#02)
-28963:  b0                      RTRUE           
+28963:  b0                      RTRUE
 
 Routine 28964, 0 locals
     Action routine for:
@@ -17012,9 +17012,9 @@ Routine 28964, 0 locals
 28965:  4a 30 00 00 0f          TEST_ATTR       G20,#00 [FALSE] 28977
 2896a:  e0 27 36 26 30 42 00    CALL_VS         d898 (G20,#42) -> -(SP)
 28971:  41 00 00 80 03          JE              (SP)+,#00 [TRUE] 28977
-28976:  b1                      RFALSE          
+28976:  b1                      RFALSE
 28977:  da 1f a2 82 42          CALL_2N         28a08 (#42)
-2897c:  b0                      RTRUE           
+2897c:  b0                      RTRUE
 
 Routine 28980, 0 locals
     Action routine for:
@@ -17022,12 +17022,12 @@ Routine 28980, 0 locals
 
 28981:  e0 27 36 26 30 54 00    CALL_VS         d898 (G20,#54) -> -(SP)
 28988:  41 00 00 80 03          JE              (SP)+,#00 [TRUE] 2898e
-2898d:  b1                      RFALSE          
+2898d:  b1                      RFALSE
 2898e:  61 30 19 00 0b          JE              G20,G09 [FALSE] 2899c
 28993:  e0 17 a2 82 59 03 00    CALL_VS         28a08 (#59,#03) -> -(SP)
 2899a:  ab 00                   RET             (SP)+
 2899c:  da 1f a2 82 54          CALL_2N         28a08 (#54)
-289a1:  b0                      RTRUE           
+289a1:  b0                      RTRUE
 
 Routine 289a4, 0 locals
     Action routine for:
@@ -17035,9 +17035,9 @@ Routine 289a4, 0 locals
 
 289a5:  e0 27 36 26 31 44 00    CALL_VS         d898 (G21,#44) -> -(SP)
 289ac:  41 00 00 80 03          JE              (SP)+,#00 [TRUE] 289b2
-289b1:  b1                      RFALSE          
+289b1:  b1                      RFALSE
 289b2:  da 1f a2 82 44          CALL_2N         28a08 (#44)
-289b7:  b0                      RTRUE           
+289b7:  b0                      RTRUE
 
 Routine 289b8, 0 locals
     Action routine for:
@@ -17048,9 +17048,9 @@ Routine 289b8, 0 locals
 289c4:  ab 00                   RET             (SP)+
 289c6:  e0 27 36 26 30 45 00    CALL_VS         d898 (G20,#45) -> -(SP)
 289cd:  41 00 00 80 03          JE              (SP)+,#00 [TRUE] 289d3
-289d2:  b1                      RFALSE          
+289d2:  b1                      RFALSE
 289d3:  f9 17 a2 82 45 02       CALL_VN         28a08 (#45,#02)
-289d9:  b0                      RTRUE           
+289d9:  b0                      RTRUE
 
 Routine 289dc, 0 locals
     Action routine for:
@@ -17058,9 +17058,9 @@ Routine 289dc, 0 locals
 
 289dd:  e0 27 36 26 30 46 00    CALL_VS         d898 (G20,#46) -> -(SP)
 289e4:  41 00 00 80 03          JE              (SP)+,#00 [TRUE] 289ea
-289e9:  b1                      RFALSE          
+289e9:  b1                      RFALSE
 289ea:  da 1f a2 82 46          CALL_2N         28a08 (#46)
-289ef:  b0                      RTRUE           
+289ef:  b0                      RTRUE
 
 Routine 289f0, 0 locals
     Action routine for:
@@ -17068,9 +17068,9 @@ Routine 289f0, 0 locals
 
 289f1:  61 30 19 00 08          JE              G20,G09 [FALSE] 289fc
 289f6:  da 1f 36 0d 18          CALL_2N         d834 (#18)
-289fb:  b0                      RTRUE           
+289fb:  b0                      RTRUE
 289fc:  f9 06 a2 82 01 03 01 30 CALL_VN         28a08 (#0103,#01,G20)
-28a04:  b0                      RTRUE           
+28a04:  b0                      RTRUE
 
 Routine 28a08, 4 locals
 
@@ -17080,7 +17080,7 @@ Routine 28a08, 4 locals
 28a14:  0d 02 01                STORE           L01,#01
 28a17:  f9 2b a2 89 02 03       CALL_VN         28a24 (L01,L02)
 28a1d:  2d 3a 04                STORE           G2a,L03
-28a20:  b0                      RTRUE           
+28a20:  b0                      RTRUE
 
 Routine 28a24, 3 locals
 
@@ -17091,12 +17091,12 @@ Routine 28a24, 3 locals
 28a31:  e0 17 34 7a 10 02 00    CALL_VS         d1e8 (#10,#02) -> -(SP)
 28a38:  41 00 00 80 06          JE              (SP)+,#00 [TRUE] 28a41
 28a3d:  2d 2a 03                STORE           G1a,L02
-28a40:  b1                      RFALSE          
+28a40:  b1                      RFALSE
 28a41:  2d 2a 03                STORE           G1a,L02
 28a44:  c1 8f 3a 01 07 00 08    JE              G2a,#0107 [FALSE] 28a51
 28a4b:  b2 ...                  PRINT           "
 >"
-28a50:  b0                      RTRUE           
+28a50:  b0                      RTRUE
 28a51:  c1 8f 3a 01 06 02 2b    JE              G2a,#0106 [FALSE] 28c81
 28a58:  41 01 01 00 1f          JE              L00,#01 [FALSE] 28a7a
 28a5d:  b3 ...                  PRINT_RET       "(considering the first sixteen
@@ -17106,10 +17106,10 @@ objects only)
 28a7f:  b3 ...                  PRINT_RET       "Nothing to do!"
 28a8a:  41 01 03 00 0c          JE              L00,#03 [FALSE] 28a99
 28a8f:  b2 ...                  PRINT           " You have died "
-28a98:  b0                      RTRUE           
+28a98:  b0                      RTRUE
 28a99:  41 01 04 00 0c          JE              L00,#04 [FALSE] 28aa8
 28a9e:  b2 ...                  PRINT           " You have won "
-28aa7:  b0                      RTRUE           
+28aa7:  b0                      RTRUE
 28aa8:  41 01 05 00 7b          JE              L00,#05 [FALSE] 28b26
 28aad:  b2 ...                  PRINT           "
 Would you like to RESTART, RESTORE a saved game"
@@ -17151,22 +17151,22 @@ corrected."
 28c60:  41 01 10 00 1d          JE              L00,#10 [FALSE] 28c80
 28c65:  b3 ...                  PRINT_RET       ""Oops" can only correct a
 single word."
-28c80:  b1                      RFALSE          
+28c80:  b1                      RFALSE
 28c81:  c1 8f 3a 01 03 00 16    JE              G2a,#0103 [FALSE] 28c9c
 28c88:  da 2f 38 53 02          CALL_2N         e14c (L01)
 28c8d:  b3 ...                  PRINT_RET       " has better things to do."
 28c9c:  41 3a 02 00 2f          JE              G2a,#02 [FALSE] 28cce
 28ca1:  41 01 01 00 14          JE              L00,#01 [FALSE] 28cb8
 28ca6:  b2 ...                  PRINT           "Please answer yes or no."
-28cb7:  b0                      RTRUE           
+28cb7:  b0                      RTRUE
 28cb8:  b2 ...                  PRINT           "Are you sure you want to quit?
 "
-28ccd:  b0                      RTRUE           
+28ccd:  b0                      RTRUE
 28cce:  41 3a 04 00 26          JE              G2a,#04 [FALSE] 28cf7
 28cd3:  41 01 01 00 1a          JE              L00,#01 [FALSE] 28cf0
 28cd8:  b2 ...                  PRINT           "Are you sure you want to
 restart? "
-28cef:  b0                      RTRUE           
+28cef:  b0                      RTRUE
 28cf0:  b3 ...                  PRINT_RET       "Failed."
 28cf7:  41 3a 03 00 19          JE              G2a,#03 [FALSE] 28d13
 28cfc:  41 01 01 00 0f          JE              L00,#01 [FALSE] 28d0e
@@ -17198,7 +17198,7 @@ End of transcript."
 28e24:  b3 ...                  PRINT_RET       "Score notification off."
 28e35:  41 3a 10 00 10          JE              G2a,#10 [FALSE] 28e48
 28e3a:  b2 ...                  PRINT           "You have visited: "
-28e47:  b0                      RTRUE           
+28e47:  b0                      RTRUE
 28e48:  41 3a 11 00 21          JE              G2a,#11 [FALSE] 28e6c
 28e4d:  41 01 01 00 15          JE              L00,#01 [FALSE] 28e65
 28e52:  b3 ...                  PRINT_RET       "Objects you have handled:
@@ -17217,7 +17217,7 @@ End of transcript."
 28eb5:  b2 ...                  PRINT           " turn"
 28eba:  43 18 01 00 05          JG              G08,#01 [FALSE] 28ec2
 28ebf:  b2 ...                  PRINT           "s"
-28ec2:  b0                      RTRUE           
+28ec2:  b0                      RTRUE
 28ec3:  41 3a 01 00 6e          JE              G2a,#01 [FALSE] 28f34
 28ec8:  41 01 01 00 2d          JE              L00,#01 [FALSE] 28ef8
 28ecd:  41 1d 00 00 0e          JE              G0d,#00 [FALSE] 28ede
@@ -17237,7 +17237,7 @@ End of transcript."
 28f39:  41 01 01 00 13          JE              L00,#01 [FALSE] 28f4f
 28f3e:  b3 ...                  PRINT_RET       "You are carrying nothing."
 28f4f:  b2 ...                  PRINT           "You are carrying"
-28f5a:  b0                      RTRUE           
+28f5a:  b0                      RTRUE
 28f5b:  41 3a 13 01 60          JE              G2a,#13 [FALSE] 290be
 28f60:  41 01 01 00 09          JE              L00,#01 [FALSE] 28f6c
 28f65:  b3 ...                  PRINT_RET       "Taken."
@@ -17480,13 +17480,13 @@ been there before)."
 29737:  41 3a 29 00 b9          JE              G2a,#29 [FALSE] 297f3
 2973c:  41 01 01 00 06          JE              L00,#01 [FALSE] 29745
 29741:  b2 ...                  PRINT           "on"
-29744:  b1                      RFALSE          
+29744:  b1                      RFALSE
 29745:  41 01 02 00 06          JE              L00,#02 [FALSE] 2974e
 2974a:  b2 ...                  PRINT           "in"
-2974d:  b1                      RFALSE          
+2974d:  b1                      RFALSE
 2974e:  41 01 03 00 06          JE              L00,#03 [FALSE] 29757
 29753:  b2 ...                  PRINT           "as"
-29756:  b1                      RFALSE          
+29756:  b1                      RFALSE
 29757:  41 01 04 00 31          JE              L00,#04 [FALSE] 2978b
 2975c:  b2 ...                  PRINT           "
 On "
@@ -17540,7 +17540,7 @@ light to see by."
 29857:  b3 ...                  PRINT_RET       "on."
 2985c:  8c 00 07                JUMP            29864
 2985f:  b3 ...                  PRINT_RET       "off."
-29864:  b1                      RFALSE          
+29864:  b1                      RFALSE
 29865:  41 3a 2c 00 27          JE              G2a,#2c [FALSE] 2988f
 2986a:  41 01 01 00 0f          JE              L00,#01 [FALSE] 2987c
 2986f:  b3 ...                  PRINT_RET       "But it's dark."
@@ -17804,7 +17804,7 @@ drowsy."
 interest in "
 2a16d:  da 2f 38 4e 02          CALL_2N         e138 (L01)
 2a172:  b3 ...                  PRINT_RET       "."
-2a175:  b0                      RTRUE           
+2a175:  b0                      RTRUE
 
 Routine 2a178, 0 locals
 
@@ -17845,11 +17845,11 @@ make amends for that nasty bad language."
 can smell is old cork and rubber."
 2a2d2:  41 2a 48 00 13          JE              G1a,#48 [FALSE] 2a2e8
 2a2d7:  b3 ...                  PRINT_RET       "Not with a gas mask on!"
-2a2e8:  c1 85 2a 01 03 44 46 00 23 
+2a2e8:  c1 85 2a 01 03 44 46 00 23
                                JE              G1a,#0103,#44,#46 [FALSE] 2a312
 2a2f1:  b3 ...                  PRINT_RET       "Your speech is muffled into
 silence by the gas mask."
-2a312:  b1                      RFALSE          
+2a312:  b1                      RFALSE
 
 Routine 2a314, 0 locals
 
@@ -17875,7 +17875,7 @@ terrorist"
 2a3c6:  b2 ...                  PRINT           "You have been checkmated"
 2a3d7:  41 1d 0a 00 11          JE              G0d,#0a [FALSE] 2a3eb
 2a3dc:  b2 ...                  PRINT           "You have been spooked"
-2a3eb:  b0                      RTRUE           
+2a3eb:  b0                      RTRUE
 
 Routine 2a3ec, 2 locals
 
@@ -17894,11 +17894,11 @@ Routine 2a3ec, 2 locals
 2a432:  54 02 01 00             ADD             L01,#01 -> -(SP)
 2a436:  cf 2f 65 d1 00 00       LOADW           #65d1,(SP)+ -> -(SP)
 2a43c:  ad 00                   PRINT_PADDR     (SP)+
-2a43e:  bb                      NEW_LINE        
-2a43f:  b0                      RTRUE           
+2a43e:  bb                      NEW_LINE
+2a43f:  b0                      RTRUE
 2a440:  54 02 02 02             ADD             L01,#02 -> L01
 2a444:  8c ff d3                JUMP            2a418
-2a447:  b0                      RTRUE           
+2a447:  b0                      RTRUE
 
 Routine 2a448, 1 local
 
@@ -18001,8 +18001,8 @@ Routine 2a764, 2 locals
 
 2a765:  8f 9d b8                CALL_1N         276e0
 2a768:  41 17 00 00 03          JE              G07,#00 [FALSE] 2a76e
-2a76d:  b1                      RFALSE          
-2a76e:  bb                      NEW_LINE        
+2a76d:  b1                      RFALSE
+2a76e:  bb                      NEW_LINE
 2a76f:  f9 17 a2 82 01 01       CALL_VN         28a08 (#01,#01)
 2a775:  0d 01 00                STORE           L00,#00
 2a778:  42 01 2d 00 3a          JL              L00,#2d [FALSE] 2a7b5
@@ -18043,7 +18043,7 @@ Routine 2a764, 2 locals
 2a824:  da 2f 9d c2 02          CALL_2N         27708 (L01)
 2a829:  b2 ...                  PRINT           "destroying universe
 "
-2a838:  bb                      NEW_LINE        
+2a838:  bb                      NEW_LINE
 2a839:  da 2f 9d c2 17          CALL_2N         27708 (G07)
 2a83e:  f9 17 a2 82 01 04       CALL_VN         28a08 (#01,#04)
 2a844:  41 1d 02 00 3a          JE              G0d,#02 [FALSE] 2a881
@@ -18051,12 +18051,12 @@ Routine 2a764, 2 locals
 2a84f:  41 00 00 00 2f          JE              (SP)+,#00 [FALSE] 2a881
 2a854:  b3 ...                  PRINT_RET       "
 Sadly, you missed out on the 50-point bonus for rescuing Andromeda."
-2a881:  b0                      RTRUE           
+2a881:  b0                      RTRUE
 
 Routine 2a884, 0 locals
 
 2a885:  41 c1 01 00 03          JE              Gb1,#01 [FALSE] 2a88b
-2a88a:  b0                      RTRUE           
+2a88a:  b0                      RTRUE
 2a88b:  0d c1 01                STORE           Gb1,#01
 2a88e:  0d 90 01                STORE           G80,#01
 2a891:  f9 17 37 1a 67 04       CALL_VN         dc68 (#67,#04)
@@ -18073,7 +18073,7 @@ Routine 2a8d8, 0 locals
 2a8e2:  0d 8d 00                STORE           G7d,#00
 2a8e5:  b3 ...                  PRINT_RET       "
 Under the circumstances, the 5-point bonus is forfeit."
-2a90a:  b0                      RTRUE           
+2a90a:  b0                      RTRUE
 
 Routine 2a90c, 1 local
 
@@ -18122,7 +18122,7 @@ Routine 2a90c, 1 local
 2a9ef:  cd 4f 5d 01 d0          STORE           G4d,#01d0
 2a9f4:  c1 8f 01 01 d2 00 07    JE              L00,#01d2 [FALSE] 2aa00
 2a9fb:  cd 4f 5d 01 d3          STORE           G4d,#01d3
-2aa00:  b0                      RTRUE           
+2aa00:  b0                      RTRUE
 
 Routine 2aa04, 0 locals
 
@@ -18153,12 +18153,12 @@ Routine 2ac30, 0 locals
 
 2ac31:  8f b4 f0                CALL_1N         2d3c0
 2ac34:  0d 90 01                STORE           G80,#01
-2ac37:  b0                      RTRUE           
+2ac37:  b0                      RTRUE
 
 Routine 2ac38, 2 locals
 
 2ac39:  42 02 02 00 03          JL              L01,#02 [FALSE] 2ac3f
-2ac3e:  b1                      RFALSE          
+2ac3e:  b1                      RFALSE
 2ac3f:  41 72 76 00 09          JE              G62,#76 [FALSE] 2ac4b
 2ac44:  4a 01 1c 00 04          TEST_ATTR       L00,#1c [FALSE] 2ac4b
 2ac49:  9b 02                   RET             #02
@@ -18206,21 +18206,21 @@ consult."
 2acdb:  b2 ...                  PRINT           ")
 "
 2ace0:  f9 1b 36 0d 2d 01       CALL_VN         d834 (#2d,L00)
-2ace6:  b0                      RTRUE           
+2ace6:  b0                      RTRUE
 
 Routine 2ace8, 0 locals
     Action routine for:
         "time"
 
 2ace9:  8f ab 3c                CALL_1N         2acf0
-2acec:  bb                      NEW_LINE        
-2aced:  b0                      RTRUE           
+2acec:  bb                      NEW_LINE
+2aced:  b0                      RTRUE
 
 Routine 2acf0, 0 locals
 
 2acf1:  c1 8f 11 01 8a 00 12    JE              G01,#018a [FALSE] 2ad08
 2acf8:  b2 ...                  PRINT           "Inside the golden orb."
-2ad07:  b1                      RFALSE          
+2ad07:  b1                      RFALSE
 2ad08:  41 8c 01 00 2d          JE              G7c,#01 [FALSE] 2ad38
 2ad0d:  b2 ...                  PRINT           "This is the afternoon of June
 3rd, 1993, and you are in Meldrew Hall."
@@ -18260,7 +18260,7 @@ centuries ahead of your sleeping body."
 2af7e:  41 8c 0e 00 35          JE              G7c,#0e [FALSE] 2afb6
 2af83:  b2 ...                  PRINT           "In the great Monopoly-board
 Jail of the afterlife, you are "Just Visiting"."
-2afb6:  b0                      RTRUE           
+2afb6:  b0                      RTRUE
 
 Routine 2afb8, 0 locals
     Action routine for:
@@ -18270,9 +18270,9 @@ Routine 2afb8, 0 locals
 2afbc:  be 01 ff ff             RESTORE         -> Gef
 2afc0:  41 ff 02 c9             JE              Gef,#02 [TRUE] 2afcb
 2afc4:  b3 ...                  PRINT_RET       "Failed."
-2afcb:  bb                      NEW_LINE        
+2afcb:  bb                      NEW_LINE
 2afcc:  8f a0 ac                CALL_1N         282b0
-2afcf:  b0                      RTRUE           
+2afcf:  b0                      RTRUE
 
 Routine 2afd0, 0 locals
     Action routine for:
@@ -18290,7 +18290,7 @@ viciously."
 2b01a:  b3 ...                  PRINT_RET       "Failed."
 2b021:  b2 ...                  PRINT           "Ok.
 "
-2b028:  b0                      RTRUE           
+2b028:  b0                      RTRUE
 
 Routine 2b02c, 0 locals
     Action routine for:
@@ -18311,9 +18311,9 @@ projector" [FALSE] 2b0ae
 2b08f:  b3 ...                  PRINT_RET       "right up through the south
 wall and into Alexandria!"
 2b0ae:  da 1f 48 7e 01          CALL_2N         121f8 (#01)
-2b0b3:  b1                      RFALSE          
+2b0b3:  b1                      RFALSE
 2b0b4:  da 1f a2 82 60          CALL_2N         28a08 (#60)
-2b0b9:  b0                      RTRUE           
+2b0b9:  b0                      RTRUE
 
 Routine 2b0bc, 0 locals
     Action routine for:
@@ -18368,7 +18368,7 @@ Routine 2b1c0, 0 locals
 2b1c1:  c1 8f 30 01 22 00 09    JE              G20,#0122 [FALSE] 2b1cf
 2b1c8:  c1 8f 31 01 3c 80 09    JE              G21,#013c [TRUE] 2b1d6
 2b1cf:  f9 1b 36 0d 42 30       CALL_VN         d834 (#42,G20)
-2b1d5:  b0                      RTRUE           
+2b1d5:  b0                      RTRUE
 2b1d6:  83 01 22 00             GET_PARENT      "hard wooden ball" -> -(SP)
 2b1da:  61 00 11 80 13          JE              (SP)+,G01 [TRUE] 2b1f0
 2b1df:  b3 ...                  PRINT_RET       "The ball is not on the
@@ -18383,7 +18383,7 @@ The ball ricochets around the ornaments as on a pinball table."
 2b24c:  c1 8f 11 01 42 00 0d    JE              G01,#0142 [FALSE] 2b25e
 2b253:  d1 1f 01 42 0b 00       GET_PROP        "Croquet Lawn",#0b -> -(SP)
 2b259:  41 00 00 80 03          JE              (SP)+,#00 [TRUE] 2b25f
-2b25e:  b1                      RFALSE          
+2b25e:  b1                      RFALSE
 2b25f:  b2 ...                  PRINT           "
 The ball runs smoothly across the lawn"
 2b278:  c6 0f 01 46 01 42 00 17 JIN             "dug hole","Croquet Lawn"
@@ -18431,7 +18431,7 @@ Routine 2b3a8, 0 locals
 2b3a9:  43 c3 00 80 05          JG              Gb3,#00 [TRUE] 2b3b1
 2b3ae:  0d c3 04                STORE           Gb3,#04
 2b3b1:  f9 1b ac f0 01 c3       CALL_VN         2b3c0 (#01,Gb3)
-2b3b7:  b0                      RTRUE           
+2b3b7:  b0                      RTRUE
 
 Routine 2b3b8, 0 locals
     Action routine for:
@@ -18440,7 +18440,7 @@ Routine 2b3b8, 0 locals
         "pace TEXT [parse 5]"
 
 2b3b9:  f9 2b ac f0 c2 c3       CALL_VN         2b3c0 (Gb2,Gb3)
-2b3bf:  b0                      RTRUE           
+2b3bf:  b0                      RTRUE
 
 Routine 2b3c0, 6 locals
 
@@ -18450,12 +18450,12 @@ Routine 2b3c0, 6 locals
 2b3d0:  0d ac 00                STORE           G9c,#00
 2b3d3:  0d ad 00                STORE           G9d,#00
 2b3d6:  da 1f 36 0d 29          CALL_2N         d834 (#29)
-2b3db:  b0                      RTRUE           
+2b3db:  b0                      RTRUE
 2b3dc:  c1 8f 02 ff fe 00 0e    JE              L01,#fffe [FALSE] 2b3ef
 2b3e3:  2d ac ae                STORE           G9c,G9e
 2b3e6:  2d ad af                STORE           G9d,G9f
 2b3e9:  da 1f 36 0d 29          CALL_2N         d834 (#29)
-2b3ee:  b0                      RTRUE           
+2b3ee:  b0                      RTRUE
 2b3ef:  c1 8f 11 01 42 80 1d    JE              G01,#0142 [TRUE] 2b411
 2b3f6:  b3 ...                  PRINT_RET       "You pace up and down,
 Holmes-fashion."
@@ -18501,7 +18501,7 @@ the lawn."
 2b4ea:  2d ac 05                STORE           G9c,L04
 2b4ed:  2d ad 06                STORE           G9d,L05
 2b4f0:  da 1f 36 0d 29          CALL_2N         d834 (#29)
-2b4f5:  b0                      RTRUE           
+2b4f5:  b0                      RTRUE
 
 Routine 2b4f8, 0 locals
     Action routine for:
@@ -18520,7 +18520,7 @@ mischievous-looking monkey, which wriggles as it comes alive!"
 2b597:  cb 1f 01 a6 08          SET_ATTR        "model of an animal so ugly you
 can't bear to look at it",#08
 2b59c:  8f 52 41                CALL_1N         14904
-2b59f:  b0                      RTRUE           
+2b59f:  b0                      RTRUE
 2b5a0:  d9 2f 52 38 30 00       CALL_2S         148e0 (G20) -> -(SP)
 2b5a6:  41 00 01 00 27          JE              (SP)+,#01 [FALSE] 2b5d0
 2b5ab:  b2 ...                  PRINT           "Curiously, "
@@ -18540,7 +18540,7 @@ Routine 2b5f0, 0 locals
 2b5f8:  b3 ...                  PRINT_RET       "Not really a suitable
 implement."
 2b60f:  8f ad 85                CALL_1N         2b614
-2b612:  b0                      RTRUE           
+2b612:  b0                      RTRUE
 
 Routine 2b614, 0 locals
     Action routine for:
@@ -18550,7 +18550,7 @@ Routine 2b614, 0 locals
 2b615:  c6 2f 01 2a 19 80 1b    JIN             "spade",G09 [TRUE] 2b635
 2b61c:  b3 ...                  PRINT_RET       "You have nothing really
 suitable to hand."
-2b635:  c1 83 11 01 24 01 36 00 1f 
+2b635:  c1 83 11 01 24 01 36 00 1f
                                JE              G01,#0124,#0136 [FALSE] 2b65b
 2b63e:  b3 ...                  PRINT_RET       "You succeed only in turning
 the earth further."
@@ -18625,7 +18625,7 @@ Routine 2b814, 0 locals
 2b846:  89 01 46                REMOVE_OBJ      "dug hole"
 2b849:  b3 ...                  PRINT_RET       "You fill in the hole,
 restoring the turf."
-2b860:  c1 90 11 a8 01 14 01 51 80 07 
+2b860:  c1 90 11 a8 01 14 01 51 80 07
                                JE              G01,#a8,#0114,#0151 [TRUE] 2b86f
 2b86a:  41 11 da 00 55          JE              G01,#da [FALSE] 2b8c2
 2b86f:  b3 ...                  PRINT_RET       "Don't go carting water about,
@@ -18663,7 +18663,7 @@ Routine 2b9a0, 0 locals
         "rip down NOUN"
 
 2b9a1:  da 1f 36 0d 72          CALL_2N         d834 (#72)
-2b9a6:  b0                      RTRUE           
+2b9a6:  b0                      RTRUE
 
 Routine 2b9a8, 0 locals
     Action routine for:
@@ -18770,7 +18770,7 @@ explodes with cataclysmic violence, burying everything nearby in rubble!"
 2bc63:  da 1f 9d bb 06          CALL_2N         276ec (#06)
 2bc68:  88 35 fc 00             CALL_1S         d7f0 -> -(SP)
 2bc6c:  41 00 01 00 03          JE              (SP)+,#01 [FALSE] 2bc72
-2bc71:  b0                      RTRUE           
+2bc71:  b0                      RTRUE
 2bc72:  b3 ...                  PRINT_RET       "The rod charges with etherial
 power, drawn up from the earth through ley lines..."
 
@@ -18790,7 +18790,7 @@ Routine 2bcb8, 0 locals
 2bcbe:  c6 2f 01 ea 11 00 06    JIN             "adamantine knight",G01 [FALSE]
 2bcc9
 2bcc5:  8f 8c 16                CALL_1N         23058
-2bcc8:  b1                      RFALSE          
+2bcc8:  b1                      RFALSE
 2bcc9:  4a 30 1c 00 15          TEST_ATTR       G20,#1c [FALSE] 2bce1
 2bcce:  b3 ...                  PRINT_RET       "Please point it at something."
 2bce1:  b3 ...                  PRINT_RET       "A useless gesture."
@@ -18814,7 +18814,7 @@ something you're holding."
 2bd63:  b3 ...                  PRINT_RET       "** No rod routine **"
 2bd7a:  4c 30 26                CLEAR_ATTR      G20,#26
 2bd7d:  e0 bf 01 ff             CALL_VS         L00 -> Gef
-2bd81:  b0                      RTRUE           
+2bd81:  b0                      RTRUE
 
 Routine 2bd84, 0 locals
     Action routine for:
@@ -18863,7 +18863,7 @@ Routine 2bea8, 1 local
 2beac:  2d 30 31                STORE           G20,G21
 2beaf:  2d 31 01                STORE           G21,L00
 2beb2:  8f af 73                CALL_1N         2bdcc
-2beb5:  b0                      RTRUE           
+2beb5:  b0                      RTRUE
 
 Routine 2beb8, 0 locals
     Action routine for:
@@ -18895,7 +18895,7 @@ swinging, back and forth, spinning the light. "
 hypnotised most of the time anyway, succumbs easily."
 2bfb2:  61 30 19 00 08          JE              G20,G09 [FALSE] 2bfbd
 2bfb7:  da 1f 36 0d 49          CALL_2N         d834 (#49)
-2bfbc:  b0                      RTRUE           
+2bfbc:  b0                      RTRUE
 2bfbd:  b2 ...                  PRINT           "But "
 2bfc2:  da 2f 38 4e 30          CALL_2N         e138 (G20)
 2bfc7:  b3 ...                  PRINT_RET       " seems wilful enough to resist
@@ -18910,7 +18910,7 @@ Routine 2bfe4, 0 locals
 [TRUE] 2c000
 2bff3:  b3 ...                  PRINT_RET       "Nothing happens."
 2c000:  8f 88 ef                CALL_1N         223bc
-2c003:  b0                      RTRUE           
+2c003:  b0                      RTRUE
 
 Routine 2c004, 0 locals
     Action routine for:
@@ -18936,7 +18936,7 @@ somewhere, which whistles past you until your eyes are blurred and watery. When
 you look around, you find that you are moored once again...
 "
 2c0c1:  da 1f 36 0d 29          CALL_2N         d834 (#29)
-2c0c6:  b0                      RTRUE           
+2c0c6:  b0                      RTRUE
 2c0c7:  ca 1f 01 91 08 00 23    TEST_ATTR       "skiff",#08 [FALSE] 2c0ef
 2c0ce:  b3 ...                  PRINT_RET       "That seems to be happening
 whether you like it or not."
@@ -18947,7 +18947,7 @@ whether you like it or not."
 breeze propels your skiff...
 "
 2c122:  da 1f 36 0d 29          CALL_2N         d834 (#29)
-2c127:  b0                      RTRUE           
+2c127:  b0                      RTRUE
 
 Routine 2c128, 0 locals
     Action routine for:
@@ -18991,7 +18991,7 @@ Routine 2c1a4, 0 locals
 2c1aa:  b3 ...                  PRINT_RET       "The silver plaque is extremely
 strong, and resists all attempts to mark it."
 2c1d9:  8f b0 65                CALL_1N         2c194
-2c1dc:  b0                      RTRUE           
+2c1dc:  b0                      RTRUE
 
 Routine 2c1e0, 0 locals
     Action routine for:
@@ -19006,10 +19006,10 @@ Routine 2c1fc, 0 locals
 
 2c1fd:  41 11 2a 00 09          JE              G01,#2a [FALSE] 2c209
 2c202:  f9 17 36 0d 15 2c       CALL_VN         d834 (#15,#2c)
-2c208:  b0                      RTRUE           
+2c208:  b0                      RTRUE
 2c209:  41 11 60 00 09          JE              G01,#60 [FALSE] 2c215
 2c20e:  f9 17 36 0d 15 61       CALL_VN         d834 (#15,#61)
-2c214:  b0                      RTRUE           
+2c214:  b0                      RTRUE
 2c215:  b3 ...                  PRINT_RET       "You lie down on the floor for
 a while and then get up again, feeling foolish."
 
@@ -19038,7 +19038,7 @@ Routine 2c2c8, 0 locals
         "close NOUN with NOUN"
 
 2c2c9:  f9 1a 36 0d 1b 31 30    CALL_VN         d834 (#1b,G21,G20)
-2c2d0:  b0                      RTRUE           
+2c2d0:  b0                      RTRUE
 
 Routine 2c2d4, 0 locals
     Action routine for:
@@ -19046,7 +19046,7 @@ Routine 2c2d4, 0 locals
         "stack NOUN with HELD"
 
 2c2d5:  f9 1b 36 0d 1c 30       CALL_VN         d834 (#1c,G20)
-2c2db:  b0                      RTRUE           
+2c2db:  b0                      RTRUE
 
 Routine 2c2dc, 0 locals
     Action routine for:
@@ -19062,7 +19062,7 @@ things."
 so you use bare hands.)
 "
 2c326:  f9 1b 36 0d 3f 30       CALL_VN         d834 (#3f,G20)
-2c32c:  b0                      RTRUE           
+2c32c:  b0                      RTRUE
 
 Routine 2c330, 0 locals
     Action routine for:
@@ -19076,8 +19076,8 @@ Routine 2c34c, 0 locals
         "go NOUN [parse 0]"
 
 2c34d:  46 30 01 00 03          JIN             G20,"compass" [FALSE] 2c353
-2c352:  b0                      RTRUE           
-2c353:  b1                      RFALSE          
+2c352:  b0                      RTRUE
+2c353:  b1                      RFALSE
 
 Routine 2c354, 1 local
     Parsing routine for:
@@ -19117,7 +19117,7 @@ Routine 2c3a8, 1 local
 
 2c3a9:  2d 3b 42                STORE           G2b,G32
 2c3ac:  88 33 d0 01             CALL_1S         cf40 -> L00
-2c3b0:  c1 83 01 87 8a ff ff 3f f5 
+2c3b0:  c1 83 01 87 8a ff ff 3f f5
                                JE              L00,"in",#ffff [FALSE] 2c3ac
 2c3b9:  c1 8f 01 ff ff 00 05    JE              L00,#ffff [FALSE] 2c3c3
 2c3c0:  8b ff ff                RET             #ffff
@@ -19129,49 +19129,49 @@ Routine 2c3a8, 1 local
 
 Routine 2c3d4, 0 locals
 
-2c3d5:  b1                      RFALSE          
+2c3d5:  b1                      RFALSE
 
 Routine 2c3d8, 0 locals
 
-2c3d9:  b1                      RFALSE          
+2c3d9:  b1                      RFALSE
 
 Routine 2c3dc, 0 locals
 
-2c3dd:  b1                      RFALSE          
+2c3dd:  b1                      RFALSE
 
 Routine 2c3e0, 0 locals
 
-2c3e1:  b1                      RFALSE          
+2c3e1:  b1                      RFALSE
 
 Routine 2c3e4, 0 locals
 
-2c3e5:  b1                      RFALSE          
+2c3e5:  b1                      RFALSE
 
 Routine 2c3e8, 1 local
 
 2c3e9:  0d 01 00                STORE           L00,#00
-2c3ec:  b1                      RFALSE          
+2c3ec:  b1                      RFALSE
 
 Routine 2c3f0, 1 local
 
 2c3f1:  0d 01 00                STORE           L00,#00
-2c3f4:  b1                      RFALSE          
+2c3f4:  b1                      RFALSE
 
 Routine 2c3f8, 1 local
 
 2c3f9:  0d 01 00                STORE           L00,#00
-2c3fc:  b1                      RFALSE          
+2c3fc:  b1                      RFALSE
 
 Routine 2c400, 1 local
 
 2c401:  0d 01 00                STORE           L00,#00
-2c404:  b1                      RFALSE          
+2c404:  b1                      RFALSE
 
 Routine 2c408, 2 locals
 
 2c409:  0d 01 00                STORE           L00,#00
 2c40c:  0d 02 00                STORE           L01,#00
-2c40f:  b1                      RFALSE          
+2c40f:  b1                      RFALSE
 
 Routine 2c410, 0 locals
 
@@ -19183,7 +19183,7 @@ Routine 2c414, 1 local
 
 2c415:  2d 3b 42                STORE           G2b,G32
 2c418:  88 33 d0 01             CALL_1S         cf40 -> L00
-2c41c:  c1 83 01 8f 10 ff ff 3f f5 
+2c41c:  c1 83 01 8f 10 ff ff 3f f5
                                JE              L00,"on",#ffff [FALSE] 2c418
 2c425:  c1 8f 01 ff ff 00 05    JE              L00,#ffff [FALSE] 2c42f
 2c42c:  8b ff ff                RET             #ffff
@@ -19201,32 +19201,32 @@ Routine 2c440, 1 local
 
 Routine 2c44c, 1 local
 
-2c44d:  c1 80 01 8f b2 9b 67 9b ca 00 04 
+2c44d:  c1 80 01 8f b2 9b 67 9b ca 00 04
                                JE              L00,"pace","step","stride"
 [FALSE] 2c45a
 2c458:  9b 01                   RET             #01
-2c45a:  c1 80 01 8f bb 9b 70 9b d3 00 04 
+2c45a:  c1 80 01 8f bb 9b 70 9b d3 00 04
                                JE              L00,"paces","steps","strides"
 [FALSE] 2c467
 2c465:  9b 02                   RET             #02
-2c467:  b1                      RFALSE          
+2c467:  b1                      RFALSE
 
 Routine 2c468, 3 locals
 
 2c469:  2d 03 42                STORE           L02,G32
 2c46c:  88 b1 10 01             CALL_1S         2c440 -> L00
-2c470:  c1 83 01 78 e1 82 44 00 08 
+2c470:  c1 83 01 78 e1 82 44 00 08
                                JE              L00,"by","for" [FALSE] 2c47f
 2c479:  95 42                   INC             G32
 2c47b:  88 b1 10 01             CALL_1S         2c440 -> L00
-2c47f:  c1 83 01 73 b6 98 cd 00 1b 
+2c47f:  c1 83 01 73 b6 98 cd 00 1b
                                JE              L00,"a","single" [FALSE] 2c4a1
 2c488:  95 42                   INC             G32
 2c48a:  88 b1 10 01             CALL_1S         2c440 -> L00
 2c48e:  d9 2f b1 13 01 00       CALL_2S         2c44c (L00) -> -(SP)
 2c494:  41 00 01 80 06          JE              (SP)+,#01 [TRUE] 2c49d
 2c499:  2d 42 03                STORE           G32,L02
-2c49c:  b1                      RFALSE          
+2c49c:  b1                      RFALSE
 2c49d:  95 42                   INC             G32
 2c49f:  9b 01                   RET             #01
 2c4a1:  d9 2f b1 13 01 00       CALL_2S         2c44c (L00) -> -(SP)
@@ -19236,7 +19236,7 @@ Routine 2c468, 3 locals
 2c4b0:  d9 2f 33 e0 42 02       CALL_2S         cf80 (G32) -> L01
 2c4b6:  42 02 00 00 06          JL              L01,#00 [FALSE] 2c4bf
 2c4bb:  2d 42 03                STORE           G32,L02
-2c4be:  b1                      RFALSE          
+2c4be:  b1                      RFALSE
 2c4bf:  95 42                   INC             G32
 2c4c1:  88 b1 10 01             CALL_1S         2c440 -> L00
 2c4c5:  d9 2f b1 13 01 00       CALL_2S         2c44c (L00) -> -(SP)
@@ -19251,13 +19251,13 @@ Routine 2c468, 3 locals
 Routine 2c4ec, 5 locals
 
 2c4ed:  88 b1 10 01             CALL_1S         2c440 -> L00
-2c4f1:  c1 83 01 82 56 82 5f 00 06 
+2c4f1:  c1 83 01 82 56 82 5f 00 06
                                JE              L00,"forward","forwards" [FALSE]
 2c4fe
 2c4fa:  95 42                   INC             G32
 2c4fc:  ab c3                   RET             Gb3
-2c4fe:  c1 80 01 76 47 76 50 76 59 00 0b 
-                               JE             
+2c4fe:  c1 80 01 76 47 76 50 76 59 00 0b
+                               JE
 L00,"back","backward","backwards" [FALSE] 2c512
 2c509:  95 42                   INC             G32
 2c50b:  88 b1 10 01             CALL_1S         2c440 -> L00
@@ -19268,10 +19268,10 @@ L00,"back","backward","backwards" [FALSE] 2c512
 2c51f:  c1 8f 01 9d 56 00 08    JE              L00,"the" [FALSE] 2c52c
 2c526:  95 42                   INC             G32
 2c528:  88 b1 10 01             CALL_1S         2c440 -> L00
-2c52c:  c1 80 01 90 b7 8c 2e 7a 01 80 0d 
+2c52c:  c1 80 01 90 b7 8c 2e 7a 01 80 0d
                                JE              L00,"peg","middle","centre"
 [TRUE] 2c542
-2c537:  c1 80 01 86 d6 86 df 79 ef 00 07 
+2c537:  c1 80 01 86 d6 86 df 79 ef 00 07
                                JE              L00,"hoop","hoops","center"
 [FALSE] 2c547
 2c542:  95 42                   INC             G32
@@ -19391,12 +19391,12 @@ return.)
 
 "
 2c6e9:  ad 01                   PRINT_PADDR     L00
-2c6eb:  bb                      NEW_LINE        
-2c6ec:  bb                      NEW_LINE        
+2c6eb:  bb                      NEW_LINE
+2c6ec:  bb                      NEW_LINE
 2c6ed:  f6 57 01 00 00 03       READ_CHAR       #01,#00,0 -> L02
 2c6f3:  c1 97 03 48 68 00 03    JE              L02,#48,#68 [FALSE] 2c6fb
-2c6fa:  b1                      RFALSE          
-2c6fb:  b0                      RTRUE           
+2c6fa:  b1                      RFALSE
+2c6fb:  b0                      RTRUE
 
 Routine 2c6fc, 0 locals
 
@@ -19433,14 +19433,14 @@ exactly opposite views, who brought out a 6000-line epic on the Argonauts,
 whereupon the quarrel grew so personal and bitter that Apollonius was driven
 into retirement."
 2c93c:  41 81 03 00 9b          JE              G71,#03 [FALSE] 2c9da
-2c941:  b3 ...                  PRINT_RET       "Sleep cold at someone's 
-Door as, shivering, 
-I lie tonight at 
-Yours. The neighbours weep 
-To see me here, but 
-Who will weep for you, 
-Crouched on a doorstep 
-When the grey hairs come? 
+2c941:  b3 ...                  PRINT_RET       "Sleep cold at someone's
+Door as, shivering,
+I lie tonight at
+Yours. The neighbours weep
+To see me here, but
+Who will weep for you,
+Crouched on a doorstep
+When the grey hairs come?
 
  -- translation by Edward Lucie-Smith"
 2c9da:  41 81 04 01 0c          JE              G71,#04 [FALSE] 2cae9
@@ -19501,7 +19501,7 @@ When the grey hairs come?
 2cadc:  b3 ...                  PRINT_RET       "Swollen Admire"
 2cae9:  41 81 05 00 f1          JE              G71,#05 [FALSE] 2cbdd
 2caee:  b3 ...                  PRINT_RET       "To those who wrote to suggest
-"wistaria" be spelt "wisteria": 
+"wistaria" be spelt "wisteria":
 The genus is named after the American anatomist Caspar Wistar (1761-1818), so
 "wistaria" is correct, but the mistake was introduced by Thomas Nuttall, who
 originally christened the family. Ironically, American dictionaries side with
@@ -19528,22 +19528,22 @@ the afternoon have, since June 1993, been repealed."
 2cc8c:  41 81 07 01 51          JE              G71,#07 [FALSE] 2cde0
 2cc91:  b3 ...                  PRINT_RET       "There are two ancient
 languages: a hieroglyphic and a demotic script, the important clue being the
-Rosetta stone to compare the two. 
+Rosetta stone to compare the two.
 
 The hieroglyphics are loosely based on the beautiful system devised by Michael
 Berlyn and Patricia Fogleman for their excellent game, "Infidel", though I have
-taken care not to reveal any of their answers. 
+taken care not to reveal any of their answers.
 
 The demotic script (written right to left) is my own invention, but the numbers
 are Etruscan. (And are just about the only Etruscan words deciphered - they
 were found on a gambler's die.)"
-2cde0:  b0                      RTRUE           
+2cde0:  b0                      RTRUE
 
 Routine 2cde4, 0 locals
 
-2cde5:  f9 00 36 5f fa 7d b3 7c b1 bf 
+2cde5:  f9 00 36 5f fa 7d b3 7c b1 bf
                                CALL_VN         d97c (S1288,#b37c,#b1bf)
-2cdef:  b0                      RTRUE           
+2cdef:  b0                      RTRUE
 
 Routine 2cdf0, 0 locals
 
@@ -19572,7 +19572,7 @@ Routine 2cdf0, 0 locals
 2ce4e:  41 81 07 00 0a          JE              G71,#07 [FALSE] 2ce5b
 2ce53:  cd 4f 80 fa be          STORE           G70,S1296
 2ce58:  0d 7f 0a                STORE           G6f,#0a
-2ce5b:  b0                      RTRUE           
+2ce5b:  b0                      RTRUE
 
 Routine 2ce5c, 0 locals
 
@@ -19649,7 +19649,7 @@ beam's effects, looking into the ball shows one of twelve little scenes,
 corresponding to the twelve main areas of the game."
 2d08b:  41 81 06 00 71          JE              G71,#06 [FALSE] 2d0ff
 2d090:  b3 ...                  PRINT_RET       "The angel and the demon bear a
-surprising resemblance to them. 
+surprising resemblance to them.
 
 Sadly, Donald Sutherland died a few days ago (as I write this). I'm slightly
 sorry now to have typecast him."
@@ -19693,13 +19693,13 @@ Dobbin (Doktor Stein's goat)."
 2d2a4:  b3 ...                  PRINT_RET       "Annoyance of the player: it's
 the biggest red herring in the game. It scores -50, the demon advises you to
 hang onto it at all times - and it was cursed."
-2d305:  b0                      RTRUE           
+2d305:  b0                      RTRUE
 
 Routine 2d308, 0 locals
 
-2d309:  f9 00 36 5f fb e5 b4 c5 b3 97 
+2d309:  f9 00 36 5f fb e5 b4 c5 b3 97
                                CALL_VN         d97c (S1323,#b4c5,#b397)
-2d313:  b0                      RTRUE           
+2d313:  b0                      RTRUE
 
 Routine 2d314, 0 locals
 
@@ -19737,7 +19737,7 @@ Routine 2d314, 0 locals
 2d399:  41 81 0a 00 0a          JE              G71,#0a [FALSE] 2d3a6
 2d39e:  cd 4f 80 fc 84          STORE           G70,S1334
 2d3a3:  0d 7f 17                STORE           G6f,#17
-2d3a6:  b0                      RTRUE           
+2d3a6:  b0                      RTRUE
 
 Routine 2d3a8, 0 locals
 
@@ -19751,9 +19751,9 @@ Routine 2d3a8, 0 locals
 
 Routine 2d3c0, 0 locals
 
-2d3c1:  f9 00 36 5f fc 8b b4 f3 b4 ea 
+2d3c1:  f9 00 36 5f fc 8b b4 f3 b4 ea
                                CALL_VN         d97c (S1335,#b4f3,#b4ea)
-2d3cb:  b0                      RTRUE           
+2d3cb:  b0                      RTRUE
 
 Routine 2d3cc, 0 locals
 
@@ -19767,7 +19767,7 @@ Routine 2d3cc, 0 locals
 2d3e9:  41 81 02 00 0a          JE              G71,#02 [FALSE] 2d3f6
 2d3ee:  cd 4f 80 fc 99          STORE           G70,S1338
 2d3f3:  0d 7f 08                STORE           G6f,#08
-2d3f6:  b0                      RTRUE           
+2d3f6:  b0                      RTRUE
 
 Routine 2d3f8, 1 local
 
@@ -19844,11 +19844,11 @@ to begin.]
 2d53d:  f6 57 01 00 00 01       READ_CHAR       #01,#00,0 -> L00
 2d543:  c1 95 01 20 0a 0d 3f f4 JE              L00,#20,#0a,#0d [FALSE] 2d53d
 2d54b:  ed 3f ff ff             ERASE_WINDOW    #ffff
-2d54f:  b0                      RTRUE           
+2d54f:  b0                      RTRUE
 
 Routine 2d550, 0 locals
 
-2d551:  b0                      RTRUE           
+2d551:  b0                      RTRUE
 
 Routine 2d554, 2 locals
 
@@ -19989,7 +19989,7 @@ Routine 2d554, 2 locals
 2d8b9:  c1 8f bf ff ff 80 0c    JE              Gaf,#ffff [TRUE] 2d8ca
 2d8c0:  da 2f 97 aa bf          CALL_2N         25ea8 (Gaf)
 2d8c5:  cd 4f bf ff ff          STORE           Gaf,#ffff
-2d8ca:  b0                      RTRUE           
+2d8ca:  b0                      RTRUE
 
 Routine 2d8cc, 8 locals
 
@@ -20053,7 +20053,7 @@ Routine 2d8cc, 8 locals
   "
 2d99d:  8c ff de                JUMP            2d97c
 2d9a0:  f3 7f 01                OUTPUT_STREAM   OUTPUT_ENABLE
-2d9a3:  b0                      RTRUE           
+2d9a3:  b0                      RTRUE
 
 [End of code at 2d9a4]
 
@@ -21987,7 +21987,7 @@ can get in there to retrieve it.""
 3c144: S974 ""Marvellous, marvellous contraption. Starts the moment you switch
 it on, and then nothing but solid gold classics all the way. You can really
 concentrate when that's playing.""
-3c1ac: S975 ""What, the blocked-up old fireplace that doesn't lead anywhere? 
+3c1ac: S975 ""What, the blocked-up old fireplace that doesn't lead anywhere?
 You need to be carrying plenty of equipment to get down it - don't worry if
 it's dark at the bottom, after all there's nothing you can do about that.""
 3c234: S976 ""The sandstone recess is probably impassible. Better try only when
@@ -22045,7 +22045,7 @@ will.""
 inch.""
 3c884: S1005 ""Just think what that would do to a decent lawn!  Oh, it makes me
 go cold all over.""
-3c8bc: S1006 ""Whatever is a croquet lawn for, if not to play croquet? 
+3c8bc: S1006 ""Whatever is a croquet lawn for, if not to play croquet?
 Although, now I think about it, there is something else down there.""
 3c910: S1007 ""Ah yes, a code word understood by certain of Alexander the
 Great's slaves. But you'd have to be in the right place at the right time.""
