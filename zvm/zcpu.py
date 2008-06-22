@@ -353,7 +353,7 @@ class ZCpu(object):
         if (offset >= 2**15):
             offset = - 2**16 + offset
         log("Jump unconditionally to offset %d" % offset)
-        self._opdecoder.program_counter += (offset - 2)
+        self._opdecoder.program_counter += offset
 
 
     def op_print_paddr(self, string_paddr):
