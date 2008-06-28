@@ -34,6 +34,9 @@ class QuetzalError(Exception):
   "General exception for Quetzal classes."
   pass
 
+class QuetzalMalformedChunk(QuetzalError):
+  "Malformed chunk detected."
+
 class QuetzalNoSuchSavefile(QuetzalError):
   "Cannot locate save-game file."
 
@@ -76,17 +79,23 @@ class QuetzalParser(object):
       raise QuetzalIllegalChunkOrder
 
     bytes = [ord(x) for x in data]
+    if len(bytes) != 13:
+      raise QuetzalMalformedChunk
+
     chunk_release = (ord(data[0]) << 8) + ord(data[1])
     chunk_serial = data[2:8]
     chunk_checksum = (ord(data[8]) << 8) + ord(data[9])
-    ### TODO!!! see section 5.8.  Wha?  Huh?  Read 3 bytes of Program Counter?
+    chunk_pc = (ord(data[10]) << 16) + (ord(data[11]) << 8) + ord(data[12])
+    self._zmachine._opdecoder.program_counter = chunk_pc
 
     log("  Found release number %d" % chunk_release)
     log("  Found serial number %d" % int(chunk_serial))
     log("  Found checksum %d" % chunk_checksum)
+    log("  Initial program counter value is %d" % chunk_pc)
     self._last_loaded_metadata["release number"] = chunk_release
     self._last_loaded_metadata["serial number"] = chunk_serial
     self._last_loaded_metadata["checksum"] = chunk_checksum
+    self._last_loaded_metadata["program counter"] = chunk_pc
 
     # Verify the save-file params against the current z-story header
     mem = self._zmachine._mem
@@ -96,12 +105,7 @@ class QuetzalParser(object):
     if serial_bytes != mem[0x12:0x18]:
       raise QuetzalMismatchedFile
     mem_checksum = mem.read_word(0x1C)
-    if mem_checksum == 0:
-      ### Some old infocom games don't have checksums stored in header.
-      ### TODO: add checksum routine to ZMemory (see 'verify' opcode)
-      ### and call it to compute checksum manually.
-      pass
-    if mem_checksum != chunk_checksum:
+    if mem_checksum != 0 and (mem_checksum != chunk_checksum):
       raise QuetzalMismatchedFile
     log("  Quetzal file correctly verifies against original story.")
 
@@ -372,7 +376,14 @@ class QuetzalWriter(object):
     """Return a chunk of type IFhd, containing metadata about the
     zmachine and story being played."""
 
-    ### TODO:  write this
+    ### TODO: write this.  payload must be *exactly* 13 bytes, even if
+    ### it means padding the program counter.
+
+    ### Some old infocom games don't have checksums stored in header.
+    ### If not, generate it from the *original* story file memory
+    ### image and put it into this chunk.  See ZMemory.generate_checksum().
+    pass
+
     return "0"
 
 

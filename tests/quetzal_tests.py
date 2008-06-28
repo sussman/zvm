@@ -33,4 +33,5 @@ class QuetzalParserTest(TestCase):
          'checksum': 19942, \
          'release number': 16, \
          'serial number': '951024', \
+         'program counter': 176149, \
          'CMem': 437, 'Stks': 40, 'IFhd': 13})

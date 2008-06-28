@@ -252,3 +252,16 @@ class ZMemory(object):
     bf = bitfield.BitField(value)
     self._memory[actual_address] = bf[8:15]
     self._memory[actual_address + 1] = bf[0:7]
+
+  # The 'verify' opcode and the QueztalWriter class both need to have
+  # a checksum of memory generated.
+
+  def generate_checksum(self):
+    """Return a checksum value which represents all the bytes of
+    memory added from $0040 upwards, modulo $10000."""
+    count = 0x40
+    total = 0
+    while count < self._total_size:
+      total += self._memory[count]
+      count += 1
+    return (total % 0x10000)
