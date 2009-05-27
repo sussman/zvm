@@ -29,7 +29,7 @@ class ZStackPopError(ZStackError):
   pass
 
 # Helper class used by ZStackManager; a 'routine' object which
-# includes its own privae stack of data.
+# includes its own private stack of data.
 class ZRoutine(object):
 
   def __init__(self, start_addr, return_addr, zmem, args,

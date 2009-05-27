@@ -9,10 +9,10 @@
 # Constants for output streams.  These are human-readable names for
 # the stream ID numbers as described in sections 7.1.1 and 7.1.2
 # of the Z-Machine Standards Document.
-OUTPUT_SCREEN = 1
-OUTPUT_TRANSCRIPT = 2
-OUTPUT_MEMORY = 3
-OUTPUT_PLAYER_INPUT = 4
+OUTPUT_SCREEN = 1        # spews text to the the screen
+OUTPUT_TRANSCRIPT = 2    # contains everything player typed, plus our responses
+OUTPUT_MEMORY = 3        # if the z-machine wants to write to memory
+OUTPUT_PLAYER_INPUT = 4  # contains *only* the player's typed commands
 
 # Constants for input streams.  These are human-readable names for the
 # stream ID numbers as described in section 10.2 of the Z-Machine
@@ -51,7 +51,7 @@ class ZOutputStreamManager(object):
     streams."""
 
     # TODO: Implement section 7.1.2.2 of the Z-Machine Standards
-    # Document, so that while stream 3 it is selected, no text is
+    # Document, so that while stream 3 is selected, no text is
     # sent to any other output streams which are selected. (However,
     # they remain selected.).
 

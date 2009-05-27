@@ -417,12 +417,12 @@ class ZCpu(object):
     ## 0OP opcodes (opcodes 176-191)
 
     def op_rtrue(self, *args):
-        """TODO: Write docstring here."""
-        raise ZCpuNotImplemented
+        """Make the current routine return true (1)."""
+        self._stackmanager.finish_routine(1)
 
     def op_rfalse(self, *args):
-        """TODO: Write docstring here."""
-        raise ZCpuNotImplemented
+        """Make the current routine return false (0)."""
+        self._stackmanager.finish_routine(0)
 
     def op_print(self):
         """Print the embedded ZString."""
