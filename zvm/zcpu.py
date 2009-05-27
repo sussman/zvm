@@ -30,12 +30,14 @@ class ZCpuNotImplemented(ZCpuError):
      "Opcode not yet implemented"
 
 class ZCpu(object):
-    def __init__(self, zmem, zopdecoder, zstack, zobjects, zstring, zui):
+    def __init__(self, zmem, zopdecoder, zstack, zobjects, zstring,
+                 zstreammanager, zui):
         self._memory = zmem
         self._opdecoder = zopdecoder
         self._stackmanager = zstack
         self._objects = zobjects
         self._string = zstring
+        self._streammanager = zstreammanager
         self._ui = zui
 
     def _get_handler(self, opcode_class, opcode_number):
@@ -77,17 +79,18 @@ class ZCpu(object):
 
     def _make_signed(self, a):
         """Turn the given 16-bit value into a signed integer."""
+        assert a < 2**16
         # This is a little ugly.
         bf = bitfield.BitField(a)
         if bf[15]:
-            a = bf[0:15] - 65536
+            a = a - 2**16
         return a
 
     def _unmake_signed(self, a):
         """Turn the given signed integer into a 16-bit value ready for
         storage."""
         if a < 0:
-            a = 65536 + a
+            a = 2**16 + a
         return a
 
     def _read_variable(self, addr):
@@ -618,13 +621,21 @@ class ZCpu(object):
 
         self._ui.screen.buffer_mode = bool(flag)
 
-    def op_output_stream(self, *args):
-        """TODO: Write docstring here."""
-        raise ZCpuNotImplemented
+    def op_output_stream(self, stream_num):
+        """Enable or disable the given stream.
 
-    def op_output_stream_v5(self, *args):
-        """TODO: Write docstring here."""
-        raise ZCpuNotImplemented
+        This is the v3/4 implementation of the opcode, which just
+        delegates to the backwards compatible v5 implementation.
+        """
+        self.op_output_stream_v5(stream_num)
+
+    def op_output_stream_v5(self, stream_num, table=None):
+        """Enable or disable the given output stream."""
+        stream_num = self._make_signed(stream_num)
+        if stream_num < 0:
+            self._streammanager.output.unselect(-stream_num)
+        else:
+            self._streammanager.output.select(stream_num)
 
     def op_input_stream(self, *args):
         """TODO: Write docstring here."""

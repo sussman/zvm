@@ -11,6 +11,7 @@ from zopdecoder import ZOpDecoder
 from zstackmanager import ZStackManager
 from zobjectparser import ZObjectParser
 from zcpu import ZCpu
+from zstreammanager import ZStreamManager
 import zlogging
 
 class ZMachineError(Exception):
@@ -29,8 +30,10 @@ class ZMachine(object):
     self._opdecoder = ZOpDecoder(self._mem, self._stackmanager)
     self._opdecoder.program_counter = self._mem.read_word(0x06)
     self._ui = ui
-    self._cpu = ZCpu(self._mem, self._opdecoder, self._stackmanager,\
-                     self._objectparser, self._stringfactory, self._ui)
+    self._stream_manager = ZStreamManager(self._mem, self._ui)
+    self._cpu = ZCpu(self._mem, self._opdecoder, self._stackmanager,
+                     self._objectparser, self._stringfactory,
+                     self._stream_manager, self._ui)
 
   #--------- Public APIs -----------
 

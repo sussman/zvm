@@ -90,3 +90,8 @@ class ZInputStreamManager(object):
     stream."""
 
     return self._streams[self._selectedStream]
+
+class ZStreamManager(object):
+  def __init__(self, zmem, zui):
+    self.input = ZInputStreamManager(zui)
+    self.output = ZOutputStreamManager(zmem, zui)
