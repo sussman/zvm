@@ -24,7 +24,7 @@ class ZsciiTranslatorTests(TestCase):
         various ranges of the output spectrum."""
         z = zstring.ZsciiTranslator(make_zmemory())
         self.failUnlessEqual(z.ztou(97), u"a")
-        self.failUnlessEqual(z.ztou(13), u"\n")
+        self.failUnlessEqual(z.ztou(10), u"\n")
         self.failUnlessEqual(z.ztou(168), u"\xcf")
         self.failUnlessRaises(IndexError, z.ztou, z.CUR_UP)
 
