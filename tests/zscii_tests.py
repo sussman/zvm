@@ -33,7 +33,7 @@ class ZsciiTranslatorTests(TestCase):
         various ranges of the input spectrum."""
         z = zstring.ZsciiTranslator(make_zmemory())
         self.failUnlessEqual(z.utoz(u"a"), 97)
-        self.failUnlessEqual(z.utoz(u"\n"), 13)
+        self.failUnlessEqual(z.utoz(u"\n"), 10)
         self.failUnlessEqual(z.utoz(u"\xcf"), 168)
         self.failUnlessEqual(z.utoz(z.CUR_UP), 129)
         self.failUnlessEqual(z.utoz(z.MOUSE_CLICK), 254)
