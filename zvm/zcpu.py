@@ -652,9 +652,22 @@ class ZCpu(object):
         """TODO: Write docstring here."""
         raise ZCpuNotImplemented
 
-    def op_read_char(self, *args):
-        """TODO: Write docstring here."""
-        raise ZCpuNotImplemented
+    def op_read_char(self, unused, time, input_routine):
+        """Read a single character from input stream 0 (keyboard).
+
+        Optionally, call a routine periodically to decide whether or
+        not to interrupt user input.
+        """
+        # According to the spec, the first argument is always one, and
+        # exists only for Historical Reasons(tm)
+        assert unused == 1
+
+        # TODO: shiny timer stuff not implemented yet.
+        if time != 0 or input_routine != 0:
+            raise ZCpuNotImplemented
+
+        char = self._ui.keyboard_input.read_char()
+        self._write_result(char)
 
     def op_scan_table(self, *args):
         """TODO: Write docstring here."""

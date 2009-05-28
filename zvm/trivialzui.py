@@ -182,7 +182,7 @@ class TrivialKeyboardInputStream(zstream.ZInputStream):
                 timed_input_interval=0):
     result = _read_char()
     self.__screen.on_input_occurred()
-    return result
+    return ord(result)
 
 class TrivialFilesystem(zfilesystem.ZFilesystem):
   def __report_io_error(self, exception):
