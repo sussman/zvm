@@ -341,13 +341,15 @@ class ZCpu(object):
         """TODO: Write docstring here."""
         raise ZCpuNotImplemented
 
-    def op_get_child(self, *args):
-        """TODO: Write docstring here."""
-        raise ZCpuNotImplemented
+    def op_get_child(self, object_num):
+        """Get and store the first child of the given object."""
+        self._write_result(
+            self._objects.get_child(object_num))
 
-    def op_get_parent(self, *args):
-        """TODO: Write docstring here."""
-        raise ZCpuNotImplemented
+    def op_get_parent(self, object_num):
+        """Get and store the parent of the given object."""
+        self._write_result(
+            self._objects.get_parent(object_num))
 
     def op_get_prop_len(self, *args):
         """TODO: Write docstring here."""
