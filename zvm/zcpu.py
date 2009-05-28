@@ -314,7 +314,7 @@ class ZCpu(object):
         raise ZCpuNotImplemented
 
     def op_call_2s(self, routine_addr, arg1):
-        """TODO: Write docstring here."""
+        """Call routine(arg1) and store the result."""
         self._call(routine_addr, [arg1], True)
 
     def op_call_2n(self, routine_addr, arg1):
@@ -573,9 +573,9 @@ class ZCpu(object):
         self._write_result(result)
 
 
-    def op_push(self, *args):
-        """TODO: Write docstring here."""
-        raise ZCpuNotImplemented
+    def op_push(self, value):
+        """Push a value onto the current routine's game stack."""
+        self._stackmanager.push_stack(value)
 
     def op_pull(self, *args):
         """TODO: Write docstring here."""

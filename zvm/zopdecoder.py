@@ -112,7 +112,7 @@ class ZOpDecoder(object):
       log("Variable opcode of VAR kind")
       opcode_type = OPCODE_VAR
     else:
-      log("Variable opcode of actually of 2OP kind")
+      log("Variable opcode of 2OP kind")
       opcode_type = OPCODE_2OP
 
     opcode_num = opcode[0:5]
@@ -121,7 +121,7 @@ class ZOpDecoder(object):
     operands = self._parse_operands_byte()
 
     # Special case: opcodes 12 and 26 have a second operands byte.
-    if opcode_num == 0xC or opcode_num == 0x1A:
+    if opcode[0:7] == 0xC or opcode[0:7] == 0x1A:
       log("Opcode has second operand byte")
       operands += self._parse_operands_byte()
 
