@@ -262,9 +262,12 @@ class ZCpu(object):
         val = self._memory[base+offset]
         self._write_result(val)
 
-    def op_get_prop(self, *args):
-        """TODO: Write docstring here."""
-        raise ZCpuNotImplemented
+    def op_get_prop(self, objectnum, propnum):
+        """Store in the given result an object's property value
+        (either a byte or word)."""
+        self._objects.describe_object(objectnum)
+        val = self._objects.get_prop(objectnum, propnum)
+        self._write_result(val)
 
     def op_get_prop_addr(self, *args):
         """TODO: Write docstring here."""
@@ -418,11 +421,13 @@ class ZCpu(object):
 
     def op_rtrue(self, *args):
         """Make the current routine return true (1)."""
-        self._stackmanager.finish_routine(1)
+        pc = self._stackmanager.finish_routine(1)
+        self._opdecoder.program_counter = pc
 
     def op_rfalse(self, *args):
         """Make the current routine return false (0)."""
-        self._stackmanager.finish_routine(0)
+        pc = self._stackmanager.finish_routine(0)
+        self._opdecoder.program_counter = pc
 
     def op_print(self):
         """Print the embedded ZString."""

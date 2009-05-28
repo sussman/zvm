@@ -35,6 +35,9 @@ class ZObjectIllegalVersion(ZObjectError):
   "Unsupported z-machine version."
   pass
 
+class ZObjectIllegalPropLength(ZObjectError):
+  "Illegal property length."
+  pass
 
 
 # The interpreter should only need exactly one instance of this class.
@@ -191,6 +194,18 @@ class ZObjectParser(object):
     return self._stringfactory.get(addr+1)
 
 
+  def get_prop(self, objectnum, propnum):
+    """Return either a byte or word value of property PROPNUM of
+    object OBJECTNUM."""
+    (addr, size) = self.get_prop_addr_len(objectnum, propnum)
+    if size == 1:
+      return self._memory[addr]
+    elif size == 2:
+      return self._memory.read_word(addr)
+    else:
+      raise ZObjectIllegalPropLength
+
+
   def get_prop_addr_len(self, objectnum, propnum):
     """Return address & length of value for property number PROPNUM of
     object number OBJECTNUM.  If object has no such property, then
@@ -288,6 +303,7 @@ class ZObjectParser(object):
 
     return proplist
 
+
   def set_property(self, objectnum, propnum, value):
     """Set a property on an object."""
     proplist = self.get_all_properties(objectnum)
@@ -301,6 +317,7 @@ class ZObjectParser(object):
       self._memory.write_word(addr, value)
     else:
       raise ZObjectIllegalPropertySet
+
 
   def describe_object(self, objectnum):
     """For debugging purposes, pretty-print everything known about
