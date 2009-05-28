@@ -184,11 +184,17 @@ class ZCpu(object):
     ##
 
     ## 2OP opcodes (opcodes 1-127 and 192-223)
-    def op_je(self, a, b=None):
-        """Branch if the first argument is equal to the second. Note
-        that the second operand may be absent, in which case there is
-        no jump."""
-        self._branch(b is not None and a == b)
+    def op_je(self, a, *others):
+        """Branch if the first argument is equal to any subsequent
+        arguments. Note that the second operand may be absent, in
+        which case there is no jump."""
+        for b in others:
+            if a == b:
+                self._branch(True)
+                return
+
+        # Fallthrough: No args were equal to a.
+        self._branch(False)
 
     def op_jl(self, a, b):
         """Branch if the first argument is less than the second."""
