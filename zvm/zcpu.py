@@ -196,9 +196,17 @@ class ZCpu(object):
         # Fallthrough: No args were equal to a.
         self._branch(False)
 
-    def op_jl(self, a, b):
-        """Branch if the first argument is less than the second."""
-        self._branch(self._make_signed(a) < self._make_signed(b))
+    def op_jl(self, a, *others):
+        """Branch if the first argument is less than any subsequent
+        argument. Note that the second operand may be absent, in
+        which case there is no jump."""
+        for b in others:
+            if a < b:
+                self._branch(True)
+                return
+
+        # Fallthrough: No args were greater than a.
+        self._branch(False)
 
     def op_jg(self, *args):
         """TODO: Write docstring here."""
