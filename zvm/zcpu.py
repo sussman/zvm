@@ -442,9 +442,10 @@ class ZCpu(object):
         zstr_address = self._opdecoder.get_zstring()
         self._ui.screen.write(self._string.get(zstr_address))
 
-    def op_print_ret(self, *args):
+    def op_print_ret(self):
         """TODO: Write docstring here."""
-        raise ZCpuNotImplemented
+        self.op_print()
+        self.op_rtrue()
 
     def op_nop(self, *args):
         """TODO: Write docstring here."""
