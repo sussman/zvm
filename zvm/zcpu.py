@@ -281,7 +281,6 @@ class ZCpu(object):
     def op_get_prop(self, objectnum, propnum):
         """Store in the given result an object's property value
         (either a byte or word)."""
-        self._objects.describe_object(objectnum)
         val = self._objects.get_prop(objectnum, propnum)
         self._write_result(val)
 
