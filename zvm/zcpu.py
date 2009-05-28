@@ -256,8 +256,6 @@ class ZCpu(object):
         """Move object OBJECT to become the first child of object
         DEST.  After the move, the prior first child of DEST is now
         the OBJECT's sibling."""
-        self._objects.describe_object(object)
-        self._objects.describe_object(dest)
         self._objects.insert_object(dest, object)
 
     def op_loadw(self, base, offset):
