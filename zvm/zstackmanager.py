@@ -8,6 +8,8 @@
 # root directory of this distribution.
 #
 
+from zlogging import log
+
 class ZStackError(Exception):
   "General exception for stack or routine-related errors"
   pass

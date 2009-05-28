@@ -203,7 +203,7 @@ class ZCpu(object):
     def op_jg(self, *args):
         """TODO: Write docstring here."""
         raise ZCpuNotImplemented
-      
+
     def op_dec_chk(self, variable, test_value):
         """Decrement the variable, and branch if the value becomes
         less than test_value."""
@@ -239,15 +239,15 @@ class ZCpu(object):
     def op_test_attr(self, *args):
         """TODO: Write docstring here."""
         raise ZCpuNotImplemented
-      
+
     def op_set_attr(self, *args):
         """TODO: Write docstring here."""
         raise ZCpuNotImplemented
-      
+
     def op_clear_attr(self, *args):
         """TODO: Write docstring here."""
         raise ZCpuNotImplemented
-      
+
     def op_store(self, variable, value):
         """Store the given value to the given variable."""
         self._write_result(value, store_addr=variable)
@@ -278,11 +278,11 @@ class ZCpu(object):
     def op_get_prop_addr(self, *args):
         """TODO: Write docstring here."""
         raise ZCpuNotImplemented
-      
+
     def op_get_next_prop(self, *args):
         """TODO: Write docstring here."""
         raise ZCpuNotImplemented
-      
+
     def op_add(self, a, b):
         """Signed 16-bit addition."""
         result = self._unmake_signed(
@@ -312,14 +312,14 @@ class ZCpu(object):
     def op_mod(self, *args):
         """TODO: Write docstring here."""
         raise ZCpuNotImplemented
-      
-    def op_call_2s(self, *args):
+
+    def op_call_2s(self, routine_addr, arg1):
         """TODO: Write docstring here."""
-        raise ZCpuNotImplemented
-      
-    def op_call_2n(self, *args):
-        """TODO: Write docstring here."""
-        raise ZCpuNotImplemented
+        self._call(routine_addr, [arg1], True)
+
+    def op_call_2n(self, routine_addr, arg1):
+        """Call routine(arg1) and throw away the result."""
+        self._call(routine_addr, [arg1], False)
 
     def op_set_colour(self, *args):
         """TODO: Write docstring here."""
@@ -392,7 +392,7 @@ class ZCpu(object):
         # signed integer. We need to make it signed before applying
         # the offset.
         if (offset >= 2**15):
-            offset = - 2**16 + offset            
+            offset = - 2**16 + offset
         log("Jump unconditionally to relative offset %d" % offset)
 
         # Apparently reading the 2 bytes of operand *isn't* supposed
@@ -748,7 +748,7 @@ class ZCpu(object):
     def op_check_unicode(self, *args):
         """TODO: Write docstring here."""
         raise ZCpuNotImplemented
-      
+
     # Declaration of the opcode tables. In a Z-Machine, opcodes are
     # divided into tables based on the operand type. Within each
     # table, the operand is then indexed by its number. We preserve
