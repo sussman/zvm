@@ -252,9 +252,13 @@ class ZCpu(object):
         """Store the given value to the given variable."""
         self._write_result(value, store_addr=variable)
 
-    def op_insert_obj(self, *args):
-        """TODO: Write docstring here."""
-        raise ZCpuNotImplemented
+    def op_insert_obj(self, object, dest):
+        """Move object OBJECT to become the first child of object
+        DEST.  After the move, the prior first child of DEST is now
+        the OBJECT's sibling."""
+        self._objects.describe_object(object)
+        self._objects.describe_object(dest)
+        self._objects.insert_object(dest, object)
 
     def op_loadw(self, base, offset):
         """Store in the given result register the word value at

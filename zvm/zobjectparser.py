@@ -6,9 +6,17 @@
 # root directory of this distribution.
 #
 
+# This part of of the z-machine is where it becomes really clear that
+# the original authoris were MIT Lisp-heads.  :-) They've got a tree
+# of objects going, where each object is basically a linked list of
+# siblings.  Specifically, each object contains a pointer to a parent,
+# a pointer to its "next sibling" in the list, and a pointer to the
+# head of its own children-list.
+
 from bitfield import BitField
 from zmemory import ZMemory
 from zstring import ZStringFactory
+from zlogging import log
 
 
 class ZObjectError(Exception):
@@ -39,6 +47,10 @@ class ZObjectIllegalPropLength(ZObjectError):
   "Illegal property length."
   pass
 
+class ZObjectMalformedTree(ZObjectError):
+  "Object tree is malformed."
+  pass
+
 
 # The interpreter should only need exactly one instance of this class.
 
@@ -61,35 +73,45 @@ class ZObjectParser(object):
   def _get_object_addr(self, objectnum):
     """Return address of object number OBJECTNUM."""
 
+    result = 0
     if 1 <= self._memory.version <= 3:
       if not (1 <= objectnum <= 255):
         raise ZObjectIllegalObjectNumber
-      return self._objecttree_addr + (9 * (objectnum - 1))
-
+      result = self._objecttree_addr + (9 * (objectnum - 1))
     elif 4 <= self._memory.version <= 5:
       if not (1 <= objectnum <= 65535):
+        log("error:  there is no object %d" % objectnum)
         raise ZObjectIllegalObjectNumber
-      return self._objecttree_addr + (14 * (objectnum - 1))
-
+      result = self._objecttree_addr + (14 * (objectnum - 1))
     else:
       raise ZObjectIllegalVersion
+
+    log("address of object %d is %d" % (objectnum, result))
+    return result
+
 
   def _get_parent_sibling_child(self, objectnum):
     """Return [parent, sibling, child] object numbers of object OBJECTNUM."""
 
     addr = self._get_object_addr(objectnum)
 
+    result = 0
     if 1 <= self._memory.version <= 3:
       addr += 4  # skip past attributes
-      return self._memory[addr:addr+3]
+      result = self._memory[addr:addr+3]
 
     elif 4 <= self._memory.version <= 5:
       addr += 6  # skip past attributes
-      return [self._memory.read_word(addr),
-              self._memory.read_word(addr + 2),
-              self._memory.read_word(addr + 4)]
+      result = [self._memory.read_word(addr),
+                self._memory.read_word(addr + 2),
+                self._memory.read_word(addr + 4)]
     else:
       raise ZObjectIllegalVersion
+
+    log ("parent/sibling/child of object %d is %d, %d, %d" %
+         (objectnum, result[0], result[1], result[2]))
+    return result
+    
 
   def _get_proptable_addr(self, objectnum):
     """Return address of property table of object OBJECTNUM."""
@@ -185,6 +207,76 @@ class ZObjectParser(object):
 
     [parent, sibling, child] = self._get_parent_sibling_child(objectnum)
     return sibling
+
+
+  def set_parent(self, objectnum, new_parent_num):
+    """Make OBJECTNUM's parent pointer point to NEW_PARENT_NUM."""
+
+    addr = self._get_object_addr(objectnum)
+    if 1 <= self._memory.version <= 3:
+      self._memory[addr + 4] = new_parent_num
+    elif 4 <= self._memory.version <= 5:
+      self._memory.write_word(addr + 6, new_parent_num)
+    else:
+      raise ZObjectIllegalVersion
+
+
+  def set_child(self, objectnum, new_child_num):
+    """Make OBJECTNUM's child pointer point to NEW_PARENT_NUM."""
+
+    addr = self._get_object_addr(objectnum)
+    if 1 <= self._memory.version <= 3:
+      self._memory[addr + 6] = new_child_num
+    elif 4 <= self._memory.version <= 5:
+      self._memory.write_word(addr + 10, new_child_num)
+    else:
+      raise ZObjectIllegalVersion
+
+
+  def set_sibling(self, objectnum, new_sibling_num):
+    """Make OBJECTNUM's sibling pointer point to NEW_PARENT_NUM."""
+
+    addr = self._get_object_addr(objectnum)
+    if 1 <= self._memory.version <= 3:
+      self._memory[addr + 5] = new_sibling_num
+    elif 4 <= self._memory.version <= 5:
+      self._memory.write_word(addr + 8, new_sibling_num)
+    else:
+      raise ZObjectIllegalVersion
+
+
+  def insert_object(self, parent_object, new_child):
+    """Prepend object NEW_CHILD to the list of PARENT_OBJECT's children."""
+
+    # Remember all the original pointers within the new_child
+    [p, s, c] = self._get_parent_sibling_child(new_child)
+
+    # First insert new_child intto the parent_object
+    original_child = self.get_child(parent_object)
+    self.set_sibling(new_child, original_child)
+    self.set_parent(new_child, parent_object)
+    self.set_child(parent_object, new_child)
+
+    if p == 0:  # no need to 'remove' new_child, since it wasn't in a tree
+      return
+
+    # Hunt down and remove the new_child from its old location
+    item = self.get_child(p)
+    if item == 0:
+      # new_object claimed to have parent p, but p has no children!?
+      raise ZObjectMalformedTree
+    elif item == new_child:  # done!  new_object was head of list
+      self.set_child(p, s) # note that s might be 0, that's fine.
+    else: # walk across list of sibling links
+      prev = item
+      current = self.get_sibling(item)
+      while current != 0:
+        if current == new_child:
+          self.set_sibling(prev, s) # s might be 0, that's fine.
+          break
+      else:
+        # we reached the end of the list, never got a match
+        raise ZObjectMalformedTree
 
 
   def get_shortname(self, objectnum):
