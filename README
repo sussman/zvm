@@ -1,14 +1,3 @@
-Welcome to ZVM
-===============
-
-This is a work-in-progress.  More information about this project can
-be found at
-
-       http://code.google.com/p/zvm
-
-
-What is ZVM?
-============
 
 The goal of the ZVM project is to write a pure-python implementation
 of a Z-machine, a virtual computer architecture that executes
@@ -36,15 +25,7 @@ The current goals of the project include:
       virtual machine on a modern computer, so we always shoot for
       readable code over clever optimizations.
 
-
-Code
-====
-
 All code is covered by the BSD license, found in the LICENSE file.
-
-You can check out the latest code from Subversion here:
-
-       http://zvm.googlecode.com/svn/trunk
 
 
 A Note on C Code
