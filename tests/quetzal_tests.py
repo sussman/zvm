@@ -10,7 +10,8 @@ from zvm import quetzal
 
 def make_zmachine():
     # We use Graham Nelson's 'curses' game for our unittests.
-    story_image = open("stories/curses.z5", "rb").read()
+    with open("stories/curses.z5", "rb") as story:
+      story_image = story.read()
     ui = trivialzui.create_zui()
     return zmachine.ZMachine(story_image, ui, debugmode=True)
 
@@ -27,11 +28,15 @@ class QuetzalParserTest(TestCase):
     parser = quetzal.QuetzalParser(machine)
     parser.load("stories/curses.save1")
     savefile_metadata = parser.get_last_loaded()
-    self.assertEqual(savefile_metadata,\
-        {'total length': 520, \
-         'memory length': 26163, \
-         'checksum': 19942, \
-         'release number': 16, \
-         'serial number': '951024', \
-         'program counter': 176149, \
-         'CMem': 437, 'Stks': 40, 'IFhd': 13})
+    expected_metadata = {
+      'total length': 520,
+      'memory length': 26163,
+      'checksum': 19942,
+      'release number': 16,
+      'serial number': b'951024',
+      'program counter': 176149,
+      b'CMem': 437,
+      b'Stks': 40,
+      b'IFhd': 13,
+    }
+    self.assertEqual(savefile_metadata, expected_metadata)
