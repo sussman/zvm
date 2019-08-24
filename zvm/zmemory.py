@@ -250,7 +250,7 @@ class ZMemory(object):
     if not (0x10 <= varnum <= 0xFF):
       raise ZMemoryOutOfBounds
     if not (0x00 <= value <= 0xFFFF):
-      raise ZMemoryIllegalWrite(address)
+      raise ZMemoryIllegalWrite(value)
     log("Write %d to global variable %d" % (value, varnum))
     actual_address = self._global_variable_start + ((varnum - 0x10) * 2)
     bf = bitfield.BitField(value)
