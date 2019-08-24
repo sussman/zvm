@@ -19,7 +19,7 @@ def main():
         print("%s is not a file." % story_file)
         usage()
     try:
-        f = file(story_file)
+        f = open(story_file, "rb")
         story_image = f.read()
         f.close()
     except IOError:

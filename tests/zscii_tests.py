@@ -10,7 +10,7 @@ from zvm import zmemory
 
 def make_zmemory():
     # We use Graham Nelson's 'curses' game for our unittests.
-    storydata = file("stories/curses.z5").read()
+    storydata = open("stories/curses.z5", "rb").read()
     return zmemory.ZMemory(storydata)
 
 class ZsciiTranslatorTests(TestCase):

@@ -10,7 +10,7 @@ from zvm import quetzal
 
 def make_zmachine():
     # We use Graham Nelson's 'curses' game for our unittests.
-    story_image = file("stories/curses.z5").read()
+    story_image = open("stories/curses.z5", "rb").read()
     ui = trivialzui.create_zui()
     return zmachine.ZMachine(story_image, ui, debugmode=True)
 

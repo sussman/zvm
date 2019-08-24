@@ -15,7 +15,7 @@ phrase3 = "the fish, house, and bird are odd and round, no?"
 class ZLexerTests(TestCase):
   def setUp(self):
     # We use Graham Nelson's 'curses' game for our unittests.
-    storydata = file("stories/curses.z5").read()
+    storydata = open("stories/curses.z5", "rb").read()
     self.mem = ZMemory(storydata)
 
   def testParseDictionary(self):
