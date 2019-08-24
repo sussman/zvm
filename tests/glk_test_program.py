@@ -45,7 +45,7 @@ class WindowsGlkLibrary(glk.GlkLib):
 
     def __init__( self ):
         glk.GlkLib.__init__(self, "Glk")
-        
+
         GLK_VERSION = 0x00000601
 
         if self._dll.InitGlk(GLK_VERSION) == 0:
@@ -60,14 +60,14 @@ def run_test_program(glkLib):
 
     mainwin = glkLib.glk_window_open(0, 0, 0, glk.wintype_TextBuffer, 1)
     glkLib.glk_set_window(mainwin)
-    glkLib.glk_put_string("Hello, world!\n")
-    glkLib.glk_put_string("Type 'quit' to exit.\n")
+    glkLib.glk_put_string(b"Hello, world!\n")
+    glkLib.glk_put_string(b"Type 'quit' to exit.\n")
 
     commandbuf = CharBufArrayType()
     event = glk.event_t()
 
     while 1:
-        glkLib.glk_put_string("\n> ")
+        glkLib.glk_put_string(b"\n> ")
         glkLib.glk_request_line_event(mainwin,
                                       commandbuf,
                                       len(commandbuf)-1,
@@ -79,10 +79,10 @@ def run_test_program(glkLib):
                 event.win == mainwin):
                 gotline = True
         cmdLength = event.val1
-        commandbuf[cmdLength] = "\0"
+        commandbuf[cmdLength] = b"\0"
 
-        if commandbuf.value == "quit":
-            glkLib.glk_put_string("Goodbye, world!\n")
+        if commandbuf.value == b"quit":
+            glkLib.glk_put_string(b"Goodbye, world!\n")
             glkLib.glk_exit()
 
 if __name__ == "__main__":

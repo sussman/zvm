@@ -156,11 +156,11 @@ class CheapGlkTests(TestCase, AnyGlkTestsMixIn):
             args = [sys.executable, glk_test_program.__file__],
             stdin = subprocess.PIPE,
             stdout = subprocess.PIPE,
-            stderr = subprocess.PIPE
+            stderr = subprocess.PIPE,
+            universal_newlines = True
             )
-        glk_program.stdin.write("quit\n")
-        glk_program.wait()
+        stdout, stderr = glk_program.communicate("quit\n")
         self.assertEqual(glk_program.returncode, 0)
-        text = glk_program.stdout.read()
-        assert "Hello, world!" in text
-        assert "Goodbye, world!" in text
+        assert "Hello, world!" in stdout
+        assert "Goodbye, world!" in stdout
+        assert len(stderr) == 0
