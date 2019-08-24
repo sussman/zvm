@@ -21,38 +21,36 @@ class BitField(object):
     def __init__(self, value=0):
         """Initialize a bitfield object from a number or string value."""
         if isinstance(value, str):
-            self._d = 0
-            for i,v in zip(list(range(0,8*len(value),8)),
-                           value[::-1]):
-                self[i:i+8] = v
+            self._d = ord(value)
         else:
             self._d = value
 
     def __getitem__(self, index):
-        """Get the value of a single bit."""
-        return (self._d >> index) & 1
+        """Get the value of a single bit or slice."""
+        if isinstance(index, slice):
+            start, stop = index.start, index.stop
+            if start > stop:
+                (start, stop) = (stop, start)
+            mask = 2**(stop - start) -1
+            return (self._d >> start) & mask
+        else:
+            return (self._d >> index) & 1
 
     def __setitem__(self, index, value):
-        """Set the value of a single bit."""
-        value    = (value&1)<<index
-        mask     = (1)<<index
-        self._d  = (self._d & ~mask) | value
-
-    def __getslice__(self, start, end):
-        """Get the integer value of a slice of bits."""
-        if start > end:
-            (start, end) = (end, start)
-        mask = 2**(end - start) -1
-        return (self._d >> start) & mask
-
-    def __setslice__(self, start, end, value):
-        """Set the binary value of a slice of the field, using the
-        bits of the given integer."""
-        mask = 2**(end - start) -1
-        value = (value & mask) << start
-        mask = mask << start
-        self._d = (self._d & ~mask) | value
-        return (self._d >> start) & mask
+        """Set the value of a single bit or slice."""
+        if isinstance(value, str):
+            value = ord(value)
+        if isinstance(index, slice):
+            start, stop = index.start, index.stop
+            mask = 2**(stop - start) -1
+            value = (value & mask) << start
+            mask = mask << start
+            self._d = (self._d & ~mask) | value
+            return (self._d >> start) & mask
+        else:
+            value = (value) << index
+            mask = (1) << index
+            self._d  = (self._d & ~mask) | value
 
     def __int__(self):
         """Return the whole bitfield as an integer."""
