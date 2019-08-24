@@ -84,7 +84,7 @@ class ZMemory(object):
 
     # Copy string into a _memory sequence that represents main memory.
     self._total_size = len(initial_string)
-    self._memory = [ord(x) for x in initial_string]
+    self._memory = initial_string
 
     # Figure out the different sections of memory
     self._static_start = self.read_word(0x0e)
@@ -121,7 +121,11 @@ class ZMemory(object):
     log("  Global variable start: %x" % self._global_variable_start)
 
   def _check_bounds(self, index):
-    if not (0 <= index < self._total_size):
+    if isinstance(index, slice):
+      start, stop = index.start, index.stop
+    else:
+      start, stop = index, index
+    if not ((0 <= start < self._total_size) and (0 <= stop < self._total_size)):
       raise ZMemoryOutOfBounds
 
   def _check_static(self, index):
