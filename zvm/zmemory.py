@@ -5,8 +5,8 @@
 # root directory of this distribution.
 #
 
-import bitfield
-from zlogging import log
+from . import bitfield
+from .zlogging import log
 
 # This class that represents the "main memory" of the z-machine.  It's
 # readable and writable through normal indexing and slice notation,
@@ -131,9 +131,9 @@ class ZMemory(object):
 
   def print_map(self):
     """Pretty-print a description of the memory map."""
-    print "Dynamic memory: ", self._dynamic_start, "-", self._dynamic_end
-    print " Static memory: ", self._static_start, "-", self._static_end
-    print "   High memory: ", self._high_start, "-", self._high_end
+    print("Dynamic memory: ", self._dynamic_start, "-", self._dynamic_end)
+    print(" Static memory: ", self._static_start, "-", self._static_end)
+    print("   High memory: ", self._high_start, "-", self._high_end)
 
   def __getitem__(self, index):
     """Return the byte value stored at address INDEX.."""

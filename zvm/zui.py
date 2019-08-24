@@ -5,10 +5,10 @@
 # root directory of this distribution.
 #
 
-import zaudio
-import zscreen
-import zstream
-import zfilesystem
+from . import zaudio
+from . import zscreen
+from . import zstream
+from . import zfilesystem
 
 class ZUI(object):
     """This class encapsulates the entire user interface of a

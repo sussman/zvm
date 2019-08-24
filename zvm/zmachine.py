@@ -5,14 +5,14 @@
 # root directory of this distribution.
 #
 
-from zstring import ZStringFactory
-from zmemory import ZMemory
-from zopdecoder import ZOpDecoder
-from zstackmanager import ZStackManager
-from zobjectparser import ZObjectParser
-from zcpu import ZCpu
-from zstreammanager import ZStreamManager
-import zlogging
+from .zstring import ZStringFactory
+from .zmemory import ZMemory
+from .zopdecoder import ZOpDecoder
+from .zstackmanager import ZStackManager
+from .zobjectparser import ZObjectParser
+from .zcpu import ZCpu
+from .zstreammanager import ZStreamManager
+from . import zlogging
 
 class ZMachineError(Exception):
   """General exception for ZMachine class"""

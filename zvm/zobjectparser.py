@@ -13,10 +13,10 @@
 # a pointer to its "next sibling" in the list, and a pointer to the
 # head of its own children-list.
 
-from bitfield import BitField
-from zmemory import ZMemory
-from zstring import ZStringFactory
-from zlogging import log
+from .bitfield import BitField
+from .zmemory import ZMemory
+from .zstring import ZStringFactory
+from .zlogging import log
 
 
 class ZObjectError(Exception):
@@ -415,19 +415,19 @@ class ZObjectParser(object):
     """For debugging purposes, pretty-print everything known about
     object OBJECTNUM."""
 
-    print "Object number:", objectnum
-    print "    Short name:", self.get_shortname(objectnum)
-    print "    Parent:", self.get_parent(objectnum),
-    print " Sibling:", self.get_sibling(objectnum),
-    print " Child:", self.get_child(objectnum)
-    print "    Attributes:", self.get_all_attributes(objectnum)
-    print "    Properties:"
+    print("Object number:", objectnum)
+    print("    Short name:", self.get_shortname(objectnum))
+    print("    Parent:", self.get_parent(objectnum), end=' ')
+    print(" Sibling:", self.get_sibling(objectnum), end=' ')
+    print(" Child:", self.get_child(objectnum))
+    print("    Attributes:", self.get_all_attributes(objectnum))
+    print("    Properties:")
 
     proplist = self.get_all_properties(objectnum)
-    for key in proplist.keys():
+    for key in list(proplist.keys()):
       (addr, len) = proplist[key]
-      print "       [%2d] :" % key,
+      print("       [%2d] :" % key, end=' ')
       for i in range(0, len):
-        print "%02X" % self._memory[addr+i],
-      print
+        print("%02X" % self._memory[addr+i], end=' ')
+      print()
 

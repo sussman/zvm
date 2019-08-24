@@ -15,7 +15,7 @@ def is_function_implemented(function):
     checks to see if a function consists of a body that raises
     NotImplementedError."""
     
-    names = function.func_code.co_names
+    names = function.__code__.co_names
 
     # If the only name used by the function is NotImplementedError,
     # then there's a pretty good chance that it's a function that
@@ -40,7 +40,7 @@ class AnyZAudioTestsMixIn:
         assert isinstance(self.zaudio, zvm.zaudio.ZAudio)
 
     def testAllFeaturesAreRecognized(self):
-        for feature_name in self.zaudio.features.keys():
+        for feature_name in list(self.zaudio.features.keys()):
             if feature_name not in self.RECOGNIZED_FEATURES:
                 raise AssertionError(
                    "ZAudio instance contains unknown feature '%s'" % \
@@ -49,7 +49,7 @@ class AnyZAudioTestsMixIn:
 
     def testAllRecognizedFeaturesAreSpecified(self):
         for feature_name in self.RECOGNIZED_FEATURES:
-            if not self.zaudio.features.has_key(feature_name):
+            if feature_name not in self.zaudio.features:
                 raise AssertionError(
                     "ZAudio instance does not specify whether it " \
                     "supports feature '%s'" % feature_name

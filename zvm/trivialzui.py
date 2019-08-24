@@ -16,12 +16,13 @@
 
 import sys
 
-import zaudio
-import zscreen
-import zstream
-import zfilesystem
-import zui
-from zlogging import log
+from . import zaudio
+from . import zscreen
+from . import zstream
+from . import zfilesystem
+from . import zui
+from .zlogging import log
+from functools import reduce
 
 class TrivialAudio(zaudio.ZAudio):
   def __init__(self):
@@ -176,7 +177,7 @@ class TrivialKeyboardInputStream(zstream.ZInputStream):
     # carriage return.
     self.__screen.on_input_occurred(newline_occurred=True)
 
-    return unicode(result)
+    return str(result)
 
   def read_char(self, timed_input_routine=None,
                 timed_input_interval=0):
@@ -200,7 +201,7 @@ class TrivialFilesystem(zfilesystem.ZFilesystem):
         file_obj.write(data)
         file_obj.close()
         success = True
-      except IOError, e:
+      except IOError as e:
         self.__report_io_error(e)
 
     return success
@@ -216,7 +217,7 @@ class TrivialFilesystem(zfilesystem.ZFilesystem):
         file_obj = open(filename, "rb")
         data = file_obj.read()
         file_obj.close()
-      except IOError, e:
+      except IOError as e:
         self.__report_io_error(e)
 
     return data
@@ -230,7 +231,7 @@ class TrivialFilesystem(zfilesystem.ZFilesystem):
     if filename:
       try:
         file_obj = open(filename, "w")
-      except IOError, e:
+      except IOError as e:
         self.__report_io_error(e)
 
     return file_obj
@@ -244,7 +245,7 @@ class TrivialFilesystem(zfilesystem.ZFilesystem):
     if filename:
       try:
         file_obj = open(filename, "r")
-      except IOError, e:
+      except IOError as e:
         self.__report_io_error(e)
 
     return file_obj
@@ -277,7 +278,7 @@ def _win32_read_char():
 
   import msvcrt
 
-  return unicode(msvcrt.getch())
+  return str(msvcrt.getch())
 
 def _unix_read_char():
   """Unix-specific function that reads a character of input from the
@@ -296,7 +297,7 @@ def _unix_read_char():
       ch = sys.stdin.read(1)
   finally:
       termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
-  return unicode(ch)
+  return str(ch)
 
 def _read_char():
   """Reads a character of input from the keyboard and returns it
@@ -322,12 +323,12 @@ def _read_line(original_text=None, terminating_characters=None):
   character ('\r')."""
   
   if original_text == None:
-    original_text = u""
+    original_text = ""
   if not terminating_characters:
-    terminating_characters = u"\r"
+    terminating_characters = "\r"
 
-  assert isinstance(original_text, unicode)
-  assert isinstance(terminating_characters, unicode)
+  assert isinstance(original_text, str)
+  assert isinstance(terminating_characters, str)
 
   chars_entered = len(original_text)
   sys.stdout.write(original_text)

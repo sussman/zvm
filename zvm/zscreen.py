@@ -9,7 +9,7 @@
 # root directory of this distribution.
 #
 
-import zstream
+from . import zstream
 
 # Constants for window numbers.
 #

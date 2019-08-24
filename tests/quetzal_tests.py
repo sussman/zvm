@@ -27,7 +27,7 @@ class QuetzalParserTest(TestCase):
     parser = quetzal.QuetzalParser(machine)
     parser.load("stories/curses.save1")
     savefile_metadata = parser.get_last_loaded()
-    self.assertEquals(savefile_metadata,\
+    self.assertEqual(savefile_metadata,\
         {'total length': 520, \
          'memory length': 26163, \
          'checksum': 19942, \

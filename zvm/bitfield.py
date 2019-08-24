@@ -22,8 +22,8 @@ class BitField(object):
         """Initialize a bitfield object from a number or string value."""
         if isinstance(value, str):
             self._d = 0
-            for i,v in zip(range(0,8*len(value),8),
-                           [ord(s) for s in value[::-1]]):
+            for i,v in zip(list(range(0,8*len(value),8)),
+                           value[::-1]):
                 self[i:i+8] = v
         else:
             self._d = value
@@ -34,21 +34,21 @@ class BitField(object):
 
     def __setitem__(self, index, value):
         """Set the value of a single bit."""
-        value    = (value&1L)<<index
-        mask     = (1L)<<index
+        value    = (value&1)<<index
+        mask     = (1)<<index
         self._d  = (self._d & ~mask) | value
 
     def __getslice__(self, start, end):
         """Get the integer value of a slice of bits."""
         if start > end:
             (start, end) = (end, start)
-        mask = 2L**(end - start) -1
+        mask = 2**(end - start) -1
         return (self._d >> start) & mask
 
     def __setslice__(self, start, end, value):
         """Set the binary value of a slice of the field, using the
         bits of the given integer."""
-        mask = 2L**(end - start) -1
+        mask = 2**(end - start) -1
         value = (value & mask) << start
         mask = mask << start
         self._d = (self._d & ~mask) | value

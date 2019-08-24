@@ -17,9 +17,9 @@
 import chunk
 import os
 
-import bitfield
-import zstackmanager
-from zlogging import log
+from . import bitfield
+from . import zstackmanager
+from .zlogging import log
 
 # The general format of Queztal is that of a "FORM" IFF file, which is
 # a container class for 'chunks'.

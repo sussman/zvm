@@ -7,7 +7,7 @@
 #
 
 import re
-from zstring import ZStringFactory, ZsciiTranslator
+from .zstring import ZStringFactory, ZsciiTranslator
 
 class ZLexerError(Exception):
   "General exception for ZLexer class"
@@ -131,7 +131,7 @@ class ZLexer(object):
 
     final_list = []
     for word in token_list:
-      if dict.has_key(word):
+      if word in dict:
         byte_addr = dict[word]
       else:
         byte_addr = 0

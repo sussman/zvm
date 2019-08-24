@@ -9,7 +9,7 @@ import subprocess
 import ctypes
 from unittest import TestCase
 
-import glk_test_program
+from . import glk_test_program
 import zvm.glk as glk
 
 class AnyGlkTestsMixIn:
@@ -33,7 +33,7 @@ class AnyGlkTestsMixIn:
             assert result == glk.TRUE or result == glk.FALSE
 
         keycodes = [ getattr(glk, keycode)
-                     for keycode in glk.__dict__.keys()
+                     for keycode in list(glk.__dict__.keys())
                      if keycode.startswith("keycode_") ]
 
         for keycode in keycodes:
@@ -56,29 +56,29 @@ class AnyGlkTestsMixIn:
 
         for char in range(32, 127):
             result = self.glkLib.glk_gestalt(glk.gestalt_LineInput, char)
-            self.assertEquals(result, glk.TRUE)
+            self.assertEqual(result, glk.TRUE)
 
     def testGestaltLineInputReportsProperCharsAreUntypable(self):
         # This tests Section 2.2 of the Glk spec 0.7.0, ensuring that
         # certain characters are reported to be untypable by the
         # end-user for line input.
 
-        untypableCharacters = (range(0, 32) +
-                               range(127, 160) +
-                               range(256, 1000))
+        untypableCharacters = (list(range(0, 32)) +
+                               list(range(127, 160)) +
+                               list(range(256, 1000)))
 
         for char in untypableCharacters:
             result = self.glkLib.glk_gestalt(glk.gestalt_LineInput, char)
-            self.assertEquals(result, glk.FALSE)
+            self.assertEqual(result, glk.FALSE)
 
     def testGestaltCharOutputReportsProperCharsAreUnprintable(self):
         # This tests Section 2.1 of the Glk spec 0.7.0, ensuring that
         # certain characters are reported to be unprintable.
 
-        unprintableCharacters = (range(0, 10) +
-                                 range(11, 32) +
-                                 range(127, 160) +
-                                 range(256, 1000))
+        unprintableCharacters = (list(range(0, 10)) +
+                                 list(range(11, 32)) +
+                                 list(range(127, 160)) +
+                                 list(range(256, 1000)))
 
         for char in unprintableCharacters:
             numGlyphs = glk.glui32()
@@ -89,7 +89,7 @@ class AnyGlkTestsMixIn:
                 1
                 )
 
-            self.assertEquals(result, glk.gestalt_CharOutput_CannotPrint)
+            self.assertEqual(result, glk.gestalt_CharOutput_CannotPrint)
 
     def testGestaltCharOutputProvidesValidInformation(self):
         # This tests Section 2.1 of the Glk spec 0.7.0, ensuring the
@@ -111,7 +111,7 @@ class AnyGlkTestsMixIn:
             elif result == glk.gestalt_CharOutput_ExactPrint:
                 # Any character that can be printed exactly should
                 # only be one glyph long.
-                self.assertEquals(numGlyphs.value, 1)
+                self.assertEqual(numGlyphs.value, 1)
             elif result == glk.gestalt_CharOutput_ApproxPrint:
                 # Any character that can be printed approximately
                 # should be at least one glyph long.
@@ -128,7 +128,7 @@ class AnyGlkTestsMixIn:
 
         for x in range(0, 100):
             for y in range(0, 100):
-                self.assertEquals(
+                self.assertEqual(
                     self.glkLib.glk_gestalt(x, y),
                     self.glkLib.glk_gestalt_ext(x, y, glk.NULL, 0)
                     )
@@ -142,11 +142,11 @@ class CheapGlkTests(TestCase, AnyGlkTestsMixIn):
 
     def testGestaltVersionWorks(self):
         CHEAP_GLK_VERSION = 0x700
-        self.assertEquals(
+        self.assertEqual(
             self.glkLib.glk_gestalt(glk.gestalt_Version, 0),
             CHEAP_GLK_VERSION
             )
-        self.assertEquals(
+        self.assertEqual(
             self.glkLib.glk_gestalt_ext(glk.gestalt_Version, 0, glk.NULL, 0),
             CHEAP_GLK_VERSION
             )
@@ -160,7 +160,7 @@ class CheapGlkTests(TestCase, AnyGlkTestsMixIn):
             )
         glk_program.stdin.write("quit\n")
         glk_program.wait()
-        self.assertEquals(glk_program.returncode, 0)
+        self.assertEqual(glk_program.returncode, 0)
         text = glk_program.stdout.read()
         assert "Hello, world!" in text
         assert "Goodbye, world!" in text
