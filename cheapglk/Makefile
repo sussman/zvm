@@ -12,34 +12,39 @@
 # It's based on Unicode character data, which is not platform-dependent.
 
 # Pick a C compiler.
-CC = cc
-#CC = gcc -ansi
+# CC = cc
+CC = gcc -ansi
 
-OPTIONS = -g -Wall
+OPTIONS = -g -Wall -fPIC
 
 CFLAGS = $(OPTIONS) $(INCLUDEDIRS)
 
-GLKLIB = libcheapglk.a
+GLKLIB_STATIC = libcheapglk.a
+GLKLIB_SHARED = libcheapglk.so
 
 CHEAPGLK_OBJS =  \
   cgfref.o cggestal.o cgmisc.o cgstream.o cgstyle.o cgwindow.o cgschan.o \
-  cgdate.o cgunicod.o main.o gi_dispa.o gi_blorb.o gi_debug.o cgblorb.o
+  cgdate.o cgunicod.o main.o gi_dispa.o gi_blorb.o gi_debug.o cgblorb.o \
+  glkstart.o
 
 CHEAPGLK_HEADERS = cheapglk.h gi_dispa.h gi_debug.h
 
-all: $(GLKLIB) Make.cheapglk
+all: $(GLKLIB_STATIC) Make.cheapglk $(GLKLIB_SHARED)
 
 cgunicod.o: cgunigen.c
 
-$(GLKLIB): $(CHEAPGLK_OBJS)
-	ar r $(GLKLIB) $(CHEAPGLK_OBJS)
-	ranlib $(GLKLIB)
+$(GLKLIB_STATIC): $(CHEAPGLK_OBJS)
+	ar r $(GLKLIB_STATIC) $(CHEAPGLK_OBJS)
+	ranlib $(GLKLIB_STATIC)
+
+$(GLKLIB_SHARED): $(CHEAPGLK_OBJS)
+	gcc -shared -o $(GLKLIB_SHARED) $(CHEAPGLK_OBJS)
 
 Make.cheapglk:
 	echo LINKLIBS = $(LIBDIRS) $(LIBS) > Make.cheapglk
-	echo GLKLIB = -lcheapglk >> Make.cheapglk
+	echo GLKLIB_STATIC = -lcheapglk >> Make.cheapglk
 
 $(CHEAPGLK_OBJS): glk.h $(CHEAPGLK_HEADERS)
 
 clean:
-	rm -f *~ *.o $(GLKLIB) Make.cheapglk
+	rm -f *~ *.o $(GLKLIB_STATIC) Make.cheapglk $(GLKLIB_SHARED)

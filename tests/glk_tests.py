@@ -141,7 +141,7 @@ class CheapGlkTests(TestCase, AnyGlkTestsMixIn):
         self.glkLib = glk_test_program.CheapGlkLibrary()
 
     def testGestaltVersionWorks(self):
-        CHEAP_GLK_VERSION = 0x700
+        CHEAP_GLK_VERSION = 0x705
         self.assertEqual(
             self.glkLib.glk_gestalt(glk.gestalt_Version, 0),
             CHEAP_GLK_VERSION
