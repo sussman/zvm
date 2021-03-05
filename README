@@ -27,23 +27,17 @@ The current goals of the project include:
 
 All code is covered by the BSD license, found in the LICENSE file.
 
+Build and Test
+==============
 
-A Note on C Code
-================
+To build this code and run the test suite, just do
 
-Note that while ZVM itself is written exclusively in Python, it does
-have the ability to interoperate with Glk front-ends which have been
-built as shared libraries.  In order for our testing suites to test
-this functionality, we have included a slightly modified version of
-Andrew Plotkin's CheapGlk library.
-
-To build the CheapGLK included here, just type
-
-  $ make
+  $ make && make check
 
 from the top level of the source tree.
 
-Project contents:
+Project contents
+=================
 
       README                        this file
       LICENSE                       the BSD license
@@ -55,3 +49,12 @@ Project contents:
       zvm/                          the actual ZVM python module
       docs/                         notes, diagrams, instructions
       cheapglk/                     the CheapGlk Glk library
+
+A Note on C Code
+================
+
+Note that while ZVM itself is written exclusively in Python, it does
+have the ability to interoperate with Glk front-ends which have been
+built as shared libraries.  In order for our testing suites to test
+this functionality, we have included a slightly modified version of
+Andrew Plotkin's CheapGlk library.
