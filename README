@@ -47,7 +47,7 @@ Project contents:
 
       README                        this file
       LICENSE                       the BSD license
-      SConstruct                    SCons script used to build C code
+      Makefile                      used to build C code
       run_tests.py                  script to run automated tests
       run_story.py                  script to execute a story file
       tests/                        automated tests for the module
@@ -55,6 +55,3 @@ Project contents:
       zvm/                          the actual ZVM python module
       docs/                         notes, diagrams, instructions
       cheapglk/                     the CheapGlk Glk library
-
-Note that there's also a /wiki directory at the top level of the
-repository, which contains our live wiki pages.
