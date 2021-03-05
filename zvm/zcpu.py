@@ -9,10 +9,10 @@
 import random
 import time
 
-import zopdecoder
-import zscreen
-import bitfield
-from zlogging import log, log_disasm
+from . import zopdecoder
+from . import zscreen
+from . import bitfield
+from .zlogging import log, log_disasm
 
 class ZCpuError(Exception):
     "General exception for Zcpu class"

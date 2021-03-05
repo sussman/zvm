@@ -21,7 +21,7 @@ class ZStringTranslator(object):
         self._mem = zmem
 
     def get(self, addr):
-        from bitfield import BitField
+        from .bitfield import BitField
         pos = (addr, BitField(self._mem.read_word(addr)), 0)
 
         s = []
@@ -40,7 +40,7 @@ class ZStringTranslator(object):
         return pos[1][15] == 1
 
     def _next_pos(self, pos):
-        from bitfield import BitField
+        from .bitfield import BitField
 
         offset = pos[2] + 1
         # Overflowing from current block?
@@ -192,7 +192,7 @@ class ZCharTranslator(object):
                 }
 
     def _special_zscii(self, state, char):
-        if 'zscii_char' not in state.keys():
+        if 'zscii_char' not in list(state.keys()):
             state['zscii_char'] = char
         else:
             zchar = (state['zscii_char'] << 5) + char
@@ -209,11 +209,11 @@ class ZCharTranslator(object):
             }
 
         for c in zstr:
-            if 'state_handler' in state.keys():
+            if 'state_handler' in list(state.keys()):
                 # If a special handler has registered itself, then hand
                 # processing over to it.
                 state['state_handler'](state, c)
-            elif c in self._specials.keys():
+            elif c in list(self._specials.keys()):
                 # Hand off per-ZM version special char handling.
                 self._specials[c](state)
             elif state['curr_alpha'] == 2 and c == 6:
@@ -244,7 +244,7 @@ class ZsciiTranslator(object):
     # The default Unicode Translation Table that maps to ZSCII codes
     # 155-251. The codes are unicode codepoints for a host of strange
     # characters.
-    DEFAULT_UTT = [unichr(x) for x in
+    DEFAULT_UTT = [chr(x) for x in
                    (0xe4, 0xf6, 0xfc, 0xc4, 0xd6, 0xdc,
                    0xdf, 0xbb, 0xab, 0xeb, 0xef, 0xff,
                    0xcb, 0xcf, 0xe1, 0xe9, 0xed, 0xf3,
@@ -311,7 +311,7 @@ class ZsciiTranslator(object):
 
         # Populate the input and output tables with the ASCII and UTT
         # characters.
-        for code,char in [(x,unichr(x)) for x in range(32,127)]:
+        for code,char in [(x,chr(x)) for x in range(32,127)]:
             self._output_table[code] = char
             self._input_table[char] = code
 
@@ -324,7 +324,7 @@ class ZsciiTranslator(object):
         # Oh and we also pull the items from the subclass into this
         # instance, so as to make reference to these special codes
         # easier.
-        for name,code in [(c,v) for c,v in self.Input.__dict__.items()
+        for name,code in [(c,v) for c,v in list(self.Input.__dict__.items())
                      if not c.startswith('__')]:
             self._input_table[code] = code
             setattr(self, name, code)
@@ -361,15 +361,15 @@ class ZsciiTranslator(object):
                 # Build the range of addresses to load from, and build
                 # the unicode translation table as a list of unicode
                 # chars.
-                utt_range = xrange(ext_table+1, ext_table+1+(utt_len*2), 2)
-                utt = [unichr(self._mem.read_word(i)) for i in utt_range]
+                utt_range = range(ext_table+1, ext_table+1+(utt_len*2), 2)
+                utt = [chr(self._mem.read_word(i)) for i in utt_range]
             else:
                 utt = self.DEFAULT_UTT
 
             # One way or another, we have a unicode translation
             # table. Add all the characters in it to the input and
             # output translation tables.
-            for zscii, unichar in itertools.izip(itertools.count(155), utt):
+            for zscii, unichar in zip(itertools.count(155), utt):
                 self._output_table[zscii] = unichar
                 self._input_table[unichar] = zscii
 
@@ -380,7 +380,7 @@ class ZsciiTranslator(object):
         try:
             return self._output_table[index]
         except KeyError:
-            raise IndexError, "No such ZSCII character"
+            raise IndexError("No such ZSCII character")
 
     def utoz(self, char):
         """Translate the given Unicode code into the corresponding
@@ -389,7 +389,7 @@ class ZsciiTranslator(object):
         try:
             return self._input_table[char]
         except KeyError:
-            raise IndexError, "No such input character"
+            raise IndexError("No such input character")
 
     def get(self, zscii):
         return ''.join([self.ztou(c) for c in zscii])

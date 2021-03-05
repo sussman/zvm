@@ -5,8 +5,8 @@
 # root directory of this distribution.
 #
 
-import bitfield
-from zlogging import log
+from . import bitfield
+from .zlogging import log
 
 # This class that represents the "main memory" of the z-machine.  It's
 # readable and writable through normal indexing and slice notation,
@@ -84,7 +84,7 @@ class ZMemory(object):
 
     # Copy string into a _memory sequence that represents main memory.
     self._total_size = len(initial_string)
-    self._memory = [ord(x) for x in initial_string]
+    self._memory = bytearray(initial_string)
 
     # Figure out the different sections of memory
     self._static_start = self.read_word(0x0e)
@@ -121,19 +121,30 @@ class ZMemory(object):
     log("  Global variable start: %x" % self._global_variable_start)
 
   def _check_bounds(self, index):
-    if not (0 <= index < self._total_size):
+    if isinstance(index, slice):
+      start, stop = index.start, index.stop
+    else:
+      start, stop = index, index
+    if not ((0 <= start < self._total_size) and (0 <= stop < self._total_size)):
       raise ZMemoryOutOfBounds
 
   def _check_static(self, index):
     """Throw error if INDEX is within the static-memory area."""
-    if self._static_start <= index <= self._static_end:
+    if isinstance(index, slice):
+      start, stop = index.start, index.stop
+    else:
+      start, stop = index, index
+    if (
+      self._static_start <= start <= self._static_end
+      and self._static_start <= stop <= self._static_end
+    ):
       raise ZMemoryIllegalWrite(index)
 
   def print_map(self):
     """Pretty-print a description of the memory map."""
-    print "Dynamic memory: ", self._dynamic_start, "-", self._dynamic_end
-    print " Static memory: ", self._static_start, "-", self._static_end
-    print "   High memory: ", self._high_start, "-", self._high_end
+    print("Dynamic memory: ", self._dynamic_start, "-", self._dynamic_end)
+    print(" Static memory: ", self._static_start, "-", self._static_end)
+    print("   High memory: ", self._high_start, "-", self._high_end)
 
   def __getitem__(self, index):
     """Return the byte value stored at address INDEX.."""
@@ -246,7 +257,7 @@ class ZMemory(object):
     if not (0x10 <= varnum <= 0xFF):
       raise ZMemoryOutOfBounds
     if not (0x00 <= value <= 0xFFFF):
-      raise ZMemoryIllegalWrite(address)
+      raise ZMemoryIllegalWrite(value)
     log("Write %d to global variable %d" % (value, varnum))
     actual_address = self._global_variable_start + ((varnum - 0x10) * 2)
     bf = bitfield.BitField(value)

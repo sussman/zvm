@@ -17,9 +17,9 @@
 import chunk
 import os
 
-import bitfield
-import zstackmanager
-from zlogging import log
+from . import bitfield
+from . import zstackmanager
+from .zlogging import log
 
 # The general format of Queztal is that of a "FORM" IFF file, which is
 # a container class for 'chunks'.
@@ -78,14 +78,14 @@ class QuetzalParser(object):
     if self._seen_mem_or_stks:
       raise QuetzalIllegalChunkOrder
 
-    bytes = [ord(x) for x in data]
+    bytes = data
     if len(bytes) != 13:
       raise QuetzalMalformedChunk
 
-    chunk_release = (ord(data[0]) << 8) + ord(data[1])
+    chunk_release = (data[0] << 8) + data[1]
     chunk_serial = data[2:8]
-    chunk_checksum = (ord(data[8]) << 8) + ord(data[9])
-    chunk_pc = (ord(data[10]) << 16) + (ord(data[11]) << 8) + ord(data[12])
+    chunk_checksum = (data[8] << 8) + data[9]
+    chunk_pc = (data[10] << 16) + (data[11] << 8) + data[12]
     self._zmachine._opdecoder.program_counter = chunk_pc
 
     log("  Found release number %d" % chunk_release)
@@ -101,7 +101,7 @@ class QuetzalParser(object):
     mem = self._zmachine._mem
     if mem.read_word(2) != chunk_release:
       raise QuetzalMismatchedFile
-    serial_bytes = [ord(x) for x in chunk_serial]
+    serial_bytes = chunk_serial
     if serial_bytes != mem[0x12:0x18]:
       raise QuetzalMismatchedFile
     mem_checksum = mem.read_word(0x1C)
@@ -127,7 +127,7 @@ class QuetzalParser(object):
     log("  Dynamic memory length is %d" % memlen)
     self._last_loaded_metadata["memory length"] = memlen
 
-    runlength_bytes = [ord(x) for x in data]
+    runlength_bytes = data
     bytelen = len(runlength_bytes)
     bytecounter = 0
 
@@ -191,7 +191,7 @@ class QuetzalParser(object):
     stackmanager = zstackmanager.ZStackManager(self._zmachine._mem)
 
     self._seen_mem_or_stks = True
-    bytes = [ord(x) for x in data]
+    bytes = data
     total_len = len(bytes)
     ptr = 0
 
@@ -302,7 +302,7 @@ class QuetzalParser(object):
       raise QuetzalNoSuchSavefile
 
     log("Attempting to load saved game from '%s'" % savefile_path)
-    self._file = open(savefile_path)
+    self._file = open(savefile_path, 'rb')
 
     # The python 'chunk' module is pretty dumb; it doesn't understand
     # the FORM chunk and the way it contains nested chunks.
@@ -310,18 +310,18 @@ class QuetzalParser(object):
     # we can start sucking out chunks.  This also allows us to
     # validate that the FORM type is "IFZS".
     header = self._file.read(4)
-    if header != "FORM":
+    if header != b"FORM":
       raise QuetzalUnrecognizedFileFormat
     bytestring = self._file.read(4)
-    self._len = ord(bytestring[0]) << 24
-    self._len += (ord(bytestring[1]) << 16)
-    self._len += (ord(bytestring[2]) << 8)
-    self._len += ord(bytestring[3])
+    self._len = bytestring[0] << 24
+    self._len += bytestring[1] << 16
+    self._len += bytestring[2] << 8
+    self._len += bytestring[3]
     log("Total length of FORM data is %d" % self._len)
     self._last_loaded_metadata["total length"] = self._len
 
     type = self._file.read(4)
-    if type != "IFZS":
+    if type != b"IFZS":
       raise QuetzalUnrecognizedFileFormat
 
     try:
@@ -333,21 +333,21 @@ class QuetzalParser(object):
         log("** Found chunk ID %s: length %d" % (chunkname, chunksize))
         self._last_loaded_metadata[chunkname] = chunksize
 
-        if chunkname == "IFhd":
+        if chunkname == b"IFhd":
           self._parse_ifhd(data)
-        elif chunkname == "CMem":
+        elif chunkname == b"CMem":
           self._parse_cmem(data)
-        elif chunkname == "UMem":
+        elif chunkname == b"UMem":
           self._parse_umem(data)
-        elif chunkname == "Stks":
+        elif chunkname == b"Stks":
           self._parse_stks(data)
-        elif chunkname == "IntD":
+        elif chunkname == b"IntD":
           self._parse_intd(data)
-        elif chunkname == "AUTH":
+        elif chunkname == b"AUTH":
           self._parse_auth(data)
-        elif chunkname == "(c) ":
+        elif chunkname == b"(c) ":
           self._parse_copyright(data)
-        elif chunkname == "ANNO":
+        elif chunkname == b"ANNO":
           self._parse_anno(data)
         else:
           # spec says to ignore and skip past unrecognized chunks

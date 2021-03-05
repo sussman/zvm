@@ -6,9 +6,9 @@
 # root directory of this distribution.
 #
 
-from bitfield import BitField
-from zmemory import ZMemory
-from zlogging import log
+from .bitfield import BitField
+from .zmemory import ZMemory
+from .zlogging import log
 
 class ZOperationError(Exception):
   "General exception for ZOperation class"
