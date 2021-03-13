@@ -24,5 +24,5 @@ int glkunix_startup_code(glkunix_startup_t *data)
 
 void glk_main(void)
 {
-    return TRUE;
+    return;
 }
