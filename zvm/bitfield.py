@@ -31,7 +31,7 @@ class BitField(object):
             start, stop = index.start, index.stop
             if start > stop:
                 (start, stop) = (stop, start)
-            mask = 2**(stop - start) -1
+            mask = (1<<(stop - start)) -1
             return (self._d >> start) & mask
         else:
             return (self._d >> index) & 1
@@ -42,7 +42,7 @@ class BitField(object):
             value = ord(value)
         if isinstance(index, slice):
             start, stop = index.start, index.stop
-            mask = 2**(stop - start) -1
+            mask = (1<<(stop - start)) -1
             value = (value & mask) << start
             mask = mask << start
             self._d = (self._d & ~mask) | value
