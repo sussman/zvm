@@ -79,18 +79,18 @@ class ZCpu(object):
 
     def _make_signed(self, a):
         """Turn the given 16-bit value into a signed integer."""
-        assert a < 2**16
+        assert a < (1<<16)
         # This is a little ugly.
         bf = bitfield.BitField(a)
         if bf[15]:
-            a = a - 2**16
+            a = a - (1<<16)
         return a
 
     def _unmake_signed(self, a):
         """Turn the given signed integer into a 16-bit value ready for
         storage."""
         if a < 0:
-            a = 2**16 + a
+            a = (1<<16) + a
         return a
 
     def _read_variable(self, addr):
@@ -316,7 +316,7 @@ class ZCpu(object):
         b = self._make_signed(b)
         if b == 0:
             raise ZCpuDivideByZero
-        self._write_result(self._unmake_signed(a/b))
+        self._write_result(self._unmake_signed(a//b))
 
     def op_mod(self, *args):
         """TODO: Write docstring here."""
@@ -402,8 +402,8 @@ class ZCpu(object):
         # The offset to the jump instruction is known to be a 2-byte
         # signed integer. We need to make it signed before applying
         # the offset.
-        if (offset >= 2**15):
-            offset = - 2**16 + offset
+        if (offset >= (1<<15)):
+            offset = - (1<<16) + offset
         log("Jump unconditionally to relative offset %d" % offset)
 
         # Apparently reading the 2 bytes of operand *isn't* supposed
