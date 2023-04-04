@@ -10,11 +10,17 @@
 # CC = cc
 CC = gcc -ansi
 
-OPTIONS = -g -Wall -fPIC
-
-CFLAGS = $(OPTIONS) $(INCLUDEDIRS)
-
 GLKLIB_SHARED = libcheapglk.so
+OSFLAG :=
+DEL := rm -f
+ifeq ($(OS),Windows_NT)
+OSFLAG := -D WIN32
+GLKLIB_SHARED = libcheapglk.dll
+DEL := del /F
+endif
+
+OPTIONS = -g -Wall -fPIC
+CFLAGS = $(OPTIONS) $(INCLUDEDIRS) $(OSFLAG)
 
 CHEAPGLK_OBJS =  \
   cgfref.o cggestal.o cgmisc.o cgstream.o cgstyle.o cgwindow.o cgschan.o \
@@ -33,4 +39,4 @@ $(GLKLIB_SHARED): $(CHEAPGLK_OBJS)
 $(CHEAPGLK_OBJS): glk.h $(CHEAPGLK_HEADERS)
 
 clean:
-	rm -f *~ *.o $(GLKLIB_SHARED)
+	$(DEL) *~ *.o $(GLKLIB_SHARED)
